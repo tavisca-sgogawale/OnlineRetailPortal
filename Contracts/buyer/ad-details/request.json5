@@ -1,0 +1,7 @@
+//GET /api/products/{productId}
+
+//Request object
+{
+    //[Mandatory] unique identifier of user
+    "userId": "1111"
+}

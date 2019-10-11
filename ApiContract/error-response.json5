@@ -1,6 +1,13 @@
 //Error response object
 {
 	"code": "400",
-	"message": "Please Enter valid Data"
+	"message": "Please Enter valid Data",
+	"info": [
+				{
+				"code": "400",
+				// input placeholder for specifying field where wrong data is entered
+				"message": "Please Enter valid Data for " + input + " field"
+				}
+	]
 }
    

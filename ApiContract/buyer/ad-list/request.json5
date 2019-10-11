@@ -1,0 +1,6 @@
+//GET /api/products/{pageno}
+//Request object
+{
+	//[Mandatory] unique identifier of user
+	"userId": "1111",
+}

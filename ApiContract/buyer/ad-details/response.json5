@@ -1,0 +1,57 @@
+//Response data
+{
+    "product":
+    {
+        //[Mandatory] id of the product
+        "id": "fad5b5",
+        //[Mandatory] title of product
+        "title": "I-Phone 11s",
+
+        //[Mandatory] description of product
+        "description": "lorem lorem lorem lorem lorem lorem lorem lorem lorem ",
+
+        //[Mandatory] images of the product
+        "heroImages": "imageUrl" ,
+
+        //[Mandatory] price of product
+        "price": 
+        {
+            "amount":"90000",
+            "isPriceNegotiable":"true"
+        },
+        //[Mandatory] category of product
+        "category": "Accessories",
+
+        "images":["url1","url2","url3"],
+      
+        //[Mandatory] description of seller
+        "sellerDescription": {
+            "id": "1111",
+            "name": "abees",
+        
+        },
+        //[Mandatory] date of publishing for the product
+        "date": "dd-mm-yy" 
+
+        "pickupAddress": "pune",    
+    }
+}
+
+
+
+//Error response object
+{
+   "code": "401",
+   "message": "You must login first",
+
+   
+   "code": "404",
+   "message": "No product Found",
+
+   "code": "408",
+   "message": "Request Timeout ",
+
+    "code": "400",
+   "message": "product should be integer",
+
+}

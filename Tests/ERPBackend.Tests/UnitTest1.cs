@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace ERPTest
+namespace ERPBackend.Tests
 {
     public class UnitTest1
     {

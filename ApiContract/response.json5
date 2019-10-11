@@ -4,11 +4,11 @@
 		//[Mandatory] id of the advertisement
 		"id" : "P123",
 		//[Mandatory] title of the advertisement
-		"title" : "Watch" ,
+		"name" : "Watch" ,
 		//[Mandatory] description of the advertisement
 		"description" : "something",
 		//[Mandatory] images of the product in the advertisement (Maximum files - 5)
-		"heroImageUrl" : "url",
+		"heroImageUrl" : "www.example.com/imageName",
 		//[Mandatory] 
 		"price" : 
 		{
@@ -21,21 +21,21 @@
 		//[Mandatory] category of the product in the advertisement
 		"category" : "Accessories",
 
-		//(Optional) images of the product
+		//[Optional] images of the product
 		"imageUrls" : [
             {
-                "url" : "abc",
+                "url" : "www.example.com/imageName",
                 "order" : "1"
             },
             {
-                "url" : "xyz",
+                "url" : "www.example.com/imageName",
                 "order" : "2"
             }],
-		//(Optional) date when the original product was purchased
-		"purchaseDate" : "11-6-3000",
-		//(Optional) Boolean flag specifying whether phone number should be visible or not
+		//[Optional] date when the original product was purchased
+		"purchaseDate" : "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffz",
+		//[Optional] Boolean flag specifying whether phone number should be visible or not
 		"isPhoneNumberVisible" : "true",
-		//(Optional) Address where the product is present
+		//[Optional] Address where the product is present
 		"pickupAddress" : "Tavisca Solutions"
 	},
 	"seller" : {

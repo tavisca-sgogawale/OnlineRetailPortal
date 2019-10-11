@@ -1,24 +1,25 @@
-POST /api/product
+POST /api/advertisement
 
 //Request object
 {
-	//[Mandatory] unique identifier of user
-	"userId" : "U123",
-	//[Mandatory] title of the product to be sold
+	//[Mandatory] id of the advertisement
+	"id" : "P123",
+	//[Mandatory] title of the advertisement
 	"title" : "Watch" ,
-	//[Mandatory] description of the product to be sold
+	//[Mandatory] description of the advertisement
 	"description" : "something",
-	//[Mandatory] images of the product to be sold (Maximum files - 5)
+	//[Mandatory] images of the product in the advertisement (Maximum files - 5)
 	"heroImageUrl" : "url",
-	//[Mandatory] price of the product to be sold (in Rupees)
+	//[Mandatory] 
 	"price" : 
 	{
+		// price of the product in the advertisement (in Rupees)
 		"amount" : "300",
-		// Boolean flag specifying whether price is negotiable or not (default value false)
+		// Boolean flag specifying whether price is negotiable or not
 		"isPriceNegotiable" : "true"
 		
 	},
-	//[Mandatory] category of the product to be sold
+	//[Mandatory] category of the product in the advertisement
 	"category" : "Accessories",
 
 	//(Optional) images of the product
@@ -32,7 +33,7 @@ POST /api/product
 			"order" : "2"
 		}],
 	//(Optional) date when the original product was purchased
-	"purchaseDate" : "11-6-3000",		
+	"purchaseDate" : "11-6-3000",
 	//(Optional) Boolean flag specifying whether phone number should be visible or not
 	"isPhoneNumberVisible" : "true",
 	//(Optional) Address where the product is present

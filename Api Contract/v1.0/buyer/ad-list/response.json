@@ -1,0 +1,22 @@
+//Response data
+{
+  //[Mandatory] list of relevant ads
+  "adsList": [
+    {
+      //[Mandatory] id of the ad
+      "id": "fad5b-d9cb-461f-a165-7086772895",
+      //[Mandatory] price of ad
+      "price": "90000",
+      //[Mandatory] category of ad
+      "category": "mobile",
+      //[Mandatory] title of ad
+      "title": "I-Phone 11s",
+      //[Mandatory] date of ad
+      "adCategory": "hotel",
+      //[Mandatory] images of the product
+      "imageUrl": "www.xyz.com",
+      //[Mandatory] date of publishing for the product
+      "date": "dd-mm-yy"
+    }
+  ]
+}

@@ -1,8 +1,6 @@
 //Error response object
 {
-	"status" : {
-		"code": "400",
-   		"message": "Please Enter valid Data"
-	}
+	"code": "400",
+	"message": "Please Enter valid Data"
 }
    

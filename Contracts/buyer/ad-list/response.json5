@@ -11,15 +11,15 @@
       "category": "mobile",
       //[Mandatory] title of ad
       "title": "I-Phone 11s",
-      //[Mandatory] date of ad
+      
     
       //[Mandatory] images of the product
-      "heroImage": "www.xyz.com",
+      "heroImage":  "www.images.com/imageName",
       //[Mandatory] date of publishing for the product
-      "postDate": "dd-mm-yy",
+      "postDate": "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffz",
 
-      //[Optional] date of publishing for the product
-      "purchaseDate": "dd-mm-yy",
+      //[Optional] date of purchase of the product
+      "purchaseDate": "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffz",
 
 
 
@@ -33,20 +33,3 @@
 
 }
 
-
-//Error response object
-{
-   "code": "401",
-   "message": "You must login first",
-
-   
-   "code": "404",
-   "message": "No products Found",
-
-   "code": "408",
-   "message": "Request Timeout ",
-
-    "code": "400",
-   "message": "page not exist",
-
-}

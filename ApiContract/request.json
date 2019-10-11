@@ -1,0 +1,40 @@
+POST /api/product
+
+//Request object
+{
+	//[Mandatory] unique identifier of user
+	"userId" : "U123",
+	//[Mandatory] title of the product to be sold
+	"title" : "Watch" ,
+	//[Mandatory] description of the product to be sold
+	"description" : "something",
+	//[Mandatory] images of the product to be sold (Maximum files - 5)
+	"heroImageUrl" : "url",
+	//[Mandatory] price of the product to be sold (in Rupees)
+	"price" : 
+	{
+		"amount" : "300",
+		// Boolean flag specifying whether price is negotiable or not (default value false)
+		"isPriceNegotiable" : "true"
+		
+	},
+	//[Mandatory] category of the product to be sold
+	"category" : "Accessories",
+
+	//(Optional) images of the product
+	"imageUrls" : [
+		{
+			"url" : "abc",
+			"order" : "1"
+		},
+		{
+			"url" : "xyz",
+			"order" : "2"
+		}],
+	//(Optional) date when the original product was purchased
+	"purchaseDate" : "11-6-3000",		
+	//(Optional) Boolean flag specifying whether phone number should be visible or not
+	"isPhoneNumberVisible" : "true",
+	//(Optional) Address where the product is present
+	"pickupAddress" : "Tavisca Solutions"
+}

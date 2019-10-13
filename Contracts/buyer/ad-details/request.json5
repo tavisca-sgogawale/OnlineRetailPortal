@@ -1,4 +1,4 @@
-//GET /api/products/{productId}
+//GET /api/v1.0/{applicationname}/products/{productId}
 
 //Request object
 {

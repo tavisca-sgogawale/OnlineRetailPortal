@@ -1,4 +1,4 @@
-//GET /api/products/{pageno}
+//GET /api/v1.0/{applicationname}/products?pagenumber=1&pagesize=50
 //Request object
 {
 	//[Mandatory] unique identifier of session

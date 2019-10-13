@@ -1,7 +1,7 @@
 //Response data
 {
-  //[Mandatory] list of relevant ads
-  "product": [
+  //[Mandatory] list of relevant products
+  "products": [
     {
       //[Mandatory] id of the ad
       "id": "fad5b-d9cb-461f-a165-7086772895",
@@ -11,7 +11,6 @@
       "category": "mobile",
       //[Mandatory] title of ad
       "title": "I-Phone 11s",
-      
     
       //[Mandatory] images of the product
       "heroImage":  "www.images.com/imageName",
@@ -20,16 +19,16 @@
 
       //[Optional] date of purchase of the product
       "purchaseDate": "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffz",
-
-
-
     }
   ]
-  "Page":
+  "pagingInfo":
   {
-    "size":"20",
-    "maxNumber":"3"
+    //[Mandatory] number of current page
+    "number":"2",
+     //[Mandatory] number of products display on page
+    "size":"50",
+    //[Mandatory] number of total pages 
+    "totalPages":"20"
   }
-
 }
 

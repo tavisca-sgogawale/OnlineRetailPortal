@@ -7,7 +7,7 @@
 	//[Mandatory] title of the product
 	"name" : "Watch" ,
 	//[Mandatory] description of the product
-	"description" : "something",
+	"description" : "something something something",
 	//[Mandatory] images of the product
 	"heroImageUrl" : "www.example.com/imageName",
 	//[Mandatory] 

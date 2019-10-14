@@ -1,5 +1,4 @@
 ﻿using ERPBackend.Models;
-using System;
 using System.Collections.Generic;
 
 public interface IProductProvider

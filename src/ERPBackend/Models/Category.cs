@@ -9,6 +9,7 @@
       Bikes,
       Books,
       Fashions,
-      Electronics
+      Electronics,
+      Others
     }
 }

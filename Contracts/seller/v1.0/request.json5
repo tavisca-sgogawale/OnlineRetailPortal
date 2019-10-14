@@ -8,8 +8,7 @@
 	"userId": "1111",
 
 	"product" : 
-	{	//[Mandatory] id of the product
-		"id" : "P123",
+	{	
 		//[Mandatory] title of the product
 		"name" : "Watch" ,
 		//[Mandatory] description of the product

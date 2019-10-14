@@ -18,9 +18,13 @@
 		
 	},
 	//[Mandatory] category of the product
-	"category" : "Accessories",
+	"category" : "Accessories",	
+	//[Mandatory] status of the product i.e. Active/Disable/Sold/Rented Out
+	"status" : "Active",
 	//[Mandatory] date when product ad was posted in yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffz  format
 	"postDate" : "2019-09-01T01:05:99.33",
+	//[Mandatory] date when the ad will expire in yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffz  format
+	"expirationDate" : "2019-09-01T01:05:99.33",
 
 	//[Optional] images of the product
 	"images" : [

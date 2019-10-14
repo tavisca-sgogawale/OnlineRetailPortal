@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ERPBackend.Models
 {
-    public class Advertisement
+    public class Product
     {
         public int Id { get; set; }
         public string Name { get; set; }

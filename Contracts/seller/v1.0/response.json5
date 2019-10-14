@@ -1,0 +1,49 @@
+//Response data
+{
+	//[Mandatory] id of the product
+	"id" : "P123",
+	//[Mandatory] title of the product
+	"name" : "Watch" ,
+	//[Mandatory] description of the product
+	"description" : "something",
+	//[Mandatory] images of the product
+	"heroImageUrl" : "www.example.com/imageName",
+	//[Mandatory] 
+	"price" : 
+	{
+		// price of the product (in Rupees)
+		"amount" : "300",
+		// Boolean flag specifying whether price is negotiable or not
+		"isPriceNegotiable" : "true"
+		
+	},
+	//[Mandatory] category of the product
+	"category" : "Accessories",
+
+	//[Optional] images of the product
+	"imageUrls" : [
+		{
+			"url" : "www.example.com/firstImage",
+			"order" : "1"
+		},
+		{
+			"url" : "www.example.com/secondImage",
+			"order" : "2"
+		}],
+	//[Optional] date when the original product was purchased in yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffz  format
+	"purchaseDate" : "2019-09-01T01:05:99.33",
+	//[Optional] Boolean flag specifying whether phone number should be visible or not
+	"isPhoneNumberVisible" : "true",
+	//[Optional] Address where the product is present
+	"pickupAddress" : {
+		"line1" : "Flat,Apartment",
+		"line1" : "Street",
+		"city" : "Pune",
+		"pincode" : "411001",
+		"state" : "Maharashtra",
+	},
+	"seller" : {
+		"id" : "U123",
+		"name" : "ABC"
+	},
+}

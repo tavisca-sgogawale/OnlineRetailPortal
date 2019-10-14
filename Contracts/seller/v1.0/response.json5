@@ -1,7 +1,7 @@
 //Response data
 {
 	//[Mandatory] id of the product
-	"id" : "P123",
+	"productId" : "P123",
 	//[Mandatory] title of the product
 	"name" : "Watch" ,
 	//[Mandatory] description of the product
@@ -19,15 +19,17 @@
 	},
 	//[Mandatory] category of the product
 	"category" : "Accessories",
+	//[Mandatory] date when product ad was posted in yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffz  format
+	"postDate" : "2019-09-01T01:05:99.33",
 
 	//[Optional] images of the product
 	"images" : [
 		{
-			"url" : "www.example.com/firstImage",
+			"url" : "firstImage.png",
 			"order" : "1"
 		},
 		{
-			"url" : "www.example.com/secondImage",
+			"url" : "secondImage.png",
 			"order" : "2"
 		}],
 	//[Optional] date when the original product was purchased in yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffz  format
@@ -41,9 +43,5 @@
 		"city" : "Pune",
 		"pincode" : "411001",
 		"state" : "Maharashtra",
-	},
-	"seller" : {
-		"id" : "U123",
-		"name" : "ABC"
-	},
+	}
 }

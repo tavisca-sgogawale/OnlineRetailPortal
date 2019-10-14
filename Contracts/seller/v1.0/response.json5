@@ -21,7 +21,7 @@
 	"category" : "Accessories",
 
 	//[Optional] images of the product
-	"imageUrls" : [
+	"images" : [
 		{
 			"url" : "www.example.com/firstImage",
 			"order" : "1"

@@ -1,9 +1,21 @@
 //Error response object
 {
 	"code": "401",
-	"message": "User is unauthorised"
+	"message": "User is unauthorised",
+	"info":[
+		{
+			"code":"401",
+			"message":"you must login first"
+		}
+	]
 },
 {
 	"code":"404",
-	"message":"Requested data is not found"
+	"message":"Not found",
+	"info":[
+		{
+			"code":"404",
+			"message":"Requested data is not found"
+		}
+	]
 }

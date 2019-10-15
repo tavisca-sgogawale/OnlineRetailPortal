@@ -1,53 +1,42 @@
-//POST /api/v1.0/{applicationname}/product
+//POST /api/v1.0/product
 
+//Header contains sessionId : FAE04EC0-301F-11D3-BF4B-00C04F79EFBC and userId : 1111
 //Request object
 {
-	//[Mandatory] unique identifier of session
-	"sessionId": "FAE04EC0-301F-11D3-BF4B-00C04F79EFBC",
-	//[Mandatory] unique identifier of user
-	"userId": "1111",
+	//[Mandatory] title of the product
+	"title" : "Watch" ,
+	//[Mandatory] description of the product
+	"description" : "something something something",
+	//[Mandatory] images of the product
+	"heroImageUrl" : "www.example.com/imageName",
+	//[Mandatory] 
+	"price" : 
+	{
+		// price of the product (in Rupees)
+		"amount" : "300",
+		// Boolean flag specifying whether price is negotiable or not
+		"isPriceNegotiable" : "true"
+		
+	},
+	//[Mandatory] category of the product
+	"category" : "Accessories",
 
-	"product" : 
-	{	
-		//[Mandatory] title of the product
-		"name" : "Watch" ,
-		//[Mandatory] description of the product
-		"description" : "something something something",
-		//[Mandatory] images of the product
-		"heroImageUrl" : "www.example.com/imageName",
-		//[Mandatory] 
-		"price" : 
+	//[Optional] images of the product
+	"imageUrls" : [
 		{
-			// price of the product (in Rupees)
-			"amount" : "300",
-			// Boolean flag specifying whether price is negotiable or not
-			"isPriceNegotiable" : "true"
-			
+			"url" : "www.example.com/firstImage"
 		},
-		//[Mandatory] category of the product
-		"category" : "Accessories",
-
-		//[Optional] images of the product
-		"images" : [
-			{
-				"url" : "firstImage.png",
-				"order" : "1"
-			},
-			{
-				"url" : "secondImage.png",
-				"order" : "2"
-			}],
-		//[Optional] date when the original product was purchased in yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffz  format
-		"purchaseDate" : "2019-09-01T01:05:99.33",
-		//[Optional] Boolean flag specifying whether phone number should be visible or not
-		"isPhoneNumberVisible" : "true",
-		//[Optional] Address where the product is present
-		"pickupAddress" : {
-				"line1" : "Flat,Apartment",
-				"line1" : "Street",
-				"city" : "Pune",
-				"pincode" : "411001",
-				"state" : "Maharashtra",
-			}
-	}
+		{
+			"url" : "www.example.com/secondImage"
+		}],
+	//[Optional] date when the original product was purchased in yyyy'-'MM'-'dd format
+	"purchaseDate" : "2019-09-01",
+	//[Optional] Address where the product is present
+	"pickupAddress" : {
+			"line1" : "Flat,Apartment",
+			"line2" : "Street",
+			"city" : "Pune",
+			"pincode" : "411001",
+			"state" : "Maharashtra",
+		}
 }

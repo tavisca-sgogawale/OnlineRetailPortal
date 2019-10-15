@@ -1,9 +1,9 @@
 //Response data
 {
 	//[Mandatory] id of the product
-	"productId" : "P123",
+	"id" : "P123",
 	//[Mandatory] title of the product
-	"name" : "Watch" ,
+	"title" : "Watch" ,
 	//[Mandatory] description of the product
 	"description" : "something something something",
 	//[Mandatory] images of the product
@@ -19,31 +19,27 @@
 	},
 	//[Mandatory] category of the product
 	"category" : "Accessories",	
-	//[Mandatory] status of the product i.e. Active/Disable/Sold/Rented Out
+	//[Mandatory] status of the product i.e. Active/Disable/Sold
 	"status" : "Active",
-	//[Mandatory] date when product ad was posted in yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffz  format
-	"postDate" : "2019-09-01T01:05:99.33",
-	//[Mandatory] date when the ad will expire in yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffz  format
-	"expirationDate" : "2019-09-01T01:05:99.33",
+	//[Mandatory] date when product ad was posted in yyyy'-'MM'-'dd format
+	"postDate" : "2019-09-01",
+	//[Mandatory] date when the ad will expire in yyyy'-'MM'-'dd format
+	"expirationDate" : "2019-09-01",
 
 	//[Optional] images of the product
-	"images" : [
+	"imageUrls" : [
 		{
-			"url" : "firstImage.png",
-			"order" : "1"
+			"url" : "www.example.com/firstImage"
 		},
 		{
-			"url" : "secondImage.png",
-			"order" : "2"
+			"url" : "www.example.com/secondImage"
 		}],
-	//[Optional] date when the original product was purchased in yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffz  format
-	"purchaseDate" : "2019-09-01T01:05:99.33",
-	//[Optional] Boolean flag specifying whether phone number should be visible or not
-	"isPhoneNumberVisible" : "true",
+	//[Optional] date when the original product was purchased in yyyy'-'MM'-'dd format
+	"purchaseDate" : "2019-09-01",
 	//[Optional] Address where the product is present
 	"pickupAddress" : {
 		"line1" : "Flat,Apartment",
-		"line1" : "Street",
+		"line2" : "Street",
 		"city" : "Pune",
 		"pincode" : "411001",
 		"state" : "Maharashtra",

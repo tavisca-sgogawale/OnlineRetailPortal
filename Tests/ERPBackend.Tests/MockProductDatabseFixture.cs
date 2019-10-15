@@ -32,7 +32,7 @@ namespace ERPBackend.Tests
 
         }
         [Fact]
-        public void Should_display_product()
+        public void Should_display_product_by_id()
         {
             Product expectedProduct = new Product
             {

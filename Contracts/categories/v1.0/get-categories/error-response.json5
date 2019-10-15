@@ -1,0 +1,9 @@
+//Error response object
+{
+	"code": "401",
+	"message": "User is unauthorised"
+},
+{
+	"code":"404",
+	"message":"Requested data is not found"
+}

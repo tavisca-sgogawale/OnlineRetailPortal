@@ -20,11 +20,23 @@ namespace ERPBackend.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Product>> GetProductsByPage(int pageNumber,int pageSize) =>
-            _productDb.GetProductsByPage(pageNumber, pageNumber);
+        public ActionResult<List<Product>> GetProductsByPage(int pageNumber,int pageSize)
+        {
+            try
+            {
+                return _productDb.GetProductsByPage(pageNumber, pageSize);
+            }
+            catch(IndexOutOfRangeException e)
+            {
+                return NotFound("Insert Correct Page No.");
+            }
+
+
+        }
+           
 
         [HttpGet("{id}")]
-        public ActionResult<Product> GetProductById(int id)
+        public ActionResult<Product> GetProductById(string id)
         {
             var product = _productDb.GetProductById(id);
             if (product == null)

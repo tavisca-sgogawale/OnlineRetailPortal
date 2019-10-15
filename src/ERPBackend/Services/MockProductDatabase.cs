@@ -5,7 +5,7 @@ using System.Linq;
 
 public class MockProductDatabase : IProductProvider
 {
-    List<Product> _productList = new List<Product>
+    public List<Product> _productList = new List<Product>()
         {
             new Product{Id=101,Name="Mobile", Price=new Price{ Amount=1299.00, IsNegotiable=true}, Category=Category.Mobiles,
                 HeroImage =new Image{Url = "https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery"},
@@ -79,19 +79,24 @@ public class MockProductDatabase : IProductProvider
                 PickupAddress =new Address{Line1="abc",Line2="xyz", City="Pune",State="Maharashtra", Pincode=411038 },
                 PostDateTime =  new DateTime(2019,12,1), PurchasedDate =  new DateTime(2019,12,1), Status = Status.Active, UserId = "1118" }
         };
-    public Product GetProductById(int Id)
+    public Product GetProductById(string Id)
     {
-        Product product = _productList.Where(n => n.Id == Id).First();
+        Product product = _productList.Where(n => n.UserId == Id).First();
         return product;
     }
     public List<Product> GetProductsByPage(int pageNumber, int pageSize)
     {
-        _productList
-        .Select((x, i) => new { Index = i, pageSize = x })
-        .GroupBy(x => x.Index / 3)
-        .Select(x => x.Select(v => v.pageSize).ToList())
-        .ToList();
-        return _productList;
+        int startIndex = (pageNumber - 1) * (pageSize);
+        int endIndex = (pageNumber * pageSize) - 1;
+        Console.WriteLine(pageNumber + " "+ pageSize);
+        List<Product> newProductList=new List<Product>();
+        for(int i=startIndex;i<=endIndex;i++ )
+        {
+            newProductList.Add(_productList[i]);
+        }
+        return newProductList;
+     
+        
     }
     public void AddProduct(Product product)
     {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Http;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using StructureMap;
 
 namespace ERPBackend
 {
@@ -23,14 +25,20 @@ namespace ERPBackend
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.Configure<MockProductDatabase>(
-             Configuration.GetSection(nameof(MockProductDatabase)));
+            services.AddMvc();
 
-             services.AddSingleton<MockProductDatabase>(sp =>
-                sp.GetRequiredService<IOptions<MockProductDatabase>>().Value);
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            HttpConfiguration config = GlobalConfiguration.Configuration;
+
+            var container = new StructureMap.Container();
+            container.Configure(c =>
+            {
+                c.Populate(services);
+                c.AddRegistry<Registration>();
+            });
+
+            return container.GetInstance<IServiceProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

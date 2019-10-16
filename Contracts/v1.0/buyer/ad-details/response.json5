@@ -1,66 +1,68 @@
 //Response data
+
 {
-    "product":
+    //[Mandatory] id of the product
+    "id": "12312",
+    //[Mandatory] title of product
+    "title": "I-Phone 11s",
+
+    //[Mandatory] description of product
+    "description": "lorem lorem lorem lorem lorem lorem lorem lorem lorem ",
+
+    //[Mandatory] images of the product
+    "heroImageUrl": "www.images.com/imageName" ,
+
+    //[Mandatory] price of product
+    "price": 
     {
-        //[Mandatory] id of the product
-        "id": "fad5b5",
-        //[Mandatory] title of product
-        "title": "I-Phone 11s",
+        "amount":"90000",
+        "isPriceNegotiable":"true"
+    },
 
-        //[Mandatory] description of product
-        "description": "lorem lorem lorem lorem lorem lorem lorem lorem lorem ",
+    //[Mandatory] category of product
+    "category": "Accessories",
 
-        //[Mandatory] images of the product
-        "heroImageUrl": "www.images.com/imageName" ,
+    //[Mandatory] status of the product i.e. Active/Disable/Sold
+    "status" : "Active",
 
-        //[Mandatory] price of product
-        "price": 
-        {
-            "amount":"90000",
-            "isPriceNegotiable":"true"
-        },
-        //[Mandatory] category of product
-        "category": "Accessories",
+    //[Mandatory] date when product ad was posted in yyyy'-'MM'-'dd format
+    "postDate" : "2019-09-01",
 
-        /[Mandatory] status of the product i.e. Active/Disable/Sold
-        "status" : "Active",
+    //[Mandatory] date when the ad will expire in yyyy'-'MM'-'dd format
+    "expirationDate" : "2019-10-01",
 
-        //[Mandatory] date when product ad was posted in yyyy'-'MM'-'dd format
-         "postDate" : "2019-09-01",
-
-        //[Mandatory] date when the ad will expire in yyyy'-'MM'-'dd format
-        "expirationDate" : "2019-10-01",
-
-         //[Optional] list of images
-        "imageUrls" : [
-        {
-            "url" : "www.example.com/firstImage"
-        },
-        {
-            "url" : "www.example.com/secondImage"
-        }],
-      
-        //[Mandatory] description of seller
-        "seller": {
-            "id": "1111",
-            "name": "abees",
-            "image":{
-                "url" : "www.example.com/secondImage"
-            }
-        
-        },
-        //[Mandatory] date of purchase of the  product
-        "purchaseDate": "yyyy'-'MM'-'dd",
-
-         //[Optional]pickup address of product 
-        "pickupAddress" : {
-            "line1" : "Flat,Apartment",
-            "line2" : "Street",
-            "city" : "Pune",
-            "pincode" : "411001",
-            "state" : "Maharashtra",
+    //[Optional] list of images
+    "imageUrls" : [
+    {
+        "url" : "www.example.com/firstImage"
+    },
+    {
+        "url" : "www.example.com/secondImage"
+    }],
+    
+    //[Mandatory] description of seller
+    "seller": {
+        "id": "1111",
+        "name": "abees",
         }
+    
+    //[Optional] date of purchase of the  product
+    "purchaseDate": "yyyy'-'MM'-'dd",
+
+    //[Optional]pickup address of product 
+    "pickupAddress" : {
+            //[Mandatory] First Line of address
+        "line1" : "Flat,Apartment",
+            //[Optional] Second Line of address
+        "line2" : "Street",
+        //[Mandatory] City of pickupAddress
+        "city" : "Pune",
+        //[Mandatory] pincode of pickupAddress
+        "pincode" : "411001",
+        //[Mandatory] State of pickupAddress
+        "state" : "Maharashtra",
     }
 }
+
 
 

@@ -51,7 +51,7 @@ namespace ERPBackend.Tests
             };
            
             MockProductDatabase productDatabase = new MockProductDatabase();
-            Product product = productDatabase.GetProductById(102);
+            Product product = productDatabase.GetProductById("102");
             Assert.Equal(product.ToString(), expectedProduct.ToString());
 
 

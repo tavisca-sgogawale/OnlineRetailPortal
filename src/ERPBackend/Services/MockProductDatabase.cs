@@ -98,8 +98,12 @@ public class MockProductDatabase : IProductProvider
      
         
     }
-    public void AddProduct(Product product)
+    public Product AddProduct(Product product)
     {
+        product.PostDateTime = DateTime.Now;
+        product.Status = Status.Active;
         _productList.Add(product);
+        return _productList.Where(n => n.Id == product.Id).First();
     }
+
 }

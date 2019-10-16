@@ -36,7 +36,7 @@ namespace ERPBackend.Controllers
            
 
         [HttpGet("{id}")]
-        public ActionResult<Product> GetProductById(string id)
+        public ActionResult<Product> GetProductById(int id)
         {
             var product = _productDb.GetProductById(id);
             if (product == null)

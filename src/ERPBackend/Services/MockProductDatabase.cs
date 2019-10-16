@@ -79,9 +79,9 @@ public class MockProductDatabase : IProductProvider
                 PickupAddress =new Address{Line1="abc",Line2="xyz", City="Pune",State="Maharashtra", Pincode=411038 },
                 PostDateTime =  new DateTime(2019,12,1), PurchasedDate =  new DateTime(2019,12,1), Status = Status.Active, UserId = "1118" }
         };
-    public Product GetProductById(string Id)
+    public Product GetProductById(int Id)
     {
-        Product product = _productList.Where(n => n.UserId == Id).First();
+        Product product = _productList.Where(n => n.Id == Id).First();
         return product;
     }
     public List<Product> GetProductsByPage(int pageNumber, int pageSize)

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERPBackend", "src\ERPBacken
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERPBackend.Tests", "Tests\ERPBackend.Tests\ERPBackend.Tests.csproj", "{B39B5794-F20F-46EF-93AA-E2DEA75A19FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERPBackend.Contracts", "ERPBackend.Contracts\ERPBackend.Contracts.csproj", "{40654F56-93DB-436E-969E-128FF8ADA764}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERPBackend.Contracts", "src\ERPBackend.Contracts\ERPBackend.Contracts.csproj", "{40654F56-93DB-436E-969E-128FF8ADA764}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

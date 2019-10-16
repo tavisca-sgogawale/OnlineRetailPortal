@@ -1,4 +1,4 @@
-//POST /api/v1.0/product
+//POST /api/v1.0/{applicationname}/product
 
 //Header contains sessionId : FAE04EC0-301F-11D3-BF4B-00C04F79EFBC and userId : 1111
 //Request object
@@ -33,10 +33,15 @@
 	"purchaseDate" : "2019-09-01",
 	//[Optional] Address where the product is present
 	"pickupAddress" : {
+			//[Mandatory]
 			"line1" : "Flat,Apartment",
+			//[Optional]
 			"line2" : "Street",
+			//[Mandatory]
 			"city" : "Pune",
+			//[Mandatory]
 			"pincode" : "411001",
+			//[Mandatory]
 			"state" : "Maharashtra",
 		}
 }

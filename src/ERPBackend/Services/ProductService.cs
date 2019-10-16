@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ERPBackend.Services
 {
-    public class Product : IProduct
+    public class ProductService : IProductService
     {
     }
 }

@@ -38,10 +38,15 @@
 	"purchaseDate" : "2019-09-01",
 	//[Optional] Address where the product is present
 	"pickupAddress" : {
-		"line1" : "Flat,Apartment",
-		"line2" : "Street",
-		"city" : "Pune",
-		"pincode" : "411001",
-		"state" : "Maharashtra",
-	}
+			//[Mandatory]
+			"line1" : "Flat,Apartment",
+			//[Optional]
+			"line2" : "Street",
+			//[Mandatory]
+			"city" : "Pune",
+			//[Mandatory]
+			"pincode" : "411001",
+			//[Mandatory]
+			"state" : "Maharashtra",
+		}
 }

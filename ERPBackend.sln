@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERPBackend", "src\ERPBacken
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERPBackend.Tests", "Tests\ERPBackend.Tests\ERPBackend.Tests.csproj", "{B39B5794-F20F-46EF-93AA-E2DEA75A19FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERPBackend.Contracts", "ERPBackend.Contracts\ERPBackend.Contracts.csproj", "{40654F56-93DB-436E-969E-128FF8ADA764}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B39B5794-F20F-46EF-93AA-E2DEA75A19FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B39B5794-F20F-46EF-93AA-E2DEA75A19FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B39B5794-F20F-46EF-93AA-E2DEA75A19FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40654F56-93DB-436E-969E-128FF8ADA764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40654F56-93DB-436E-969E-128FF8ADA764}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40654F56-93DB-436E-969E-128FF8ADA764}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40654F56-93DB-436E-969E-128FF8ADA764}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

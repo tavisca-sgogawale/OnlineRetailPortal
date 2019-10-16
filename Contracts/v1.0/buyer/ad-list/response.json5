@@ -3,13 +3,13 @@
   //[Mandatory] list of relevant products
   "products": [
     {
-      //[Mandatory] id of the ad
-      "id": "fad5b-d9cb-461f-a165-7086772895",
-      //[Mandatory] price of ad
+      //[Mandatory] id of the product
+      "id": "1232",
+      //[Mandatory] price of product
       "price": "90000",
-      //[Mandatory] category of ad
+      //[Mandatory] category of product
       "category": "mobile",
-      //[Mandatory] title of ad
+      //[Mandatory] title of product
       "title": "I-Phone 11s",
     
       //[Mandatory] images of the product

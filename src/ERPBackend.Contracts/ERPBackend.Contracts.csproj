@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\ERPBackend.Models\ERPBackend.Models.csproj" />
+    <ProjectReference Include="..\ERPBackend.Models\ERPBackend.Models.csproj" />
   </ItemGroup>
 
 </Project>

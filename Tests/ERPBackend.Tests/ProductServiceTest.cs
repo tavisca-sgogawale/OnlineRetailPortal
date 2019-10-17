@@ -1,9 +1,10 @@
 ﻿using ERPBackend.Models;
-using ERPBackend.Services;
+using ERPBackend.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
+using ERPBackend.Services;
 
 namespace ERPBackend.Tests
 {

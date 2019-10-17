@@ -1,6 +1,6 @@
 ﻿namespace ERPBackend.Models
 {
-    public class Image : IImage
+    public class Image
     {
         public string Url { get; set; }
     }

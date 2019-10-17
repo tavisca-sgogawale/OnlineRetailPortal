@@ -8,7 +8,12 @@ namespace ERPBackend.Services
 {
     public class ProductService : IProductService
     {
-        IProductProvider productProvider;
+        public IProductProvider productProvider;
+
+        public ProductService()
+        {
+
+        }
         public ProductService(IProductProvider mockProvider)
         {
             productProvider = mockProvider;

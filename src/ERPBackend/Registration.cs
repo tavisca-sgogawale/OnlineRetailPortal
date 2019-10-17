@@ -1,4 +1,6 @@
 ﻿using ERPBackend.Contracts;
+using ERPBackend.Contracts.Contracts;
+using ERPBackend.Services;
 using StructureMap;
 using System;
 using System.Collections.Generic;

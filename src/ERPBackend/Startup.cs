@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
+using ERPBackend.Contracts.Contracts;
+using ERPBackend.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,20 +27,34 @@ namespace ERPBackend
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        //public IServiceProvider ConfigureServices(IServiceCollection services)
+        //{
+        //    services.AddMvc();
+
+        //    HttpConfiguration config = GlobalConfiguration.Configuration;
+
+        //    var container = new StructureMap.Container();
+        //    container.Configure(c =>
+        //    {
+        //        c.Populate(services);
+        //        c.AddRegistry<Registration>();
+        //    });
+
+        //    return container.GetInstance<IServiceProvider>();
+        //}
+
+        public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.Configure<MockProductDatabase>(
+             Configuration.GetSection(nameof(MockProductDatabase)));
 
-            HttpConfiguration config = GlobalConfiguration.Configuration;
 
-            var container = new StructureMap.Container();
-            container.Configure(c =>
-            {
-                c.Populate(services);
-                c.AddRegistry<Registration>();
-            });
 
-            return container.GetInstance<IServiceProvider>();
+            services.AddSingleton<IProductService>(sp =>
+               sp.GetRequiredService<IOptions<ProductService>>().Value);
+            services.AddSingleton<IProductProvider>(sp =>
+                sp.GetRequiredService<IOptions<MockProductDatabase>>().Value);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 using ERPBackend.Services;
+using ERPBackend.Contracts.Contracts;
 
 namespace ERPBackend.Tests
 {
@@ -31,7 +32,7 @@ namespace ERPBackend.Tests
 
             Product expectedProduct = productService.AddProduct(actualProduct);
 
-            Assert.Equal(expectedProduct, actualProduct);
+            Assert.True(expectedProduct == actualProduct);
 
         }
     }

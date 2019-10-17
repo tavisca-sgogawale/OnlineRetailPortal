@@ -26,35 +26,19 @@ namespace ERPBackend
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        //public IServiceProvider ConfigureServices(IServiceCollection services)
-        //{
-        //    services.AddMvc();
-
-        //    HttpConfiguration config = GlobalConfiguration.Configuration;
-
-        //    var container = new StructureMap.Container();
-        //    container.Configure(c =>
-        //    {
-        //        c.Populate(services);
-        //        c.AddRegistry<Registration>();
-        //    });
-
-        //    return container.GetInstance<IServiceProvider>();
-        //}
-
-        public void ConfigureServices(IServiceCollection services)
+        //This method gets called by the runtime.Use this method to add services to the container.
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.Configure<MockProductDatabase>(
-             Configuration.GetSection(nameof(MockProductDatabase)));
+            services.AddMvc();
 
+            var container = new StructureMap.Container();
+            container.Configure(c =>
+            {
+                c.Populate(services);
+                c.AddRegistry<Registration>();
+            });
 
-
-            services.AddSingleton<IProductService>(sp =>
-               sp.GetRequiredService<IOptions<ProductService>>().Value);
-            services.AddSingleton<IProductProvider>(sp =>
-                sp.GetRequiredService<IOptions<MockProductDatabase>>().Value);
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            return container.GetInstance<IServiceProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

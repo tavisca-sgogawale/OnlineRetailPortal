@@ -5,7 +5,5 @@
         Active = 0,
         Disabled = 1,
         Sold = 2,
-        RentedOut = 3
-
-    }
+      }
 }

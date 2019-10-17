@@ -22,4 +22,9 @@
     <PackageReference Include="StructureMap.Microsoft.DependencyInjection" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\ERPBackend.Models\ERPBackend.Models.csproj" />
+    <ProjectReference Include="..\ERPBackend.Models\ERPBackend.Models.csproj" />
+  </ItemGroup>
+
 </Project>

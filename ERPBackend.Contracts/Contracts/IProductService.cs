@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ERPBackend.Services
+namespace ERPBackend.Contracts.Contracts
 {
     public interface IProductService
     {

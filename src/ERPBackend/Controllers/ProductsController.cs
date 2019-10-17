@@ -14,9 +14,9 @@ namespace ERPBackend.Controllers
     {
         private readonly IProductProvider _productDb;
 
-        public ProductsController(IProductProvider mockProduct)
+        public ProductsController(IProductProvider product)
         {
-            _productDb = mockProduct;
+            _productDb = product;
         }
 
         [HttpGet]

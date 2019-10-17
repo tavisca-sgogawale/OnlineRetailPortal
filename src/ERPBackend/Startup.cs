@@ -30,6 +30,8 @@ namespace ERPBackend
 
              services.AddSingleton<MockProductDatabase>(sp =>
                 sp.GetRequiredService<IOptions<MockProductDatabase>>().Value);
+            services.AddSingleton<IProductProvider>(sp =>
+                sp.GetRequiredService<IOptions<MockProductDatabase>>().Value);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

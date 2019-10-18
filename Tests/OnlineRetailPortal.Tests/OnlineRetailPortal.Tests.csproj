@@ -13,4 +13,12 @@
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\OnlineRetailPortal.Contracts\OnlineRetailPortal.Contracts.csproj" />
+    <ProjectReference Include="..\..\src\OnlineRetailPortal.Core\OnlineRetailPortal.Core.csproj" />
+    <ProjectReference Include="..\..\src\OnlineRetailPortal.Mock\OnlineRetailPortal.Mock.csproj" />
+    <ProjectReference Include="..\..\src\OnlineRetailPortal.Services\OnlineRetailPortal.Services.csproj" />
+    <ProjectReference Include="..\..\src\OnlineRetailPortal.Web\OnlineRetailPortal.Web.csproj" />
+  </ItemGroup>
+
 </Project>

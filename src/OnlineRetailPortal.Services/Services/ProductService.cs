@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineRetailPortal.Services.Services
+namespace OnlineRetailPortal.Services
 {
     class ProductService
     {

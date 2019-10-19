@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OnlineRetailPortal.Web.Validations
+namespace OnlineRetailPortal.Web
 {
-    public class Class
+    public class ProductRequest
     {
     }
 }

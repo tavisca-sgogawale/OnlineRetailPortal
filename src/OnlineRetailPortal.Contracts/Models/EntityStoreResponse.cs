@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineRetailPortal.Contracts.Models
+namespace OnlineRetailPortal.Contracts
 {
     class EntityStoreResponse
     {

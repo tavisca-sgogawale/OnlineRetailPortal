@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineRetailPortal.Mock.Models
+namespace OnlineRetailPortal.Mock
 {
     class MockDataRequest
     {

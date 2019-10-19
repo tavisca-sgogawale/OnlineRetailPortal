@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineRetailPortal.Mock.Translators
+namespace OnlineRetailPortal.Services
 {
-    class Class1
+    class emptyclass
     {
     }
 }

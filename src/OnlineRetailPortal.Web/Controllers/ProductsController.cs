@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace OnlineRetailPortal.Web.Controllers
+namespace OnlineRetailPortal.Web
 {
     [Route("api/[controller]")]
     [ApiController]

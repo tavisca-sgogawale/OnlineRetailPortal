@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OnlineRetailPortal.Web.Models
+namespace OnlineRetailPortal.Web
 {
-    public class WebRequest
+    public class emptyclass
     {
     }
 }

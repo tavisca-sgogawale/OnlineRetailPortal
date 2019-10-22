@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OnlineRetailPortal.Contracts
 {
-    interface IProductStoreFactory
+    public interface IProductStoreFactory
     {
     }
 }

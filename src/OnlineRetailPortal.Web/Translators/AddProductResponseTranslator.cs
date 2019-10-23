@@ -7,7 +7,7 @@ namespace OnlineRetailPortal.Web.Translators
 {
     public static class AddProductResponseTranslator
     {
-        public static AddProductResponse ToUserContract(this Contracts.AddProductResponse addProductResponse)
+        public static AddProductResponse ToUser(this Contracts.AddProductResponse addProductResponse)
         {
             AddProductResponse response = new AddProductResponse();
             response.Name = addProductResponse.Product.Name;

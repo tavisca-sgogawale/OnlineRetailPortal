@@ -4,9 +4,9 @@ using System;
 
 namespace OnlineRetailPortal.Core
 {
-    public class Translator
+    public static class Translator
     {
-        public EntityPostRequest ToEntityRequest(CorePostRequest product)
+        public static EntityPostRequest ToEntityRequest(this CorePostRequest product)
         {
             EntityPostRequest  entityStoreRequest = new EntityPostRequest();
             entityStoreRequest.Id = product.Id;
@@ -28,7 +28,7 @@ namespace OnlineRetailPortal.Core
             return entityStoreRequest;
         }
 
-        public CorePostResponse ToProduct(EntityPostResponse entityStoreResponse)
+        public static CorePostResponse ToProduct(this EntityPostResponse entityStoreResponse)
         {
             CorePostResponse product = new CorePostResponse();
             product.Id = entityStoreResponse.Id;

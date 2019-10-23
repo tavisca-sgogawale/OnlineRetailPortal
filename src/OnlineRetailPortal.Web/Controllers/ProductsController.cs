@@ -40,6 +40,6 @@ namespace OnlineRetailPortal.Web
             var response = await _productService.AddProductAsync(request.ToDataContract());
             return response.ToUser();
         }
-
+            
     }
 }

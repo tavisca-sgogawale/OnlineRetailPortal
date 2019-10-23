@@ -9,10 +9,10 @@ namespace OnlineRetailPortal.Services
 {
     class ProductService : IProductService
     {
-        public Task<AddProductResponse> AddProductAsync(AddProductRequest addProductRequest)
+        public async Task<AddProductResponse> AddProductAsync(AddProductRequest addProductRequest)
         {
-            //var response = AddProduct(addProductRequest.ToCore()); //function not define
-            //response.ToWeb(); // not define
+           // Core.CorePostResponse response = await AddProduct(addProductRequest.ToCore()); //function not define
+           // response.ToWeb(); // not define
         }
 
         public Task<GetProductResponse> GetProductAsync(string productId)

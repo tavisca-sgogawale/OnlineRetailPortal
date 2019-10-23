@@ -38,7 +38,7 @@ namespace OnlineRetailPortal.Web
             AddProductRequestValidator validator = new AddProductRequestValidator();
             validator.Validate(request);
             var response = await _productService.AddProductAsync(request.ToDataContract());
-            return response.ToUserContract();
+            return response.ToUser();
         }
 
     }

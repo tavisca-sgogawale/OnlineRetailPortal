@@ -15,7 +15,7 @@ namespace OnlineRetailPortal.Core
             entityStoreRequest.HeroImage.Url = product.HeroImage.Url;
             entityStoreRequest.Price.Amount = product.Price.Amount;
             entityStoreRequest.Price.isNegotiable = product.Price.isNegotiable;
-            //entityStoreRequest.Category = product.Category;
+            entityStoreRequest.Category = (Contracts.Category) product.Category.GetHashCode();
             for (int index = 0; index < product.Images.Count; index++)
                 entityStoreRequest.Images[index].Url = product.Images[index].Url;
             entityStoreRequest.PurchasedDate = product.PurchasedDate;
@@ -37,8 +37,8 @@ namespace OnlineRetailPortal.Core
             product.HeroImage.Url = entityStoreResponse.HeroImage.Url;
             product.Price.Amount = entityStoreResponse.Price.Amount;
             product.Price.isNegotiable = entityStoreResponse.Price.isNegotiable;
-            //product.Category = entityStoreResponse.Category;
-            //product.Status = entityStoreResponse.Status;
+            product.Category = (Category) entityStoreResponse.Category.GetHashCode();
+            product.Status = (Status) entityStoreResponse.Status.GetHashCode();
             product.PostDateTime = entityStoreResponse.PostDateTime;
             product.ExpirationDate = entityStoreResponse.ExpirationDate;
             for (int index = 0; index < product.Images.Count; index++)

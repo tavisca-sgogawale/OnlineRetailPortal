@@ -7,9 +7,11 @@ namespace OnlineRetailPortal.Services.Translators
 {
     public static class AddProductRequestTranslator
     {
-        public static void ToCore(this Contracts.AddProductRequest addProductRequest)
+        public static Core.CorePostRequest ToCore(this Contracts.AddProductRequest addProductRequest)
         {
-            
+            Core.CorePostRequest corePostRequest = new CorePostRequest();
+            corePostRequest.Name = addProductRequest.Product.Name;
+            return corePostRequest;
         }
     }
 }

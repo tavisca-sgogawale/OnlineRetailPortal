@@ -14,6 +14,7 @@ namespace OnlineRetailPortal.Core
 
         public CoreService(IProductStore productStore)
         {
+            
             this.productStore = productStore;
             translator = new Translator();
         }

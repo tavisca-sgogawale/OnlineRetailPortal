@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-namespace OnlineRetailPortal.Core.Models
+namespace OnlineRetailPortal.Core
 {
-    public class Product
+    public class CorePostResponse
     {
         public string Id { get; set; }
         public string Name { get; set; }

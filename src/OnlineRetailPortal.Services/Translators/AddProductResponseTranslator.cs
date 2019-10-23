@@ -6,9 +6,11 @@ namespace OnlineRetailPortal.Services.Translators
 {
     public static class AddProductResponseTranslator
     {
-        public static Contracts.AddProductResponse ToWeb()
+        public static Contracts.AddProductResponse ToWeb(this Core.CorePostResponse corePostResponse)
         {
-            Contracts.AddProductResponse request = new Contracts.AddProductResponse();
+            Contracts.AddProductResponse addProductResponse = new Contracts.AddProductResponse();
+            addProductResponse.Product.Name = corePostResponse.Name;
+            return addProductResponse;
         }
     }
 }

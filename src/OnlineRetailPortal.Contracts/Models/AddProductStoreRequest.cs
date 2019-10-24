@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OnlineRetailPortal.Contracts
 {
-    public class EntityPostRequest
+    public class AddProductStoreRequest
     {
         public string Id { get; set; }
         public string Name { get; set; }

@@ -12,7 +12,7 @@ namespace OnlineRetailPortal.Tests
         [Fact]
         public async void Test_to_check_product_added_in_database()
         {
-            EntityPostRequest entityPostRequest = new EntityPostRequest
+            AddProductStoreRequest entityPostRequest = new AddProductStoreRequest
             {
                 Id = "P101",
                 Name = "Bottle",
@@ -34,9 +34,9 @@ namespace OnlineRetailPortal.Tests
 
             MockProductStore mockProductStore = new MockProductStore();
 
-            EntityPostResponse actualResponse = await mockProductStore.AddProduct(entityPostRequest);
+            AddProductStoreResponse actualResponse = await mockProductStore.AddProductAsync(entityPostRequest);
 
-            EntityPostResponse expectedResponse = new EntityPostResponse
+            AddProductStoreResponse expectedResponse = new AddProductStoreResponse
             {
                 Id = "P101",
                 Name = "Bottle",

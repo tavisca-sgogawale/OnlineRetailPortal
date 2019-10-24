@@ -8,7 +8,7 @@ namespace OnlineRetailPortal.Mock
 {
     public static class Translator
     {
-        public static Product ToProduct(this EntityPostRequest entityPostRequest)
+        public static Product ToProduct(this AddProductStoreRequest entityPostRequest)
         {
             Product product = new Product() {
                 Id = entityPostRequest.Id,
@@ -35,9 +35,9 @@ namespace OnlineRetailPortal.Mock
             return product;
         }
 
-        public static EntityPostResponse ToEntityResponse(this Product product)
+        public static AddProductStoreResponse ToEntityResponse(this Product product)
         {
-            EntityPostResponse entityPostResponse = new EntityPostResponse() {
+            AddProductStoreResponse entityPostResponse = new AddProductStoreResponse() {
                 Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,

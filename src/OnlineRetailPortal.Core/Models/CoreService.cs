@@ -19,12 +19,12 @@ namespace OnlineRetailPortal.Core
 
         public async Task<CorePostResponse> AddProduct(CorePostRequest product)
         {
-            //translate product to request
             EntityPostRequest entityPostRequest = product.ToEntityRequest();
-            //call product store method
+            
             EntityPostResponse entityPostResponse = await productStore.PostProductAsync(entityPostRequest);
-            //translate response back to product
+            
             CorePostResponse responseProduct = entityPostResponse.ToProduct();
+
             return responseProduct;
         }
     }

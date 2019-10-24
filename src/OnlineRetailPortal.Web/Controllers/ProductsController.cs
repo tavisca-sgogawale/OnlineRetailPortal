@@ -12,19 +12,5 @@ namespace OnlineRetailPortal.Web
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IProductService _productService;
-
-        public ProductsController(IProductService productService=null)
-        {
-            this._productService = productService;
-        }
-        [HttpGet("products/{productId}")]
-        public async Task<GetProductResponse> GetProductAsync(string productId)
-        {
-            var response = new Contracts.GetProductResponse() { Product = new Product{ Name = "Sheetal" } };
-           // response = await _productService.GetProductAsync(productId);
-            return response.ToDataContract();
-            //return new GetProductResponse();
-        }
     }
 }

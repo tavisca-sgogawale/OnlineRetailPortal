@@ -9,9 +9,27 @@ namespace OnlineRetailPortal.Mock.Models
 {
     public class MockProductStore : IProductStore
     {
-        public Task<EntityPostResponse> PostProductAsync(EntityPostRequest entityPostRequest)
+        List<Product> productList = new List<Product>();
+
+        public async Task<EntityPostResponse> PostProductAsync(EntityPostRequest entityPostRequest)
         {
-            throw new NotImplementedException();
+            Product product = entityPostRequest.ToProduct();
+
+            product = await AddProduct(product);
+
+            EntityPostResponse entityPostResponse = product.ToEntityResponse();
+
+            return entityPostResponse;
+        }
+
+        async Task<Product> AddProduct(Product product)
+        {
+            product.Status = Status.Active;
+            product.PostDateTime = DateTime.Now;
+            product.ExpirationDate = DateTime.Now.AddDays(30);
+            productList.Add(product);
+
+            return productList.Where(n => n.Id == product.Id).First();
         }
     }
 }

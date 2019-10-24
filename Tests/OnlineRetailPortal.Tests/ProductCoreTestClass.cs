@@ -9,7 +9,7 @@ using Xunit;
 
 namespace OnlineRetailPortal.Tests
 {
-    public class CoreTestClass
+    public class ProductCoreTestClass
     {
         [Fact]
         public async void Test_to_check_aad_product_function_of_core()

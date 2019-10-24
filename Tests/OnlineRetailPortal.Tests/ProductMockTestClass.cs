@@ -7,7 +7,7 @@ using OnlineRetailPortal.Mock;
 
 namespace OnlineRetailPortal.Tests
 {
-    public class MockTestClass
+    public class ProductMockTestClass
     {
         [Fact]
         public async void Test_to_check_product_added_in_database()

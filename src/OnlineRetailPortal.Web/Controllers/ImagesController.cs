@@ -15,9 +15,11 @@ namespace OnlineRetailPortal.Web.Controllers
     public class ImagesController : ControllerBase
     {
         private readonly IImageHandler _imageHandler;
+        private IHostingEnvironment _env;
         public ImagesController(IImageHandler imageHandler, IHostingEnvironment env)
         {
             _imageHandler = imageHandler;
+            _env = env;
         }
 
         // POST: api/Images
@@ -49,7 +51,7 @@ namespace OnlineRetailPortal.Web.Controllers
         public IEnumerable<string> Get()
         {
             
-            return new string[] { "value1","value2" };
+            return new string[] { _env.WebRootPath,"value2" };
         }
 
         // GET: api/Images/5

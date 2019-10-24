@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace OnlineRetailPortal.Contracts
 {
-    class ServiceResponce
+    public class GetProductServiceResponse
     {
+        public Product Product { get; set; }
     }
 }

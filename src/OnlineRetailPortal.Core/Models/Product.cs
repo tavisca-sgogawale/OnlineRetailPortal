@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-namespace OnlineRetailPortal.Core.Models
+using System.Threading.Tasks;
+
+
+namespace OnlineRetailPortal.Core
 {
     public class Product
     {
@@ -19,7 +22,17 @@ namespace OnlineRetailPortal.Core.Models
         public List<Image> Images { get; set; }
         public DateTime PurchasedDate { get; set; }
         public Address PickupAddress { get; set; }
+        public static Product GetProduct(string productId)
+        {
+            throw new NotImplementedException();
+        }
+        public static List<Product> GetProducts(int pageNo, int pageSize)
+        {
+            throw new NotImplementedException();
+        }
+
 
     }
+    
 
 }

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineRetailPortal.Core
-{
+namespace OnlineRetailPortal.Mock
+{ 
     public class Address
     {
         public string Line1 { get; set; }

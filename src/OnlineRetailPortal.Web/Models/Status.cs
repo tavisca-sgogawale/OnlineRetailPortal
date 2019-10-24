@@ -1,9 +1,9 @@
-﻿namespace OnlineRetailPortal.Core
+﻿namespace OnlineRetailPortal.Web
 {
     public enum Status
     {
         Active,
-        Disable,
+        Disabled,
         Sold
     }
 }

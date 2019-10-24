@@ -1,4 +1,4 @@
-﻿namespace OnlineRetailPortal.Core
+﻿namespace OnlineRetailPortal.Web
 {
     public class Price
     {

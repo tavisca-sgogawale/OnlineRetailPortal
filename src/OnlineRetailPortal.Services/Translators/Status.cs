@@ -1,5 +1,5 @@
-﻿namespace OnlineRetailPortal.Core
-{
+﻿namespace OnlineRetailPortal.Services
+{ 
     public enum Status
     {
         Active,

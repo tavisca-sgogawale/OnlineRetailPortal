@@ -7,6 +7,8 @@ namespace OnlineRetailPortal.Contracts
 {
     public interface IProductService
     {
-        Task<GetProductResponse> GetProductAsync(string productId);
+        Task<GetProductServiceResponse> GetProductAsync(GetProductServiceRequest request);
+       
+        Task<GetProductsServiceResponse> GetProductsAsync(GetProductsServiceRequest request);
     }
 }

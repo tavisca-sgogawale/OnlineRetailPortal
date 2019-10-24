@@ -1,4 +1,4 @@
-﻿namespace OnlineRetailPortal.Core
+﻿namespace OnlineRetailPortal.Mock
 {
     public class Price
     {

@@ -14,17 +14,30 @@ namespace OnlineRetailPortal.Web
     {
         private readonly IProductService _productService;
 
-        public ProductsController(IProductService productService=null)
+        public ProductsController(IProductService productService)
         {
             this._productService = productService;
         }
         [HttpGet("products/{productId}")]
         public async Task<GetProductResponse> GetProductAsync(string productId)
         {
-            var response = new Contracts.GetProductResponse() { Product = new Product{ Name = "Sheetal" } };
-           // response = await _productService.GetProductAsync(productId);
-            return response.ToDataContract();
-            //return new GetProductResponse();
+           var request = new Contracts.GetProductServiceRequest();
+           request.productId = productId;
+           GetProductRequestValidator validationRules = new GetProductRequestValidator();
+           validationRules.Validate(request);
+           var response = await _productService.GetProductAsync(request);
+           return response.ToGetProductContract();
+        }
+        [HttpGet("products")]
+        public async Task<GetProductsResponse> GetProductsAsync(int pageNo,int pageSize)
+        {
+            var request = new Contracts.GetProductsServiceRequest();
+            request.PageNo = pageNo;
+            request.PageSize = pageSize;
+            GetProductsRequestValidator validationRules = new GetProductsRequestValidator();
+            validationRules.Validate(request);
+            var response = await _productService.GetProductsAsync(request);
+            return response.ToGetProductsContract();
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-namespace OnlineRetailPortal.Mock
+namespace OnlineRetailPortal.Web
 {
     public class Product
     {

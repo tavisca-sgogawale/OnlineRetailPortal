@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineRetailPortal.Core
+namespace OnlineRetailPortal.Mock
 {
     public enum Category
     {

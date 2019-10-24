@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-namespace OnlineRetailPortal.Core.Models
+using System.Threading.Tasks;
+
+namespace OnlineRetailPortal.Core
 {
     public class Product
     {
@@ -20,6 +22,27 @@ namespace OnlineRetailPortal.Core.Models
         public DateTime PurchasedDate { get; set; }
         public Address PickupAddress { get; set; }
 
-    }
+        
+        public static async Task<List<Product>> GetAllProducts(int pagenumber, int pagesize)
+        {
+            List<Product> products = new List<Product>();
+            //products = idbInterface.getProducts(pagenumber,pagesize);// This data will be fetched from database
+            if (products.Count == 0)
+            {
+                throw new Exception("No Products Available");
+            }
+            return products;
+        }
+
+        public static async Task<Product> GetProductById(string productId)
+        {
+            Product product = null;
+            //product = idbInterface.getProduct(productId);// This data will be fetched from database
+            if (product == null)
+            {
+                throw new Exception("Product Not Found");
+            }
+            return product;
+        }    }
 
 }

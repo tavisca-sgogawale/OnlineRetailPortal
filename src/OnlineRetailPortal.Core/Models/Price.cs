@@ -1,4 +1,4 @@
-﻿namespace OnlineRetailPortal.Core.Models
+﻿namespace OnlineRetailPortal.Core
 {
     public class Price
     {

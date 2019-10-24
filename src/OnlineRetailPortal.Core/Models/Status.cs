@@ -1,6 +1,13 @@
-﻿namespace OnlineRetailPortal.Core.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace OnlineRetailPortal.Core
 {
-    public class Status
+    public enum Status
     {
+        Active = 0,
+        Disabled = 1,
+        Sold = 2,
     }
 }

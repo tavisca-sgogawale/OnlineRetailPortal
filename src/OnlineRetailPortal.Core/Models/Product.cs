@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineRetailPortal.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,6 @@ namespace OnlineRetailPortal.Core
         public Status Status { get; set; }
         public DateTime PostDateTime { get; set; }
         public DateTime ExpirationDate { get; set; }
-
         public List<Image> Images { get; set; }
         public DateTime PurchasedDate { get; set; }
         public Address PickupAddress { get; set; }
@@ -30,9 +30,6 @@ namespace OnlineRetailPortal.Core
         {
             throw new NotImplementedException();
         }
-
-
     }
-    
 
 }

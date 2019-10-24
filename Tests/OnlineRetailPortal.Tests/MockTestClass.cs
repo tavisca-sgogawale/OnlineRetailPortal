@@ -2,8 +2,8 @@ using OnlineRetailPortal.Contracts;
 using System;
 using Xunit;
 using System.Collections.Generic;
-using OnlineRetailPortal.Mock.Models;
 using System.Threading.Tasks;
+using OnlineRetailPortal.Mock;
 
 namespace OnlineRetailPortal.Tests
 {
@@ -17,12 +17,12 @@ namespace OnlineRetailPortal.Tests
                 Id = "P101",
                 Name = "Bottle",
                 Description = "Green Bottle",
-                HeroImage = new Image { Url = "example.com" },
-                Price = new Price { Amount = 99.99, IsNegotiable = false },
-                Category = Category.Others,
-                Images = new List<Image>() { new Image { Url = "ex.com" } },
+                HeroImage = new Contracts.Image { Url = "example.com" },
+                Price = new Contracts.Price { Amount = 99.99, IsNegotiable = false },
+                Category = Contracts.Category.Others,
+                Images = new List<Contracts.Image>() { new Contracts.Image { Url = "ex.com" } },
                 PurchasedDate = new DateTime(2010, 7, 7),
-                PickupAddress = new Address
+                PickupAddress = new Contracts.Address
                 {
                     Line1 = "ABC",
                     Line2 = "XYZ",
@@ -34,22 +34,22 @@ namespace OnlineRetailPortal.Tests
 
             MockProductStore mockProductStore = new MockProductStore();
 
-            EntityPostResponse actualResponse = await mockProductStore.PostProductAsync(entityPostRequest);
+            EntityPostResponse actualResponse = await mockProductStore.AddProduct(entityPostRequest);
 
             EntityPostResponse expectedResponse = new EntityPostResponse
             {
                 Id = "P101",
                 Name = "Bottle",
                 Description = "Green Bottle",
-                HeroImage = new Image { Url = "example.com" },
-                Price = new Price { Amount = 99.99, IsNegotiable = false },
-                Category = Category.Others,
-                Status = Status.Active,
+                HeroImage = new Contracts.Image { Url = "example.com" },
+                Price = new Contracts.Price { Amount = 99.99, IsNegotiable = false },
+                Category = Contracts.Category.Others,
+                Status = Contracts.Status.Active,
                 PostDateTime = DateTime.Now,
                 ExpirationDate = DateTime.Now.AddDays(30),
-                Images = new List<Image>() { new Image { Url = "ex.com" } },
+                Images = new List<Contracts.Image>() { new Contracts.Image { Url = "ex.com" } },
                 PurchasedDate = new DateTime(2010, 7, 7),
-                PickupAddress = new Address
+                PickupAddress = new Contracts.Address
                 {
                     Line1 = "ABC",
                     Line2 = "XYZ",

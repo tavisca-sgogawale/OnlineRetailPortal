@@ -39,7 +39,7 @@ namespace OnlineRetailPortal.Core
         {
             EntityPostRequest entityPostRequest = product.ToEntityRequest();
             
-            EntityPostResponse entityPostResponse = await productStore.PostProductAsync(entityPostRequest);
+            EntityPostResponse entityPostResponse = await productStore.AddProduct(entityPostRequest);
             
             Product responseProduct = entityPostResponse.ToProduct();
 

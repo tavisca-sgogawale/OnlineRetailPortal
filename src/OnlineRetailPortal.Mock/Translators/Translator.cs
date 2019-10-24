@@ -1,10 +1,12 @@
-﻿using System;
+﻿using OnlineRetailPortal.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace OnlineRetailPortal.Mock
 {
-    class emptyclass
+    public static class Translator
     {
+        
     }
 }

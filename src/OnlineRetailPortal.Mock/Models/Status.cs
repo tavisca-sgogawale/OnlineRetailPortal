@@ -1,4 +1,4 @@
-﻿namespace OnlineRetailPortal.Contracts
+﻿namespace OnlineRetailPortal.Mock
 {
     public enum Status
     {

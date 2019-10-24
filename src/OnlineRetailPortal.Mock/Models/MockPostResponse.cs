@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OnlineRetailPortal.Mock
 {
-    public class Product
+    public class MockPostResponse
     {
         public string Id { get; set; }
         public string Name { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Contracts.Contracts
 {
-    public interface IProductService
+    interface IProductService
     {
     }
 }

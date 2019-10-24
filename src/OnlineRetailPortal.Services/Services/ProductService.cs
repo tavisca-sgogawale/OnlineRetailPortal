@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Services.Services
 {
-    public class ProductService 
+    class ProductService 
     {
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using OnlineRetailPortal.Contracts.Contracts;
 using OnlineRetailPortal.Contracts.Models;
 
@@ -12,6 +14,13 @@ namespace OnlineRetailPortal.Services.Services
 {
     public class ImageWriter : IImageWriter
     {
+        private IHostingEnvironment _env;
+        private string _tempImagefolder;
+        public ImageWriter(IConfiguration iconfig, IHostingEnvironment env)
+        {
+            _env = env;
+            _tempImagefolder = iconfig.GetSection("TempImageFolder").Value;
+        }
         public async Task<IImageWriterResponse> UploadImage(IFormFile file)
         {
             if (file != null && CheckIfImageFile(file))
@@ -53,7 +62,7 @@ namespace OnlineRetailPortal.Services.Services
                 var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
                 fileName = Guid.NewGuid().ToString() + extension; //Create a new Name 
                                                                   //for the file due to security reasons.
-                path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\tempImages", fileName);
+                path = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _tempImagefolder, fileName);
 
                 using (var bits = new FileStream(path, FileMode.Create))
                 {
@@ -65,7 +74,7 @@ namespace OnlineRetailPortal.Services.Services
                 return new ImageWriterFailResponse() { Success=false, Response = e.Message}; 
             }
 
-            return new ImageWriterSuccessResponse(){ Success=true, Response = "tempImages/" + fileName};
+            return new ImageWriterSuccessResponse(){ Success=true, Response = _tempImagefolder+ "/" + fileName};
         }
     }
 }

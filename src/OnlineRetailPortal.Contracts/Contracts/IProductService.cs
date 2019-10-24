@@ -10,4 +10,5 @@ namespace OnlineRetailPortal.Contracts
     {
         Task<GetProductResponse> GetProductAsync(string productId);
     }
+
 }

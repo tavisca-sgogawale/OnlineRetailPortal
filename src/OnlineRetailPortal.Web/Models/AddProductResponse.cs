@@ -7,7 +7,8 @@ namespace OnlineRetailPortal.Web
 {
     public class AddProductResponse
     {
-        public int Id { get; set; }
+        public int SellerId { get; set; }
+        public int ProductId { get; set; }
         public string Name { get; set; }
         public Price Price { get; set; }
         public Category Category { get; set; }

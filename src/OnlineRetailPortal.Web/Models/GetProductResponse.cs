@@ -1,7 +1,10 @@
-﻿namespace OnlineRetailPortal.Web
+﻿using System;
+using System.Collections.Generic;
+
+namespace OnlineRetailPortal.Web
 {
     public class GetProductResponse
     {
-        public string Name { get; set; }
+        public Product Product { get; set; }
     }
 }

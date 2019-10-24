@@ -6,8 +6,8 @@ namespace OnlineRetailPortal.Contracts.Contracts
 {
     public interface IImageWriterResponse
     {
-        public bool Success { get;  set; }
-        public string Response { get; set; }
+         bool Success { get;  set; }
+         string Response { get; set; }
 
     }
 }

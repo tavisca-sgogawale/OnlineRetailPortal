@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineRetailPortal.Mock.Models
+namespace OnlineRetailPortal.Mock
 {
     public class MockProductStore : IProductStore
     {
         List<Product> productList = new List<Product>();
 
-        public async Task<EntityPostResponse> PostProductAsync(EntityPostRequest entityPostRequest)
+        public async Task<EntityPostResponse> AddProduct(EntityPostRequest entityPostRequest)
         {
             Product product = entityPostRequest.ToProduct();
 

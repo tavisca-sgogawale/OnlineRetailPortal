@@ -7,6 +7,6 @@ namespace OnlineRetailPortal.Contracts
 {
     public interface IProductStore
     {
-        Task<EntityPostResponse> PostProductAsync(EntityPostRequest entityPostRequest);
+        Task<EntityPostResponse> AddProduct(EntityPostRequest entityPostRequest);
     }
 }

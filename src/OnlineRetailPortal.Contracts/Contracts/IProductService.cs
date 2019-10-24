@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Contracts
 {
-    public interface IProductService
+    interface IProductService
     {
         Task<GetProductResponse> GetProductAsync(string productId);
         Task<AddProductResponse> AddProductAsync(AddProductRequest addProductRequest);

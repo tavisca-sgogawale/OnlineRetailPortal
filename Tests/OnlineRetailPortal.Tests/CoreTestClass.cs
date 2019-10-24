@@ -13,7 +13,7 @@ namespace OnlineRetailPortal.Tests
         [Fact]
         public async void Test_to_check_aad_product_function_of_core()
         {
-            CorePostRequest corePostRequest = new CorePostRequest
+            Core.Product requestProduct = new Core.Product(new MockProductStore())
             {
                 Id = "P101",
                 Name = "Bottle",
@@ -33,13 +33,9 @@ namespace OnlineRetailPortal.Tests
                 }
             };
 
-            IProductStore productStore = new MockProductStore();
+            Core.Product actualResponse = await requestProduct.AddProduct(requestProduct);
 
-            CoreService core = new CoreService(productStore);
-
-            CorePostResponse actualResponse = await core.AddProduct(corePostRequest);
-
-            CorePostResponse expectedResponse = new CorePostResponse
+            Core.Product expectedResponse = new Core.Product
             {
                 Id = "P101",
                 Name = "Bottle",

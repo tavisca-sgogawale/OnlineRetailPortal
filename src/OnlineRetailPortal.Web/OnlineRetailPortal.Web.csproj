@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OnlineRetailPortal.Contracts\OnlineRetailPortal.Contracts.csproj" />
+    <ProjectReference Include="..\OnlineRetailPortal.Services\OnlineRetailPortal.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

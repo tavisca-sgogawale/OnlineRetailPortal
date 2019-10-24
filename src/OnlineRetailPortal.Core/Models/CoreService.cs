@@ -8,7 +8,6 @@ namespace OnlineRetailPortal.Core
 {
     public class CoreService
     {
-        IProductStoreFactory storeFactory;
         IProductStore productStore;
 
         public CoreService(IProductStore productStore)

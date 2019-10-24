@@ -20,7 +20,7 @@ namespace OnlineRetailPortal.Mock
             product.HeroImage.Url = entityPostRequest.HeroImage.Url;
 
             product.Price.Amount = entityPostRequest.Price.Amount;
-            product.Price.isNegotiable = entityPostRequest.Price.isNegotiable;
+            product.Price.IsNegotiable = entityPostRequest.Price.IsNegotiable;
 
             product.Category = (Category)entityPostRequest.Category.GetHashCode();
 
@@ -51,7 +51,7 @@ namespace OnlineRetailPortal.Mock
             entityPostResponse.HeroImage.Url = product.HeroImage.Url;
 
             entityPostResponse.Price.Amount = product.Price.Amount;
-            entityPostResponse.Price.isNegotiable = product.Price.isNegotiable;
+            entityPostResponse.Price.IsNegotiable = product.Price.IsNegotiable;
 
             entityPostResponse.Category = (Contracts.Category)product.Category.GetHashCode();
 

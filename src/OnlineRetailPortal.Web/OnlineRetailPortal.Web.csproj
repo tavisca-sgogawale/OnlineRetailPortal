@@ -20,4 +20,8 @@
     <ProjectReference Include="..\OnlineRetailPortal.Core\OnlineRetailPortal.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\tempImages\" />
+  </ItemGroup>
+
 </Project>

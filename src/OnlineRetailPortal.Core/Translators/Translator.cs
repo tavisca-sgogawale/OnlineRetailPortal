@@ -19,7 +19,7 @@ namespace OnlineRetailPortal.Core
             entityStoreRequest.HeroImage.Url = product.HeroImage.Url;
 
             entityStoreRequest.Price.Amount = product.Price.Amount;
-            entityStoreRequest.Price.isNegotiable = product.Price.isNegotiable;
+            entityStoreRequest.Price.IsNegotiable = product.Price.IsNegotiable;
 
             entityStoreRequest.Category = (Contracts.Category) product.Category.GetHashCode();
 
@@ -50,7 +50,7 @@ namespace OnlineRetailPortal.Core
             product.HeroImage.Url = entityStoreResponse.HeroImage.Url;
 
             product.Price.Amount = entityStoreResponse.Price.Amount;
-            product.Price.isNegotiable = entityStoreResponse.Price.isNegotiable;
+            product.Price.IsNegotiable = entityStoreResponse.Price.IsNegotiable;
 
             product.Category = (Category) entityStoreResponse.Category.GetHashCode();
 

@@ -13,7 +13,8 @@ namespace OnlineRetailPortal.Mock.Models
             { 
                     return new MockProductStore();
             }
-            return null;
+            IServiceProvider serviceProvider = null;
+            return serviceProvider.GetService(typeof(IProductStore)) as IProductStore;
         }
     }
 }

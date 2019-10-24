@@ -23,16 +23,8 @@ namespace OnlineRetailPortal.Web
             this._productService = productService;
         }
 
-        [HttpGet("products/{productId}")]
-        public async Task<GetProductResponse> GetProductAsync(string productId)
-        {
-            var response = new Contracts.GetProductResponse() { Product = new Product{ Name = "Sheetal" } };
-            // response = await _productService.GetProductAsync(productId);
-            return response.ToDataContract();
-            //return new GetProductResponse();
-        }
-
-        [HttpPost("Add")]
+        [Route("product")]
+        [HttpPost]
         public async Task<AddProductResponse> AddProductAsync([FromBody] AddProductRequest request)
         {
             AddProductRequestValidator validator = new AddProductRequestValidator();

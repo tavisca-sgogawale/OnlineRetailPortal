@@ -11,12 +11,12 @@ namespace OnlineRetailPortal.Web.Validations
     {
         public AddProductRequestValidator()
         {
-            RuleFor(x => x.UserId)
+            RuleFor(x => x.SellerId)
             .NotNull()
             .NotEmpty()
-            .WithMessage("The User ID  cannot be blank.");
+            .WithMessage("The Seller ID  cannot be blank.");
 
-            RuleFor(x => x.Id)
+            RuleFor(x => x.ProductId)
             .NotNull()
             .NotEmpty()
             .WithMessage("The Product ID  cannot be blank."); ;
@@ -34,7 +34,7 @@ namespace OnlineRetailPortal.Web.Validations
 
             RuleFor(x => x.Price.Amount)
             .NotEmpty()
-            .InclusiveBetween(1, 10000000)
+            .GreaterThan(0)
             .WithMessage("The Price cannot be less than 1 Rupees and more than  10000000 Rupees.");
 
             RuleFor(x => x.Price.isPriceNegotiable)

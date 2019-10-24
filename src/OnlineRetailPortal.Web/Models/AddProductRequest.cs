@@ -7,8 +7,8 @@ namespace OnlineRetailPortal.Web
 {
     public class AddProductRequest
     {
-        public string UserId { get; set; }
-        public int Id { get; set; }
+        public string SellerId { get; set; }
+        public int ProductId { get; set; }
         public string Name { get; set; }
         public Category Category { get; set; }
         public Price Price { get; set; }

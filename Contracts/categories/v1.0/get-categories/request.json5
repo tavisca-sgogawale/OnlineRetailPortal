@@ -1,0 +1,3 @@
+//GET /api/v1.0/{applicationname}/categories
+
+// sessionId and userId goes in header

@@ -1,0 +1,52 @@
+//Response data
+{
+	//[Mandatory] id of the product
+	"id" : "P123",
+	//[Mandatory] title of the product
+	"title" : "Watch" ,
+	//[Mandatory] description of the product
+	"description" : "something something something",
+	//[Mandatory] images of the product
+	"heroImageUrl" : "www.example.com/imageName",
+	//[Mandatory] 
+	"price" : 
+	{
+		// price of the product (in Rupees)
+		"amount" : "300",
+		// Boolean flag specifying whether price is negotiable or not
+		"isPriceNegotiable" : "true"
+		
+	},
+	//[Mandatory] category of the product
+	"category" : "Accessories",	
+	//[Mandatory] status of the product i.e. Active/Disable/Sold
+	"status" : "Active",
+	//[Mandatory] date when product ad was posted in yyyy'-'MM'-'dd format
+	"postDate" : "2019-09-01",
+	//[Mandatory] date when the ad will expire in yyyy'-'MM'-'dd format
+	"expirationDate" : "2019-09-01",
+
+	//[Optional] images of the product
+	"imageUrls" : [
+		{
+			"url" : "www.example.com/firstImage"
+		},
+		{
+			"url" : "www.example.com/secondImage"
+		}],
+	//[Optional] date when the original product was purchased in yyyy'-'MM'-'dd format
+	"purchaseDate" : "2019-09-01",
+	//[Optional] Address where the product is present
+	"pickupAddress" : {
+			//[Mandatory]
+			"line1" : "Flat,Apartment",
+			//[Optional]
+			"line2" : "Street",
+			//[Mandatory]
+			"city" : "Pune",
+			//[Mandatory]
+			"pincode" : "411001",
+			//[Mandatory]
+			"state" : "Maharashtra",
+		}
+}

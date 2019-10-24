@@ -11,7 +11,7 @@ namespace OnlineRetailPortal.Mock
     {
         List<Product> productList = new List<Product>();
 
-        public async Task<EntityPostResponse> AddProduct(EntityPostRequest entityPostRequest)
+        public async Task<AddProductStoreResponse> AddProductAsync(AddProductStoreRequest entityPostRequest)
         {
             Product product = entityPostRequest.ToProduct();
 
@@ -25,7 +25,7 @@ namespace OnlineRetailPortal.Mock
                 return productList.Where(n => n.Id == product.Id).First();
             });
 
-            EntityPostResponse entityPostResponse = product.ToEntityResponse();
+            AddProductStoreResponse entityPostResponse = product.ToEntityResponse();
 
             return entityPostResponse;
         }

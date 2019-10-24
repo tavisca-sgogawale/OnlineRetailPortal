@@ -7,9 +7,9 @@ namespace OnlineRetailPortal.Core
 {
     public static class Translator
     {
-        public static EntityPostRequest ToEntityRequest(this Product product)
+        public static AddProductStoreRequest ToEntityRequest(this Product product)
         {
-            EntityPostRequest  entityStoreRequest = new EntityPostRequest() {
+            AddProductStoreRequest  entityStoreRequest = new AddProductStoreRequest() {
                 Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,
@@ -34,7 +34,7 @@ namespace OnlineRetailPortal.Core
             return entityStoreRequest;
         }
 
-        public static Product ToProduct(this EntityPostResponse entityStoreResponse)
+        public static Product ToProduct(this AddProductStoreResponse entityStoreResponse)
         {
             Product product = new Product() {
                 Id = entityStoreResponse.Id,

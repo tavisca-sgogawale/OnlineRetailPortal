@@ -34,7 +34,7 @@ namespace OnlineRetailPortal.Tests
                 }
             };
 
-            Core.Product actualResponse = await requestProduct.AddProduct(requestProduct);
+            Core.Product actualResponse = await requestProduct.AddProductAsync(requestProduct);
 
             Core.Product expectedResponse = new Core.Product
             {

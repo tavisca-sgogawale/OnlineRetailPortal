@@ -15,8 +15,8 @@ namespace OnlineRetailPortal.Web.Controllers
     public class ImagesController : ControllerBase
     {
         private readonly IImageHandler _imageHandler;
-        private IHostingEnvironment _env;
-        public ImagesController(IImageHandler imageHandler, IHostingEnvironment env)
+        private IWebHostEnvironment _env;
+        public ImagesController(IImageHandler imageHandler, IWebHostEnvironment env)
         {
             _imageHandler = imageHandler;
             _env = env;

@@ -21,6 +21,12 @@ namespace OnlineRetailPortal.Services.Services
             _env = env;
             _tempImagefolder = iconfig.GetSection("TempImageFolder").Value;
         }
+
+        /// <summary>
+        /// Takes an image and writes to disk
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
         public async Task<IImageWriterResponse> UploadImage(IFormFile file)
         {
             if (file != null && CheckIfImageFile(file))

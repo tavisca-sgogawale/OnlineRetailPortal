@@ -16,7 +16,11 @@ namespace OnlineRetailPortal.Services.Services
             png,
             unknown
         }
-
+        /// <summary>
+        /// takes the file as a byte[] and returns the type of image, returns Unkown if other unrecognized
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
         public static ImageFormat GetImageFormat(byte[] bytes)
         {
             var bmp = Encoding.ASCII.GetBytes("BM");     // BMP

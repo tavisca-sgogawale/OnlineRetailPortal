@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Contracts
 {
-    interface IProductStore
+    public interface IProductStore
     {
+        Task<EntityPostResponse> PostProductAsync(EntityPostRequest entityPostRequest);
     }
 }

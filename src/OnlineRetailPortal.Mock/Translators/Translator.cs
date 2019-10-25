@@ -8,36 +8,61 @@ namespace OnlineRetailPortal.Mock
 {
     public static class Translator
     {
-        public static Product ToProduct(this AddProductStoreRequest entityPostRequest)
+        public static Product ToProduct(this AddProductStoreRequest request)
         {
-            Product product = new Product() {
-                Id = entityPostRequest.Id,
-                Name = entityPostRequest.Name,
-                Description = entityPostRequest.Description,
-                HeroImage = new Image() { Url = entityPostRequest.HeroImage.Url },
-                Price = new Price() { Amount = entityPostRequest.Price.Amount, IsNegotiable = entityPostRequest.Price.IsNegotiable },
-                Category = (Category)entityPostRequest.Category,
-                Images = entityPostRequest.Images.Select(x => new Image
-                {
-                    Url = x.Url
-                }).ToList(),
-                PurchasedDate = entityPostRequest.PurchasedDate,
-                PickupAddress = new Address()
-                {
-                    Line1 = entityPostRequest.PickupAddress.Line1,
-                    Line2 = entityPostRequest.PickupAddress.Line2,
-                    City = entityPostRequest.PickupAddress.City,
-                    Pincode = entityPostRequest.PickupAddress.Pincode,
-                    State = entityPostRequest.PickupAddress.State
-                }
+            if (request == null)
+                return null;
+
+            var product = new Product()
+            {
+                Id = request.Id,
+                Name = request.Name,
+                Description = request.Description,
+                HeroImage = new Image() { Url = request.HeroImage.Url },
+                Price = new Price() { Amount = request.Price.Amount, IsNegotiable = request.Price.IsNegotiable },
+                Category = (Category)request.Category,
+                Images = GetImages(request.Images),
+                PurchasedDate = GetPurchasedDates(request.PurchasedDate),
+                PickupAddress = GetAddress(request.PickupAddress)
             };
 
             return product;
         }
 
+        private static Address GetAddress(Contracts.Address pickupAddress)
+        {
+            if (pickupAddress == null)
+                return null;
+            return new Product().PickupAddress = new Address()
+            {
+                Line1 = pickupAddress.Line1,
+                Line2 = pickupAddress.Line2,
+                City =pickupAddress.City,
+                Pincode = pickupAddress.Pincode,
+                State = pickupAddress.State
+            };
+        }
+
+        private static DateTime? GetPurchasedDates(DateTime? purchasedDate)
+        {
+            if (purchasedDate == null)
+                return null;
+            return new Product().PurchasedDate = purchasedDate;
+        }
+
+        private static List<Image> GetImages(List<Contracts.Image> images)
+        {
+            if (images == null)
+                return null;
+            return new Product().Images = images.Select(x => new Image
+            {
+                Url = x.Url
+            }).ToList();
+        }
+
         public static AddProductStoreResponse ToEntityResponse(this Product product)
         {
-            AddProductStoreResponse entityPostResponse = new AddProductStoreResponse() {
+            var entityPostResponse = new AddProductStoreResponse() {
                 Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,

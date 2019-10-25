@@ -12,7 +12,7 @@ namespace OnlineRetailPortal.Tests
     public class ProductCoreTests
     {
         [Fact]
-        public async void Test_to_check_aad_product_function_of_core()
+        public async void AddProduct_With_Valid_Request_Should_Be_Added_Successfully()
         {
             Core.Product requestProduct = new Core.Product(new MockProductStore())
             {

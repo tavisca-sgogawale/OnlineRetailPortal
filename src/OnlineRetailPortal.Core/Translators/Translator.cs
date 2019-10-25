@@ -15,7 +15,7 @@ namespace OnlineRetailPortal.Core
                 Description = product.Description,
                 HeroImage = new Contracts.Image { Url = product.HeroImage.Url},
                 Price = new Contracts.Price { Amount = product.Price.Amount, IsNegotiable = product.Price.IsNegotiable},
-                Category = (Contracts.Category)product.Category.GetHashCode(),
+                Category = (Contracts.Category)product.Category,
                 Images = product.Images.Select(x => new Contracts.Image
                 {
                     Url = x.Url
@@ -42,8 +42,8 @@ namespace OnlineRetailPortal.Core
                 Description = entityStoreResponse.Description,
                 HeroImage = new Image { Url = entityStoreResponse.HeroImage.Url },
                 Price = new Price { Amount = entityStoreResponse.Price.Amount, IsNegotiable = entityStoreResponse.Price.IsNegotiable },
-                Category = (Category)entityStoreResponse.Category.GetHashCode(),
-                Status = (Status)entityStoreResponse.Status.GetHashCode(),
+                Category = (Category)entityStoreResponse.Category,
+                Status = (Status)entityStoreResponse.Status,
                 PostDateTime = entityStoreResponse.PostDateTime,
                 ExpirationDate = entityStoreResponse.ExpirationDate,
                 Images = entityStoreResponse.Images.Select(x => new Image

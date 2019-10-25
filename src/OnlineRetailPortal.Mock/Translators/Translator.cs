@@ -16,7 +16,7 @@ namespace OnlineRetailPortal.Mock
                 Description = entityPostRequest.Description,
                 HeroImage = new Image() { Url = entityPostRequest.HeroImage.Url },
                 Price = new Price() { Amount = entityPostRequest.Price.Amount, IsNegotiable = entityPostRequest.Price.IsNegotiable },
-                Category = (Category)entityPostRequest.Category.GetHashCode(),
+                Category = (Category)entityPostRequest.Category,
                 Images = entityPostRequest.Images.Select(x => new Image
                 {
                     Url = x.Url
@@ -43,8 +43,8 @@ namespace OnlineRetailPortal.Mock
                 Description = product.Description,
                 HeroImage = new Contracts.Image() { Url = product.HeroImage.Url },
                 Price = new Contracts.Price() { Amount = product.Price.Amount, IsNegotiable = product.Price.IsNegotiable },
-                Category = (Contracts.Category)product.Category.GetHashCode(),
-                Status = (Contracts.Status)product.Status.GetHashCode(),
+                Category = (Contracts.Category)product.Category,
+                Status = (Contracts.Status)product.Status,
                 PostDateTime = product.PostDateTime,
                 ExpirationDate = product.ExpirationDate,
                 Images = product.Images.Select(x => new Contracts.Image

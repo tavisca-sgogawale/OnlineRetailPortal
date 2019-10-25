@@ -37,11 +37,11 @@ namespace OnlineRetailPortal.Core
 
         public async Task<Product> AddProductAsync(Product product)
         {
-            AddProductStoreRequest entityPostRequest = product.ToEntityRequest();
+            var entityPostRequest = product.ToEntityRequest();
             
-            AddProductStoreResponse entityPostResponse = await productStore.AddProductAsync(entityPostRequest);
+            var entityPostResponse = await productStore.AddProductAsync(entityPostRequest);
             
-            Product responseProduct = entityPostResponse.ToProduct();
+            var responseProduct = entityPostResponse.ToProduct();
 
             return responseProduct;
         }

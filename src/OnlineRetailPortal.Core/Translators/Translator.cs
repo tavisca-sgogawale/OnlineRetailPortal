@@ -9,7 +9,7 @@ namespace OnlineRetailPortal.Core
     {
         public static AddProductStoreRequest ToEntityRequest(this Product product)
         {
-            AddProductStoreRequest  entityStoreRequest = new AddProductStoreRequest() {
+            var  entityStoreRequest = new AddProductStoreRequest() {
                 Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,
@@ -36,7 +36,7 @@ namespace OnlineRetailPortal.Core
 
         public static Product ToProduct(this AddProductStoreResponse entityStoreResponse)
         {
-            Product product = new Product() {
+            var product = new Product() {
                 Id = entityStoreResponse.Id,
                 Name = entityStoreResponse.Name,
                 Description = entityStoreResponse.Description,

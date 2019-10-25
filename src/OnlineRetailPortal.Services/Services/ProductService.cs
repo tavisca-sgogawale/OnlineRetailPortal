@@ -8,7 +8,7 @@ namespace OnlineRetailPortal.Services
 {
     class ProductService : IProductService
     {
-        public Task<GetProductResponse> GetProductAsync(string productId)
+        public Task<GetProductsResponse> GetProductAsync(string productId)
         {
             throw new NotImplementedException();
         }

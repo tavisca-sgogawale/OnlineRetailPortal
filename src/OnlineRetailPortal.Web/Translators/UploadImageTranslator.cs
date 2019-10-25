@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineRetailPortal.Contracts.Contracts;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace OnlineRetailPortal.Web.Translators
 {
@@ -15,15 +15,19 @@ namespace OnlineRetailPortal.Web.Translators
 
         public static IActionResult ToUser(this UploadImageResponse response)
         {
-            if (response.Success)
+            var result = JsonConvert.SerializeObject(response);
+            if (response.Code == StatusCodes.Status200OK)
             {
-                return new OkObjectResult(response);
+
+                return new OkObjectResult(result);
             }
-            else
+            else if (response.Code == StatusCodes.Status400BadRequest)
             {
-                return new BadRequestObjectResult(response);
+                return new BadRequestObjectResult(result);
 
             }
+            else
+                return new ObjectResult(result) { StatusCode=StatusCodes.Status500InternalServerError};
 
 
         }

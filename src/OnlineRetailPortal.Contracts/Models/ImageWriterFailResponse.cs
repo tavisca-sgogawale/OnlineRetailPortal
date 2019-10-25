@@ -7,7 +7,7 @@ namespace OnlineRetailPortal.Contracts.Models
 {
     public class ImageWriterFailResponse : IImageWriterResponse
     {
-        public bool Success { get;  set; }
+        public int Code { get;  set; }
 
         public string Response { get; set; }
     }

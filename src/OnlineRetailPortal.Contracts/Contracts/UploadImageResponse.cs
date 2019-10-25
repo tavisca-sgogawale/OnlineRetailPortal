@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OnlineRetailPortal.Contracts.Contracts
+﻿namespace OnlineRetailPortal.Contracts.Contracts
 {
     public class UploadImageResponse
     {
-        public bool Success { get; set; }
+        public int Code { get; set; }
         public string Message { get; set; }
+
+        public IImageWriterResponse[] info;
+        public UploadImageResponse()
+        {
+            info = new IImageWriterResponse[1];
+        }
 
     }
 }

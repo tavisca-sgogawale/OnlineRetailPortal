@@ -1,13 +1,15 @@
 ﻿using OnlineRetailPortal.Contracts.Models;
+using OnlineRetailPortal.Core;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Contracts
 {
     public interface IProductStore
     {
-        List<Product> getProducts(int pagenumber, int pagesize);
-        Product getProduct(string productId);
+        Task<GetProductsResponse> GetProductsAsync(GetProductsRequest request);
+        Task<Product> GetProductAsync(string productId);
     }
 }

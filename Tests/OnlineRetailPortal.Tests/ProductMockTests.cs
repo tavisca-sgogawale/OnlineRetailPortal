@@ -10,7 +10,7 @@ namespace OnlineRetailPortal.Tests
     public class ProductMockTests
     {
         [Fact]
-        public async void Test_to_check_product_added_in_database()
+        public async void AddProduct_With_Valid_Request_Should_Be_Added_Successfully()
         {
             AddProductStoreRequest entityPostRequest = new AddProductStoreRequest
             {

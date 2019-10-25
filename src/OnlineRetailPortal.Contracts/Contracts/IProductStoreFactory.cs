@@ -6,6 +6,6 @@ namespace OnlineRetailPortal.Contracts
 {
     public interface IProductStoreFactory
     {
-        IProductStore GetStoreType(string storeValue);
+        IProductStore GetProductStore(string storeValue);
     }
 }

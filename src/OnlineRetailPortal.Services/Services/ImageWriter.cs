@@ -34,7 +34,7 @@ namespace OnlineRetailPortal.Services.Services
                 return await WriteFile(file).ConfigureAwait(false);
             }
 
-            return new ImageWriterFailResponse() { Success = false, Response = "Invalid image file" };
+            return new ImageWriterFailResponse() { Code = StatusCodes.Status415UnsupportedMediaType, Response = "Invalid image file" };
         }
 
         /// <summary>
@@ -77,10 +77,10 @@ namespace OnlineRetailPortal.Services.Services
             }
             catch (Exception e)
             {
-                return new ImageWriterFailResponse() { Success=false, Response = e.Message}; 
+                return new ImageWriterFailResponse() { Code= StatusCodes.Status500InternalServerError, Response = e.Message}; 
             }
 
-            return new ImageWriterSuccessResponse(){ Success=true, Response = _tempImagefolder+ "/" + fileName};
+            return new ImageWriterSuccessResponse(){ Code= StatusCodes.Status200OK, Response = _tempImagefolder+ "/" + fileName};
         }
     }
 }

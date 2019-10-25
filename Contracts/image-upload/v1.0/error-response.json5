@@ -10,12 +10,23 @@
 	]
 },
 {
-	"code":"400",
-	"message":"Bad Request",
+    "Code": 400,
+    "Message": "The image is not in the correct format or is Corrupt",
+	"info": [
+        {
+            "Code": 415,
+            "Response": "Invalid image file"
+        }
+    ]
+},
+
+{
+	"code":"500",
+	"message":"Oops.. Somthing Went Wrong..!",
 	"info":[
 		{
-			"code":"400",
-			"message":"Image is not in binary format"
+			"code":"500",
+			"message":"Image CouldNot Be saved"
 		}
 	]
 }

@@ -26,8 +26,9 @@ namespace OnlineRetailPortal.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Post()
         {
-            var file = Request.Form.Files[0];
-            var response =  await _imageHandler.UploadImage(file.ToUploadImageContract()).ConfigureAwait(false);
+            IFormFile file = Request.Form.Files[0];
+            UploadImageResponse response =  await _imageHandler.UploadImage(file.ToUploadImageContract()).ConfigureAwait(false);
+            //return response;
             return response.ToUser();
 
         }

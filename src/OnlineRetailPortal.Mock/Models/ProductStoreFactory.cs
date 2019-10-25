@@ -7,7 +7,7 @@ namespace OnlineRetailPortal.Mock.Models
 {
     class ProductStoreFactory : IProductStoreFactory
     {
-        public IProductStore GetStoreType(string storeValue)
+        public IProductStore GetProductStore(string storeValue)
         {
             if(storeValue == "Mock")
             { 

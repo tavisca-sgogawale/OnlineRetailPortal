@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace OnlineRetailPortal.Mock
+namespace OnlineRetailPortal.Contracts
 {
     public class Product
     {
@@ -16,8 +15,11 @@ namespace OnlineRetailPortal.Mock
         public DateTime PostDateTime { get; set; }
         public DateTime ExpirationDate { get; set; }
 
+
+
         public List<Image> Images { get; set; }
         public Nullable<DateTime> PurchasedDate { get; set; }
         public Address PickupAddress { get; set; }
+
     }
 }

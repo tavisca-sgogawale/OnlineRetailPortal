@@ -19,7 +19,7 @@ namespace OnlineRetailPortal.Core
         public DateTime ExpirationDate { get; set; }
 
         public List<Image> Images { get; set; }
-        public DateTime PurchasedDate { get; set; }
+        public Nullable<DateTime> PurchasedDate { get; set; }
         public Address PickupAddress { get; set; }
 
         IProductStore productStore;
@@ -37,6 +37,11 @@ namespace OnlineRetailPortal.Core
 
         public async Task<Product> AddProductAsync(Product product)
         {
+            //fluent validations null checks
+
+            if (product == null)
+                return null;
+
             var entityPostRequest = product.ToEntityRequest();
             
             var entityPostResponse = await productStore.AddProductAsync(entityPostRequest);

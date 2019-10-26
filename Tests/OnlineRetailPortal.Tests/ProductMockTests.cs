@@ -72,7 +72,6 @@ namespace OnlineRetailPortal.Tests
         {
             AddProductStoreRequest request = new AddProductStoreRequest
             {
-                Id = "P101",
                 Name = "Bottle",
                 Description = "Green Bottle",
                 HeroImage = new Contracts.Image { Url = "example.com" },

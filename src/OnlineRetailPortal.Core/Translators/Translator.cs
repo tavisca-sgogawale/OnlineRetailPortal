@@ -1,54 +1,65 @@
 ﻿using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Core;
 using System;
+using System.Linq;
 
 namespace OnlineRetailPortal.Core
 {
-    public class Translator
+    public static class Translator
     {
-        public EntityPostRequest ToEntityRequest(CorePostRequest product)
+        public static EntityPostRequest ToEntityRequest(this Product product)
         {
-            EntityPostRequest  entityStoreRequest = new EntityPostRequest();
-            entityStoreRequest.Id = product.Id;
-            entityStoreRequest.Name = product.Name;
-            entityStoreRequest.Description = product.Description;
-            entityStoreRequest.HeroImage.Url = product.HeroImage.Url;
-            entityStoreRequest.Price.Amount = product.Price.Amount;
-            entityStoreRequest.Price.isNegotiable = product.Price.isNegotiable;
-            entityStoreRequest.Category = (Contracts.Category) product.Category.GetHashCode();
-            for (int index = 0; index < product.Images.Count; index++)
-                entityStoreRequest.Images[index].Url = product.Images[index].Url;
-            entityStoreRequest.PurchasedDate = product.PurchasedDate;
-            entityStoreRequest.PickupAddress.Line1 = product.PickupAddress.Line1;
-            entityStoreRequest.PickupAddress.Line2 = product.PickupAddress.Line2;
-            entityStoreRequest.PickupAddress.City = product.PickupAddress.City;
-            entityStoreRequest.PickupAddress.Pincode = product.PickupAddress.Pincode;
-            entityStoreRequest.PickupAddress.State = product.PickupAddress.State;
+            EntityPostRequest  entityStoreRequest = new EntityPostRequest() {
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                HeroImage = new Contracts.Image { Url = product.HeroImage.Url},
+                Price = new Contracts.Price { Amount = product.Price.Amount, IsNegotiable = product.Price.IsNegotiable},
+                Category = (Contracts.Category)product.Category.GetHashCode(),
+                Images = product.Images.Select(x => new Contracts.Image
+                {
+                    Url = x.Url
+                }).ToList(),
+                PurchasedDate = product.PurchasedDate,
+                PickupAddress = new Contracts.Address
+                {
+                    Line1 = product.PickupAddress.Line1,
+                    Line2 = product.PickupAddress.Line2,
+                    City = product.PickupAddress.City,
+                    Pincode = product.PickupAddress.Pincode,
+                    State = product.PickupAddress.State
+        }
+            };
 
             return entityStoreRequest;
         }
 
-        public CorePostResponse ToProduct(EntityPostResponse entityStoreResponse)
+        public static Product ToProduct(this EntityPostResponse entityStoreResponse)
         {
-            CorePostResponse product = new CorePostResponse();
-            product.Id = entityStoreResponse.Id;
-            product.Name = entityStoreResponse.Name;
-            product.Description = entityStoreResponse.Description;
-            product.HeroImage.Url = entityStoreResponse.HeroImage.Url;
-            product.Price.Amount = entityStoreResponse.Price.Amount;
-            product.Price.isNegotiable = entityStoreResponse.Price.isNegotiable;
-            product.Category = (Category) entityStoreResponse.Category.GetHashCode();
-            product.Status = (Status) entityStoreResponse.Status.GetHashCode();
-            product.PostDateTime = entityStoreResponse.PostDateTime;
-            product.ExpirationDate = entityStoreResponse.ExpirationDate;
-            for (int index = 0; index < product.Images.Count; index++)
-                product.Images[index].Url = entityStoreResponse.Images[index].Url;
-            product.PurchasedDate = entityStoreResponse.PurchasedDate;
-            product.PickupAddress.Line1 = entityStoreResponse.PickupAddress.Line1;
-            product.PickupAddress.Line2 = entityStoreResponse.PickupAddress.Line2;
-            product.PickupAddress.City = entityStoreResponse.PickupAddress.City;
-            product.PickupAddress.Pincode = entityStoreResponse.PickupAddress.Pincode;
-            product.PickupAddress.State = entityStoreResponse.PickupAddress.State;
+            Product product = new Product() {
+                Id = entityStoreResponse.Id,
+                Name = entityStoreResponse.Name,
+                Description = entityStoreResponse.Description,
+                HeroImage = new Image { Url = entityStoreResponse.HeroImage.Url },
+                Price = new Price { Amount = entityStoreResponse.Price.Amount, IsNegotiable = entityStoreResponse.Price.IsNegotiable },
+                Category = (Category)entityStoreResponse.Category.GetHashCode(),
+                Status = (Status)entityStoreResponse.Status.GetHashCode(),
+                PostDateTime = entityStoreResponse.PostDateTime,
+                ExpirationDate = entityStoreResponse.ExpirationDate,
+                Images = entityStoreResponse.Images.Select(x => new Image
+                {
+                    Url = x.Url
+                }).ToList(),
+                PurchasedDate = entityStoreResponse.PurchasedDate,
+                PickupAddress = new Address
+                {
+                    Line1 = entityStoreResponse.PickupAddress.Line1,
+                    Line2 = entityStoreResponse.PickupAddress.Line2,
+                    City = entityStoreResponse.PickupAddress.City,
+                    Pincode = entityStoreResponse.PickupAddress.Pincode,
+                    State = entityStoreResponse.PickupAddress.State
+                }
+            };
 
             return product;
         }

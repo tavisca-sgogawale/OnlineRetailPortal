@@ -9,9 +9,8 @@ namespace OnlineRetailPortal.Mock.Models
     {
         public IProductStore GetStoreType(string storeValue)
         {
-            switch (storeValue)
-            {
-                case "Mock":
+            if(storeValue == "Mock")
+            { 
                     return new MockProductStore();
             }
             return null;

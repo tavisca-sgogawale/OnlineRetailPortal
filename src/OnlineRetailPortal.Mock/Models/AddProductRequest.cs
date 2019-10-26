@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-namespace OnlineRetailPortal.Core
+
+namespace OnlineRetailPortal.Mock
 {
-    public class CorePostResponse
+    public class AddProductRequest
     {
         public string Id { get; set; }
         public string Name { get; set; }
@@ -12,14 +12,9 @@ namespace OnlineRetailPortal.Core
         public Image HeroImage { get; set; }
         public Price Price { get; set; }
         public Category Category { get; set; }
-        public Status Status { get; set; }
-        public DateTime PostDateTime { get; set; }
-        public DateTime ExpirationDate { get; set; }
 
         public List<Image> Images { get; set; }
         public DateTime PurchasedDate { get; set; }
         public Address PickupAddress { get; set; }
-
     }
-
 }

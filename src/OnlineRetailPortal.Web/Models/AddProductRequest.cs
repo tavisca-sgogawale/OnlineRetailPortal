@@ -11,11 +11,22 @@ namespace OnlineRetailPortal.Web
         public int ProductId { get; set; }
         public string Name { get; set; }
         public Category Category { get; set; }
-        public Price Price { get; set; }
-        public string Description { get; set; }
-        public DateTime PurchasedDate { get; set; }
-        public Image HeroImage { get; set; }
-        public List<Image> Images { get; set; }
-        public Address PickupAddress { get; set; }
+        //public Price Price { get; set; }
+        //public string Description { get; set; }
+        //public DateTime PurchasedDate { get; set; }
+        //public Image HeroImage { get; set; }
+        //public List<Image> Images { get; set; }
+        //public Address PickupAddress { get; set; }
+
+        public AddProductRequest()
+        {   
+            //this.Price = new Price();
+           
+            //this.HeroImage = new Image();
+   
+            //this.PickupAddress = new Address();
+            //this.PurchasedDate = new DateTime();
+            //this.Images = new List<Image>();
+        }       
     }
 }

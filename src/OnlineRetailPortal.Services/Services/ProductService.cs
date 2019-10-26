@@ -12,15 +12,15 @@ namespace OnlineRetailPortal.Services
     {
         IProductStoreFactory productStoreFactory;
         IProductStore productStore;
-        CoreService core;
+        Core.Product product;
         public ProductService()
         {
             this.productStore = productStoreFactory.GetStoreType("Mock");
-            core = new CoreService(this.productStore);
+            product = new Core.Product(this.productStore);
         }
         public async Task<AddProductResponse> AddProductAsync(AddProductRequest addProductRequest)
         {
-            Core.CorePostResponse response = await core.AddProduct(addProductRequest.ToCore());
+            Core.Product response = await product.AddProduct(addProductRequest.ToCore());
             return response.ToWeb(); 
         }
 

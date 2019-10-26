@@ -76,21 +76,23 @@ namespace OnlineRetailPortal.Tests
             Assert.Equal(expectedResponse.PickupAddress.Pincode, actualResponse.PickupAddress.Pincode);
         }
 
-        //[Fact]
-        //public async void AddProduct_With_Null_Request_Should_Not_Be_Added_Successfully()
-        //{
-        //    Core.Product request = new Core.Product();
+        [Fact]
+        public async void AddProduct_With_Null_Request_Should_Not_Be_Added_Successfully()
+        {
+            var request = GetRequest();
 
-        //    var actualResponse = await request.AddProductAsync(request);
+            request.Name = null;
 
-        //    Assert.Null(actualResponse);
-        //}
+            var actualResponse = await request.AddProductAsync(request);
 
-            private Core.Product GetExpectedResponse()
+            Assert.Null(actualResponse);
+        }
+
+        private Core.Product GetExpectedResponse()
         {
             Core.Product product = new Core.Product
             {
-                Id = "P101",
+                Id = null,
                 Name = "Bottle",
                 Description = "Green Bottle",
                 HeroImage = new Core.Image { Url = "example.com" },

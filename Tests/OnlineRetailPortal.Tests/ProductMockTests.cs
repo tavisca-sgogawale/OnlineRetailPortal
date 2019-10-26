@@ -44,7 +44,7 @@ namespace OnlineRetailPortal.Tests
         {
             AddProductStoreResponse response = new AddProductStoreResponse
             {
-                Id = "P101",
+                Id = null,
                 Name = "Bottle",
                 Description = "Green Bottle",
                 HeroImage = new Contracts.Image { Url = "example.com" },

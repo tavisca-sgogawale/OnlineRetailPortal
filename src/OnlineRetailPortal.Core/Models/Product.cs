@@ -1,4 +1,5 @@
-﻿using OnlineRetailPortal.Contracts;
+﻿using FluentValidation.Results;
+using OnlineRetailPortal.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,23 +24,25 @@ namespace OnlineRetailPortal.Core
         public Address PickupAddress { get; set; }
 
         IProductStore productStore;
+        IAddProductValidation validation;
 
         public Product()
         {
-
+            validation = new Validation();
         }
 
         public Product(IProductStore productStore)
         {
             this.productStore = productStore;
+            validation = new Validation();
         }
 
 
         public async Task<Product> AddProductAsync(Product product)
         {
-            //fluent validations null checks
+            ValidationResult result = validation.Validate(product);
 
-            if (product == null)
+            if (!result.IsValid)
                 return null;
 
             var entityPostRequest = product.ToEntityRequest();

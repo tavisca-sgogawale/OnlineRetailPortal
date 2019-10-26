@@ -33,8 +33,6 @@ namespace OnlineRetailPortal.Mock
         {
 
             //null checks fluent validations
-            if (request == null)
-                return null;
 
             var product = request.ToProduct();
 

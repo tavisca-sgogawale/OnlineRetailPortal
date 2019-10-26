@@ -1,4 +1,5 @@
-﻿using OnlineRetailPortal.Contracts;
+﻿using FluentValidation.Results;
+using OnlineRetailPortal.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,29 +20,36 @@ namespace OnlineRetailPortal.Core
         public DateTime ExpirationDate { get; set; }
 
         public List<Image> Images { get; set; }
-        public DateTime PurchasedDate { get; set; }
+        public Nullable<DateTime> PurchasedDate { get; set; }
         public Address PickupAddress { get; set; }
 
         IProductStore productStore;
+        IAddProductValidation validation;
 
         public Product()
         {
-
+            validation = new AddProductValidation();
         }
 
         public Product(IProductStore productStore)
         {
             this.productStore = productStore;
+            validation = new AddProductValidation();
         }
 
 
-        public async Task<Product> AddProduct(Product product)
+        public async Task<Product> AddProductAsync(Product product)
         {
-            EntityPostRequest entityPostRequest = product.ToEntityRequest();
+            ValidationResult result = validation.Validate(product);
+
+            if (!result.IsValid)
+                return null;
+
+            var entityPostRequest = product.ToEntityRequest();
             
-            EntityPostResponse entityPostResponse = await productStore.AddProduct(entityPostRequest);
+            var entityPostResponse = await productStore.AddProductAsync(entityPostRequest);
             
-            Product responseProduct = entityPostResponse.ToProduct();
+            var responseProduct = entityPostResponse.ToProduct();
 
             return responseProduct;
         }

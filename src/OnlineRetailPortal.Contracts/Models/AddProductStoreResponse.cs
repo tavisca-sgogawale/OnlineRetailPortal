@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineRetailPortal.Mock
+namespace OnlineRetailPortal.Contracts
 {
-    public class AddProductRequest
+    public class AddProductStoreResponse
     {
         public string Id { get; set; }
         public string Name { get; set; }
@@ -12,9 +12,12 @@ namespace OnlineRetailPortal.Mock
         public Image HeroImage { get; set; }
         public Price Price { get; set; }
         public Category Category { get; set; }
+        public Status Status { get; set; }
+        public DateTime PostDateTime { get; set; }
+        public DateTime ExpirationDate { get; set; }
 
         public List<Image> Images { get; set; }
-        public DateTime PurchasedDate { get; set; }
+        public Nullable<DateTime> PurchasedDate { get; set; }
         public Address PickupAddress { get; set; }
     }
 }

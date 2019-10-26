@@ -4,7 +4,8 @@ using System.Text;
 
 namespace OnlineRetailPortal.Contracts
 {
-    class ServiceResponce
+    public class GetProductStoreResponse
     {
+        public Product Product { get; set; }
     }
 }

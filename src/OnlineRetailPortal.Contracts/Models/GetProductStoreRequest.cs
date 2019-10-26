@@ -4,8 +4,8 @@ using System.Text;
 
 namespace OnlineRetailPortal.Contracts
 {
-    public interface IProductStoreFactory
+    public class GetProductStoreRequest
     {
-        IProductStore GetProductStore(string storeValue);
+        public string ProductId { get; set; }
     }
 }

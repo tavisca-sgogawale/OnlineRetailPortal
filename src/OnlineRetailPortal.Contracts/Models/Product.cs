@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace OnlineRetailPortal.Contracts
 {
-    public class EntityPostResponse
+    public class Product
     {
         public string Id { get; set; }
         public string Name { get; set; }
@@ -16,8 +15,11 @@ namespace OnlineRetailPortal.Contracts
         public DateTime PostDateTime { get; set; }
         public DateTime ExpirationDate { get; set; }
 
+
+
         public List<Image> Images { get; set; }
-        public DateTime PurchasedDate { get; set; }
+        public Nullable<DateTime> PurchasedDate { get; set; }
         public Address PickupAddress { get; set; }
+
     }
 }

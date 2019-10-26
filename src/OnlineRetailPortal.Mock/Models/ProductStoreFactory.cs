@@ -7,13 +7,19 @@ namespace OnlineRetailPortal.Mock.Models
 {
     class ProductStoreFactory : IProductStoreFactory
     {
-        public IProductStore GetStoreType(string storeValue)
+        public IProductStore GetProductStore(string storeValue)
         {
+            //returns mock object for this  string
             if(storeValue == "Mock")
             { 
                     return new MockProductStore();
             }
-            return null;
+
+            //To get service object
+            IServiceProvider serviceProvider = null;
+
+            // returns service object of the specified type by mapping using DI
+            return serviceProvider.GetService(typeof(IProductStore)) as IProductStore;
         }
     }
 }

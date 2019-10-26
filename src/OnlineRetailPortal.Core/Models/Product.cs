@@ -28,13 +28,13 @@ namespace OnlineRetailPortal.Core
 
         public Product()
         {
-            validation = new Validation();
+            validation = new AddProductValidation();
         }
 
         public Product(IProductStore productStore)
         {
             this.productStore = productStore;
-            validation = new Validation();
+            validation = new AddProductValidation();
         }
 
 

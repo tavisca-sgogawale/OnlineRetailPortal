@@ -40,6 +40,57 @@ namespace OnlineRetailPortal.Tests
             Assert.Equal(expectedResponse.PickupAddress.Pincode, actualResponse.PickupAddress.Pincode);
         }
 
+        [Fact]
+        public async void AddProduct_With_Null_Values_In_Optional_Field_In_Request_Should_Be_Added_Successfully()
+        {
+            var request = GetRequest();
+            request.Images = new List<Contracts.Image>();
+            request.PurchasedDate = null;
+            request.PickupAddress = new Contracts.Address();
+
+            var expectedResponse = GetExpectedResponse();
+            expectedResponse.Images = new List<Contracts.Image>();
+            expectedResponse.PurchasedDate = null;
+            expectedResponse.PickupAddress = new Contracts.Address();
+
+            MockProductStore mockProductStore = new MockProductStore();
+
+            var actualResponse = await mockProductStore.AddProductAsync(request);
+
+            Assert.Equal(expectedResponse.Id, actualResponse.Id);
+            Assert.Equal(expectedResponse.Name, actualResponse.Name);
+            Assert.Equal(expectedResponse.Description, actualResponse.Description);
+            Assert.Equal(expectedResponse.HeroImage.Url, actualResponse.HeroImage.Url);
+            Assert.Equal(expectedResponse.Price.Amount, actualResponse.Price.Amount);
+            Assert.Equal(expectedResponse.Price.IsNegotiable, actualResponse.Price.IsNegotiable);
+            Assert.Equal(expectedResponse.Category, actualResponse.Category);
+            Assert.Equal(expectedResponse.Status, actualResponse.Status);
+            Assert.Equal(expectedResponse.PostDateTime.ToString(), actualResponse.PostDateTime.ToString());
+            Assert.Equal(expectedResponse.ExpirationDate.ToString(), actualResponse.ExpirationDate.ToString());
+            for (var i = 0; i < actualResponse.Images.Count; i++)
+                Assert.Equal(expectedResponse.Images[i].Url, actualResponse.Images[i].Url);
+            Assert.Equal(expectedResponse.PurchasedDate.ToString(), actualResponse.PurchasedDate.ToString());
+            Assert.Equal(expectedResponse.PickupAddress.Line1, actualResponse.PickupAddress.Line1);
+            Assert.Equal(expectedResponse.PickupAddress.Line2, actualResponse.PickupAddress.Line2);
+            Assert.Equal(expectedResponse.PickupAddress.City, actualResponse.PickupAddress.City);
+            Assert.Equal(expectedResponse.PickupAddress.State, actualResponse.PickupAddress.State);
+            Assert.Equal(expectedResponse.PickupAddress.Pincode, actualResponse.PickupAddress.Pincode);
+        }
+
+        [Fact]
+        public async void AddProduct_With_Null_Request_Should_Not_Be_Added_Successfully()
+        {
+            var request = GetRequest();
+
+            request.Name = null;
+
+            MockProductStore mockProductStore = new MockProductStore();
+
+            var actualResponse = await mockProductStore.AddProductAsync(request);
+
+            Assert.Null(actualResponse);
+        }
+
         private AddProductStoreResponse GetExpectedResponse()
         {
             AddProductStoreResponse response = new AddProductStoreResponse

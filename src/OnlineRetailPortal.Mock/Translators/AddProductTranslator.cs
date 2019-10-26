@@ -6,16 +6,12 @@ using System.Linq;
 
 namespace OnlineRetailPortal.Mock
 {
-    public static class Translator
+    public static class AddProductTranslator
     {
         public static Product ToProduct(this AddProductStoreRequest request)
         {
-            if (request == null)
-                return null;
-
             var product = new Product()
             {
-                Id = request.Id,
                 Name = request.Name,
                 Description = request.Description,
                 HeroImage = new Image() { Url = request.HeroImage.Url },

@@ -6,14 +6,11 @@ using System.Linq;
 
 namespace OnlineRetailPortal.Core
 {
-    public static class Translator
+    public static class AddProductTranslator
     {
         public static AddProductStoreRequest ToEntityRequest(this Product product)
         {
-            if (product == null)
-                return null;
             var  addProductStoreRequest = new AddProductStoreRequest() {
-                Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,
                 HeroImage = new Contracts.Image { Url = product.HeroImage.Url},
@@ -25,6 +22,37 @@ namespace OnlineRetailPortal.Core
             };
 
             return addProductStoreRequest;
+        }
+
+        public static Product ToProduct(this AddProductStoreResponse addProductStoreResponse)
+        {
+            var product = new Product()
+            {
+                Id = addProductStoreResponse.Id,
+                Name = addProductStoreResponse.Name,
+                Description = addProductStoreResponse.Description,
+                HeroImage = new Image { Url = addProductStoreResponse.HeroImage.Url },
+                Price = new Price { Amount = addProductStoreResponse.Price.Amount, IsNegotiable = addProductStoreResponse.Price.IsNegotiable },
+                Category = (Category)addProductStoreResponse.Category,
+                Status = (Status)addProductStoreResponse.Status,
+                PostDateTime = addProductStoreResponse.PostDateTime,
+                ExpirationDate = addProductStoreResponse.ExpirationDate,
+                Images = addProductStoreResponse.Images.Select(x => new Image
+                {
+                    Url = x.Url
+                }).ToList(),
+                PurchasedDate = addProductStoreResponse.PurchasedDate,
+                PickupAddress = new Address
+                {
+                    Line1 = addProductStoreResponse.PickupAddress.Line1,
+                    Line2 = addProductStoreResponse.PickupAddress.Line2,
+                    City = addProductStoreResponse.PickupAddress.City,
+                    Pincode = addProductStoreResponse.PickupAddress.Pincode,
+                    State = addProductStoreResponse.PickupAddress.State
+                }
+            };
+
+            return product;
         }
 
         private static Contracts.Address GetAddress(Address pickupAddress)
@@ -52,40 +80,12 @@ namespace OnlineRetailPortal.Core
         {
             if (images == null)
                 return null;
-            return new Contracts.Product().Images = images.Select(x => new Image
+            return new Contracts.Product().Images = images.Select(x => new Contracts.Image
             {
                 Url = x.Url
             }).ToList();
         }
 
-        public static Product ToProduct(this AddProductStoreResponse addProductStoreResponse)
-        {
-            var product = new Product() {
-                Id = addProductStoreResponse.Id,
-                Name = addProductStoreResponse.Name,
-                Description = addProductStoreResponse.Description,
-                HeroImage = new Image { Url = addProductStoreResponse.HeroImage.Url },
-                Price = new Price { Amount = addProductStoreResponse.Price.Amount, IsNegotiable = addProductStoreResponse.Price.IsNegotiable },
-                Category = (Category)addProductStoreResponse.Category,
-                Status = (Status)addProductStoreResponse.Status,
-                PostDateTime = addProductStoreResponse.PostDateTime,
-                ExpirationDate = addProductStoreResponse.ExpirationDate,
-                Images = addProductStoreResponse.Images.Select(x => new Image
-                {
-                    Url = x.Url
-                }).ToList(),
-                PurchasedDate = addProductStoreResponse.PurchasedDate,
-                PickupAddress = new Address
-                {
-                    Line1 = addProductStoreResponse.PickupAddress.Line1,
-                    Line2 = addProductStoreResponse.PickupAddress.Line2,
-                    City = addProductStoreResponse.PickupAddress.City,
-                    Pincode = addProductStoreResponse.PickupAddress.Pincode,
-                    State = addProductStoreResponse.PickupAddress.State
-                }
-            };
-
-            return product;
-        }
+        
     }
 }

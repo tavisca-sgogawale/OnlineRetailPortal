@@ -16,9 +16,19 @@ namespace OnlineRetailPortal.Core
                 HeroImage = new Contracts.Image { Url = product.HeroImage.Url},
                 Price = new Contracts.Price { Amount = product.Price.Amount, IsNegotiable = product.Price.IsNegotiable},
                 Category = (Contracts.Category)product.Category,
-                Images = GetImages(product.Images),
-                PurchasedDate = GetPurchasedDates(product.PurchasedDate),
-                PickupAddress = GetAddress(product.PickupAddress)
+                Images = new Contracts.Product().Images = product.Images.Select(x => new Contracts.Image
+                {
+                    Url = x.Url
+                }).ToList(),
+                PurchasedDate = product.PurchasedDate,
+                PickupAddress = new Contracts.Product().PickupAddress = new Contracts.Address()
+                {
+                    Line1 = product.PickupAddress.Line1,
+                    Line2 = product.PickupAddress.Line2,
+                    City = product.PickupAddress.City,
+                    Pincode = product.PickupAddress.Pincode,
+                    State = product.PickupAddress.State
+                }
             };
 
             return addProductStoreRequest;
@@ -54,38 +64,5 @@ namespace OnlineRetailPortal.Core
 
             return product;
         }
-
-        private static Contracts.Address GetAddress(Address pickupAddress)
-        {
-            if (pickupAddress == null)
-                return null;
-            return new Contracts.Product().PickupAddress = new Contracts.Address()
-            {
-                Line1 = pickupAddress.Line1,
-                Line2 = pickupAddress.Line2,
-                City = pickupAddress.City,
-                Pincode = pickupAddress.Pincode,
-                State = pickupAddress.State
-            };
-        }
-
-        private static DateTime? GetPurchasedDates(DateTime? purchasedDate)
-        {
-            if (purchasedDate == null)
-                return null;
-            return new Contracts.Product().PurchasedDate = purchasedDate;
-        }
-
-        private static List<Contracts.Image> GetImages(List<Image> images)
-        {
-            if (images == null)
-                return null;
-            return new Contracts.Product().Images = images.Select(x => new Contracts.Image
-            {
-                Url = x.Url
-            }).ToList();
-        }
-
-        
     }
 }

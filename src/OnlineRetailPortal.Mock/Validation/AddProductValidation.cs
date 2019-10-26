@@ -74,7 +74,7 @@ namespace OnlineRetailPortal.Mock
 
     }
 
-    public class AddressValidator : AbstractValidator<Address>
+    public class AddressValidator : AbstractValidator<Contracts.Address>
     {
         public AddressValidator()
         {

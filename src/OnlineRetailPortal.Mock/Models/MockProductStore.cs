@@ -1,4 +1,5 @@
-﻿using OnlineRetailPortal.Contracts;
+﻿using FluentValidation.Results;
+using OnlineRetailPortal.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,10 +30,20 @@ namespace OnlineRetailPortal.Mock
                 PostDateTime =  new DateTime(2019,12,1),ExpirationDate = new DateTime(2019,12,1).AddDays(30), PurchasedDate = DateTime.Now, Status = Status.Active }
         };
 
+        IAddProductValidation validation;
+
+        public MockProductStore()
+        {
+            validation = new AddProductValidation();
+        }
+
         public async Task<AddProductStoreResponse> AddProductAsync(AddProductStoreRequest request)
         {
 
-            //null checks fluent validations
+            ValidationResult result = validation.Validate(request);
+
+            if (!result.IsValid)
+                return null;
 
             var product = request.ToProduct();
 

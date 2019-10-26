@@ -8,9 +8,9 @@ using System.Text.RegularExpressions;
 
 namespace OnlineRetailPortal.Core
 {
-    public class Validation : AbstractValidator<Product>, IAddProductValidation
+    public class AddProductValidation : AbstractValidator<Product>, IAddProductValidation
     {
-        public Validation()
+        public AddProductValidation()
         {
             RuleFor(product => product.Name).Must(IsNameValid);
             RuleFor(product => product.Description).Must(IsDescriptionValid);

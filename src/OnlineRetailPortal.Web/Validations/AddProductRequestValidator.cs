@@ -17,8 +17,7 @@ namespace OnlineRetailPortal.Web.Validations
             .NotNull()
             .WithMessage(ErrorMessages.NullField("Seller Id"))
             .NotEmpty()
-            .WithMessage(ErrorMessages.MissingField("Seller Id"))
-            .WithMessage("The Seller ID cannot be blank.");
+            .WithMessage(ErrorMessages.MissingField("Seller Id"));
 
             RuleFor(x => x.ProductId)
             .NotNull()
@@ -32,7 +31,7 @@ namespace OnlineRetailPortal.Web.Validations
             .NotEmpty()
             .WithMessage(ErrorMessages.MissingField("Title"))
             .Length(2, 20)
-            .WithMessage("The Title cannot be less than 2 characters and more than  20 characters.");
+            .WithMessage(ErrorMessages.Greater("Title", "2"));
 
             //RuleFor(x => x.Category)
             //.NotNull()
@@ -59,7 +58,7 @@ namespace OnlineRetailPortal.Web.Validations
             .WithMessage(ErrorMessages.NullField("Description"))
             .NotEmpty()
             .WithMessage(ErrorMessages.MissingField("Description"))
-            .Length(4, 100).WithMessage("The Discription cannot be less than 4 characters and more than  100 characters.");
+            .Length(4, 100).WithMessage(ErrorMessages.Greater("Description", "4"));
 
             // RuleFor(x => x.PurchasedDate)
             // .LessThan(DateTime.Today)

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using OnlineRetailPortal.Mock.Models;
 
 namespace OnlineRetailPortal.Services
 {
@@ -12,21 +13,18 @@ namespace OnlineRetailPortal.Services
     {
         IProductStoreFactory productStoreFactory;
         IProductStore productStore;
-        CoreService core;
+        Core.Product product;
+
         public ProductService()
         {
-            this.productStore = productStoreFactory.GetStoreType("Mock");
-            core = new CoreService(this.productStore);
-        }
-        public async Task<AddProductResponse> AddProductAsync(AddProductRequest addProductRequest)
-        {
-            Core.CorePostResponse response = await core.AddProduct(addProductRequest.ToCore());
-            return response.ToWeb(); 
+            //     this.productStore = productStoreFactory.GetStoreType("Mock");
+            product = new Core.Product(this.productStore);
         }
 
-        public Task<GetProductResponse> GetProductAsync(string productId)
+        public async Task<AddProductResponse> AddProductAsync(AddProductRequest addProductRequest)
         {
-            throw new NotImplementedException();
+            Core.Product response = await product.AddProductAsync(addProductRequest.ToCore());
+            return response.ToWeb();
         }
     }
 }

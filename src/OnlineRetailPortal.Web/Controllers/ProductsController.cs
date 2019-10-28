@@ -8,7 +8,7 @@ using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Web.Validations;
 using FluentValidation.Results;
 using OnlineRetailPortal.Web.Translators;
-
+using FluentValidation;
 
 namespace OnlineRetailPortal.Web
 {
@@ -18,20 +18,18 @@ namespace OnlineRetailPortal.Web
     {
         private readonly IProductService _productService;
 
-        public ProductsController(IProductService productService=null)
+        public ProductsController(IProductService productService)
         {
             this._productService = productService;
         }
-
-        [Route("product")]
-        [HttpPost]
+        
+        [HttpPost("product")]
         public async Task<AddProductResponse> AddProductAsync([FromBody] AddProductRequest request)
         {
-            AddProductRequestValidator validator = new AddProductRequestValidator();
-            validator.Validate(request);
-            var response = await _productService.AddProductAsync(request.ToDataContract());
-            return response.ToUser();
-        }
-            
+              AddProductRequestValidator validator = new AddProductRequestValidator();
+              validator.EnsureValid(request);
+              var response = await _productService.AddProductAsync(request.ToDataContract());
+              return response.ToUser();
+        }    
     }
 }   

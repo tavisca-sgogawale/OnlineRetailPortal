@@ -2,16 +2,37 @@
 using System.Collections.Generic;
 using System.Text;
 using OnlineRetailPortal.Core;
+using System.Linq;
 
 namespace OnlineRetailPortal.Services.Translators
 {
     public static class AddProductRequestTranslator
     {
-        public static Core.CorePostRequest ToCore(this Contracts.AddProductRequest addProductRequest)
+        public static Product ToCore(this Contracts.AddProductRequest addProductRequest)
         {
-            Core.CorePostRequest corePostRequest = new CorePostRequest();
-            corePostRequest.Name = addProductRequest.Product.Name;
-            return corePostRequest;
+            var product = new Product()
+            {
+                Id = addProductRequest.SellerId,
+                Name = addProductRequest.Name,
+                Description = addProductRequest.Description,
+                HeroImage = new Image { Url = addProductRequest.HeroImage.Url },
+                Price = new Price { Amount = addProductRequest.Price.Amount, IsNegotiable = addProductRequest.Price.IsNegotiable },
+                Category = (Category)addProductRequest.Category,
+                PurchasedDate = addProductRequest.PurchasedDate,
+                Images = addProductRequest.Images.Select(x => new Image
+                {
+                    Url = x.Url
+                }).ToList(),
+                PickupAddress = new Address
+                {
+                    Line1 = addProductRequest.PickupAddress.Line1,
+                    Line2 = addProductRequest.PickupAddress.Line2,
+                    City = addProductRequest.PickupAddress.City,
+                    Pincode = addProductRequest.PickupAddress.Pincode,
+                    State = addProductRequest.PickupAddress.State
+                }
+            };
+            return product;
         }
     }
 }

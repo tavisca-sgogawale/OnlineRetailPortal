@@ -1,5 +1,5 @@
-﻿using OnlineRetailPortal.Contracts.Models;
-using OnlineRetailPortal.Core;
+﻿using OnlineRetailPortal.Contracts;
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,7 +9,7 @@ namespace OnlineRetailPortal.Contracts
 {
     public interface IProductStore
     {
-        Task<GetProductsResponse> GetProductsAsync(GetProductsRequest request);
-        Task<Product> GetProductAsync(string productId);
+        Task<GetProductStoreResponse> GetProductAsync(string productId);
+        Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreRequest request);
     }
 }

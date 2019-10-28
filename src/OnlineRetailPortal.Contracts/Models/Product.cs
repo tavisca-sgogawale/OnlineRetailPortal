@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineRetailPortal.Contracts.Models
+namespace OnlineRetailPortal.Contracts
 {
     public class Product
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public Price Price { get; set; }
         public Category Category { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineRetailPortal.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,39 +11,60 @@ namespace OnlineRetailPortal.Core
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public Image HeroImage { get; set; }
         public Price Price { get; set; }
+        public Price IsNegotiable { get; set; }
+        public Price Currency { get; set; }
         public Category Category { get; set; }
-        public Status Status { get; set; }
+        public Image HeroImage { get; set; }
+        public Address PickupAddress { get; set; }
+        public List<Image> Images { get; set; }
+        public string UserId { get; set; }
         public DateTime PostDateTime { get; set; }
+        public DateTime PurchasedDate { get; set; }
+        public string Description { get; set; }
         public DateTime ExpirationDate { get; set; }
 
-        public List<Image> Images { get; set; }
-        public DateTime PurchasedDate { get; set; }
-        public Address PickupAddress { get; set; }
+        public Status Status { get; set; }
 
-        
-        public static async Task<List<Product>> GetAllProducts(int pagenumber, int pagesize)
+        IProductStore productStore;
+
+        public Product()
         {
-            List<Product> products = new List<Product>();
-            //products = idbInterface.getProducts(pagenumber,pagesize);// This data will be fetched from database
-            if (products.Count == 0)
-            {
-                throw new Exception("No Products Available");
-            }
-            return products;
+
         }
 
-        public static async Task<Product> GetProductById(string productId)
+        public Product(IProductStore productStore)
         {
-            Product product = null;
-            //product = idbInterface.getProduct(productId);// This data will be fetched from database
-            if (product == null)
+            this.productStore = productStore;
+        }
+
+        public async Task<GetProductsServiceResponse> GetProductsAsync(GetProductsServiceRequest serviceRequest)
+        {
+            var request = serviceRequest.ToProductStoreRequest();
+            List<Product> products = new List<Product>();
+            GetProductsStoreResponse response = new GetProductsStoreResponse();
+            response = await productStore.GetProductsAsync(request);
+
+            if (products.Count == 0)
+            {
+               throw new Exception("No Products Available");
+            }
+            return products.ToProductsList();
+        }
+       
+
+        public async Task<GetProductServiceResponse> GetProductAsync(string productId)
+        {
+            Product product = new Product();
+            GetProductStoreResponse response = new GetProductStoreResponse();
+            response = await productStore.GetProductAsync(productId);
+            //product   = idbInterface.getProduct(productId);// This data will be fetched from database
+            if (response == null)
             {
                 throw new Exception("Product Not Found");
             }
-            return product;
-        }    }
+            return response.ToGetProductServiceResponse();
+        }
+    }
 
 }

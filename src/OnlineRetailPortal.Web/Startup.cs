@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using OnlineRetailPortal.Contracts;
+using OnlineRetailPortal.Services;
 
 namespace OnlineRetailPortal.Web
 {
@@ -32,6 +34,13 @@ namespace OnlineRetailPortal.Web
                 sp.GetRequiredService<IOptions<MockProductDatabase>>().Value);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddControllers();
+            services.AddSingleton<IProductService>(new Services.ProductService());
+
+        }
+
+        private object ProductService(IServiceProvider arg)
+        {
+            throw new NotImplementedException();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

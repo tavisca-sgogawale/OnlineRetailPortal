@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-namespace OnlineRetailPortal.Services.Translators
+namespace OnlineRetailPortal.Services
 {
     public static class AddProductResponseTranslator
     {

@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using OnlineRetailPortal.Contracts;
+using OnlineRetailPortal.Mock;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,7 +24,7 @@ namespace OnlineRetailPortal.Core
         public Nullable<DateTime> PurchasedDate { get; set; }
         public Address PickupAddress { get; set; }
 
-        IProductStore productStore;
+        IProductStore productStore = new MockProductStore();
         IAddProductValidation validation;
 
         public Product()

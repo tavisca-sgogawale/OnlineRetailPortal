@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineRetailPortal.Mock.Models
+namespace OnlineRetailPortal.Mock
 {
-    class ProductStoreFactory : IProductStoreFactory
+   public class ProductStoreFactory : IProductStoreFactory
     {
         public IProductStore GetProductStore(string storeValue)
         {

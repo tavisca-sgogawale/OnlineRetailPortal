@@ -12,7 +12,6 @@ namespace OnlineRetailPortal.Web.Translators
             Contracts.AddProductRequest request = new Contracts.AddProductRequest()
             {
                 SellerId = addProductRequest.SellerId,
-                ProductId = addProductRequest.ProductId,
                 Name = addProductRequest.Name,
                 Description = addProductRequest.Description,
                 HeroImage = new Contracts.Image { Url = addProductRequest.HeroImage.Url },

@@ -1,23 +1,21 @@
 ﻿using OnlineRetailPortal.Contracts;
-using OnlineRetailPortal.Core;
-using OnlineRetailPortal.Services.Translators;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using OnlineRetailPortal.Mock.Models;
+using OnlineRetailPortal.Mock;
 
 namespace OnlineRetailPortal.Services
 {
-    class ProductService : IProductService
+    public class ProductService : IProductService
     {
-        IProductStoreFactory productStoreFactory;
-        IProductStore productStore;
+        IProductStoreFactory productStoreFactory = new Mock.ProductStoreFactory();
+        IProductStore productStore ;
         Core.Product product;
 
         public ProductService()
         {
-            //     this.productStore = productStoreFactory.GetStoreType("Mock");
+            this.productStore = productStoreFactory.GetProductStore("Mock");
             product = new Core.Product(this.productStore);
         }
 

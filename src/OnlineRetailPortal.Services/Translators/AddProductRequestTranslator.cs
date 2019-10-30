@@ -4,7 +4,7 @@ using System.Text;
 using OnlineRetailPortal.Core;
 using System.Linq;
 
-namespace OnlineRetailPortal.Services.Translators
+namespace OnlineRetailPortal.Services
 {
     public static class AddProductRequestTranslator
     {

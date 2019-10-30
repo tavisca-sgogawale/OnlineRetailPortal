@@ -19,12 +19,6 @@ namespace OnlineRetailPortal.Web.Validations
             .NotEmpty()
             .WithMessage(ErrorMessages.MissingField("Seller Id"));
 
-            RuleFor(x => x.ProductId)
-            .NotNull()
-            .WithMessage(ErrorMessages.NullField("Product Id"))
-            .NotEmpty()
-            .WithMessage(ErrorMessages.MissingField("Product Id")); 
-
             RuleFor(x => x.Name)
             .NotNull()
             .WithMessage(ErrorMessages.NullField("Title"))

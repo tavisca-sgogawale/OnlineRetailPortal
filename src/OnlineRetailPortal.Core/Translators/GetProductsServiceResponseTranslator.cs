@@ -25,7 +25,7 @@ namespace OnlineRetailPortal.Core
             {
                 productLists[i].Id = products[i].Id;
                 productLists[i].Name = products[i].Name;
-                productLists[i].Price = new Contracts.Price { Amount = products[i].Price.Amount, isPriceNegotiable = products[i].Price.isPriceNegotiable, Currency = (Contracts.Currency)products[i].Price.Currency };
+                productLists[i].Price = new Contracts.Price { Amount = products[i].Price.Amount, IsNegotiable = products[i].Price.IsNegotiable, Currency = (Contracts.Currency)products[i].Price.Currency };
                 productLists[i].Category = (Contracts.Category)products[i].Category;
                 productLists[i].HeroImage = new Contracts.Image { Url = products[i].HeroImage.Url };
                 productLists[i].PickupAddress = new Contracts.Address

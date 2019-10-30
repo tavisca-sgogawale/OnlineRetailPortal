@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineRetailPortal.Contracts.Contracts;
+using OnlineRetailPortal.Contracts.Models;
 using OnlineRetailPortal.Web.Translators;
 
 namespace OnlineRetailPortal.Web.Controllers
@@ -26,10 +27,20 @@ namespace OnlineRetailPortal.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Post()
         {
-            IFormFile file = Request.Form.Files[0];
-            UploadImageResponse response =  await _imageHandler.UploadImage(file.ToUploadImageContract()).ConfigureAwait(false);
-            //return response;
-            return response.ToUser();
+            if (Request.Form.Files.Count > 0)
+            {
+                IFormFile file = Request.Form.Files[0];
+                UploadImageResponse response = await _imageHandler.UploadImage(file.ToUploadImageContract()).ConfigureAwait(false);
+                return response.ToUser();
+            }
+            else
+            {
+                UploadImageResponse response = new UploadImageResponse {Code= 400, Message="No file was recieved"};
+                var wr = new ImageWriterFailResponse() { Code = 400, Response = "No file was recieved" };
+                return response.ToUser();
+            }
+
+           
 
         }
 

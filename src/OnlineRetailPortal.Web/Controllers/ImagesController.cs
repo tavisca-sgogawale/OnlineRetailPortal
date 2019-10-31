@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using OnlineRetailPortal.Contracts.Contracts;
 using OnlineRetailPortal.Contracts.Models;
 using OnlineRetailPortal.Web.Translators;
+using OnlineRetailPortal.Web.Validations;
 
 namespace OnlineRetailPortal.Web.Controllers
 {
@@ -27,21 +28,15 @@ namespace OnlineRetailPortal.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Post()
         {
-            if (Request.Form.Files.Count > 0)
+            UploadImageResponse response= null;
+
+            if (ImageRequestValidator.IsValidPostRequest(Request,response))
             {
                 IFormFile file = Request.Form.Files[0];
-                UploadImageResponse response = await _imageHandler.UploadImage(file.ToUploadImageContract()).ConfigureAwait(false);
-                return response.ToUser();
-            }
-            else
-            {
-                UploadImageResponse response = new UploadImageResponse {Code= 400, Message="No file was recieved"};
-                var wr = new ImageWriterFailResponse() { Code = 400, Response = "No file was recieved" };
-                return response.ToUser();
+                response = await _imageHandler.UploadImage(file.ToUploadImageContract()).ConfigureAwait(false);
             }
 
-           
-
+            return response.ToUser();
         }
 
         /// <summary>
@@ -51,7 +46,7 @@ namespace OnlineRetailPortal.Web.Controllers
         [HttpDelete("{id}")]
         public void Delete(string id)
         {
-            _imageHandler.DeleteImage(id.ToDeleteImageContract());
+            _imageHandler.DeleteTempImage(id.ToDeleteImageContract());
         }
 
 

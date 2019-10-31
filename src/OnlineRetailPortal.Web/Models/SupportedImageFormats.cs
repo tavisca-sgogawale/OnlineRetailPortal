@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 
-namespace OnlineRetailPortal.Services.Services
+namespace OnlineRetailPortal.Web.Models
 {
-    class WriterHelper
+    public class SupportedImageFormats
     {
-
         public enum ImageFormat
         {
             bmp,

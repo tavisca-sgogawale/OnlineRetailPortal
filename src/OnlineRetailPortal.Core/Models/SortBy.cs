@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OnlineRetailPortal.Core
 {
-    public enum PageSortBy
+    public enum SortBy
     {
         PostDate,
         Price

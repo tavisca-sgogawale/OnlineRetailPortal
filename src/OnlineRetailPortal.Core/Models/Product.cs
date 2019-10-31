@@ -12,8 +12,7 @@ namespace OnlineRetailPortal.Core
         public string Id { get; set; }
         public string Name { get; set; }
         public Price Price { get; set; }
-        public Price IsNegotiable { get; set; }
-        public Price Currency { get; set; }
+        
         public Category Category { get; set; }
         public Image HeroImage { get; set; }
         public Address PickupAddress { get; set; }

@@ -12,7 +12,7 @@ namespace OnlineRetailPortal.Core
             }
             GetProductsStoreRequest page = new GetProductsStoreRequest()
             {
-                Page = new Contracts.Page()
+                Page = new Contracts.PagingInfo()
                 {
                     PageNumber = request.Page.PageNumber,
                     PageSize = request.Page.PageSize,

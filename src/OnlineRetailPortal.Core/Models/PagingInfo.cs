@@ -4,11 +4,11 @@ using System.Text;
 
 namespace OnlineRetailPortal.Core
 {
-    public class Page
+    public class PagingInfo
     {
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
-        public PageSortBy SortBy { get; set; }
+        public SortBy SortBy { get; set; }
 
     }
 }

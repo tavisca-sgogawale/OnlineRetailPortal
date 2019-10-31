@@ -12,13 +12,13 @@ namespace OnlineRetailPortal.Core
         {
             var getProductsResponse = new GetProductsServiceResponse()
             {
-                Products = GetList(products)
+                Products = GetProductList(products)
             };
             return getProductsResponse;
 
         }
 
-        private static List<Contracts.Product> GetList(List<Product> products)
+        private static List<Contracts.Product> GetProductList(List<Product> products)
         {
             List<Contracts.Product> productLists = new List<Contracts.Product>();
             for (int i = 0; i < products.Count; i++)

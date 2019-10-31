@@ -10,12 +10,5 @@ namespace OnlineRetailPortal.Contracts.Contracts
     {
         public IFormFile File { get; set; }
     }
-    public class UploadImageRequestValidator : AbstractValidator<UploadImageRequest>
-    {
-        public UploadImageRequestValidator()
-        {
-            RuleFor(f => f.File).NotNull();
-        }
-        
-    }
+
 }

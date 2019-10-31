@@ -8,6 +8,8 @@ namespace OnlineRetailPortal.Contracts.Contracts
 {
     public interface IImageWriter
     {
-        Task<IImageWriterResponse> UploadImage(IFormFile file);
+        //Task<IImageWriterResponse> UploadImage(IFormFile file);
+        Task<IImageWriterResponse> WriteFile(IFormFile file);
+
     }
 }

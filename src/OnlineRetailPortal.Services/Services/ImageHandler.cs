@@ -30,12 +30,15 @@ namespace OnlineRetailPortal.Services.Services
         public async Task<UploadImageResponse> UploadImage(UploadImageRequest request)
         {
             IFormFile file = request.File;
-            IImageWriterResponse response=  await _imageWriter.UploadImage(file).ConfigureAwait(false);
+            IImageWriterResponse response=  await _imageWriter.WriteFile(file).ConfigureAwait(false);
             return response.ToUploadImageResponse();
         }
 
-
-        public void DeleteImage(DeleteImageRequest request)
+        /// <summary>
+        /// Takes an imageID inside a DeleteImageRequest Object and deletes the image from the temporary Storage
+        /// </summary>
+        /// <param name="request"></param>
+        public void DeleteTempImage(DeleteImageRequest request)
         {
             string imageId = request.ImageID;
             try

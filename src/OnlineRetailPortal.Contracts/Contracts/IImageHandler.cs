@@ -19,7 +19,7 @@ namespace OnlineRetailPortal.Contracts.Contracts
         /// Takes a DeleteImageRequest object containing the name of the file to delete from the temporary folder
         /// </summary>
         /// <param name="imageUrl"></param>
-        void DeleteImage(DeleteImageRequest request);
+        void DeleteTempImage(DeleteImageRequest request);
     }
     
 }

@@ -82,11 +82,17 @@ namespace OnlineRetailPortal.Tests
 
             request.Name = null;
 
+            AddProductStoreResponse actualResponse = null;
+
             MockProductStore mockProductStore = new MockProductStore();
-
-            var actualResponse = await mockProductStore.AddProductAsync(request);
-
-            Assert.Null(actualResponse);
+            try
+            {
+                actualResponse = await mockProductStore.AddProductAsync(request);
+            }
+            catch(Exception)
+            {
+                Assert.Null(actualResponse);
+            }
         }
 
         private AddProductStoreResponse GetExpectedResponse()

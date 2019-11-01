@@ -81,9 +81,16 @@ namespace OnlineRetailPortal.Tests
 
             request.Name = null;
 
-            var actualResponse = await request.AddProductAsync(request);
+            Core.Product actualResponse = null;
 
-            Assert.Null(actualResponse);
+            try
+            {
+                actualResponse = await request.AddProductAsync(request);
+            }
+            catch (Exception)
+            {
+                Assert.Null(actualResponse);
+            }
         }
 
         private Core.Product GetExpectedResponse()

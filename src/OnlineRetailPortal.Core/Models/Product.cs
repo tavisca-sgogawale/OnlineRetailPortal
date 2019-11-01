@@ -40,11 +40,8 @@ namespace OnlineRetailPortal.Core
 
         public async Task<Product> AddProductAsync(Product product)
         {
-            ValidationResult result = validation.Validate(product);
-
-            if (!result.IsValid)
-                return null;
-
+            validation.EnsureValidResult(product);
+           
             var entityPostRequest = product.ToEntityRequest();
             
             var entityPostResponse = await productStore.AddProductAsync(entityPostRequest);

@@ -18,7 +18,7 @@ namespace OnlineRetailPortal.Mock
                     Name = product.Name,
                     Description = product.Description,
                     HeroImage = new Contracts.Image { Url = product.HeroImage.Url },
-                    Price = new Contracts.Price() { Amount = product.Price.Amount, IsNegotiable = product.Price.IsNegotiable },
+                    Price = new Contracts.Price() { Value = { Amount = product.Price.Value.Amount, Currency = product.Price.Value.Currency }, IsNegotiable = product.Price.IsNegotiable },
                     Category = (Contracts.Category)product.Category.GetHashCode(),
                     Status = (Contracts.Status)product.Status.GetHashCode(),
                     PostDateTime = product.PostDateTime,

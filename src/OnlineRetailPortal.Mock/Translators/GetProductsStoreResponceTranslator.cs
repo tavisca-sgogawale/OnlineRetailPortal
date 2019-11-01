@@ -20,7 +20,7 @@ namespace OnlineRetailPortal.Mock
                     ExpirationDate = x.ExpirationDate,
                     PostDateTime = x.PostDateTime,
                     Description = x.Description,
-                    Price = new Contracts.Price() { Amount = x.Price.Amount, IsNegotiable = x.Price.IsNegotiable },
+                    Price = new Contracts.Price() { Value = { Amount = x.Price.Value.Amount,Currency = x.Price.Value.Currency }, IsNegotiable = x.Price.IsNegotiable },
                     PurchasedDate = x.PurchasedDate,
                     PickupAddress = new Contracts.Address()
                     {

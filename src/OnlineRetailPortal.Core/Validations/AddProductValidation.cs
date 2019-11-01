@@ -15,7 +15,7 @@ namespace OnlineRetailPortal.Core
             RuleFor(product => product.Name).Must(IsNameValid);
             RuleFor(product => product.Description).Must(IsDescriptionValid);
             RuleFor(product => product.HeroImage.Url).Must(IsHeroImageValid);
-            RuleFor(product => product.Price.Amount).Must(IsPriceValid);
+            RuleFor(product => product.Price.Value.Amount).Must(IsPriceValid);
             RuleFor(product => product.Category.ToString()).Must(IsCategoryValid);
             RuleFor(product => product.Images.Select(x=>x.Url).ToList()).Must(IsImagesValid);
             RuleFor(product => product.PurchasedDate).Must(IsPurchaseDateValid);

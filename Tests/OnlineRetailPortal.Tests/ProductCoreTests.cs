@@ -23,7 +23,8 @@ namespace OnlineRetailPortal.Tests
             Assert.Equal(expectedResponse.Name, actualResponse.Name);
             Assert.Equal(expectedResponse.Description, actualResponse.Description);
             Assert.Equal(expectedResponse.HeroImage.Url, actualResponse.HeroImage.Url);
-            Assert.Equal(expectedResponse.Price.Amount, actualResponse.Price.Amount);
+            Assert.Equal(expectedResponse.Price.Value.Amount, actualResponse.Price.Value.Amount);
+            Assert.Equal(expectedResponse.Price.Value.Currency, actualResponse.Price.Value.Currency);
             Assert.Equal(expectedResponse.Price.IsNegotiable, actualResponse.Price.IsNegotiable);
             Assert.Equal(expectedResponse.Category, actualResponse.Category);
             Assert.Equal(expectedResponse.Status, actualResponse.Status);
@@ -58,7 +59,8 @@ namespace OnlineRetailPortal.Tests
             Assert.Equal(expectedResponse.Name, actualResponse.Name);
             Assert.Equal(expectedResponse.Description, actualResponse.Description);
             Assert.Equal(expectedResponse.HeroImage.Url, actualResponse.HeroImage.Url);
-            Assert.Equal(expectedResponse.Price.Amount, actualResponse.Price.Amount);
+            Assert.Equal(expectedResponse.Price.Value.Amount, actualResponse.Price.Value.Amount);
+            Assert.Equal(expectedResponse.Price.Value.Currency, actualResponse.Price.Value.Currency);
             Assert.Equal(expectedResponse.Price.IsNegotiable, actualResponse.Price.IsNegotiable);
             Assert.Equal(expectedResponse.Category, actualResponse.Category);
             Assert.Equal(expectedResponse.Status, actualResponse.Status);
@@ -101,7 +103,7 @@ namespace OnlineRetailPortal.Tests
                 Name = "Bottle",
                 Description = "Green Bottle",
                 HeroImage = new Core.Image { Url = "example.com" },
-                Price = new Core.Price { Amount = 99.99, IsNegotiable = false },
+                Price = new Core.Price { Value = new Core.Value( 99.99, "INR"), IsNegotiable = false },
                 Category = Core.Category.Others,
                 Status = Core.Status.Active,
                 PostDateTime = DateTime.Now,
@@ -128,7 +130,7 @@ namespace OnlineRetailPortal.Tests
                 Name = "Bottle",
                 Description = "Green Bottle",
                 HeroImage = new Core.Image { Url = "example.com" },
-                Price = new Core.Price { Amount = 99.99, IsNegotiable = false },
+                Price = new Core.Price { Value = new Core.Value( 99.99, "INR" ), IsNegotiable = false },
                 Category = Core.Category.Others,
                 Images = new List<Core.Image>() { new Core.Image { Url = "ex.com" } },
                 PurchasedDate = new DateTime(2010, 7, 7),

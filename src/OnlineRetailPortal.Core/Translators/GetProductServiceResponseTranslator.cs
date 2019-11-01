@@ -20,7 +20,7 @@ namespace OnlineRetailPortal.Core
                     ExpirationDate = getProductResponse.Product.ExpirationDate,
                     PostDateTime = getProductResponse.Product.PostDateTime,
                     Description = getProductResponse.Product.Description,
-                    Price = new Contracts.Price() { Amount = getProductResponse.Product.Price.Amount, IsNegotiable = getProductResponse.Product.Price.IsNegotiable },
+                    Price = new Contracts.Price() { Amount = getProductResponse.Product.Price.Amount, IsNegotiable = getProductResponse.Product.Price.IsNegotiable , Currency = getProductResponse.Product.Price.Currency},
                     PurchasedDate = getProductResponse.Product.PurchasedDate,
                     PickupAddress = new Contracts.Address()
                     {

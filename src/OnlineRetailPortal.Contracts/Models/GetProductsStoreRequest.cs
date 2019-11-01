@@ -2,6 +2,6 @@
 {
     public class GetProductsStoreRequest
     {
-        public PagingInfo Page { get; set; }
+        public PagingInfo PagingInfo { get; set; }
     }
 }

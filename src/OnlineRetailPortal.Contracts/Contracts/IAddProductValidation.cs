@@ -11,6 +11,7 @@ namespace OnlineRetailPortal.Contracts
         bool IsDescriptionValid(string description);
         bool IsHeroImageValid(string url);
         bool IsPriceValid(double price);
+        bool IsCurrencyValid(string currency);
         bool IsCategoryValid(string category);
         bool IsImagesValid(List<string> urls);
         bool IsPurchaseDateValid(DateTime? date);

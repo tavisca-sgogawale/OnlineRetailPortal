@@ -50,6 +50,8 @@ namespace OnlineRetailPortal.Mock
 
             product = await Task.Run(() => {
 
+                var guid = Guid.NewGuid();
+                product.Id = guid.ToString();
                 product.Status = Status.Active;
                 product.PostDateTime = DateTime.Now;
                 product.ExpirationDate = DateTime.Now.AddDays(30);

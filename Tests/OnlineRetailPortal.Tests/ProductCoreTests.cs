@@ -20,7 +20,6 @@ namespace OnlineRetailPortal.Tests
 
             var actualResponse = await requestProduct.AddProductAsync(requestProduct);
 
-            Assert.Equal(expectedResponse.Id, actualResponse.Id);
             Assert.Equal(expectedResponse.Name, actualResponse.Name);
             Assert.Equal(expectedResponse.Description, actualResponse.Description);
             Assert.Equal(expectedResponse.HeroImage.Url, actualResponse.HeroImage.Url);
@@ -56,7 +55,6 @@ namespace OnlineRetailPortal.Tests
 
             var actualResponse = await request.AddProductAsync(request);
 
-            Assert.Equal(expectedResponse.Id, actualResponse.Id);
             Assert.Equal(expectedResponse.Name, actualResponse.Name);
             Assert.Equal(expectedResponse.Description, actualResponse.Description);
             Assert.Equal(expectedResponse.HeroImage.Url, actualResponse.HeroImage.Url);

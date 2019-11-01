@@ -2,22 +2,26 @@
 using FluentValidation.Results;
 using FluentValidation;
 using System.Linq;
+using OnlineRetailPortal.Contracts;
+using OnlineRetailPortal.Core;
 
 namespace OnlineRetailPortal.Web.Validations
 {
-    public static class Validator
+    public static class EnsureValidator
     {
         public static void EnsureValid<AddProductRequest>(this AbstractValidator<AddProductRequest> validator, AddProductRequest request)
         {
-            var validationError = ErrorMessages.NullField("Product");
+
             var validationResult = validator.Validate(request);
-          //  ValidationFailure validationFailure = validationResult.Errors[0];
 
             if (request == null)
-                throw new Exception(validationError);         
-
+                throw new Exception(Error.MissingField("Product"));
+                    
             if (validationResult.IsValid == false)
-                throw new Exception(validationResult.Errors[0].ToString());
+            {
+                var validationError = UserExceptions.InvalidRequest(validationResult.Errors[0].ErrorMessage,validationResult.Errors[0].ErrorCode);     
+                throw validationError;
+            }
         }
     }
 }

@@ -51,6 +51,8 @@ namespace OnlineRetailPortal.Web
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseMiddleware<CustomExceptionMiddleware>();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();

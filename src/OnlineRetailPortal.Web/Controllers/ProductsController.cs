@@ -26,10 +26,10 @@ namespace OnlineRetailPortal.Web
         [HttpPost("product")]
         public async Task<AddProductResponse> AddProductAsync([FromBody] AddProductRequest request)
         {
-              AddProductRequestValidator validator = new AddProductRequestValidator();
-              validator.EnsureValid(request);
-              var response = await _productService.AddProductAsync(request.ToDataContract());
-              return response.ToUser();
+            AddProductRequestValidator validator = new AddProductRequestValidator();
+            validator.EnsureValid(request);
+            var response = await _productService.AddProductAsync(request.ToDataContract());
+            return response.ToUser();
         }    
     }
 }   

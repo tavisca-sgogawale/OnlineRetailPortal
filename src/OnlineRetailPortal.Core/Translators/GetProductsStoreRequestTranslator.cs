@@ -6,7 +6,7 @@ namespace OnlineRetailPortal.Core
     {
         public static GetProductsStoreRequest ToProductStoreRequest(this GetProductsServiceRequest request)
         {
-            if (request.Page == null)
+            if (request.PagingInfo == null)
             {
                 return null;
             }
@@ -14,9 +14,9 @@ namespace OnlineRetailPortal.Core
             {
                 PagingInfo = new Contracts.PagingInfo()
                 {
-                    PageNumber = request.Page.PageNumber,
-                    PageSize = request.Page.PageSize,
-                    SortBy = request.Page.SortBy
+                    PageNumber = request.PagingInfo.PageNumber,
+                    PageSize = request.PagingInfo.PageSize,
+                    SortBy = request.PagingInfo.SortBy
                 }
             };
             return page;

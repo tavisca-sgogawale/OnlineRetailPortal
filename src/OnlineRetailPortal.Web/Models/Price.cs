@@ -4,5 +4,6 @@
     {
         public Money Money { get; set; }
         public bool IsNegotiable { get; set; }
+        public string Currency { get; set; }
     }
 }

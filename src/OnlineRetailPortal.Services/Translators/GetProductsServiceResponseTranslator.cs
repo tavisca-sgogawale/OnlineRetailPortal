@@ -9,11 +9,11 @@ namespace OnlineRetailPortal.Services
     static class GetProductsServiceResponseTranslator
     {
 
-        public static GetProductsServiceResponse ToGetProductsContract(this List<Core.Product> getProductsResponse)
+        public static GetProductsServiceResponse ToGetProductsContract(this Core.GetProductsCoreResponce getProductsResponse)
         {
             GetProductsServiceResponse response = new GetProductsServiceResponse()
             {
-                Products = getProductsResponse.Select(x => new Product()
+                Products = getProductsResponse.Products.Select(x => new Product()
                 {
                     Name = x.Name,
                     Id = x.Id,
@@ -37,8 +37,19 @@ namespace OnlineRetailPortal.Services
                     }).ToList(),
                     Status = (Contracts.Status)x.Status.GetHashCode(),
                     Category = (Contracts.Category)x.Category.GetHashCode()
-                }).ToList()
+                }).ToList(),
+                PagingInfo = new Contracts.PagingInfo()
+                {
+                    PageNumber = getProductsResponse.PagingInfo.PageNumber,
+                    PageSize = getProductsResponse.PagingInfo.PageSize,
+                    SortBy = getProductsResponse.PagingInfo.SortBy
+                }
+              
             };
+
+            
+
+
             return response;
 
         }

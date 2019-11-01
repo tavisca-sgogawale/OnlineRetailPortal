@@ -7,7 +7,7 @@ namespace OnlineRetailPortal.Web
 {
     public static class GetProductResponseTranslator
     {
-        public static GetProductResponse ToGetProductContract(this Contracts.GetProductServiceResponse getProductServiceResponse)
+        public static GetProductResponse ToGetProductContract(this Contracts.Product getProductServiceResponse)
         {
             GetProductResponse response = new GetProductResponse()
             {

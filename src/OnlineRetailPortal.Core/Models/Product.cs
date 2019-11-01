@@ -38,7 +38,7 @@ namespace OnlineRetailPortal.Core
             this.productStore = productStore;
         }
 
-        public async Task<GetProductsServiceResponse> GetProductsAsync(GetProductsServiceRequest serviceRequest)
+        public static async Task<GetProductsCoreResponce> GetProductsAsync(GetProductsServiceRequest serviceRequest)
         {
             var request = serviceRequest.ToProductStoreRequest();
             List<Product> products = new List<Product>();
@@ -49,11 +49,11 @@ namespace OnlineRetailPortal.Core
             {
                throw new Exception("No Products Available");
             }
-            return products.ToProductsList();
+            return products;
         }
        
 
-        public async Task<GetProductServiceResponse> GetProductAsync(string productId)
+        public static async Task<Product> GetProductAsync(string productId)
         {
             Product product = new Product();
             GetProductStoreResponse response = new GetProductStoreResponse();

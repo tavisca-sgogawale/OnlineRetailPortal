@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace OnlineRetailPortal.Contracts
+namespace OnlineRetailPortal.Core
 {
-    public class GetProductsServiceResponse
+    public class GetProductsCoreResponce
     {
         public List<Product> Products { get; set; }
         public PagingInfo PagingInfo { get; set; }
-    }
+    } 
 }

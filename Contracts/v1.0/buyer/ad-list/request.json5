@@ -1,3 +1,16 @@
 //GET /api/v1.0/{applicationname}/products?pagenumber=1&pagesize=50
 
 //Header contains "sessionId": "FAE04EC0-301F-11D3-BF4B-00C04F79EFBC" and "userId": "1111"
+//Request object
+{
+    //[Optional] sort by 
+    "sortBy" : "date",
+    //[Optional] order of Sorting
+    "sortOrder" : "ascending",
+    //[Optional] query for search filter etc
+    "filter" :[
+	   {
+		    "searchKeyword":"watch"
+	   }
+   ]
+}

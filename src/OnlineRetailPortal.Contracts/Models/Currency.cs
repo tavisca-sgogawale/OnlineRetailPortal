@@ -4,10 +4,9 @@ using System.Text;
 
 namespace OnlineRetailPortal.Contracts
 {
-    public enum Currency
+    public class Currency
     {
-        INR,
-        USD,
-        EUR
+    public string currency { get; set; }
+
     }
 }

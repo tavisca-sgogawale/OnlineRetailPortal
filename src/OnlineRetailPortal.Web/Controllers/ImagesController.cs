@@ -26,7 +26,7 @@ namespace OnlineRetailPortal.Web.Controllers
 
         // POST: api/Images
         [HttpPost]
-        public async Task<IActionResult> Post()
+        public async Task<IActionResult> UploadImage()
         {
             UploadImageResponse response= null;
 
@@ -75,9 +75,5 @@ namespace OnlineRetailPortal.Web.Controllers
         }
     }
 
-    public class ImgUrl
-    {
-        string bodyImageId;
-    
-    }
+
 }

@@ -1,19 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using OnlineRetailPortal.Contracts;
+using OnlineRetailPortal.Mock;
 
-namespace OnlineRetailPortal.Core.Models
+namespace OnlineRetailPortal.Core
 {
-    public enum Category
+    public class Category
     {
-        Properties,
-        Cars,
-        Furniture,
-        Mobiles,
-        Bikes,
-        Books,
-        Fashions,
-        Electronics,
-        Others
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        private ICategoryStore _categoryStore;
+        
+        public Category()
+        {
+            CategoryObjectFactory categoryObjectFactory = new CategoryObjectFactory();
+            _categoryStore = categoryObjectFactory.GetCategoryStore();
+        }
+
+        public async Task<List<Category>> GetCategoriesAsync()
+        {
+            var response = await _categoryStore.GetCategoriesAsync();
+            var CoreCategoriesResponse = response.ToCoreResponse();
+            return CoreCategoriesResponse;
+        }
+    }
+
+    public class CategoryObjectFactory
+    {
+        public ICategoryStore GetCategoryStore()
+        {
+            //if (typeOfCategoryStore == "Mock")
+            return new MockCategoryStore();
+
+        }
     }
 }

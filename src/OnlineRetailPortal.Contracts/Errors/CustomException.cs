@@ -1,10 +1,13 @@
-﻿using OnlineRetailPortal.Contracts.Errors;
+﻿using System.Net;
+using OnlineRetailPortal.Contracts.Errors;
 
 namespace OnlineRetailPortal.Contracts.Errors
 {
     public class CustomException : BaseException
     {
-        public CustomException(int code) : base(CustomErrorCodes.getErrorMessage(code), code)
+        private static HttpStatusCode httpStatusCode;
+
+        public CustomException(int code) : base(CustomErrorCodes.getErrorMessage(code), code, httpStatusCode)
         {
         }
     }

@@ -4,14 +4,18 @@ using FluentValidation;
 using System.Linq;
 using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Core;
+using System.Net;
+using OnlineRetailPortal.Contracts.Errors;
+using System.Collections.Generic;
 
 namespace OnlineRetailPortal.Web.Validations
 {
     public static class EnsureValidator
     {
+        private static BaseException validationError;
+
         public static void EnsureValid<AddProductRequest>(this AbstractValidator<AddProductRequest> validator, AddProductRequest request)
         {
-
             var validationResult = validator.Validate(request);
 
             if (request == null)
@@ -19,7 +23,10 @@ namespace OnlineRetailPortal.Web.Validations
                     
             if (validationResult.IsValid == false)
             {
-                var validationError = UserExceptions.InvalidRequest(validationResult.Errors[0].ErrorMessage,validationResult.Errors[0].ErrorCode);     
+                foreach (var error in validationResult.Errors)
+                {
+                    validationError = UserExceptions.InvalidRequest(error.ErrorMessage, error.ErrorCode, HttpStatusCode.BadRequest);
+                }
                 throw validationError;
             }
         }

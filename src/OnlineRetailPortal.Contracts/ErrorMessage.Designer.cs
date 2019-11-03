@@ -88,6 +88,15 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to akdkjdsdfjkdf.
+        /// </summary>
+        public static string notFound {
+            get {
+                return ResourceManager.GetString("notFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} can not be null..
         /// </summary>
         public static string NullField {

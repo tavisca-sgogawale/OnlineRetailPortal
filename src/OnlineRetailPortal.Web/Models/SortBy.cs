@@ -1,6 +1,6 @@
 ﻿namespace OnlineRetailPortal.Web
 {
-    public enum PageSortBy
+    public enum SortBy
     {
         PostDate,
         Price

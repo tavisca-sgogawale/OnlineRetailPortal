@@ -26,43 +26,26 @@ namespace OnlineRetailPortal.Core
 
         public Status Status { get; set; }
 
-        IProductStore productStore;
+        private static IProductStore _productStore;
 
-        public Product()
+        public Product(Price price, string sellerId ,string name)
         {
-
+            Price = price;
+            SellerId = sellerId;
+            Name = name;
         }
-
-        public Product(IProductStore productStore)
+        public static async Task<ProductsWithPageInitiation>  GetProductsAsync(GetProductsServiceRequest serviceRequest, IProductStore productStore)
         {
-            this.productStore = productStore;
-        }
-
-        public static async Task<GetProductsCoreResponce> GetProductsAsync(GetProductsServiceRequest serviceRequest)
-        {
+            _productStore = productStore;
             var request = serviceRequest.ToProductStoreRequest();
-            List<Product> products = new List<Product>();
-            GetProductsStoreResponse response = new GetProductsStoreResponse();
-            response = await productStore.GetProductsAsync(request);
-
-            if (products.Count == 0)
-            {
-               throw new Exception("No Products Available");
-            }
-            return products;
+            var response = await _productStore.GetProductsAsync(request);
+            return response.ToProductsWithPageInitiation();
         }
        
-
-        public static async Task<Product> GetProductAsync(string productId)
+        public static async Task<Product> GetProductAsync(string productId, IProductStore productStore)
         {
-            Product product = new Product();
-            GetProductStoreResponse response = new GetProductStoreResponse();
-            response = await productStore.GetProductAsync(productId);
-            //product   = idbInterface.getProduct(productId);// This data will be fetched from database
-            if (response == null)
-            {
-                throw new Exception("Product Not Found");
-            }
+            _productStore = productStore;
+            var response = await _productStore.GetProductAsync(productId);
             return response.ToGetProductServiceResponse();
         }
     }

@@ -9,7 +9,7 @@ namespace OnlineRetailPortal.Services
     static class GetProductsServiceResponseTranslator
     {
 
-        public static GetProductsServiceResponse ToGetProductsContract(this Core.GetProductsCoreResponce getProductsResponse)
+        public static GetProductsServiceResponse ToGetProductsContract(this Core.ProductsWithPageInitiation getProductsResponse)
         {
             GetProductsServiceResponse response = new GetProductsServiceResponse()
             {
@@ -42,14 +42,10 @@ namespace OnlineRetailPortal.Services
                 {
                     PageNumber = getProductsResponse.PagingInfo.PageNumber,
                     PageSize = getProductsResponse.PagingInfo.PageSize,
-                    SortBy = getProductsResponse.PagingInfo.SortBy
+                    SortBy = (Contracts.SortBy)getProductsResponse.PagingInfo.SortBy
                 }
-              
+
             };
-
-            
-
-
             return response;
 
         }

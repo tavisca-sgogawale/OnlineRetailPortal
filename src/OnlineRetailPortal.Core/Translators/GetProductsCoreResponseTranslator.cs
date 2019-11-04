@@ -1,27 +1,31 @@
-﻿using System;
+﻿using OnlineRetailPortal.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace OnlineRetailPortal.Web
+namespace OnlineRetailPortal.Core
 {
-    public static class GetProductsResponseTranslator
+    public static class GetProductsCoreResponseTranslator
     {
-        public static GetProductsResponse ToGetProductsContract(this Contracts.GetProductsServiceResponse getProductsServiceResponse)
+
+        public static ProductsWithPageInitiation ToProductsWithPageInitiation(this GetProductsStoreResponse getProductResponse)
         {
-            GetProductsResponse response = new GetProductsResponse()
+            ProductsWithPageInitiation responce = new ProductsWithPageInitiation()
             {
-                Products = getProductsServiceResponse.Products.Select(x => new Product()
+                Products = getProductResponse.Products.Select(x => new Product(new Price() {
+                    Amount = x.Price.Amount,
+                    IsNegotiable = x.Price.IsNegotiable,
+                    Currency = x.Price.Currency
+                }, x.UserId, x.Name)
                 {
-                    Name = x.Name,
                     Id = x.Id,
                     HeroImage = new Image() { Url = x.HeroImage.Url },
                     ExpirationDate = x.ExpirationDate,
                     PostDateTime = x.PostDateTime,
                     Description = x.Description,
-                    Price = new Price() { Amount = x.Price.Amount, IsNegotiable = x.Price.IsNegotiable },
                     PurchasedDate = x.PurchasedDate,
-                    PickupAddress = new Web.Address()
+                    PickupAddress = new Address()
                     {
                         City = x.PickupAddress.City,
                         State = x.PickupAddress.State,
@@ -29,7 +33,7 @@ namespace OnlineRetailPortal.Web
                         Line2 = x.PickupAddress.Line2,
                         Pincode = x.PickupAddress.Pincode
                     },
-                    Images = x.Images.Select(y => new Web.Image
+                    Images = x.Images.Select(y => new Image
                     {
                         Url = y.Url
                     }).ToList(),
@@ -38,13 +42,12 @@ namespace OnlineRetailPortal.Web
                 }).ToList(),
                 PagingInfo = new PagingInfo()
                 {
-                    PageNumber = getProductsServiceResponse.PagingInfo.PageNumber,
-                    PageSize = getProductsServiceResponse.PagingInfo.PageSize,
-                    SortBy = (SortBy)getProductsServiceResponse.PagingInfo.SortBy
-
+                    PageNumber = getProductResponse.PagingInfo.PageNumber,
+                    PageSize = getProductResponse.PagingInfo.PageSize,
+                    SortBy = (SortBy)getProductResponse.PagingInfo.SortBy
                 }
             };
-            return response;
+            return responce;
         }
     }
 }

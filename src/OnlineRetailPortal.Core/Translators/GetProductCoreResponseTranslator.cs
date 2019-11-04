@@ -10,7 +10,13 @@ namespace OnlineRetailPortal.Core
     {
         public static Product ToGetProductServiceResponse(this GetProductStoreResponse getProductResponse)
         {
-            Product response = new Product()
+            Price price = new Price()
+            {
+                Amount = getProductResponse.Product.Price.Amount,
+                Currency = getProductResponse.Product.Price.Currency,
+                IsNegotiable = getProductResponse.Product.Price.IsNegotiable
+            };
+            Product response = new Product(price,getProductResponse.Product.UserId,getProductResponse.Product.Name)
             
                 {
                     Name = getProductResponse.Product.Name,
@@ -33,8 +39,8 @@ namespace OnlineRetailPortal.Core
                     {
                         Url = x.Url
                     }).ToList(),
-                    Status = (Status)getProductResponse.Product.Status.GetHashCode(),
-                    Category = (Category)getProductResponse.Product.Category.GetHashCode()
+                    Status = (Status)getProductResponse.Product.Status,
+                    Category = (Category)getProductResponse.Product.Category
                 
             };
 

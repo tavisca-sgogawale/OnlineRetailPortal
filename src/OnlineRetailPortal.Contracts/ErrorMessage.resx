@@ -123,6 +123,9 @@
   <data name="GreaterValue" xml:space="preserve">
     <value>{0} should be greater than  {1}.</value>
   </data>
+  <data name="Invalid" xml:space="preserve">
+    <value>Following errors occured</value>
+  </data>
   <data name="MissingField" xml:space="preserve">
     <value>{0} can not be blank.</value>
   </data>

@@ -24,7 +24,7 @@ namespace OnlineRetailPortal.Core
         public Nullable<DateTime> PurchasedDate { get; set; }
         public Address PickupAddress { get; set; }
 
-        IProductStore productStore = new MockProductStore();
+        IProductStore productStore;
         IAddProductValidation validation;
 
         public Product()

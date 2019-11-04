@@ -10,6 +10,11 @@ namespace OnlineRetailPortal.Core
 {
     public class ErrorCodes
     {
+        public static string Invalid()
+        {
+            return string.Format(ErrorCodesMessage.Invalid);
+        }
+
         public static string NullField()
         {
             return string.Format(ErrorCodesMessage.NullField);

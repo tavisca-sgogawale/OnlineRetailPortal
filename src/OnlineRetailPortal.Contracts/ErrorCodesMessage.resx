@@ -123,6 +123,9 @@
   <data name="GreaterValue" xml:space="preserve">
     <value>704</value>
   </data>
+  <data name="Invalid" xml:space="preserve">
+    <value>700</value>
+  </data>
   <data name="MissingField" xml:space="preserve">
     <value>702</value>
   </data>

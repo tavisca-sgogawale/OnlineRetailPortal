@@ -27,7 +27,7 @@ namespace OnlineRetailPortal.Web.Validations
                 {
                     info.Add(Tuple.Create(int.Parse(error.ErrorCode), error.ErrorMessage));
                 }
-                throw new BaseException(404, "Failure Occured", info, HttpStatusCode.OK);
+                throw new BaseException(Convert.ToInt32(ErrorCodes.Invalid()), Error.Invalid(), info);
             }
         }
     }

@@ -30,13 +30,27 @@ namespace OnlineRetailPortal.Web
         private static Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             var response = context.Response;
-            ExceptionErrorInfo customException = new ExceptionErrorInfo((int)HttpStatusCode.InternalServerError, "Unexpected Error Occured", HttpStatusCode.BadRequest); 
-            if (exception is BaseException ex)
+            var customException = exception as BaseException;
+            var statusCode = (int)HttpStatusCode.InternalServerError;
+            var message = "Unexpected Error Occured";
+            List<Tuple<int, string>> info = null;
+            if (customException != null)
             {
-                customException = GetErrorInfo(ex);
+                message = customException.Message;
+                statusCode = customException.Code;
+                info = customException.Info;
             }
+
             response.ContentType = "application/json";
-            return response.WriteAsync(JsonConvert.SerializeObject(customException));
+            response.StatusCode = (int)HttpStatusCode.BadRequest;
+
+            return response.WriteAsync(JsonConvert.SerializeObject(new CustomErrorResponse
+            {
+                Code = statusCode,
+                Message = message,
+                Info = info
+            }));
+
         }
 
         public static ExceptionErrorInfo GetErrorInfo(BaseException exception)

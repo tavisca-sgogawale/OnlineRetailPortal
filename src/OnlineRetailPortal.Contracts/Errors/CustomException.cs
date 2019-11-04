@@ -7,9 +7,8 @@ namespace OnlineRetailPortal.Contracts.Errors
 {
     public class CustomException : BaseException
     {
-        private static HttpStatusCode httpStatusCode;
         public static List<Tuple<int, string>> Info { get; set; }
-        public CustomException(int code) : base(code,CustomErrorCodes.getErrorMessage(code),Info, httpStatusCode)
+        public CustomException(int code) : base(code,CustomErrorCodes.getErrorMessage(code),Info)
         {
         }
     }

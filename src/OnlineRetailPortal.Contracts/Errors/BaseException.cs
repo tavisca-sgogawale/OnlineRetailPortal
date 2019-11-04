@@ -13,12 +13,11 @@ namespace OnlineRetailPortal.Contracts.Errors
         public List<Tuple<int, string>> Info { get; set; }
         public HttpStatusCode HttpStatusCode { get; set; }
 
-        public BaseException(int code, string message, List<Tuple<int, string>> info, HttpStatusCode httpStatusCode) : base(message)
+        public BaseException(int code, string message, List<Tuple<int, string>> info) : base(message)
         {
             Code = code;
             Message = message;
             Info = info;
-            HttpStatusCode = httpStatusCode;
         }
     }
 }

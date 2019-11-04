@@ -79,6 +79,15 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 700.
+        /// </summary>
+        public static string Invalid {
+            get {
+                return ResourceManager.GetString("Invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 702.
         /// </summary>
         public static string MissingField {

@@ -62,9 +62,9 @@ namespace OnlineRetailPortal.Web.Validations
             .WithErrorCode(ErrorCodes.GreaterCharacter())
             .WithMessage(Error.GreaterCharacter("Description", "4"));
 
-            // RuleFor(x => x.PurchasedDate)
-            // .LessThan(DateTime.Today)
-            // .WithMessage("You cannot enter a Purchased date in the future.");
+            RuleFor(x => x.PurchasedDate)
+            .LessThan(DateTime.Today)
+            .WithMessage("You cannot enter a Purchased date in the future.");
 
             When(x => x.PickupAddress.Line1 != null &&
             x.PickupAddress.City != null && x.PickupAddress.Pincode > 0 && x.PickupAddress.State != null,

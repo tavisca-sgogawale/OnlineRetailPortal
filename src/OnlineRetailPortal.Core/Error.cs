@@ -8,6 +8,10 @@ namespace OnlineRetailPortal.Core
 {
     public class Error
     {
+        public static string Invalid()
+        {
+            return string.Format(ErrorMessage.Invalid);
+        }
 
         public static string NullField(string field)
         {

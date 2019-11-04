@@ -66,28 +66,42 @@ namespace OnlineRetailPortal.Web.Validations
             // .LessThan(DateTime.Today)
             // .WithMessage("You cannot enter a Purchased date in the future.");
 
-            //When(x => x.PickupAddress.Line1 != null, () =>
-            //{
-            //    RuleFor(x => x.PickupAddress.Line1)
-            //    .NotNull()
-            //    .WithMessage(Error.NullField("Line1"))
-            //    .NotEmpty()
-            //    .WithMessage(Error.MissingField("Line1"))
-            //    .Length(2, 20)
-            //    .WithMessage(Error.GreaterValue("Line1", "2"));
+            When(x => x.PickupAddress.Line1 != null &&
+            x.PickupAddress.City != null && x.PickupAddress.Pincode > 0 && x.PickupAddress.State != null,
+            () =>
+            {
+                RuleFor(x => x.PickupAddress.Line1)
+                .NotNull()
+                .WithErrorCode(ErrorCodes.NullField())
+                .WithMessage(Error.NullField("Line1"))
+                .NotEmpty()
+                .WithErrorCode(ErrorCodes.MissingField())
+                .WithMessage(Error.MissingField("Line1"))
+                .Length(2, 20)
+                .WithErrorCode(ErrorCodes.GreaterCharacter())
+                .WithMessage(Error.GreaterCharacter("Line1", "2"));
 
-            //    RuleFor(x => x.PickupAddress.City)
-            //    .NotNull()
-            //    .WithMessage(Error.NullField("City"))
-            //    .NotEmpty()
-            //    .WithMessage(Error.MissingField("City"));
+                RuleFor(x => x.PickupAddress.City)
+                .NotNull()
+                .WithErrorCode(ErrorCodes.NullField())
+                .WithMessage(Error.NullField("City"))
+                .NotEmpty()
+                .WithErrorCode(ErrorCodes.MissingField())
+                .WithMessage(Error.MissingField("City"));
 
-            //    RuleFor(x => x.PickupAddress.Pincode)
-            //   .NotNull()
-            //   .WithMessage(Error.NullField("Pincode"))
-            //   .NotEmpty()
-            //   .WithMessage(Error.MissingField("Pincode"));
-            //});
+                RuleFor(x => x.PickupAddress.State)
+                .NotNull()
+                .WithErrorCode(ErrorCodes.NullField())
+                .WithMessage(Error.NullField("State"))
+                .NotEmpty()
+                .WithErrorCode(ErrorCodes.MissingField())
+                .WithMessage(Error.MissingField("State"));
+
+                RuleFor(x => x.PickupAddress.Pincode)
+                .NotEmpty()
+                .WithErrorCode(ErrorCodes.MissingField())
+                .WithMessage(Error.MissingField("Pincode"));
+            });
 
         }
     }

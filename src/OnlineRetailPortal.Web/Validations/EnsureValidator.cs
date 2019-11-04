@@ -12,9 +12,10 @@ namespace OnlineRetailPortal.Web.Validations
 {
     public static class EnsureValidator
     {
-        private static Dictionary<int, string> info = new Dictionary<int, string>();
+        
         public static void EnsureValid<AddProductRequest>(this AbstractValidator<AddProductRequest> validator, AddProductRequest request)
         {
+            List<Tuple<int, string>> info = new List<Tuple<int, string>>();
             var validationResult = validator.Validate(request);
 
             if (request == null)
@@ -24,9 +25,9 @@ namespace OnlineRetailPortal.Web.Validations
             {
                 foreach (var error in validationResult.Errors)
                 {
-                    info.Add(int.Parse(error.ErrorCode), error.ErrorMessage);
+                    info.Add(Tuple.Create(int.Parse(error.ErrorCode), error.ErrorMessage));
                 }
-                throw new UserExceptions("Failure Occured", 404, info, HttpStatusCode.OK);
+                throw new BaseException(404, "Failure Occured", info, HttpStatusCode.OK);
             }
         }
     }

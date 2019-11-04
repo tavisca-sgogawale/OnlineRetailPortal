@@ -7,29 +7,20 @@ namespace OnlineRetailPortal.Web.Translators
 {
     public static class UploadImageTranslator
     {
-        public static UploadImageRequest ToUploadImageContract(this IFormFile file)
+        public static UploadImageRequest ToUploadImageServiceContract(this IFormFile file)
         {
             var request = new UploadImageRequest() { File = file};
             return request;
         }
-
+        /// <summary>
+        /// Converts the server response into Json object as per the API Contract.
+        /// </summary>
+        /// <param name="response"></param>
+        /// <returns></returns>
         public static IActionResult ToUser(this UploadImageResponse response)
         {
             var result = JsonConvert.SerializeObject(response);
-            if (response.Code == StatusCodes.Status200OK)
-            {
-
-                return new OkObjectResult(result);
-            }
-            else if (response.Code == StatusCodes.Status400BadRequest)
-            {
-                return new BadRequestObjectResult(result);
-
-            }
-            else
-                return new ObjectResult(result) { StatusCode=StatusCodes.Status500InternalServerError};
-
-
+            return new OkObjectResult(result);
         }
     }
 }

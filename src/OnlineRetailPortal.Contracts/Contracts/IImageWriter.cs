@@ -1,15 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using OnlineRetailPortal.Contracts.Models;
 using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Contracts.Contracts
 {
     public interface IImageWriter
     {
-        //Task<IImageWriterResponse> UploadImage(IFormFile file);
-        Task<IImageWriterResponse> WriteFile(IFormFile file);
+        Task<ImageWriterResponse> WriteFile(IFormFile file);
 
     }
 }

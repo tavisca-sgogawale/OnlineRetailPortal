@@ -8,7 +8,6 @@ using Microsoft.Extensions.Hosting;
 using OnlineRetailPortal.Contracts.Contracts;
 using OnlineRetailPortal.Services.Services;
 
-
 namespace OnlineRetailPortal.Web
 {
     public class Startup

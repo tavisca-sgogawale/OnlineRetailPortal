@@ -6,18 +6,19 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using OnlineRetailPortal.Services.Translators;
+using OnlineRetailPortal.Contracts.Models;
 
 namespace OnlineRetailPortal.Services.Services
 {
     public class ImageHandler : IImageHandler
     {
-        private readonly IImageWriter _imageWriter;
+        private readonly ImageWriter _imageWriter;
         private IHostingEnvironment _env;
         private string _tempImagefolder;
 
-        public ImageHandler(IImageWriter imageWriter, IHostingEnvironment env, IConfiguration iconfig)
+        public ImageHandler(IHostingEnvironment env, IConfiguration iconfig)
         {
-            _imageWriter = imageWriter;
+            _imageWriter = new ImageWriter(iconfig,env);
             _env = env;
             _tempImagefolder = iconfig.GetSection("TempImageFolder").Value;
         }
@@ -30,7 +31,7 @@ namespace OnlineRetailPortal.Services.Services
         public async Task<UploadImageResponse> UploadImage(UploadImageRequest request)
         {
             IFormFile file = request.File;
-            IImageWriterResponse response=  await _imageWriter.WriteFile(file).ConfigureAwait(false);
+            ImageWriterResponse response =  await _imageWriter.WriteFile(file).ConfigureAwait(false);
             return response.ToUploadImageResponse();
         }
 

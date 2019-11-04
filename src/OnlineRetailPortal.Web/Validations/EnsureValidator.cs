@@ -26,7 +26,6 @@ namespace OnlineRetailPortal.Web.Validations
                 {
                     info.Add(int.Parse(error.ErrorCode), error.ErrorMessage);
                 }
-
                 throw new UserExceptions("Failure Occured", 404, info, HttpStatusCode.OK);
             }
         }

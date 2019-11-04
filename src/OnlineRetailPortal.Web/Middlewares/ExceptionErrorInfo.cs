@@ -8,10 +8,8 @@ namespace OnlineRetailPortal.Web
         public int Code { get; }
 
         public string Message { get; }
-
+        public Dictionary<int, string> info { get; set; }
         public HttpStatusCode HttpStatusCode { get; }
-
-        public Dictionary<int, string> data { get; set; }
         public ExceptionErrorInfo(int code, string message, HttpStatusCode httpStatusCode)
         {
             Code = code;

@@ -31,12 +31,10 @@ namespace OnlineRetailPortal.Web
         {
             var response = context.Response;
             ExceptionErrorInfo customExceptiono = new ExceptionErrorInfo((int)HttpStatusCode.InternalServerError, "Unexpected Error Occured", HttpStatusCode.BadRequest); 
-
             if (exception is BaseException ex)
             {
                 customExceptiono = GetErrorInfo(ex);
             }
-
             response.ContentType = "application/json";
             return response.WriteAsync(JsonConvert.SerializeObject(customExceptiono));
         }
@@ -44,18 +42,12 @@ namespace OnlineRetailPortal.Web
         public static ExceptionErrorInfo GetErrorInfo(BaseException exception)
         {
             ExceptionErrorInfo error = new ExceptionErrorInfo(exception.Code, exception.Message, exception.HttpStatusCode);
-
-         //   if (exception.Data.Keys.Count == 0)
-           //     return error;
-
             Dictionary<int, string> errorData = new Dictionary<int, string>();
-
             foreach (var key in exception.Info)
             {
                 errorData.Add(key.Key,key.Value);
             }
-
-            error.data = errorData;
+            error.info = errorData;
             return error;
         }
     }

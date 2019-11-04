@@ -12,6 +12,7 @@ namespace OnlineRetailPortal.Mock
         {
             var product = new Product()
             {
+                SellerId = request.SellerId,
                 Name = request.Name,
                 Description = request.Description,
                 HeroImage = new Image() { Url = request.HeroImage.Url },
@@ -59,7 +60,8 @@ namespace OnlineRetailPortal.Mock
         public static AddProductStoreResponse ToEntityResponse(this Product product)
         {
             var entityPostResponse = new AddProductStoreResponse() {
-                Id = product.Id,
+                SellerId = product.SellerId,
+                ProductId = product.ProductId,
                 Name = product.Name,
                 Description = product.Description,
                 HeroImage = new Image() { Url = product.HeroImage.Url },

@@ -20,6 +20,7 @@ namespace OnlineRetailPortal.Tests
 
             AddProductStoreResponse actualResponse = await mockProductStore.AddProductAsync(entityPostRequest);
 
+            Assert.Equal(expectedResponse.SellerId, actualResponse.SellerId);
             Assert.Equal(expectedResponse.Name, actualResponse.Name);
             Assert.Equal(expectedResponse.Description, actualResponse.Description);
             Assert.Equal(expectedResponse.HeroImage.Url, actualResponse.HeroImage.Url);
@@ -57,6 +58,7 @@ namespace OnlineRetailPortal.Tests
 
             var actualResponse = await mockProductStore.AddProductAsync(request);
 
+            Assert.Equal(expectedResponse.SellerId, actualResponse.SellerId);
             Assert.Equal(expectedResponse.Name, actualResponse.Name);
             Assert.Equal(expectedResponse.Description, actualResponse.Description);
             Assert.Equal(expectedResponse.HeroImage.Url, actualResponse.HeroImage.Url);
@@ -101,7 +103,8 @@ namespace OnlineRetailPortal.Tests
         {
             AddProductStoreResponse response = new AddProductStoreResponse
             {
-                Id = null,
+                SellerId = "1",
+                ProductId = null,
                 Name = "Bottle",
                 Description = "Green Bottle",
                 HeroImage = new Contracts.Image { Url = "example.com" },
@@ -129,6 +132,7 @@ namespace OnlineRetailPortal.Tests
         {
             AddProductStoreRequest request = new AddProductStoreRequest
             {
+                SellerId = "1",
                 Name = "Bottle",
                 Description = "Green Bottle",
                 HeroImage = new Contracts.Image { Url = "example.com" },

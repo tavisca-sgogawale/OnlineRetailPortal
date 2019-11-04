@@ -11,6 +11,7 @@ namespace OnlineRetailPortal.Core
         public static AddProductStoreRequest ToEntityRequest(this Product product)
         {
             var  addProductStoreRequest = new AddProductStoreRequest() {
+                SellerId = product.SellerId,
                 Name = product.Name,
                 Description = product.Description,
                 HeroImage = new Contracts.Image { Url = product.HeroImage.Url},
@@ -38,7 +39,8 @@ namespace OnlineRetailPortal.Core
         {
             var product = new Product()
             {
-                Id = addProductStoreResponse.Id,
+                SellerId = addProductStoreResponse.SellerId,
+                ProductId = addProductStoreResponse.ProductId,
                 Name = addProductStoreResponse.Name,
                 Description = addProductStoreResponse.Description,
                 HeroImage = new Image { Url = addProductStoreResponse.HeroImage.Url },

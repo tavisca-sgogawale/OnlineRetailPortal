@@ -14,7 +14,7 @@ namespace OnlineRetailPortal.Mock
             {
                 Product = new Contracts.Product()
                 {
-                    Id = product.Id,
+                    ProductId = product.ProductId,
                     Name = product.Name,
                     Description = product.Description,
                     HeroImage = new Contracts.Image { Url = product.HeroImage.Url },

@@ -9,16 +9,17 @@ namespace OnlineRetailPortal.Services
     {
         public async Task<GetProductsServiceResponse> GetProductsAsync(GetProductsServiceRequest request)
         {
-
-            GetProductsCoreResponce product = await Core.Product.GetProductsAsync(request);
-            return await Task.FromResult<GetProductsServiceResponse>(product.ToGetProductsContract());
+            IProductStore productStore=null;
+            var response = await Core.Product.GetProductsAsync(request,productStore );
+            //get list based on paging info 
+            return await Task.FromResult(response.ToGetProductsContract());
         }
 
         public async Task<GetProductServiceResponse>  GetProductAsync(string productId)
         {
-            Core.Product product = await Core.Product.GetProductAsync(productId);
-            
-            return product.ToGetProductContract();
+            IProductStore productStore = null;
+           var response = await Core.Product.GetProductAsync(productId, productStore);
+            return response.ToGetProductContract();
         }
 
         public async Task<AddProductResponse> AddProductAsync(AddProductRequest addProductRequest)

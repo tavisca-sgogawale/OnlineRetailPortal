@@ -8,11 +8,11 @@ using OnlineRetailPortal.Contracts;
 
 namespace OnlineRetailPortal.Web
 {
-    public class GetProductRequestValidator : AbstractValidator<GetProductServiceRequest>
+    public class GetProductRequestValidator : AbstractValidator<string>
     {
         public  GetProductRequestValidator()
         {
-            RuleFor(x => x.productId)
+            RuleFor(x => x)
             .NotNull()
             .NotEmpty()
             .WithMessage("The Product ID cannot be blank.");

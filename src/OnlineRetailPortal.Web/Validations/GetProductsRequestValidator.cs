@@ -12,12 +12,12 @@ namespace OnlineRetailPortal.Web
     {
         public GetProductsRequestValidator()
         {
-            RuleFor(x => x.PageNo)
+            RuleFor(x => x.PagingInfo.PageNumber)
             .NotNull()
             .NotEmpty()
             .WithMessage("The Page No cannot be blank.");
 
-            RuleFor(x => x.PageSize)
+            RuleFor(x => x.PagingInfo.PageSize)
             .NotNull()
             .NotEmpty()
             .WithMessage("The Page size cannot be blank.");

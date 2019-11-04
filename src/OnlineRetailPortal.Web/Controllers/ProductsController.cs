@@ -31,10 +31,24 @@ namespace OnlineRetailPortal.Web
         [HttpPost("products/add")]
         public async Task<AddProductResponse> AddProductAsync([FromBody] AddProductRequest request)
         {
-            AddProductRequestValidator validator = new AddProductRequestValidator();
-            validator.EnsureValid(request);
-            var response = await _productService.AddProductAsync(request.ToEntity());
-            return response.ToModel();
+           var request = new Contracts.GetProductServiceRequest();
+           request.productId = productId;
+           GetProductRequestValidator validationRules = new GetProductRequestValidator();
+           validationRules.Validate(request);
+           var response = await _productService.GetProductAsync(request);
+           return response.ToGetProductContract();
+        }
+        [HttpGet("products")]
+        public async Task<GetProductsResponse> GetProductsAsync(int pageNo,int pageSize ,PageSortBy sortBy)
+        {
+            var request = new Contracts.GetProductsServiceRequest();
+            request.PageNo = pageNo;
+            request.PageSize = pageSize;
+            request.SortBy = (Contracts.PageSortBy)sortBy.GetHashCode();
+            GetProductsRequestValidator validationRules = new GetProductsRequestValidator();
+            validationRules.Validate(request);
+            var response = await _productService.GetProductsAsync(request);
+            return response.ToGetProductsContract();
         }
     }
 }

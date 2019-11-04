@@ -2,7 +2,7 @@
 
 namespace OnlineRetailPortal.Core
 {
-    public class GetProductsCoreResponce
+    public class ProductsWithPageInitiation
     {
         public List<Product> Products { get; set; }
         public PagingInfo PagingInfo { get; set; }

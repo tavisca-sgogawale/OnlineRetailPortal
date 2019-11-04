@@ -1,28 +1,20 @@
 //ImageUpload Error response object
+
+// If user is unauthorised
 {
 	"code": "401",
 	"message": "User is unauthorised",
 
 },
+
+//For Incorrect Image Formats
 {
     "Code": 400,
     "Message": "The image is not in the correct format or is Corrupt",
 
 },
 
-{
-	"code":"500",
-	"message":"Oops.. Somthing Went Wrong..!",
-
-},
-
-//Delete Error responses
-
-{
-    "Code": 400,
-    "Message": "The image doesnot exist",
-
-},
+// For some unkown internal Server Error
 {
 	"code":"500",
 	"message":"Oops.. Somthing Went Wrong..!",

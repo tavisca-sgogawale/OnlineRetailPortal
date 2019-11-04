@@ -7,8 +7,3 @@
 	"file":"image.jpg"
 }
 
-
-//DELETE /api/v1.0/{applicationname}/image/{imageId}
-
-// sessionId and userId goes in header
-// Id of the Image to be removed to be included in the URL 

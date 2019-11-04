@@ -17,13 +17,13 @@ namespace OnlineRetailPortal.Services
                 {
                     Name = x.Name,
                     Id = x.Id,
-                    HeroImage = new Contracts.Image() { Url = x.HeroImage.Url },
+                    HeroImage = new Image() { Url = x.HeroImage.Url },
                     ExpirationDate = x.ExpirationDate,
                     PostDateTime = x.PostDateTime,
                     Description = x.Description,
-                    Price = new Contracts.Price() { Amount = x.Price.Amount, IsNegotiable = x.Price.IsNegotiable },
+                    Price = new Price() { Amount = x.Price.Amount, IsNegotiable = x.Price.IsNegotiable },
                     PurchasedDate = x.PurchasedDate,
-                    PickupAddress = new Contracts.Address()
+                    PickupAddress = new Address()
                     {
                         City = x.PickupAddress.City,
                         State = x.PickupAddress.State,
@@ -31,18 +31,18 @@ namespace OnlineRetailPortal.Services
                         Line2 = x.PickupAddress.Line2,
                         Pincode = x.PickupAddress.Pincode
                     },
-                    Images = x.Images.Select(y => new Contracts.Image
+                    Images = x.Images.Select(y => new Image
                     {
                         Url = y.Url
                     }).ToList(),
-                    Status = (Contracts.Status)x.Status.GetHashCode(),
-                    Category = (Contracts.Category)x.Category.GetHashCode()
+                    Status = (Status)x.Status.GetHashCode(),
+                    Category = (Category)x.Category.GetHashCode()
                 }).ToList(),
-                PagingInfo = new Contracts.PagingInfo()
+                PagingInfo = new PagingInfo()
                 {
                     PageNumber = getProductsResponse.PagingInfo.PageNumber,
                     PageSize = getProductsResponse.PagingInfo.PageSize,
-                    SortBy = (Contracts.SortBy)getProductsResponse.PagingInfo.SortBy
+                    SortBy = (SortBy)getProductsResponse.PagingInfo.SortBy
                 }
 
             };

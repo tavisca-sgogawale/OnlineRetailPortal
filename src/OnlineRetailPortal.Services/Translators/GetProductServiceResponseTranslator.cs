@@ -16,13 +16,13 @@ namespace OnlineRetailPortal.Services
                 {
                     Name = getProductResponse.Name,
                     Id = getProductResponse.Id,
-                    HeroImage = new Contracts.Image() { Url = getProductResponse.HeroImage.Url },
+                    HeroImage = new Image() { Url = getProductResponse.HeroImage.Url },
                     ExpirationDate = getProductResponse.ExpirationDate,
                     PostDateTime = getProductResponse.PostDateTime,
                     Description = getProductResponse.Description,
-                    Price = new Contracts.Price() { Amount = getProductResponse.Price.Amount, IsNegotiable = getProductResponse.Price.IsNegotiable },
+                    Price = new Price() { Amount = getProductResponse.Price.Amount, IsNegotiable = getProductResponse.Price.IsNegotiable },
                     PurchasedDate = getProductResponse.PurchasedDate,
-                    PickupAddress = new Contracts.Address()
+                    PickupAddress = new Address()
                     {
                         City = getProductResponse.PickupAddress.City,
                         State = getProductResponse.PickupAddress.State,
@@ -30,12 +30,12 @@ namespace OnlineRetailPortal.Services
                         Line2 = getProductResponse.PickupAddress.Line2,
                         Pincode = getProductResponse.PickupAddress.Pincode
                     },
-                    Images = getProductResponse.Images.Select(x => new Contracts.Image
+                    Images = getProductResponse.Images.Select(x => new Image
                     {
                         Url = x.Url
                     }).ToList(),
-                    Status = (Contracts.Status)getProductResponse.Status.GetHashCode(),
-                    Category = (Contracts.Category)getProductResponse.Category.GetHashCode()
+                    Status = (Status)getProductResponse.Status.GetHashCode(),
+                    Category = (Category)getProductResponse.Category.GetHashCode()
                 }
             };
             

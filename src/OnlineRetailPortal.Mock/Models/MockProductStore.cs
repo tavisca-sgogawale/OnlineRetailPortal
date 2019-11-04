@@ -85,13 +85,13 @@ namespace OnlineRetailPortal.Mock
             {
                 if (request.SortBy == 0)
                 {
-                    List<Product> products = productList.OrderBy(x => x.PostDateTime).Take(50).ToList();
+                    List<Product> products = productList.Where(y => y.Status == Status.Active).OrderBy(x => x.PostDateTime).Take(50).ToList();
                     response = products.ToGetProductsStoreResponse();
                     return response;
                 }
                 else
                 {
-                    List<Product> products = productList.OrderBy(x => x.Price.Value.Amount).Take(50).ToList();
+                    List<Product> products = productList.Where(y => y.Status == Status.Active).OrderBy(x => x.Price.Value.Amount).Take(50).ToList();
                     response = products.ToGetProductsStoreResponse();
                     return response;
                 }

@@ -25,7 +25,7 @@ namespace OnlineRetailPortal.Mock
             return product;
         }
 
-        private static Address GetAddress(Contracts.Address pickupAddress)
+        private static Contracts.Address GetAddress(Address pickupAddress)
         {
             if (pickupAddress == null)
                 return null;
@@ -46,7 +46,7 @@ namespace OnlineRetailPortal.Mock
             return new Product().PurchasedDate = purchasedDate;
         }
 
-        private static List<Image> GetImages(List<Contracts.Image> images)
+        private static List<Contracts.Image> GetImages(List<Image> images)
         {
             if (images == null)
                 return null;
@@ -62,18 +62,18 @@ namespace OnlineRetailPortal.Mock
                 Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,
-                HeroImage = new Contracts.Image() { Url = product.HeroImage.Url },
-                Price = new Contracts.Price() { Value = new Contracts.Value(product.Price.Value.Amount, product.Price.Value.Currency), IsNegotiable = product.Price.IsNegotiable },
-                Category = (Contracts.Category)product.Category,
-                Status = (Contracts.Status)product.Status,
+                HeroImage = new Image() { Url = product.HeroImage.Url },
+                Price = new Price() { Value = new Contracts.Value(product.Price.Value.Amount, product.Price.Value.Currency), IsNegotiable = product.Price.IsNegotiable },
+                Category = (Category)product.Category,
+                Status = (Status)product.Status,
                 PostDateTime = product.PostDateTime,
                 ExpirationDate = product.ExpirationDate,
-                Images = product.Images.Select(x => new Contracts.Image
+                Images = product.Images.Select(x => new Image
                 {
                     Url = x.Url
                 }).ToList(),
                 PurchasedDate = product.PurchasedDate,
-                PickupAddress = new Contracts.Address()
+                PickupAddress = new Address()
                 {
                     Line1 = product.PickupAddress.Line1,
                     Line2 = product.PickupAddress.Line2,

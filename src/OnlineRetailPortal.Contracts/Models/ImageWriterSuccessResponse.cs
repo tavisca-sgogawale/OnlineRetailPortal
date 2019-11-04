@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OnlineRetailPortal.Contracts.Models
 {
-    public class ImageWriterSuccessResponse:IImageWriterResponse
+    public class ImageWriterResponse
     {
         public int Code { get; set; }
 

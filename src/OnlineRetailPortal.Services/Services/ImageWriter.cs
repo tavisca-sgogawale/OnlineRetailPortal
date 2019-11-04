@@ -26,9 +26,9 @@ namespace OnlineRetailPortal.Services.Services
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        public async Task<IImageWriterResponse> WriteFile(IFormFile file)
+        public async Task<ImageWriterResponse> WriteFile(IFormFile file)
         {
-            string fileName;
+            string fileName="";
             string path;
             try
             {
@@ -42,12 +42,13 @@ namespace OnlineRetailPortal.Services.Services
                     await file.CopyToAsync(bits).ConfigureAwait(false);
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                return new ImageWriterFailResponse() { Code= StatusCodes.Status500InternalServerError, Response = e.Message}; 
+                //throw new BaseException(StatusCodes.Status500InternalServerError, "Oops.! Somthing Went Wrong Try Again...!",null,500);
+                //Log(ex.message, ex.trace)
             }
 
-            return new ImageWriterSuccessResponse(){ Code= StatusCodes.Status200OK, Response = _tempImagefolder+ "/" + fileName};
+            return new ImageWriterResponse(){ Code= StatusCodes.Status200OK, Response = _tempImagefolder+ "/" + fileName};
         }
     }
 }

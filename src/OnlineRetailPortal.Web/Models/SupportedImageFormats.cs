@@ -18,7 +18,7 @@ namespace OnlineRetailPortal.Web.Models
             unknown
         }
         /// <summary>
-        /// takes the file as a byte[] and returns the type of image, returns Unkown if other unrecognized
+        /// Takes the file as a byte[] and returns the type of image, returns Unkown if other or unrecognized
         /// </summary>
         /// <param name="bytes"></param>
         /// <returns></returns>
@@ -27,10 +27,10 @@ namespace OnlineRetailPortal.Web.Models
             var bmp = Encoding.ASCII.GetBytes("BM");     // BMP
             var gif = Encoding.ASCII.GetBytes("GIF");    // GIF
             var png = new byte[] { 137, 80, 78, 71 };              // PNG
-            var tiff = new byte[] { 73, 73, 42 };                  // TIFF
-            var tiff2 = new byte[] { 77, 77, 42 };                 // TIFF
+            var tif = new byte[] { 73, 73, 42 };                  // TIFF format for the older FAT systems
+            var tiff = new byte[] { 77, 77, 42 };                 // TIFF format for the NTFS systems
             var jpeg = new byte[] { 255, 216, 255, 224 };          // jpeg
-            var jpeg2 = new byte[] { 255, 216, 255, 225 };         // jpeg canon
+            var jpegCanon = new byte[] { 255, 216, 255, 225 };         // jpeg canon
 
             if (bmp.SequenceEqual(bytes.Take(bmp.Length)))
                 return ImageFormat.bmp;
@@ -41,16 +41,16 @@ namespace OnlineRetailPortal.Web.Models
             if (png.SequenceEqual(bytes.Take(png.Length)))
                 return ImageFormat.png;
 
-            if (tiff.SequenceEqual(bytes.Take(tiff.Length)))
+            if (tif.SequenceEqual(bytes.Take(tif.Length)))
                 return ImageFormat.tiff;
 
-            if (tiff2.SequenceEqual(bytes.Take(tiff2.Length)))
+            if (tiff.SequenceEqual(bytes.Take(tiff.Length)))
                 return ImageFormat.tiff;
 
             if (jpeg.SequenceEqual(bytes.Take(jpeg.Length)))
                 return ImageFormat.jpeg;
 
-            if (jpeg2.SequenceEqual(bytes.Take(jpeg2.Length)))
+            if (jpegCanon.SequenceEqual(bytes.Take(jpegCanon.Length)))
                 return ImageFormat.jpeg;
 
             return ImageFormat.unknown;

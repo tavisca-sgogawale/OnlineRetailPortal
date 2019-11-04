@@ -5,11 +5,6 @@
         public int Code { get; set; }
         public string Message { get; set; }
 
-        public IImageWriterResponse[] info;
-        public UploadImageResponse()
-        {
-            info = new IImageWriterResponse[1];
-        }
 
     }
 }

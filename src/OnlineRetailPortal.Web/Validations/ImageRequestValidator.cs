@@ -12,31 +12,37 @@ namespace OnlineRetailPortal.Web.Validations
     public static class ImageRequestValidator
     {
         /// <summary>
-        /// Returns true if the Request is a Valid Response else returns false and updates the "respose" variable with response messages
+        /// Checks if the incoming request is valid and throws an ImageUploadException if the request is invalid.
         /// </summary>
         /// <param name="request"></param>
-        /// <param name="response"></param>
         /// <returns></returns>
-        public static bool IsValidPostRequest(Microsoft.AspNetCore.Http.HttpRequest request, Contracts.Contracts.UploadImageResponse response)
+        public static void ValidateImagePostRequest(Microsoft.AspNetCore.Http.HttpRequest request)
         {
+
+            try
+            {
+                int formFiles= request.Form.Files.Count;
+            }
+            catch (Exception ex)
+            {
+                //throw new BaseException(StatusCodes.Status400BadRequest, "No file was recieved or was sent with an invalid form key",null,400);
+                //Log(ex.message, ex.trace)
+            }
+
+
             if (request.Form.Files.Count > 0)
             {
                 IFormFile file = request.Form.Files[0];
-
-                if (file != null && CheckIfImageFile(file))
+                if (file == null || !CheckIfImageFile(file))
                 {
-                    return true;
-                }
-                response = new UploadImageResponse() { Code = StatusCodes.Status415UnsupportedMediaType, Message = "Invalid image file" };
-                response.info[0]=new ImageWriterFailResponse() { Code = StatusCodes.Status415UnsupportedMediaType, Response = "Invalid image file or Corrupted file recieved" };
+                    //throw new BaseException(StatusCodes.Status415UnsupportedMediaType, "Invalid image file",null,400);
 
+                }
             }
             else
             {
-                response = new UploadImageResponse { Code = StatusCodes.Status400BadRequest, Message = "No file was recieved" };
-                response.info[0] = new ImageWriterFailResponse() { Code = StatusCodes.Status400BadRequest, Response = "No file was recieved or was sent with an invalid form key" };
+                //throw new BaseException(StatusCodes.Status400BadRequest, "No file was recieved or was sent with an invalid form key",null,400);
             }
-            return false;
 
         }
 

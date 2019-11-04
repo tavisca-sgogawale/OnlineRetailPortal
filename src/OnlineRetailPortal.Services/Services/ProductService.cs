@@ -9,12 +9,13 @@ namespace OnlineRetailPortal.Services
 {
     public class ProductService : IProductService
     {
-        IProductStoreFactory productStoreFactory = new Mock.ProductStoreFactory();
+        IProductStoreFactory productStoreFactory;
         IProductStore productStore ;
         Core.Product product;
 
         public ProductService()
         {
+            this.productStoreFactory = new ProductStoreFactory();
             this.productStore = productStoreFactory.GetProductStore("Mock");
             product = new Core.Product(this.productStore);
         }

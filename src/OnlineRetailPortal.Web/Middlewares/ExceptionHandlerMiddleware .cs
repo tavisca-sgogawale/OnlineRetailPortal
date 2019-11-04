@@ -45,8 +45,8 @@ namespace OnlineRetailPortal.Web
         {
             ExceptionErrorInfo error = new ExceptionErrorInfo(exception.Code, exception.Message, exception.HttpStatusCode);
 
-            if (exception.Data.Keys.Count == 0)
-                return error;
+         //   if (exception.Data.Keys.Count == 0)
+           //     return error;
 
             Dictionary<int, string> errorData = new Dictionary<int, string>();
 

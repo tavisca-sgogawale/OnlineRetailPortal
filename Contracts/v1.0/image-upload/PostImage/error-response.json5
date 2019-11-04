@@ -5,7 +5,7 @@
 	"code": "401",
 	"message": "User is unauthorised",
 
-},
+}
 
 //For Incorrect Image Formats
 {
@@ -17,6 +17,6 @@
 // For some unkown internal Server Error
 {
 	"code":"500",
-	"message":"Oops.. Somthing Went Wrong..!",
+	"message":"Internal Server Error",
 
 },

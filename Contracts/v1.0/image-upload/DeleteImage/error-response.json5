@@ -5,11 +5,11 @@
     "Code": 400,
     "Message": "The image doesnot exist",
 
-},
+}
 
 // If some Unknown error occurs
 {
 	"code":"500",
-	"message":"Oops.. Somthing Went Wrong..!",
+	"message":"Internal Server Error",
 
 },

@@ -42,13 +42,7 @@ namespace OnlineRetailPortal.Web
         public static ExceptionErrorInfo GetErrorInfo(BaseException exception)
         {
             ExceptionErrorInfo error = new ExceptionErrorInfo(exception.Code, exception.Message, exception.HttpStatusCode);
-            List<Tuple<int, string>> errorData = new List<Tuple<int, string>>();
-
-            foreach (var key in exception.Info)
-            {
-                errorData.Add(Tuple.Create(key.Item1, key.Item2));
-            }
-            error.info = errorData;
+            error.info = exception.Info;
             return error;
         }
     }

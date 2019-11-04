@@ -1,21 +1,30 @@
-//Error response object
+//ImageUpload Error response object
 {
 	"code": "401",
 	"message": "User is unauthorised",
-	"info":[
-		{
-			"code":"401",
-			"message":"you must login first"
-		}
-	]
+
 },
 {
-	"code":"400",
-	"message":"Bad Request",
-	"info":[
-		{
-			"code":"400",
-			"message":"Image is not in binary format"
-		}
-	]
-}
+    "Code": 400,
+    "Message": "The image is not in the correct format or is Corrupt",
+
+},
+
+{
+	"code":"500",
+	"message":"Oops.. Somthing Went Wrong..!",
+
+},
+
+//Delete Error responses
+
+{
+    "Code": 400,
+    "Message": "The image doesnot exist",
+
+},
+{
+	"code":"500",
+	"message":"Oops.. Somthing Went Wrong..!",
+
+},

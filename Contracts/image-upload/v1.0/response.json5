@@ -1,5 +1,11 @@
-//Response Data
+//Image Upload Response Data
 {
-	"id":"35218736127",
-	"imageUrl":"www.example.com/image/3721jh3gyu2722j"
+	"code":"200",
+	"imageUrl":"image/3721jh3gyu2722j",
+},
+
+//Delete Image Response 
+
+{
+	"code" : "200"
 }

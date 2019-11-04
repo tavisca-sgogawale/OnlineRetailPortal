@@ -39,13 +39,13 @@ namespace OnlineRetailPortal.Web.Validations
             //.NotEmpty()
             //.WithMessage(Error.MissingField("Category"));
 
-            RuleFor(x => x.Price.Amount)
-            .NotEmpty()
-            .WithErrorCode(ErrorCodes.MissingField())
-            .WithMessage(Error.MissingField("Price"))
-            .GreaterThan(0)
-            .WithErrorCode(ErrorCodes.GreaterValue())
-            .WithMessage(Error.GreaterValue("Price", "0"));
+            //RuleFor(x => x.Price.Amount)
+            //.NotEmpty()
+            //.WithErrorCode(ErrorCodes.MissingField())
+            //.WithMessage(Error.MissingField("Price"))
+            //.GreaterThan(0)
+            //.WithErrorCode(ErrorCodes.GreaterValue())
+            //.WithMessage(Error.GreaterValue("Price", "0"));
 
             RuleFor(x => x.Price.IsNegotiable)
             .NotEmpty()

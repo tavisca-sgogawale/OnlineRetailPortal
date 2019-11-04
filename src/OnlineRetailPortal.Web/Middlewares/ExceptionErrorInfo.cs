@@ -11,7 +11,7 @@ namespace OnlineRetailPortal.Web
 
         public HttpStatusCode HttpStatusCode { get; }
 
-        public Dictionary<string, object> data { get; set; }
+        public Dictionary<int, string> data { get; set; }
         public ExceptionErrorInfo(int code, string message, HttpStatusCode httpStatusCode)
         {
             Code = code;

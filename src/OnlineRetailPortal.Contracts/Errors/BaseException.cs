@@ -11,13 +11,14 @@ namespace OnlineRetailPortal.Contracts.Errors
         public int Code { get; set; }
         public string Message { get; set; }
 
+        public Dictionary<int,string> Info { get; set; }
         public HttpStatusCode HttpStatusCode { get; set; }
-        public object Info { get; set; }
 
-        public BaseException(string message, int code , HttpStatusCode httpStatusCode) : base(message)
+        public BaseException(string message, int code, Dictionary<int,string> info, HttpStatusCode httpStatusCode) : base(message)
         {
             Code = code;
             Message = message;
+            Info = info;
             HttpStatusCode = httpStatusCode;
         }
     }

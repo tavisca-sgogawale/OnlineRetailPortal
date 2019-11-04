@@ -48,11 +48,11 @@ namespace OnlineRetailPortal.Web
             if (exception.Data.Keys.Count == 0)
                 return error;
 
-            Dictionary<string, object> errorData = new Dictionary<string, object>();
+            Dictionary<int, string> errorData = new Dictionary<int, string>();
 
-            foreach (var key in exception.Data.Keys)
+            foreach (var key in exception.Info)
             {
-                errorData.Add((string)key, exception.Data[(string)key]);
+                errorData.Add(key.Key,key.Value);
             }
 
             error.data = errorData;

@@ -15,7 +15,7 @@ namespace OnlineRetailPortal.Web.Translators
                 Name = addProductRequest.Name,
                 Description = addProductRequest.Description,
                 HeroImage = new Contracts.Image { Url = addProductRequest.HeroImage.Url },
-                Price = new Contracts.Price { Amount = addProductRequest.Price.Amount, IsNegotiable = addProductRequest.Price.IsNegotiable },
+                Price = new Contracts.Price { Value = new Contracts.Value(addProductRequest.Price.Value.Amount, addProductRequest.Price.Value.Currency), IsNegotiable = addProductRequest.Price.IsNegotiable },
                 Category = (Contracts.Category)addProductRequest.Category,
                 Images = new Contracts.Product().Images = addProductRequest.Images.Select(x => new Contracts.Image
                 {

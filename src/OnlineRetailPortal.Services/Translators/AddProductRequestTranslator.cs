@@ -16,7 +16,7 @@ namespace OnlineRetailPortal.Services
                 Name = addProductRequest.Name,
                 Description = addProductRequest.Description,
                 HeroImage = new Image { Url = addProductRequest.HeroImage.Url },
-                Price = new Price { Amount = addProductRequest.Price.Amount, IsNegotiable = addProductRequest.Price.IsNegotiable },
+        //        Price = new Contracts.Price { Value = new Contracts.Value(addProductRequest.Price.Value.Amount, addProductRequest.Price.Value.Currency), IsNegotiable = addProductRequest.Price.IsNegotiable },
                 Category = (Category)addProductRequest.Category,
                 PurchasedDate = addProductRequest.PurchasedDate,
                 Images = addProductRequest.Images.Select(x => new Image

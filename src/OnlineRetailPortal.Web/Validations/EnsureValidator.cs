@@ -12,8 +12,7 @@ namespace OnlineRetailPortal.Web.Validations
 {
     public static class EnsureValidator
     {
-        private static BaseException validationError;
-
+        private static Dictionary<int, string> info = new Dictionary<int, string>();
         public static void EnsureValid<AddProductRequest>(this AbstractValidator<AddProductRequest> validator, AddProductRequest request)
         {
             var validationResult = validator.Validate(request);
@@ -25,9 +24,10 @@ namespace OnlineRetailPortal.Web.Validations
             {
                 foreach (var error in validationResult.Errors)
                 {
-                    validationError = UserExceptions.InvalidRequest(error.ErrorMessage, error.ErrorCode, HttpStatusCode.BadRequest);
+                    info.Add(int.Parse(error.ErrorCode), error.ErrorMessage);
                 }
-                throw validationError;
+
+                throw new BaseException("asdasd",404,info,HttpStatusCode.OK);
             }
         }
     }

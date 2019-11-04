@@ -16,7 +16,7 @@ namespace OnlineRetailPortal.Web.Translators
                 Name = addProductResponse.Name,
                 Description = addProductResponse.Description,
                 HeroImage = new Image { Url = addProductResponse.HeroImage.Url },
-                Price = new Price { Amount = addProductResponse.Price.Amount, IsNegotiable = addProductResponse.Price.IsNegotiable },
+                //Price = new Price { Value = new Value{ addProductResponse.Price.Value.Amount, addProductResponse.Price.Value.Currency }, IsNegotiable = addProductResponse.Price.IsNegotiable },
                 PostDateTime = addProductResponse.PostDateTime,
                 ExpirationDate = addProductResponse.ExpirationDate,
                 Images = addProductResponse.Images.Select(x => new Image

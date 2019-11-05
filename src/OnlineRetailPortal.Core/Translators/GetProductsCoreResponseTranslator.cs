@@ -21,30 +21,13 @@ namespace OnlineRetailPortal.Core
                 {
                     Id = x.Id,
                     HeroImage = new Image() { Url = x.HeroImage.Url },
-                    ExpirationDate = x.ExpirationDate,
-                    PostDateTime = x.PostDateTime,
-                    Description = x.Description,
-                    PurchasedDate = x.PurchasedDate,
-                    PickupAddress = new Address()
-                    {
-                        City = x.PickupAddress.City,
-                        State = x.PickupAddress.State,
-                        Line1 = x.PickupAddress.Line1,
-                        Line2 = x.PickupAddress.Line2,
-                        Pincode = x.PickupAddress.Pincode
-                    },
-                    Images = x.Images.Select(y => new Image
-                    {
-                        Url = y.Url
-                    }).ToList(),
-                    Status = (Status)x.Status.GetHashCode(),
-                    Category = (Category)x.Category.GetHashCode()
+                    PostDateTime = x.PostDateTime,                
                 }).ToList(),
                 PagingInfo = new PagingInfo()
                 {
                     PageNumber = getProductResponse.PagingInfo.PageNumber,
                     PageSize = getProductResponse.PagingInfo.PageSize,
-                    SortBy = (SortBy)getProductResponse.PagingInfo.SortBy
+                   TotalPages = getProductResponse.PagingInfo.TotalPages
                 }
             };
             return responce;

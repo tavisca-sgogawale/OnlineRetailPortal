@@ -15,13 +15,13 @@ namespace OnlineRetailPortal.Web
                 {
                     Name = getProductServiceResponse.Product.Name,
                     Id = getProductServiceResponse.Product.Id,
-                    HeroImage = new Web.Image() { Url = getProductServiceResponse.Product.HeroImage.Url },
+                    HeroImage = new Image() { Url = getProductServiceResponse.Product.HeroImage.Url },
                     ExpirationDate = getProductServiceResponse.Product.ExpirationDate,
                     PostDateTime = getProductServiceResponse.Product.PostDateTime,
                     Description = getProductServiceResponse.Product.Description,
-                    Price = new Web.Price() { Amount = getProductServiceResponse.Product.Price.Amount, IsNegotiable = getProductServiceResponse.Product.Price.IsNegotiable },
+                    Price = new Price() { Amount = getProductServiceResponse.Product.Price.Amount, IsNegotiable = getProductServiceResponse.Product.Price.IsNegotiable },
                     PurchasedDate = getProductServiceResponse.Product.PurchasedDate,
-                    PickupAddress = new Web.Address()
+                    PickupAddress = new Address()
                     {
                         City = getProductServiceResponse.Product.PickupAddress.City,
                         State = getProductServiceResponse.Product.PickupAddress.State,
@@ -29,16 +29,27 @@ namespace OnlineRetailPortal.Web
                         Line2 = getProductServiceResponse.Product.PickupAddress.Line2,
                         Pincode = getProductServiceResponse.Product.PickupAddress.Pincode
                     },
-                    Images = getProductServiceResponse.Product.Images.Select(x => new Web.Image
+                    Images = getProductServiceResponse.Product.Images.Select(x => new Image
                     {
                         Url = x.Url
                     }).ToList(),
-                    Status = (Web.Status)getProductServiceResponse.Product.Status.GetHashCode(),
-                    Category = (Web.Category)getProductServiceResponse.Product.Category.GetHashCode()
+                    Status = getProductServiceResponse.Product.Status.ToStatusEntity(),
+                    Category = 
 
                 }
             };
             return response;
         }
+        public static Status ToStatusEntity(this Contracts.Status status)
+        {
+            return (Status)Contracts.Status.Parse(typeof(Status), status.ToString(), ignoreCase: true);
+
+        }
+        public static Category ToStatusEntity(this Contracts.Category category)
+        {
+            return (Category)Contracts.Category.Parse(typeof(Category), category.ToString(), ignoreCase: true);
+
+        }
     }
+    
 }

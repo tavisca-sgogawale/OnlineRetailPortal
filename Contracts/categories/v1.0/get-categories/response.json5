@@ -11,7 +11,7 @@
         },
         {
             "id":62873",
-            "name":"Clothing"
+            "name":"Clothings"
         },
         {
             "id":"531273",
@@ -21,8 +21,5 @@
             "id":"6482731",
             "name":"Books"
         }
-    ],
-
-    "status code" : "1231414"
-
+    ]
 }

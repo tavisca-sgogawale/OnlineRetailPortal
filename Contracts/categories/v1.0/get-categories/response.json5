@@ -1,23 +1,28 @@
 //Response Data
-[
-    {
-        "id":"631273",
-        "name":"Electronics"
-    },
-    {
-        "id":"78237",
-        "name":"Home Appliances"
-    },
-    {
-        "id":"62873",
-        "name":"Clothing"
-    },
-    {
-        "id":"531273",
-        "name":"Toys"
-    },
-    {
-        "id":"6482731",
-        "name":"Books"
-    }
-]
+{
+    "Categories" : [
+        {
+            "id":"631273",
+            "name":"Electronics"
+        },
+        {
+            "id":"78237",
+            "name":"Home Appliances"
+        },
+        {
+            "id":62873",
+            "name":"Clothing"
+        },
+        {
+            "id":"531273",
+            "name":"Toys"
+        },
+        {
+            "id":"6482731",
+            "name":"Books"
+        }
+    ],
+
+    "status code" : "1231414"
+
+}

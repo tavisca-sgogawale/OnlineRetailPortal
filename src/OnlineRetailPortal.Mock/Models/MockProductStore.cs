@@ -30,7 +30,7 @@ namespace OnlineRetailPortal.Mock
                 PostDateTime =  new DateTime(2019,12,1),ExpirationDate = new DateTime(2019,12,1).AddDays(30), PurchasedDate = DateTime.Now, Status = Status.Active }
         };
 
-        IAddProductValidation validation;
+        AddProductValidation validation;
 
         public MockProductStore()
         {

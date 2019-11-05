@@ -19,7 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Models\" />
     <Folder Include="Translators\" />
+    <Folder Include="Validations\" />
   </ItemGroup>
 
 </Project>

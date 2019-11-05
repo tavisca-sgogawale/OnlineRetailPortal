@@ -1,4 +1,4 @@
 //Delete Image Success Response 
 {
-	"code" : "200"
+	"code" : "204"
 }

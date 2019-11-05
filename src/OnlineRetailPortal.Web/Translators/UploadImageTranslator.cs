@@ -19,8 +19,7 @@ namespace OnlineRetailPortal.Web.Translators
         /// <returns></returns>
         public static IActionResult ToUser(this UploadImageResponse response)
         {
-            var result = JsonConvert.SerializeObject(response);
-            return new OkObjectResult(result);
+            return new OkObjectResult(response);
         }
     }
 }

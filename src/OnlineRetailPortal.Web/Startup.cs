@@ -24,7 +24,6 @@ namespace OnlineRetailPortal.Web
         {
             services.AddControllers();
             services.AddTransient<IImageHandler, ImageHandler>();
-            services.AddTransient<IImageWriter, ImageWriter>();
             services.AddMvc(setup =>
             {
 

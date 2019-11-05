@@ -12,9 +12,7 @@ namespace OnlineRetailPortal.Services.Translators
 
         public static UploadImageResponse ToUploadImageResponse(this ImageWriterResponse response)
         {
-            UploadImageResponse uploadImageResponse = new UploadImageResponse();
-            uploadImageResponse.Code = StatusCodes.Status200OK;
-            uploadImageResponse.Message = response.Response;
+            UploadImageResponse uploadImageResponse = new UploadImageResponse() { Message = response.Response};
             return uploadImageResponse;
         }
     }

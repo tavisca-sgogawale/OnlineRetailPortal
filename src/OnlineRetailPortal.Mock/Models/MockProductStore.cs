@@ -39,7 +39,7 @@ namespace OnlineRetailPortal.Mock
 
         public async Task<AddProductStoreResponse> AddProductAsync(AddProductStoreRequest request)
         {
-            var product = request.ToProduct();
+            var product = request.ToModel();
 
             validation.EnsureValidResult(request);
 
@@ -55,7 +55,7 @@ namespace OnlineRetailPortal.Mock
                 return productList.Last();
             });
 
-            var entityPostResponse = product.ToEntityResponse();
+            var entityPostResponse = product.ToEntity();
 
             return entityPostResponse;
         }

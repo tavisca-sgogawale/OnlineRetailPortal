@@ -51,11 +51,11 @@ namespace OnlineRetailPortal.Core
         {
             validation.EnsureValidResult(product);
            
-            var entityPostRequest = product.ToEntityRequest();
+            var entityPostRequest = product.ToEntity();
             
             var entityPostResponse = await productStore.AddProductAsync(entityPostRequest);
             
-            var responseProduct = entityPostResponse.ToProduct();
+            var responseProduct = entityPostResponse.ToModel();
 
             return responseProduct;
         }

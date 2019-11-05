@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using OnlineRetailPortal.Contracts;
+using OnlineRetailPortal.Core.Object_Factory;
 using OnlineRetailPortal.Mock;
 
 namespace OnlineRetailPortal.Core
@@ -26,13 +27,5 @@ namespace OnlineRetailPortal.Core
         }
     }
 
-    public class CategoryObjectFactory
-    {
-        public ICategoryStore GetCategoryStore()
-        {
-            //if (typeOfCategoryStore == "Mock")
-            return new MockCategoryStore();
-
-        }
-    }
+   
 }

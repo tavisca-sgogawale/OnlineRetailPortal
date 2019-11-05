@@ -2,8 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using OnlineRetailPortal.Contracts;
-using OnlineRetailPortal.Contracts.Contracts;
-using OnlineRetailPortal.Web.Models;
+
 
 namespace OnlineRetailPortal.Web
 {
@@ -18,26 +17,24 @@ namespace OnlineRetailPortal.Web
         }
 
         [HttpGet]
-        public async Task<ICategoryResponse> GetCategories()
+        public async Task<CategoryResponse> GetCategories()
         {
+            GetCategoriesServiceResponse serviceResponse;
+            CategoryResponse response=null;
+
             try {
 
-                var serviceResponse = await _categoryService.GetCategoriesAsync();
-
-                var response = serviceResponse.ToCategoriesContract();
-
-                return response;
-
+                serviceResponse = await _categoryService.GetCategoriesAsync();
+                 response = serviceResponse.ToCategoriesContract();
             }
             catch(Exception exception)
             {
-                CategoryFailResponse respone = new CategoryFailResponse();
-                respone.Message = exception.Message;
-                respone.Status = 500;
-
-                return respone; 
+                //Log(exception.Message, exception.trace);
+                //throw new BaseException(500,"Internal Server Error", null,404);
+   
             }
-           
+            return response;
+
         }
     }
 }

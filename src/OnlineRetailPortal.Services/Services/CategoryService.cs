@@ -10,10 +10,7 @@ namespace OnlineRetailPortal.Services
             var category = new Core.Category();
             var responce = await category.GetCategoriesAsync();
 
-
             return responce.ToCategoriesResponse();
-
-
         }
     }
 }

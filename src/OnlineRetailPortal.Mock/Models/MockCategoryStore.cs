@@ -9,28 +9,19 @@ namespace OnlineRetailPortal.Mock
 {
     public class MockCategoryStore : ICategoryStore
     {
-        /*
-         public List<Category> Categories = new List<Category>() {
-             new Category(){Id = 122331, Name = "Electronics"},
-             new Category(){Id = 12331, Name = "Assoseries"},
-             new Category(){Id = 1331, Name = "HouseHold"},
-             new Category(){Id = 11, Name = "vehicle"},
-         };
-         */
+        
         public List<Category> Categories;
 
          public MockCategoryStore()
         {
             Categories = new List<Category>() {
-             new Category(){Id = 122331, Name = "Electronics"},
-             new Category(){Id = 12331, Name = "Assoseries"},
-             new Category(){Id = 1331, Name = "HouseHold"},
-             new Category(){Id = 11, Name = "vehicle"},
+             new Category(){Id = 631273, Name = "Electronics"},
+             new Category(){Id = 78237, Name = "Home Appliances"},
+             new Category(){Id = 62873, Name = "Clothings"},
+             new Category(){Id = 531273, Name = "Toys"},
+             new Category(){Id = 6482731, Name = "Books"},
          };
         }
-
-
-
 
         public async Task<GetCategoriesStoreResponse> GetCategoriesAsync()
         {

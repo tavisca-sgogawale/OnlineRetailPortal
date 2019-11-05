@@ -70,22 +70,36 @@ namespace OnlineRetailPortal.Mock
                 Status = (Status)product.Status,
                 PostDateTime = product.PostDateTime,
                 ExpirationDate = product.ExpirationDate,
-                Images = product.Images.Select(x => new Image
-                {
-                    Url = x.Url
-                }).ToList(),
-                PurchasedDate = product.PurchasedDate,
-                PickupAddress = new Address()
-                {
-                    Line1 = product.PickupAddress.Line1,
-                    Line2 = product.PickupAddress.Line2,
-                    City = product.PickupAddress.City,
-                    Pincode = product.PickupAddress.Pincode,
-                    State = product.PickupAddress.State
-                }
+                Images = GetImagesResponse(product.Images),
+                PurchasedDate = GetPurchasedDates(product.PurchasedDate),
+                PickupAddress = GetAddressResponse(product.PickupAddress)
             };
 
             return entityPostResponse;
+        }
+
+        private static Address GetAddressResponse(Address address)
+        {
+            if (address == null)
+                return null;
+            return new Address()
+            {
+                Line1 = address.Line1,
+                Line2 = address.Line2,
+                City = address.City,
+                Pincode = address.Pincode,
+                State = address.State
+            };
+        }
+
+        private static List<Image> GetImagesResponse(List<Image> images)
+        {
+            if (images == null)
+                return null;
+            return images.Select(x => new Image
+            {
+                Url = x.Url
+            }).ToList();
         }
     }
 }

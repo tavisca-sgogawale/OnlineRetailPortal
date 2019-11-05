@@ -48,12 +48,12 @@ namespace OnlineRetailPortal.Tests
             var request = GetRequest();
             request.Images = new List<Core.Image>();
             request.PurchasedDate = null;
-            request.PickupAddress = new Core.Address();
+            request.PickupAddress = null;
 
             var expectedResponse = GetExpectedResponse();
             expectedResponse.Images = new List<Core.Image>();
             expectedResponse.PurchasedDate = null;
-            expectedResponse.PickupAddress = new Core.Address();
+            expectedResponse.PickupAddress = null;
 
             var actualResponse = await request.AddProductAsync(request);
 
@@ -70,12 +70,7 @@ namespace OnlineRetailPortal.Tests
             Assert.Equal(expectedResponse.ExpirationDate.ToString(), actualResponse.ExpirationDate.ToString());
             for (var i = 0; i < actualResponse.Images.Count; i++)
                 Assert.Equal(expectedResponse.Images[i].Url, actualResponse.Images[i].Url);
-            Assert.Equal(expectedResponse.PurchasedDate.ToString(), actualResponse.PurchasedDate.ToString());
-            Assert.Equal(expectedResponse.PickupAddress.Line1, actualResponse.PickupAddress.Line1);
-            Assert.Equal(expectedResponse.PickupAddress.Line2, actualResponse.PickupAddress.Line2);
-            Assert.Equal(expectedResponse.PickupAddress.City, actualResponse.PickupAddress.City);
-            Assert.Equal(expectedResponse.PickupAddress.State, actualResponse.PickupAddress.State);
-            Assert.Equal(expectedResponse.PickupAddress.Pincode, actualResponse.PickupAddress.Pincode);
+            Assert.Null(actualResponse.PickupAddress);
         }
 
         [Fact]

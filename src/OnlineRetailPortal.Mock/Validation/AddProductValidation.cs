@@ -20,18 +20,12 @@ namespace OnlineRetailPortal.Mock
             RuleFor(product => product.Category.ToString()).Must(IsCategoryValid);
             RuleFor(product => product.Images.Select(x => x.Url).ToList()).Must(IsImagesValid);
             RuleFor(product => product.PurchasedDate).Must(IsPurchaseDateValid);
-            When(k => k.PickupAddress.Line1 == null || k.PickupAddress.Line2 == null ||
-            k.PickupAddress.City == null || k.PickupAddress.Pincode <= 0 || k.PickupAddress.State == null,
+            When(k => k.PickupAddress == null ,
             () =>
             {
-                RuleFor(product => product.PickupAddress.Line1).Null();
-                RuleFor(product => product.PickupAddress.Line2).Null();
-                RuleFor(product => product.PickupAddress.City).Null();
-                RuleFor(product => product.PickupAddress.Pincode).Equals(0);
-                RuleFor(product => product.PickupAddress.State).Null();
+                RuleFor(product => product.PickupAddress).Null();
             });
-            When(k => k.PickupAddress.Line1 != null && k.PickupAddress.Line2 != null &&
-            k.PickupAddress.City != null && k.PickupAddress.Pincode > 0 && k.PickupAddress.State != null,
+            When(k => k.PickupAddress != null,
             () =>
             {
                 RuleFor(product => product.PickupAddress).SetValidator(new AddressValidator());
@@ -83,14 +77,11 @@ namespace OnlineRetailPortal.Mock
     {
         public AddressValidator()
         {
-            RuleFor(address => address.Line1).Must(IsAddressValid);
-            RuleFor(address => address.Line2).Must(IsAddressValid);
+            RuleFor(address => address.Line1).NotEmpty().NotNull();
+            RuleFor(address => address.Line2).NotEmpty().NotNull();
             RuleFor(address => address.Pincode).Must(IsPincodeValid);
-        }
-
-        public bool IsAddressValid(string line)
-        {
-            return !string.IsNullOrEmpty(line);
+            RuleFor(address => address.City).NotEmpty().NotNull();
+            RuleFor(address => address.State).NotEmpty().NotNull();
         }
 
         public bool IsPincodeValid(int pincode)

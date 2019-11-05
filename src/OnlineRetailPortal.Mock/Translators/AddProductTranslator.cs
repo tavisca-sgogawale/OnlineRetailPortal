@@ -49,26 +49,26 @@ namespace OnlineRetailPortal.Mock
         {
             switch (category)
             {
-                case Category.Bikes:
-                    return Category.Bikes;
-                case Category.Books:
-                    return Category.Books;
-                case Category.Cars:
-                    return Category.Cars;
-                case Category.Electronics:
-                    return Category.Electronics;
-                case Category.Fashions:
-                    return Category.Fashions;
+                case Category.Bike:
+                    return Category.Bike;
+                case Category.Book:
+                    return Category.Book;
+                case Category.Car:
+                    return Category.Car;
+                case Category.Electronic:
+                    return Category.Electronic;
+                case Category.Fashion:
+                    return Category.Fashion;
                 case Category.Furniture:
                     return Category.Furniture;
-                case Category.Mobiles:
-                    return Category.Mobiles;
-                case Category.Others:
-                    return Category.Others;
-                case Category.Properties:
-                    return Category.Properties;
+                case Category.Mobile:
+                    return Category.Mobile;
+                case Category.Other:
+                    return Category.Other;
+                case Category.Property:
+                    return Category.Property;
                 default:
-                    return Category.Others;
+                    return Category.Other;
             }
         }
 
@@ -149,26 +149,26 @@ namespace OnlineRetailPortal.Mock
         {
             switch (category)
             {
-                case Category.Bikes:
-                    return Category.Bikes;
-                case Category.Books:
-                    return Category.Books;
-                case Category.Cars:
-                    return Category.Cars;
-                case Category.Electronics:
-                    return Category.Electronics;
-                case Category.Fashions:
-                    return Category.Fashions;
+                case Category.Bike:
+                    return Category.Bike;
+                case Category.Book:
+                    return Category.Book;
+                case Category.Car:
+                    return Category.Car;
+                case Category.Electronic:
+                    return Category.Electronic;
+                case Category.Fashion:
+                    return Category.Fashion;
                 case Category.Furniture:
                     return Category.Furniture;
-                case Category.Mobiles:
-                    return Category.Mobiles;
-                case Category.Others:
-                    return Category.Others;
-                case Category.Properties:
-                    return Category.Properties;
+                case Category.Mobile:
+                    return Category.Mobile;
+                case Category.Other:
+                    return Category.Other;
+                case Category.Property:
+                    return Category.Property;
                 default:
-                    return Category.Others;
+                    return Category.Other;
             }
         }
 

@@ -49,26 +49,26 @@ namespace OnlineRetailPortal.Core
         {
             switch (category)
             {
-                case Category.Bikes:
-                    return Contracts.Category.Bikes;
-                case Category.Books:
-                    return Contracts.Category.Books;
-                case Category.Cars:
-                    return Contracts.Category.Cars;
-                case Category.Electronics:
-                    return Contracts.Category.Electronics;
-                case Category.Fashions:
-                    return Contracts.Category.Fashions;
+                case Category.Bike:
+                    return Contracts.Category.Bike;
+                case Category.Book:
+                    return Contracts.Category.Book;
+                case Category.Car:
+                    return Contracts.Category.Car;
+                case Category.Electronic:
+                    return Contracts.Category.Electronic;
+                case Category.Fashion:
+                    return Contracts.Category.Fashion;
                 case Category.Furniture:
                     return Contracts.Category.Furniture;
-                case Category.Mobiles:
-                    return Contracts.Category.Mobiles;
-                case Category.Others:
-                    return Contracts.Category.Others;
-                case Category.Properties:
-                    return Contracts.Category.Properties;
+                case Category.Mobile:
+                    return Contracts.Category.Mobile;
+                case Category.Other:
+                    return Contracts.Category.Other;
+                case Category.Property:
+                    return Contracts.Category.Property;
                 default:
-                    return Contracts.Category.Others;
+                    return Contracts.Category.Other;
             }
         }
 
@@ -137,26 +137,26 @@ namespace OnlineRetailPortal.Core
         {
             switch (category)
             {
-                case Contracts.Category.Bikes:
-                    return Category.Bikes;
-                case Contracts.Category.Books:
-                    return Category.Books;
-                case Contracts.Category.Cars:
-                    return Category.Cars;
-                case Contracts.Category.Electronics:
-                    return Category.Electronics;
-                case Contracts.Category.Fashions:
-                    return Category.Fashions;
+                case Contracts.Category.Bike:
+                    return Category.Bike;
+                case Contracts.Category.Book:
+                    return Category.Book;
+                case Contracts.Category.Car:
+                    return Category.Car;
+                case Contracts.Category.Electronic:
+                    return Category.Electronic;
+                case Contracts.Category.Fashion:
+                    return Category.Fashion;
                 case Contracts.Category.Furniture:
                     return Category.Furniture;
-                case Contracts.Category.Mobiles:
-                    return Category.Mobiles;
-                case Contracts.Category.Others:
-                    return Category.Others;
-                case Contracts.Category.Properties:
-                    return Category.Properties;
+                case Contracts.Category.Mobile:
+                    return Category.Mobile;
+                case Contracts.Category.Other:
+                    return Category.Other;
+                case Contracts.Category.Property:
+                    return Category.Property;
                 default:
-                    return Category.Others;
+                    return Category.Other;
             }
         }
 

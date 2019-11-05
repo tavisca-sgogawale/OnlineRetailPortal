@@ -99,7 +99,7 @@ namespace OnlineRetailPortal.Tests
                 ProductId = null,
                 Description = "Green Bottle",
                 HeroImage = new Core.Image { Url = "example.com" },
-                Category = Core.Category.Others,
+                Category = Core.Category.Other,
                 Status = Core.Status.Active,
                 PostDateTime = DateTime.Now,
                 ExpirationDate = DateTime.Now.AddDays(30),
@@ -124,7 +124,7 @@ namespace OnlineRetailPortal.Tests
             {
                 Description = "Green Bottle",
                 HeroImage = new Core.Image { Url = "example.com" },
-                Category = Core.Category.Others,
+                Category = Core.Category.Other,
                 Images = new List<Core.Image>() { new Core.Image { Url = "ex.com" } },
                 PurchasedDate = new DateTime(2010, 7, 7),
                 PickupAddress = new Core.Address

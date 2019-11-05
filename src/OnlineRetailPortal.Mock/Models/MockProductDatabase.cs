@@ -10,19 +10,19 @@ namespace OnlineRetailPortal.Mock
     {
         public List<Contracts.Product> _productList = new List<Contracts.Product>()
         {
-            new Contracts.Product{Id="101",Name="Mobile", Price=new Contracts.Price{ Amount=1299.00, IsNegotiable=true}, Category=Contracts.Category.Mobile,
+            new Contracts.Product{Id="101",Name="Mobile", Price=new Contracts.Price{ Money =new Contracts.Money(12000.0,"INR"), IsNegotiable=true}, Category=Contracts.Category.Mobile,
                 HeroImage =new Contracts.Image{Url = "https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery"},
                 Description ="11 pro max 64 gb full box", Images=null,
                 PickupAddress =new Contracts.Address{Line1="abc",Line2="xyz", City="Pune",State="Maharashtra", Pincode=411038 },
                 PostDateTime =  new DateTime(2019,12,1), PurchasedDate = DateTime.Now, Status = Contracts.Status.Active },
 
-            new Contracts.Product{Id="102",Name="Bottle", Price=new Contracts.Price{ Amount=999.00, IsNegotiable=true}, Category=Contracts.Category.Other,
+            new Contracts.Product{Id="102",Name="Bottle", Price=new Contracts.Price{ Money =new Contracts.Money(122.2,"USD"), IsNegotiable=true}, Category=Contracts.Category.Other,
                 HeroImage =new Contracts.Image{Url = "https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery"},
                 Description ="Tavisca green color bottle", Images=null,
                 PickupAddress =new Contracts.Address{Line1="abc",Line2="xyz", City="Pune",State="Maharashtra", Pincode=411038 },
                 PostDateTime =  new DateTime(2019,12,1), PurchasedDate =  new DateTime(2019,12,1), Status = Contracts.Status.Active},
 
-             new Contracts.Product{Id="103",Name="Computer", Price=new Contracts.Price{ Amount=11299.00, IsNegotiable=false}, Category=Contracts.Category.Electronic,
+             new Contracts.Product{Id="103",Name="Computer", Price=new Contracts.Price{  Money =new Contracts.Money(122.2,"INR"), IsNegotiable=false}, Category=Contracts.Category.Electronic,
                 HeroImage =new Contracts.Image{Url = "https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery"},
                 Description ="hp desktop", Images=null,
                 PickupAddress =new Contracts.Address{Line1="abc",Line2="xyz", City="Pune",State="Maharashtra", Pincode=411038 },

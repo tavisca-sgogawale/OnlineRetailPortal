@@ -12,7 +12,7 @@ namespace OnlineRetailPortal.Web
     {
         public  GetProductRequestValidator()
         {
-            RuleFor(x => x)
+            RuleFor(id => id)
             .NotNull()
             .NotEmpty()
             .WithMessage("The Product ID cannot be blank.");

@@ -17,9 +17,9 @@ namespace OnlineRetailPortal.Services
                 {
                     Name = x.Name,
                     Id = x.Id,
-                    HeroImage = new Image() { Url = x.HeroImage.Url },
+                    HeroImage = x.HeroImage.ToEntity(),
                     PostDateTime = x.PostDateTime,
-                    Price = new Price() { Amount = x.Price.Amount, IsNegotiable = x.Price.IsNegotiable },                 
+                    Price = x.Price.ToEntity(),                 
                 }).ToList(),
                 PagingInfo = new PagingInfo()
                 {

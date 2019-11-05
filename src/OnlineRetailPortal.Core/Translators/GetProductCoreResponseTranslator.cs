@@ -10,22 +10,15 @@ namespace OnlineRetailPortal.Core
     {
         public static Product ToGetProductServiceResponse(this GetProductStoreResponse getProductResponse)
         {
-            Price price = new Price()
-            {
-                Amount = getProductResponse.Product.Price.Amount,
-                Currency = getProductResponse.Product.Price.Currency,
-                IsNegotiable = getProductResponse.Product.Price.IsNegotiable
-            };
-            Product response = new Product(price,getProductResponse.Product.UserId,getProductResponse.Product.Name)
+            Price price = getProductResponse.Product.Price.ToEntity();
+            Product response = new Product(price,getProductResponse.Product.SellerId,getProductResponse.Product.Name)
             
                 {
-                    Name = getProductResponse.Product.Name,
                     Id = getProductResponse.Product.Id,
-                    HeroImage = new Image() { Url = getProductResponse.Product.HeroImage.Url },
+                    HeroImage = getProductResponse.Product.HeroImage.ToEntity(),
                     ExpirationDate = getProductResponse.Product.ExpirationDate,
                     PostDateTime = getProductResponse.Product.PostDateTime,
-                    Description = getProductResponse.Product.Description,
-                    Price = new Price() { Amount = getProductResponse.Product.Price.Amount, IsNegotiable = getProductResponse.Product.Price.IsNegotiable , Currency = getProductResponse.Product.Price.Currency},
+                    Description = getProductResponse.Product.Description,          
                     PurchasedDate = getProductResponse.Product.PurchasedDate,
                     PickupAddress = new Address()
                     {
@@ -35,16 +28,103 @@ namespace OnlineRetailPortal.Core
                         Line2 = getProductResponse.Product.PickupAddress.Line2,
                         Pincode = getProductResponse.Product.PickupAddress.Pincode
                     },
-                    Images = getProductResponse.Product.Images.Select(x => new Image
-                    {
-                        Url = x.Url
-                    }).ToList(),
-                    Status = (Status)getProductResponse.Product.Status,
-                    Category = (Category)getProductResponse.Product.Category
-                
+                    Images = getProductResponse.Product.Images.ToEntity(),
+                    Status = getProductResponse.Product.Status.ToEntity(),
+                    Category = getProductResponse.Product.Category.ToEntity()
+
             };
 
             return response;
+        }
+        public static Price ToEntity(this Contracts.Price getPrice)
+        {
+
+            return new Price()
+            {
+                Money = new Money(
+                getPrice.Money.Amount,
+                getPrice.Money.Currency),
+                IsNegotiable = getPrice.IsNegotiable,
+
+            };
+
+        }
+
+        public static Image ToEntity(this Contracts.Image image)
+        {
+            return new Image()
+            {
+                Url = image.Url
+            };
+        }
+        //category will change after category api implementation
+        public static Category ToEntity(this Contracts.Category category)
+        {
+            switch (category)
+            {
+                case Contracts.Category.Property:
+                    return Category.Property;
+                case Contracts.Category.Car:
+                    return Category.Car;
+                case Contracts.Category.Furniture:
+                    return Category.Furniture;
+                case Contracts.Category.Mobile:
+                    return Category.Mobile;
+                case Contracts.Category.Bike:
+                    return Category.Bike;
+                case Contracts.Category.Book:
+                    return Category.Book;
+                case Contracts.Category.Fashion:
+                    return Category.Fashion;
+                case Contracts.Category.Electronic:
+                    return Category.Electronic;
+                case Contracts.Category.Other:
+                    return Category.Other;
+                default:
+                    throw new NotSupportedException("This category is not available");
+            }
+        }
+        public static Status ToEntity(this Contracts.Status status)
+        {
+            switch (status)
+            {
+                case Contracts.Status.Active:
+                    return Status.Active;
+                case Contracts.Status.Disabled:
+                    return Status.Disabled;
+                case Contracts.Status.Sold:
+                    return Status.Sold;
+                default:
+                    throw new NotSupportedException("This status is not available");
+            }
+        }
+        public static Address ToEntity(this Contracts.Address pickupAddress)
+        {
+            if (pickupAddress == null)
+                return null;
+            return new Address()
+            {
+                Line1 = pickupAddress.Line1,
+                Line2 = pickupAddress.Line2,
+                City = pickupAddress.City,
+                Pincode = pickupAddress.Pincode,
+                State = pickupAddress.State
+            };
+        }
+        public static DateTime? ToEntity(this DateTime? purchasedDate)
+        {
+            if (purchasedDate == null)
+                return null;
+            return purchasedDate;
+        }
+        public static List<Image> ToEntity(this List<Contracts.Image> images)
+        {
+            if (images == null)
+                return null;
+            return images.Select(x => new Image
+            {
+                Url = x.Url
+            }).ToList();
         }
     }
 }

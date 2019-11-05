@@ -13,11 +13,7 @@ namespace OnlineRetailPortal.Core
         {
             ProductsWithPageInitiation responce = new ProductsWithPageInitiation()
             {
-                Products = getProductResponse.Products.Select(x => new Product(new Price() {
-                    Amount = x.Price.Amount,
-                    IsNegotiable = x.Price.IsNegotiable,
-                    Currency = x.Price.Currency
-                }, x.UserId, x.Name)
+                Products = getProductResponse.Products.Select(x => new Product(x.Price.ToEntity(), x.SellerId, x.Name)
                 {
                     Id = x.Id,
                     HeroImage = new Image() { Url = x.HeroImage.Url },
@@ -32,5 +28,6 @@ namespace OnlineRetailPortal.Core
             };
             return responce;
         }
+
     }
 }

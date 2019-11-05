@@ -18,7 +18,7 @@ namespace OnlineRetailPortal.Web
         public DateTime ExpirationDate { get; set; }
 
         public List<Image> Images { get; set; }
-        public DateTime PurchasedDate { get; set; }
+        public DateTime? PurchasedDate { get; set; }
         public Address PickupAddress { get; set; }
 
     }

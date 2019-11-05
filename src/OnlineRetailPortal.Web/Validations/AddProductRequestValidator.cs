@@ -16,22 +16,22 @@ namespace OnlineRetailPortal.Web.Validations
             RuleFor(x => x.SellerId)
             .Cascade(CascadeMode.StopOnFirstFailure)
             .NotNull()
-            .WithErrorCode(ErrorCodes.NullField())
+            .WithErrorCode(ErrorCode.NullField())
             .WithMessage(Error.NullField("Seller Id"))
             .NotEmpty()
-            .WithErrorCode(ErrorCodes.MissingField())
+            .WithErrorCode(ErrorCode.MissingField())
             .WithMessage(Error.MissingField("Seller Id"));
 
             RuleFor(x => x.Name)
             .Cascade(CascadeMode.StopOnFirstFailure)
             .NotNull()
-            .WithErrorCode(ErrorCodes.NullField())
+            .WithErrorCode(ErrorCode.NullField())
             .WithMessage(Error.NullField("Title"))
             .NotEmpty()
-            .WithErrorCode(ErrorCodes.MissingField())
+            .WithErrorCode(ErrorCode.MissingField())
             .WithMessage(Error.MissingField("Title"))
             .Length(2, 20)
-            .WithErrorCode(ErrorCodes.GreaterCharacter())
+            .WithErrorCode(ErrorCode.GreaterCharacter())
             .WithMessage(Error.GreaterCharacter("Title", "2"));
 
             //RuleFor(x => x.Category)
@@ -40,34 +40,35 @@ namespace OnlineRetailPortal.Web.Validations
             //.NotEmpty()
             //.WithMessage(Error.MissingField("Category"));
 
-            RuleFor(x => x.Price.Value.Amount)
+            RuleFor(x => x.Price.Money.Amount)
             .Cascade(CascadeMode.StopOnFirstFailure)
             .NotEmpty()
-            .WithErrorCode(ErrorCodes.MissingField())
+            .WithErrorCode(ErrorCode.MissingField())
             .WithMessage(Error.MissingField("Price"))
             .GreaterThan(0)
-            .WithErrorCode(ErrorCodes.GreaterValue())
+            .WithErrorCode(ErrorCode.GreaterValue())
             .WithMessage(Error.GreaterValue("Price", "0"));
 
             RuleFor(x => x.Price.IsNegotiable)
             .NotEmpty()
-            .WithErrorCode(ErrorCodes.MissingField())
+            .WithErrorCode(ErrorCode.MissingField())
             .WithMessage(Error.MissingField("IsNegotiable"));
 
             RuleFor(x => x.Description)
             .Cascade(CascadeMode.StopOnFirstFailure)
             .NotNull()
-            .WithErrorCode(ErrorCodes.MissingField())
+            .WithErrorCode(ErrorCode.MissingField())
             .WithMessage(Error.NullField("Description"))
             .NotEmpty()
-            .WithErrorCode(ErrorCodes.MissingField())
+            .WithErrorCode(ErrorCode.MissingField())
             .WithMessage(Error.MissingField("Description"))
             .Length(4, 100)
-            .WithErrorCode(ErrorCodes.GreaterCharacter())
+            .WithErrorCode(ErrorCode.GreaterCharacter())
             .WithMessage(Error.GreaterCharacter("Description", "4"));
 
             RuleFor(x => x.PurchasedDate)
             .LessThan(DateTime.Today)
+            .WithErrorCode(ErrorCode.MissingField())
             .WithMessage("You cannot enter a Purchased date in the future.");
 
             When(x => x.PickupAddress.Line1 != null &&
@@ -77,37 +78,37 @@ namespace OnlineRetailPortal.Web.Validations
                 RuleFor(x => x.PickupAddress.Line1)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull()
-                .WithErrorCode(ErrorCodes.NullField())
+                .WithErrorCode(ErrorCode.NullField())
                 .WithMessage(Error.NullField("Line1"))
                 .NotEmpty()
-                .WithErrorCode(ErrorCodes.MissingField())
+                .WithErrorCode(ErrorCode.MissingField())
                 .WithMessage(Error.MissingField("Line1"))
                 .Length(2, 20)
-                .WithErrorCode(ErrorCodes.GreaterCharacter())
+                .WithErrorCode(ErrorCode.GreaterCharacter())
                 .WithMessage(Error.GreaterCharacter("Line1", "2"));
 
                 RuleFor(x => x.PickupAddress.City)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull()
-                .WithErrorCode(ErrorCodes.NullField())
+                .WithErrorCode(ErrorCode.NullField())
                 .WithMessage(Error.NullField("City"))
                 .NotEmpty()
-                .WithErrorCode(ErrorCodes.MissingField())
+                .WithErrorCode(ErrorCode.MissingField())
                 .WithMessage(Error.MissingField("City"));
 
                 RuleFor(x => x.PickupAddress.State)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull()
-                .WithErrorCode(ErrorCodes.NullField())
+                .WithErrorCode(ErrorCode.NullField())
                 .WithMessage(Error.NullField("State"))
                 .NotEmpty()
-                .WithErrorCode(ErrorCodes.MissingField())
+                .WithErrorCode(ErrorCode.MissingField())
                 .WithMessage(Error.MissingField("State"));
 
                 RuleFor(x => x.PickupAddress.Pincode)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty()
-                .WithErrorCode(ErrorCodes.MissingField())
+                .WithErrorCode(ErrorCode.MissingField())
                 .WithMessage(Error.MissingField("Pincode"));
             });
 

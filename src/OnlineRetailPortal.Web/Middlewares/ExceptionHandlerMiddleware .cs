@@ -47,7 +47,7 @@ namespace OnlineRetailPortal.Web
             }
 
             response.ContentType = "application/json";
-            response.StatusCode = (int)HttpStatusCode.BadRequest;
+            response.StatusCode =statusCode;
 
             return response.WriteAsync(JsonConvert.SerializeObject(customErrorResponse, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
         }

@@ -24,9 +24,9 @@ namespace OnlineRetailPortal.Web.Validations
             {
                 foreach (var error in validationResult.Errors)
                 {
-                    info.Add(new ErrorInfo { Code = int.Parse(error.ErrorCode), Message = error.ErrorMessage });
+                    info.Add(new ErrorInfo { Code = error.ErrorCode, Message = error.ErrorMessage });
                 }
-                throw new BaseException(Convert.ToInt32(ErrorCodes.Invalid()), Error.Invalid(), info , HttpStatusCode.BadRequest);
+                throw new BaseException(Convert.ToInt32(ErrorCode.Invalid()), Error.Invalid(), info , HttpStatusCode.BadRequest);
             }
         }
     }

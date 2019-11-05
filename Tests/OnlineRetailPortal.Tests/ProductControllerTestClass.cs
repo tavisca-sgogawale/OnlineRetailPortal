@@ -46,7 +46,7 @@ namespace OnlineRetailPortal.Tests
                 Description = "Green Bottle",
                 HeroImage = new Web.Image { Url = "example.com" },
                // Price = new Web.Price { Amount = 99.99, IsNegotiable = true },
-                Category = Web.Category.Others,
+                Category = Web.Category.Other,
                 Images = new List<Web.Image>() { new Web.Image { Url = "ex.com" } },
                 PurchasedDate = DateTime.Now,
                 PickupAddress = new Web.Address
@@ -71,7 +71,7 @@ namespace OnlineRetailPortal.Tests
                 Description = "Green Bottle",
                 HeroImage = new Web.Image { Url = "example.com" },
               //  Price = new Web.Price { Amount = 99.99, IsNegotiable = true },
-                Category = Web.Category.Others,
+                Category = Web.Category.Other,
                 Images = new List<Web.Image>() { new Web.Image { Url = "ex.com" } },
                 PurchasedDate = DateTime.Now,
                 PickupAddress = new Web.Address

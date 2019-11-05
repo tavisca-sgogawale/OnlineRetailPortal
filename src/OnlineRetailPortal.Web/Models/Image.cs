@@ -1,4 +1,7 @@
-﻿namespace OnlineRetailPortal.Web
+﻿using System;
+using OnlineRetailPortal.Contracts;
+
+namespace OnlineRetailPortal.Web
 {
     public class Image
     {

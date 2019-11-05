@@ -31,11 +31,6 @@ namespace OnlineRetailPortal.Web
             services.AddSingleton<IProductService>(new Services.ProductService());
         }
 
-        private object ProductService(IServiceProvider arg)
-        {
-            throw new NotImplementedException();
-        }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

@@ -12,7 +12,7 @@ namespace OnlineRetailPortal.Services
         {
             var product = new Product()
             {
-                Id = addProductRequest.SellerId,
+                SellerId = addProductRequest.SellerId,
                 Name = addProductRequest.Name,
                 Description = addProductRequest.Description,
                 HeroImage = new Image { Url = addProductRequest.HeroImage.Url },

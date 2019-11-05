@@ -15,12 +15,12 @@ namespace OnlineRetailPortal.Mock
                 Products = products.Select(x => new Contracts.Product()
                 {
                     Name = x.Name,
-                    Id = x.Id,
+                    SellerId = x.SellerId,
                     HeroImage = new Contracts.Image() { Url = x.HeroImage.Url },
                     ExpirationDate = x.ExpirationDate,
                     PostDateTime = x.PostDateTime,
                     Description = x.Description,
-                    Price = new Contracts.Price() { Value = { Amount = x.Price.Value.Amount,Currency = x.Price.Value.Currency }, IsNegotiable = x.Price.IsNegotiable },
+                    Price = new Contracts.Price() { Money = { Amount = x.Price.Money.Amount,Currency = x.Price.Money.Currency }, IsNegotiable = x.Price.IsNegotiable },
                     PurchasedDate = x.PurchasedDate,
                     PickupAddress = new Contracts.Address()
                     {

@@ -9,8 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ErrorCodesMessage.Designer.cs">
-      <DependentUpon>ErrorCodesMessage.resx</DependentUpon>
+    <Compile Update="ErrorCodes.Designer.cs">
+      <DependentUpon>ErrorCodes.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="ErrorCodesMessage.resx">
-      <LastGenOutput>ErrorCodesMessage.Designer.cs</LastGenOutput>
+    <EmbeddedResource Update="ErrorCodes.resx">
+      <LastGenOutput>ErrorCodes.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="ErrorMessage.resx">

@@ -15,7 +15,7 @@ namespace OnlineRetailPortal.Mock
                 Name = request.Name,
                 Description = request.Description,
                 HeroImage = new Image() { Url = request.HeroImage.Url },
-                Price = new Price() { Value = new Value(request.Price.Value.Amount,request.Price.Value.Currency), IsNegotiable = request.Price.IsNegotiable },
+                Price = new Price() { Money = new Money(request.Price.Money.Amount,request.Price.Money.Currency), IsNegotiable = request.Price.IsNegotiable },
                 Category = (Category)request.Category,
                 Images = GetImages(request.Images),
                 PurchasedDate = GetPurchasedDates(request.PurchasedDate),
@@ -59,11 +59,11 @@ namespace OnlineRetailPortal.Mock
         public static AddProductStoreResponse ToEntityResponse(this Product product)
         {
             var entityPostResponse = new AddProductStoreResponse() {
-                Id = product.Id,
+                Id = product.SellerId,
                 Name = product.Name,
                 Description = product.Description,
                 HeroImage = new Image() { Url = product.HeroImage.Url },
-                Price = new Price() { Value = new Contracts.Value(product.Price.Value.Amount, product.Price.Value.Currency), IsNegotiable = product.Price.IsNegotiable },
+                Price = new Price() { Money = new Contracts.Money(product.Price.Money.Amount, product.Price.Money.Currency), IsNegotiable = product.Price.IsNegotiable },
                 Category = (Category)product.Category,
                 Status = (Status)product.Status,
                 PostDateTime = product.PostDateTime,

@@ -6,14 +6,14 @@ namespace OnlineRetailPortal.Web
 {
     public enum Category
     {
-        Properties,
-        Cars,
+        Property,
+        Car,
         Furniture,
-        Mobiles,
-        Bikes,
-        Books,
-        Fashions,
-        Electronics,
-        Others
+        Mobile,
+        Bike,
+        Book,
+        Fashion,
+        Electronic,
+        Other
     }
 }

@@ -2,7 +2,7 @@
 {
     public class Price
     {
-        public Value Value { get; set; }
+        public Money Money { get; set; }
         public bool IsNegotiable { get; set; }
     }
 }

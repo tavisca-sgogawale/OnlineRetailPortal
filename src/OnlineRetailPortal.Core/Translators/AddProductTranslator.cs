@@ -171,7 +171,7 @@ namespace OnlineRetailPortal.Core
                 case Contracts.Status.Sold:
                     return Status.Sold;
                 default:
-                    return Status.Disabled;
+                    return Status.Active;
             }
         }
 

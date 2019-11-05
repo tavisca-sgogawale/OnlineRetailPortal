@@ -183,7 +183,7 @@ namespace OnlineRetailPortal.Mock
                 case Status.Sold:
                     return Status.Sold;
                 default:
-                    return Status.Disabled;
+                    return Status.Active;
             }
         }
 

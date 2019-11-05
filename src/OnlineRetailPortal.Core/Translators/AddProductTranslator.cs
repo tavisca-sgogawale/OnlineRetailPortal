@@ -37,14 +37,11 @@ namespace OnlineRetailPortal.Core
 
         public static Product ToProduct(this AddProductStoreResponse addProductStoreResponse)
         {
-            var product = new Product()
+            var product = new Product(addProductStoreResponse.SellerId, addProductStoreResponse.Name, new Price { Value = new Value(addProductStoreResponse.Price.Value.Amount, addProductStoreResponse.Price.Value.Currency), IsNegotiable = addProductStoreResponse.Price.IsNegotiable })
             {
-                SellerId = addProductStoreResponse.SellerId,
                 ProductId = addProductStoreResponse.ProductId,
-                Name = addProductStoreResponse.Name,
                 Description = addProductStoreResponse.Description,
                 HeroImage = new Image { Url = addProductStoreResponse.HeroImage.Url },
-                Price = new Price { Value = new Value(addProductStoreResponse.Price.Value.Amount, addProductStoreResponse.Price.Value.Currency), IsNegotiable = addProductStoreResponse.Price.IsNegotiable },
                 Category = (Category)addProductStoreResponse.Category,
                 Status = (Status)addProductStoreResponse.Status,
                 PostDateTime = addProductStoreResponse.PostDateTime,

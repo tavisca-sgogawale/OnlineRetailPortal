@@ -99,14 +99,11 @@ namespace OnlineRetailPortal.Tests
 
         private Core.Product GetExpectedResponse()
         {
-            Core.Product product = new Core.Product
+            Core.Product product = new Core.Product("1", "Bottle", new Core.Price { Value = new Core.Value(99.99, "INR"), IsNegotiable = false })
             {
-                SellerId = "1",
                 ProductId = null,
-                Name = "Bottle",
                 Description = "Green Bottle",
                 HeroImage = new Core.Image { Url = "example.com" },
-                Price = new Core.Price { Value = new Core.Value( 99.99, "INR"), IsNegotiable = false },
                 Category = Core.Category.Others,
                 Status = Core.Status.Active,
                 PostDateTime = DateTime.Now,
@@ -128,13 +125,10 @@ namespace OnlineRetailPortal.Tests
 
         private Core.Product GetRequest()
         {
-            Core.Product product = new Core.Product(new MockProductStore())
+            Core.Product product = new Core.Product(new MockProductStore(), "1", "Bottle", new Core.Price { Value = new Core.Value(99.99, "INR"), IsNegotiable = false })
             {
-                SellerId = "1",
-                Name = "Bottle",
                 Description = "Green Bottle",
                 HeroImage = new Core.Image { Url = "example.com" },
-                Price = new Core.Price { Value = new Core.Value( 99.99, "INR" ), IsNegotiable = false },
                 Category = Core.Category.Others,
                 Images = new List<Core.Image>() { new Core.Image { Url = "ex.com" } },
                 PurchasedDate = new DateTime(2010, 7, 7),

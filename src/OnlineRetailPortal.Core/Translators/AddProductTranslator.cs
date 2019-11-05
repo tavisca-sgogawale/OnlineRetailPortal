@@ -38,9 +38,9 @@ namespace OnlineRetailPortal.Core
         {
             return new Contracts.Price()
             {
-                Value = new Contracts.Value(
-                price.Value.Amount,
-                price.Value.Currency),
+                Money = new Contracts.Money(
+                price.Money.Amount,
+                price.Money.Currency),
                 IsNegotiable = price.IsNegotiable
             };
         }
@@ -108,7 +108,7 @@ namespace OnlineRetailPortal.Core
 
         public static Product ToModel(this AddProductStoreResponse addProductStoreResponse)
         {
-            var product = new Product(addProductStoreResponse.SellerId, addProductStoreResponse.Name, new Price { Value = new Value(addProductStoreResponse.Price.Value.Amount, addProductStoreResponse.Price.Value.Currency), IsNegotiable = addProductStoreResponse.Price.IsNegotiable })
+            var product = new Product(addProductStoreResponse.SellerId, addProductStoreResponse.Name, new Price { Money = new Money(addProductStoreResponse.Price.Money.Amount, addProductStoreResponse.Price.Money.Currency), IsNegotiable = addProductStoreResponse.Price.IsNegotiable })
             {
                 ProductId = addProductStoreResponse.ProductId,
                 Description = addProductStoreResponse.Description,

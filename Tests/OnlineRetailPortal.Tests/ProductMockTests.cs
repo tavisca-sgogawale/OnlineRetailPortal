@@ -24,8 +24,8 @@ namespace OnlineRetailPortal.Tests
             Assert.Equal(expectedResponse.Name, actualResponse.Name);
             Assert.Equal(expectedResponse.Description, actualResponse.Description);
             Assert.Equal(expectedResponse.HeroImage.Url, actualResponse.HeroImage.Url);
-            Assert.Equal(expectedResponse.Price.Value.Amount, actualResponse.Price.Value.Amount);
-            Assert.Equal(expectedResponse.Price.Value.Currency, actualResponse.Price.Value.Currency);
+            Assert.Equal(expectedResponse.Price.Money.Amount, actualResponse.Price.Money.Amount);
+            Assert.Equal(expectedResponse.Price.Money.Currency, actualResponse.Price.Money.Currency);
             Assert.Equal(expectedResponse.Price.IsNegotiable, actualResponse.Price.IsNegotiable);
             Assert.Equal(expectedResponse.Category, actualResponse.Category);
             Assert.Equal(expectedResponse.Status, actualResponse.Status);
@@ -62,8 +62,8 @@ namespace OnlineRetailPortal.Tests
             Assert.Equal(expectedResponse.Name, actualResponse.Name);
             Assert.Equal(expectedResponse.Description, actualResponse.Description);
             Assert.Equal(expectedResponse.HeroImage.Url, actualResponse.HeroImage.Url);
-            Assert.Equal(expectedResponse.Price.Value.Amount, actualResponse.Price.Value.Amount);
-            Assert.Equal(expectedResponse.Price.Value.Currency, actualResponse.Price.Value.Currency);
+            Assert.Equal(expectedResponse.Price.Money.Amount, actualResponse.Price.Money.Amount);
+            Assert.Equal(expectedResponse.Price.Money.Currency, actualResponse.Price.Money.Currency);
             Assert.Equal(expectedResponse.Price.IsNegotiable, actualResponse.Price.IsNegotiable);
             Assert.Equal(expectedResponse.Category, actualResponse.Category);
             Assert.Equal(expectedResponse.Status, actualResponse.Status);
@@ -104,7 +104,7 @@ namespace OnlineRetailPortal.Tests
                 Name = "Bottle",
                 Description = "Green Bottle",
                 HeroImage = new Contracts.Image { Url = "example.com" },
-                Price = new Contracts.Price { Value = new Contracts.Value (99.99, "INR" ), IsNegotiable = false },
+                Price = new Contracts.Price { Money = new Contracts.Money (99.99, "INR" ), IsNegotiable = false },
                 Category = Contracts.Category.Others,
                 Status = Contracts.Status.Active,
                 PostDateTime = DateTime.Now,
@@ -132,7 +132,7 @@ namespace OnlineRetailPortal.Tests
                 Name = "Bottle",
                 Description = "Green Bottle",
                 HeroImage = new Contracts.Image { Url = "example.com" },
-                Price = new Contracts.Price {Value = new Contracts.Value(99.99, "INR"), IsNegotiable = false },
+                Price = new Contracts.Price {Money = new Contracts.Money(99.99, "INR"), IsNegotiable = false },
                 Category = Contracts.Category.Others,
                 Images = new List<Contracts.Image>() { new Contracts.Image { Url = "ex.com" } },
                 PurchasedDate = new DateTime(2010, 7, 7),

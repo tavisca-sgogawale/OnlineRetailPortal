@@ -24,8 +24,8 @@ namespace OnlineRetailPortal.Tests
             Assert.Equal(expectedResponse.Name, actualResponse.Name);
             Assert.Equal(expectedResponse.Description, actualResponse.Description);
             Assert.Equal(expectedResponse.HeroImage.Url, actualResponse.HeroImage.Url);
-            Assert.Equal(expectedResponse.Price.Value.Amount, actualResponse.Price.Value.Amount);
-            Assert.Equal(expectedResponse.Price.Value.Currency, actualResponse.Price.Value.Currency);
+            Assert.Equal(expectedResponse.Price.Money.Amount, actualResponse.Price.Money.Amount);
+            Assert.Equal(expectedResponse.Price.Money.Currency, actualResponse.Price.Money.Currency);
             Assert.Equal(expectedResponse.Price.IsNegotiable, actualResponse.Price.IsNegotiable);
             Assert.Equal(expectedResponse.Category, actualResponse.Category);
             Assert.Equal(expectedResponse.Status, actualResponse.Status);
@@ -61,8 +61,8 @@ namespace OnlineRetailPortal.Tests
             Assert.Equal(expectedResponse.Name, actualResponse.Name);
             Assert.Equal(expectedResponse.Description, actualResponse.Description);
             Assert.Equal(expectedResponse.HeroImage.Url, actualResponse.HeroImage.Url);
-            Assert.Equal(expectedResponse.Price.Value.Amount, actualResponse.Price.Value.Amount);
-            Assert.Equal(expectedResponse.Price.Value.Currency, actualResponse.Price.Value.Currency);
+            Assert.Equal(expectedResponse.Price.Money.Amount, actualResponse.Price.Money.Amount);
+            Assert.Equal(expectedResponse.Price.Money.Currency, actualResponse.Price.Money.Currency);
             Assert.Equal(expectedResponse.Price.IsNegotiable, actualResponse.Price.IsNegotiable);
             Assert.Equal(expectedResponse.Category, actualResponse.Category);
             Assert.Equal(expectedResponse.Status, actualResponse.Status);
@@ -94,7 +94,7 @@ namespace OnlineRetailPortal.Tests
 
         private Core.Product GetExpectedResponse()
         {
-            Core.Product product = new Core.Product("1", "Bottle", new Core.Price { Value = new Core.Value(99.99, "INR"), IsNegotiable = false })
+            Core.Product product = new Core.Product("1", "Bottle", new Core.Price { Money = new Core.Money(99.99, "INR"), IsNegotiable = false })
             {
                 ProductId = null,
                 Description = "Green Bottle",
@@ -120,7 +120,7 @@ namespace OnlineRetailPortal.Tests
 
         private Core.Product GetRequest()
         {
-            Core.Product product = new Core.Product(new MockProductStore(), "1", "Bottle", new Core.Price { Value = new Core.Value(99.99, "INR"), IsNegotiable = false })
+            Core.Product product = new Core.Product(new MockProductStore(), "1", "Bottle", new Core.Price { Money = new Core.Money(99.99, "INR"), IsNegotiable = false })
             {
                 Description = "Green Bottle",
                 HeroImage = new Core.Image { Url = "example.com" },

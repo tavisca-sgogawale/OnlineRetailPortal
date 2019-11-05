@@ -11,19 +11,19 @@ namespace OnlineRetailPortal.Mock
     public class MockProductStore : IProductStore
     {
         List<Product> productList = new List<Product>() {
-            new Product{SellerId="1",ProductId="101",Name="Mobile", Price=new Price{Value = new Value(200.0, "INR"), IsNegotiable=true}, Category=Category.Mobiles,
+            new Product{SellerId="1",ProductId="101",Name="Mobile", Price=new Price{Money = new Money(200.0, "INR"), IsNegotiable=true}, Category=Category.Mobiles,
                 HeroImage =new Image{Url = "https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery"},
                 Description ="11 pro max 64 gb full box", Images=null,
                 PickupAddress =new Address{Line1="abc",Line2="xyz", City="Pune",State="Maharashtra", Pincode=411038 },
                 PostDateTime =  new DateTime(2019,12,1),ExpirationDate = new DateTime(2019,12,1).AddDays(30), PurchasedDate = DateTime.Now, Status = Status.Active },
 
-            new Product{SellerId="2",ProductId="102",Name="Bottle", Price=new Price{ Value = new Value(200.0, "INR"), IsNegotiable=true}, Category=Category.Others,
+            new Product{SellerId="2",ProductId="102",Name="Bottle", Price=new Price{ Money = new Money(200.0, "INR"), IsNegotiable=true}, Category=Category.Others,
                 HeroImage =new Image{Url = "https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery"},
                 Description ="Tavisca green color bottle", Images=null,
                 PickupAddress =new Address{Line1="abc",Line2="xyz", City="Pune",State="Maharashtra", Pincode=411038 },
                 PostDateTime =  new DateTime(2019,12,1),ExpirationDate = new DateTime(2019,12,1).AddDays(30), PurchasedDate =  new DateTime(2019,12,1), Status = Status.Active },
 
-             new Product{SellerId="3",ProductId="103",Name="Computer", Price=new Price{Value= new Value(200.0, "INR"), IsNegotiable=false}, Category=Category.Electronics,
+             new Product{SellerId="3",ProductId="103",Name="Computer", Price=new Price{Money= new Money(200.0, "INR"), IsNegotiable=false}, Category=Category.Electronics,
                 HeroImage =new Image{Url = "https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery"},
                 Description ="hp desktop", Images=null,
                 PickupAddress =new Address{Line1="abc",Line2="xyz", City="Pune",State="Maharashtra", Pincode=411038 },
@@ -91,7 +91,7 @@ namespace OnlineRetailPortal.Mock
                 }
                 else
                 {
-                    List<Product> products = productList.Where(y => y.Status == Status.Active).OrderBy(x => x.Price.Value.Amount).Take(50).ToList();
+                    List<Product> products = productList.Where(y => y.Status == Status.Active).OrderBy(x => x.Price.Money.Amount).Take(50).ToList();
                     response = products.ToGetProductsStoreResponse();
                     return response;
                 }

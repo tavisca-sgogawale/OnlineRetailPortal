@@ -38,9 +38,9 @@ namespace OnlineRetailPortal.Mock
         {
             return new Price()
             {
-                Value = new Value(
-                price.Value.Amount,
-                price.Value.Currency),
+                Money = new Money(
+                price.Money.Amount,
+                price.Money.Currency),
                 IsNegotiable = price.IsNegotiable
             };
         }
@@ -138,9 +138,9 @@ namespace OnlineRetailPortal.Mock
         {
             return new Price()
             {
-                Value = new Value(
-                price.Value.Amount,
-                price.Value.Currency),
+                Money = new Money(
+                price.Money.Amount,
+                price.Money.Currency),
                 IsNegotiable = price.IsNegotiable
             };
         }

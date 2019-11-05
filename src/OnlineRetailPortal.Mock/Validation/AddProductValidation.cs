@@ -15,8 +15,8 @@ namespace OnlineRetailPortal.Mock
             RuleFor(product => product.Name).NotEmpty().NotNull();
             RuleFor(product => product.Description).NotEmpty().NotNull();
             RuleFor(product => product.HeroImage.Url).NotEmpty().NotNull();
-            RuleFor(product => product.Price.Value.Amount).Must(IsPriceValid);
-            RuleFor(product => product.Price.Value.Currency).Must(IsCurrencyValid);
+            RuleFor(product => product.Price.Money.Amount).Must(IsPriceValid);
+            RuleFor(product => product.Price.Money.Currency).Must(IsCurrencyValid);
             RuleFor(product => product.Category.ToString()).NotEmpty().NotNull();
             RuleFor(product => product.Images.Select(x => x.Url).ToList()).Must(IsImagesValid);
             When(k => k.PickupAddress == null,

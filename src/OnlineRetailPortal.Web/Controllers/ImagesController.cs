@@ -17,8 +17,7 @@ namespace OnlineRetailPortal.Web.Controllers
     public class ImagesController : ControllerBase
     {
         private readonly IImageHandler _imageHandler;
-        private IWebHostEnvironment _env;
-        public ImagesController(IImageHandler imageHandler, IWebHostEnvironment env)
+        public ImagesController(IImageHandler imageHandler)
         {
             _imageHandler = imageHandler;
         }
@@ -30,19 +29,19 @@ namespace OnlineRetailPortal.Web.Controllers
             ImageRequestValidator.ValidateImagePostRequest(Request);
 
             IFormFile file = Request.Form.Files[0];
-            var response = await _imageHandler.UploadImage(file.ToUploadImageServiceContract());
+            UploadImageResponse response = await _imageHandler.UploadImage(file.ToUploadImageServiceContract());
             return response.ToUser();
             
         }
 
-        /// <summary>
-        /// Image path should be sent in the URL in the form "api/controller/imageName.jpg "
-        /// </summary>
+
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(string id)
+        public IActionResult DeleteImage(string id)
         {
             _imageHandler.DeleteTempImage(id.ToDeleteImageContract());
+            return new StatusCodeResult(204);
+
         }
 
     }

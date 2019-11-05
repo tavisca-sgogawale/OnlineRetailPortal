@@ -50,8 +50,8 @@ namespace OnlineRetailPortal.Services.Services
             catch (Exception ex)
             {
                 Console.WriteLine("Invalid Delete request: {@ex} ", ex);
-
                 //Logger.logInformation("Invalid Delete request: {@ex} ", ex)
+                //throw new BaseException(StatusCodes.Status500InternalServerError, "Internal Server Error",null,500);
             }
 
         }

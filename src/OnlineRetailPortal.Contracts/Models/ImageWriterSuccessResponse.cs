@@ -7,8 +7,6 @@ namespace OnlineRetailPortal.Contracts.Models
 {
     public class ImageWriterResponse
     {
-        public int Code { get; set; }
-
         public string Response { get; set; }
     }
 }

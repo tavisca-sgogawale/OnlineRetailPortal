@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Services.Services
 {
-    public class ImageWriter : IImageWriter
+    public class ImageWriter
     {
         private IHostingEnvironment _env;
         private string _tempImagefolder;
@@ -44,11 +44,11 @@ namespace OnlineRetailPortal.Services.Services
             }
             catch (Exception ex)
             {
-                //throw new BaseException(StatusCodes.Status500InternalServerError, "Oops.! Somthing Went Wrong Try Again...!",null,500);
                 //Log(ex.message, ex.trace)
+                //throw new BaseException(StatusCodes.Status500InternalServerError, "Internal Server Error",null,500);
             }
 
-            return new ImageWriterResponse(){ Code= StatusCodes.Status200OK, Response = _tempImagefolder+ "/" + fileName};
+            return new ImageWriterResponse(){ Response = _tempImagefolder+ "/" + fileName};
         }
     }
 }

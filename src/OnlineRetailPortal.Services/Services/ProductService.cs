@@ -9,7 +9,7 @@ namespace OnlineRetailPortal.Services
     {
         public async Task<GetProductsServiceResponse> GetProductsAsync(GetProductsServiceRequest request)
         {
-            IProductStore productStore=null;
+            IProductStore productStore=null; // factory or logic to resolve the product store will be handled later 
             var response = await Core.Product.GetProductsAsync(request,productStore );
             //get list based on paging info 
             return await Task.FromResult(response.ToGetProductsContract());
@@ -17,8 +17,8 @@ namespace OnlineRetailPortal.Services
 
         public async Task<GetProductServiceResponse>  GetProductAsync(string productId)
         {
-            IProductStore productStore = null;
-           var response = await Core.Product.GetProductAsync(productId, productStore);
+            IProductStore productStore = null; // factory or logic to resolve the product store will be handled later 
+            var response = await Core.Product.GetProductAsync(productId, productStore);
             return response.ToGetProductContract();
         }
 

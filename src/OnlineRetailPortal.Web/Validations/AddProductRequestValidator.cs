@@ -14,6 +14,7 @@ namespace OnlineRetailPortal.Web.Validations
         public AddProductRequestValidator()
         {
             RuleFor(x => x.SellerId)
+            .Cascade(CascadeMode.StopOnFirstFailure)
             .NotNull()
             .WithErrorCode(ErrorCodes.NullField())
             .WithMessage(Error.NullField("Seller Id"))
@@ -22,6 +23,7 @@ namespace OnlineRetailPortal.Web.Validations
             .WithMessage(Error.MissingField("Seller Id"));
 
             RuleFor(x => x.Name)
+            .Cascade(CascadeMode.StopOnFirstFailure)
             .NotNull()
             .WithErrorCode(ErrorCodes.NullField())
             .WithMessage(Error.NullField("Title"))
@@ -39,6 +41,7 @@ namespace OnlineRetailPortal.Web.Validations
             //.WithMessage(Error.MissingField("Category"));
 
             RuleFor(x => x.Price.Value.Amount)
+            .Cascade(CascadeMode.StopOnFirstFailure)
             .NotEmpty()
             .WithErrorCode(ErrorCodes.MissingField())
             .WithMessage(Error.MissingField("Price"))
@@ -52,6 +55,7 @@ namespace OnlineRetailPortal.Web.Validations
             .WithMessage(Error.MissingField("IsNegotiable"));
 
             RuleFor(x => x.Description)
+            .Cascade(CascadeMode.StopOnFirstFailure)
             .NotNull()
             .WithErrorCode(ErrorCodes.MissingField())
             .WithMessage(Error.NullField("Description"))
@@ -71,6 +75,7 @@ namespace OnlineRetailPortal.Web.Validations
             () =>
             {
                 RuleFor(x => x.PickupAddress.Line1)
+                .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull()
                 .WithErrorCode(ErrorCodes.NullField())
                 .WithMessage(Error.NullField("Line1"))
@@ -82,6 +87,7 @@ namespace OnlineRetailPortal.Web.Validations
                 .WithMessage(Error.GreaterCharacter("Line1", "2"));
 
                 RuleFor(x => x.PickupAddress.City)
+                .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull()
                 .WithErrorCode(ErrorCodes.NullField())
                 .WithMessage(Error.NullField("City"))
@@ -90,6 +96,7 @@ namespace OnlineRetailPortal.Web.Validations
                 .WithMessage(Error.MissingField("City"));
 
                 RuleFor(x => x.PickupAddress.State)
+                .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull()
                 .WithErrorCode(ErrorCodes.NullField())
                 .WithMessage(Error.NullField("State"))
@@ -98,6 +105,7 @@ namespace OnlineRetailPortal.Web.Validations
                 .WithMessage(Error.MissingField("State"));
 
                 RuleFor(x => x.PickupAddress.Pincode)
+                .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty()
                 .WithErrorCode(ErrorCodes.MissingField())
                 .WithMessage(Error.MissingField("Pincode"));

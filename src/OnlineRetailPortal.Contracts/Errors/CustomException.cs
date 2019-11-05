@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Net;
-using OnlineRetailPortal.Contracts.Errors;
-using System;
 
-namespace OnlineRetailPortal.Contracts.Errors
+namespace OnlineRetailPortal.Contracts
 {
     public class CustomException : BaseException
     {
-        public static List<Tuple<int, string>> Info { get; set; }
-        public CustomException(int code) : base(code,CustomErrorCodes.getErrorMessage(code),Info)
+        public static List<ErrorInfo> Info { get; set; }
+        private static HttpStatusCode httpStatusCode;
+        public CustomException(int code) : base(code,CustomErrorCodes.getErrorMessage(code),Info, httpStatusCode)
         {
         }
     }

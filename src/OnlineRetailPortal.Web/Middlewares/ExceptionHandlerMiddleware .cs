@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using OnlineRetailPortal.Contracts.Errors;
+using OnlineRetailPortal.Contracts;
 using System.Collections.Generic;
 
 namespace OnlineRetailPortal.Web
@@ -32,33 +32,24 @@ namespace OnlineRetailPortal.Web
             var response = context.Response;
             var customException = exception as BaseException;
             var statusCode = (int)HttpStatusCode.InternalServerError;
-            var message = "Unexpected Error Occured";
-            List<Tuple<int, string>> info = null;
+            CustomErrorResponse customErrorResponse = new CustomErrorResponse()
+            {
+                Code = statusCode,
+                Message = "Unexpected Error Occured"
+            }; 
+
             if (customException != null)
             {
-                message = customException.Message;
-                statusCode = customException.Code;
-                info = customException.Info;
+                customErrorResponse.Code = customException.Code;
+                customErrorResponse.Message = customException.Message;
+                customErrorResponse.Info = customException.Info;
+                statusCode = (int)customException.HttpStatusCode;
             }
 
             response.ContentType = "application/json";
             response.StatusCode = (int)HttpStatusCode.BadRequest;
 
-            return response.WriteAsync(JsonConvert.SerializeObject(new CustomErrorResponse
-            {
-                Code = statusCode,
-                Message = message,
-                Info = info
-            }));
-
-        }
-
-        public static ExceptionErrorInfo GetErrorInfo(BaseException exception)
-        {
-            ExceptionErrorInfo error = new ExceptionErrorInfo(exception.Code, exception.Message, exception.HttpStatusCode);
-            error.info = exception.Info;
-            return error;
+            return response.WriteAsync(JsonConvert.SerializeObject(customErrorResponse, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
         }
     }
 }
-

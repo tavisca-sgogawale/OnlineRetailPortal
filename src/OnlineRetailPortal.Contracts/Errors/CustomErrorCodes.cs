@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Resources;
 
-namespace OnlineRetailPortal.Contracts.Errors
+namespace OnlineRetailPortal.Contracts
 {
     public static class CustomErrorCodes
     {

@@ -5,7 +5,6 @@ using System.Linq;
 using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Core;
 using System.Net;
-using OnlineRetailPortal.Contracts.Errors;
 using System.Collections.Generic;
 
 namespace OnlineRetailPortal.Web.Validations
@@ -15,7 +14,7 @@ namespace OnlineRetailPortal.Web.Validations
         
         public static void EnsureValid<AddProductRequest>(this AbstractValidator<AddProductRequest> validator, AddProductRequest request)
         {
-            List<Tuple<int, string>> info = new List<Tuple<int, string>>();
+            List<ErrorInfo> info = new List<ErrorInfo>();
             var validationResult = validator.Validate(request);
 
             if (request == null)
@@ -25,9 +24,9 @@ namespace OnlineRetailPortal.Web.Validations
             {
                 foreach (var error in validationResult.Errors)
                 {
-                    info.Add(Tuple.Create(int.Parse(error.ErrorCode), error.ErrorMessage));
+                    info.Add(new ErrorInfo { code = int.Parse(error.ErrorCode), message = error.ErrorMessage });
                 }
-                throw new BaseException(Convert.ToInt32(ErrorCodes.Invalid()), Error.Invalid(), info);
+                throw new BaseException(Convert.ToInt32(ErrorCodes.Invalid()), Error.Invalid(), info , HttpStatusCode.BadRequest);
             }
         }
     }

@@ -1,5 +1,4 @@
-//Image Upload Response Data
+//Image Upload Response Data with status code 200
 {
-	"code":"200",
 	"imageUrl":"image/3721jh3gyu2722j",
 }

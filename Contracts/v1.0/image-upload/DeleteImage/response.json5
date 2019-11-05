@@ -1,4 +1,1 @@
-//Delete Image Success Response 
-{
-	"code" : "204"
-}
+//Delete Image Success Response  with status code 204

@@ -22,8 +22,8 @@ namespace OnlineRetailPortal.Services
 
         public async Task<AddProductResponse> AddProductAsync(AddProductRequest addProductRequest)
         {
-            Core.Product response = await product.AddProductAsync(addProductRequest.ToCore());
-            return response.ToWeb();
+            Core.Product response = await product.AddProductAsync(addProductRequest.ToEntity());
+            return response.ToModel();
         }
     }
 }

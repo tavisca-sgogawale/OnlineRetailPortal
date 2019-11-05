@@ -26,19 +26,22 @@ namespace OnlineRetailPortal.Web.Validations
             .Cascade(CascadeMode.StopOnFirstFailure)
             .NotNull()
             .WithErrorCode(ErrorCode.NullField())
-            .WithMessage(Error.NullField("Title"))
+            .WithMessage(Error.NullField("Name"))
             .NotEmpty()
             .WithErrorCode(ErrorCode.MissingField())
-            .WithMessage(Error.MissingField("Title"))
+            .WithMessage(Error.MissingField("Name"))
             .Length(2, 20)
             .WithErrorCode(ErrorCode.GreaterCharacter())
             .WithMessage(Error.GreaterCharacter("Title", "2"));
 
-            //RuleFor(x => x.Category)
-            //.NotNull()
-            //.WithMessage(Error.NullField("Category"))
-            //.NotEmpty()
-            //.WithMessage(Error.MissingField("Category"));
+            RuleFor(x => x.Category)
+            .Cascade(CascadeMode.StopOnFirstFailure)
+            .NotNull()
+            .WithErrorCode(ErrorCode.NullField())
+            .WithMessage(Error.NullField("Category"))
+            .NotEmpty()
+            .WithErrorCode(ErrorCode.MissingField())
+            .WithMessage(Error.MissingField("Category"));
 
             RuleFor(x => x.Price.Money.Amount)
             .Cascade(CascadeMode.StopOnFirstFailure)
@@ -68,8 +71,8 @@ namespace OnlineRetailPortal.Web.Validations
 
             RuleFor(x => x.PurchasedDate)
             .LessThan(DateTime.Today)
-            .WithErrorCode(ErrorCode.MissingField())
-            .WithMessage("You cannot enter a Purchased date in the future.");
+            .WithErrorCode(ErrorCode.GreaterDate())
+            .WithMessage(Error.GreaterDate("PurchasedDate"));
 
             When(x => x.PickupAddress.Line1 != null &&
             x.PickupAddress.City != null && x.PickupAddress.Pincode > 0 && x.PickupAddress.State != null,

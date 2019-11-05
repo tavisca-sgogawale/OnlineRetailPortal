@@ -14,7 +14,7 @@ namespace OnlineRetailPortal.Core
                 Name = product.Name,
                 Description = product.Description,
                 HeroImage = new Contracts.Image { Url = product.HeroImage.Url},
-                Price = new Contracts.Price { Money = new Contracts.Money(product.Price.Value.Amount, product.Price.Value.Currency), IsNegotiable = product.Price.IsNegotiable},
+                Price = new Contracts.Price { Money = new Contracts.Money(product.Price.Money.Amount, product.Price.Money.Currency), IsNegotiable = product.Price.IsNegotiable},
                 Category = (Contracts.Category)product.Category,
                 Images = new Contracts.Product().Images = product.Images.Select(x => new Contracts.Image
                 {
@@ -42,7 +42,7 @@ namespace OnlineRetailPortal.Core
                 Name = addProductStoreResponse.Name,
                 Description = addProductStoreResponse.Description,
                 HeroImage = new Image { Url = addProductStoreResponse.HeroImage.Url },
-                Price = new Price { Value = new Value(addProductStoreResponse.Price.Money.Amount, addProductStoreResponse.Price.Money.Currency), IsNegotiable = addProductStoreResponse.Price.IsNegotiable },
+                Price = new Price { Money = new Money(addProductStoreResponse.Price.Money.Amount, addProductStoreResponse.Price.Money.Currency), IsNegotiable = addProductStoreResponse.Price.IsNegotiable },
                 Category = (Category)addProductStoreResponse.Category,
                 Status = (Status)addProductStoreResponse.Status,
                 PostDateTime = addProductStoreResponse.PostDateTime,

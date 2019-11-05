@@ -23,7 +23,7 @@ namespace OnlineRetailPortal.Web
             _productService = productService;
         }
         
-        [HttpPost("product")]
+        [HttpPost("product/add")]
         public async Task<AddProductResponse> AddProductAsync([FromBody] AddProductRequest request)
         {
             AddProductRequestValidator validator = new AddProductRequestValidator();

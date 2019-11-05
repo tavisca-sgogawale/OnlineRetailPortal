@@ -117,22 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Empty" xml:space="preserve">
+    <value />
+  </data>
   <data name="GreaterCharacter" xml:space="preserve">
-    <value>{0} should be greater than  {1} characters.</value>
+    <value>{0} should be at least  {1} characters.</value>
+  </data>
+  <data name="GreaterDate" xml:space="preserve">
+    <value>{0} should be less than Todays Date.</value>
   </data>
   <data name="GreaterValue" xml:space="preserve">
     <value>{0} should be greater than  {1}.</value>
   </data>
-  <data name="Invalid" xml:space="preserve">
-    <value>Following errors occured</value>
+  <data name="InvalidRequest" xml:space="preserve">
+    <value>Errors occured</value>
   </data>
   <data name="MissingField" xml:space="preserve">
     <value>{0} can not be blank.</value>
   </data>
-  <data name="notFound" xml:space="preserve">
-    <value>akdkjdsdfjkdf</value>
-  </data>
   <data name="NullField" xml:space="preserve">
     <value>{0} can not be null.</value>
+  </data>
+  <data name="NullRequest" xml:space="preserve">
+    <value>Request is null</value>
   </data>
 </root>

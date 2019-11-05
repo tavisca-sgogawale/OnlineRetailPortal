@@ -8,9 +8,9 @@ namespace OnlineRetailPortal.Services
 {
     public static class AddProductTranslator
     {
-        public static Product ToEntity(this Contracts.AddProductRequest addProductRequest)
+        public static Core.Product ToEntity(this Contracts.AddProductRequest addProductRequest)
         {
-            var product = new Product()
+            var product = new Core.Product()
             {
                 SellerId = addProductRequest.SellerId,
                 Name = addProductRequest.Name,
@@ -25,57 +25,57 @@ namespace OnlineRetailPortal.Services
             return product;
         }
 
-        public static Contracts.Image ToEntity(this Image image)
+        public static Core.Image ToEntity(this Image image)
         {
-            return new Contracts.Image()
+            return new Core.Image()
             {
                 Url = image.Url
             };
         }
 
-        public static Contracts.Price ToEntity(this Price price)
+        public static Core.Price ToEntity(this Price price)
         {
-            return new Contracts.Price()
+            return new Core.Price()
             {
-                Money = new Contracts.Money(
+                Money = new Core.Money(
                 price.Money.Amount,
                 price.Money.Currency),
                 IsNegotiable = price.IsNegotiable
             };
         }
 
-        public static Contracts.Category ToEntity(this Category category)
+        public static Core.Category ToEntity(this Category category)
         {
             switch (category)
             {
                 case Category.Bike:
-                    return Contracts.Category.Bike;
+                    return Core.Category.Bike;
                 case Category.Book:
-                    return Contracts.Category.Book;
+                    return Core.Category.Book;
                 case Category.Car:
-                    return Contracts.Category.Car;
+                    return Core.Category.Car;
                 case Category.Electronic:
-                    return Contracts.Category.Electronic;
+                    return Core.Category.Electronic;
                 case Category.Fashion:
-                    return Contracts.Category.Fashion;
+                    return Core.Category.Fashion;
                 case Category.Furniture:
-                    return Contracts.Category.Furniture;
+                    return Core.Category.Furniture;
                 case Category.Mobile:
-                    return Contracts.Category.Mobile;
+                    return Core.Category.Mobile;
                 case Category.Other:
-                    return Contracts.Category.Other;
+                    return Core.Category.Other;
                 case Category.Property:
-                    return Contracts.Category.Property;
+                    return Core.Category.Property;
                 default:
-                    return Contracts.Category.Other;
+                    return Core.Category.Other;
             }
         }
 
-        public static List<Contracts.Image> ToEntity(this List<Image> images)
+        public static List<Core.Image> ToEntity(this List<Image> images)
         {
             if (images == null)
                 return null;
-            return new Contracts.Product().Images = images.Select(x => new Contracts.Image
+            return new Core.Product().Images = images.Select(x => new Core.Image
             {
                 Url = x.Url
             }).ToList();
@@ -85,14 +85,14 @@ namespace OnlineRetailPortal.Services
         {
             if (purchasedDate == null)
                 return null;
-            return new Contracts.AddProductRequest().PurchasedDate = purchasedDate;
+            return new Core.Product().PurchasedDate = purchasedDate;
         }
 
-        public static Contracts.Address ToEntity(this Address pickupAddress)
+        public static Core.Address ToEntity(this Address pickupAddress)
         {
             if (pickupAddress == null)
                 return null;
-            return new Contracts.Product().PickupAddress = new Contracts.Address()
+            return new Core.Product().PickupAddress = new Core.Address()
             {
                 Line1 = pickupAddress.Line1,
                 Line2 = pickupAddress.Line2,

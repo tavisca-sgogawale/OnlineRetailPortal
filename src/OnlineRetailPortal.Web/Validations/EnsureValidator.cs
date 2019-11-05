@@ -18,15 +18,15 @@ namespace OnlineRetailPortal.Web.Validations
             var validationResult = validator.Validate(request);
 
             if (request == null)
-                throw new Exception(Error.MissingField("Product"));
-                    
+                throw new BaseException(Convert.ToInt32(ErrorCode.NullRequest()), Error.NullRequest(), null, HttpStatusCode.BadRequest);
+
             if (validationResult.IsValid == false)
             {
                 foreach (var error in validationResult.Errors)
                 {
                     info.Add(new ErrorInfo { Code = error.ErrorCode, Message = error.ErrorMessage });
                 }
-                throw new BaseException(Convert.ToInt32(ErrorCode.Invalid()), Error.Invalid(), info , HttpStatusCode.BadRequest);
+                throw new BaseException(Convert.ToInt32(ErrorCode.InvalidRequest()), Error.InvalidRequest(), info , HttpStatusCode.BadRequest);
             }
         }
     }

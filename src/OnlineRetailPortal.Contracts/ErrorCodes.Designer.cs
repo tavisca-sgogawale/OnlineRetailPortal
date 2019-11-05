@@ -61,11 +61,20 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 703.
+        ///   Looks up a localized string similar to 705.
         /// </summary>
         public static string GreaterCharacter {
             get {
                 return ResourceManager.GetString("GreaterCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 706.
+        /// </summary>
+        public static string GreaterDate {
+            get {
+                return ResourceManager.GetString("GreaterDate", resourceCulture);
             }
         }
         
@@ -79,16 +88,16 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 700.
+        ///   Looks up a localized string similar to 701.
         /// </summary>
-        public static string Invalid {
+        public static string InvalidRequest {
             get {
-                return ResourceManager.GetString("Invalid", resourceCulture);
+                return ResourceManager.GetString("InvalidRequest", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 702.
+        ///   Looks up a localized string similar to 703.
         /// </summary>
         public static string MissingField {
             get {
@@ -97,11 +106,20 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 701.
+        ///   Looks up a localized string similar to 702.
         /// </summary>
         public static string NullField {
             get {
                 return ResourceManager.GetString("NullField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 700.
+        /// </summary>
+        public static string NullRequest {
+            get {
+                return ResourceManager.GetString("NullRequest", resourceCulture);
             }
         }
     }

@@ -118,18 +118,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="GreaterCharacter" xml:space="preserve">
-    <value>703</value>
+    <value>705</value>
+  </data>
+  <data name="GreaterDate" xml:space="preserve">
+    <value>706</value>
   </data>
   <data name="GreaterValue" xml:space="preserve">
     <value>704</value>
   </data>
-  <data name="Invalid" xml:space="preserve">
-    <value>700</value>
+  <data name="InvalidRequest" xml:space="preserve">
+    <value>701</value>
   </data>
   <data name="MissingField" xml:space="preserve">
-    <value>702</value>
+    <value>703</value>
   </data>
   <data name="NullField" xml:space="preserve">
-    <value>701</value>
+    <value>702</value>
+  </data>
+  <data name="NullRequest" xml:space="preserve">
+    <value>700</value>
   </data>
 </root>

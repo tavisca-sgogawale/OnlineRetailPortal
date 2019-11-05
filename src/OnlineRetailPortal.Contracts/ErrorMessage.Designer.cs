@@ -61,11 +61,29 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} should be greater than  {1} characters..
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Empty {
+            get {
+                return ResourceManager.GetString("Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} should be at least  {1} characters..
         /// </summary>
         public static string GreaterCharacter {
             get {
                 return ResourceManager.GetString("GreaterCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} should be less than Todays Date..
+        /// </summary>
+        public static string GreaterDate {
+            get {
+                return ResourceManager.GetString("GreaterDate", resourceCulture);
             }
         }
         
@@ -79,11 +97,11 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Following errors occured.
+        ///   Looks up a localized string similar to Errors occured.
         /// </summary>
-        public static string Invalid {
+        public static string InvalidRequest {
             get {
-                return ResourceManager.GetString("Invalid", resourceCulture);
+                return ResourceManager.GetString("InvalidRequest", resourceCulture);
             }
         }
         
@@ -97,20 +115,20 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to akdkjdsdfjkdf.
-        /// </summary>
-        public static string notFound {
-            get {
-                return ResourceManager.GetString("notFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {0} can not be null..
         /// </summary>
         public static string NullField {
             get {
                 return ResourceManager.GetString("NullField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Request is null.
+        /// </summary>
+        public static string NullRequest {
+            get {
+                return ResourceManager.GetString("NullRequest", resourceCulture);
             }
         }
     }

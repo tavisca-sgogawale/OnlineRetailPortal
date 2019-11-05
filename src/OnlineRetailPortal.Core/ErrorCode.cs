@@ -10,9 +10,13 @@ namespace OnlineRetailPortal.Core
 {
     public class ErrorCode
     {
-        public static string Invalid()
+        public static string NullRequest()
         {
-            return string.Format(ErrorCodes.Invalid);
+            return string.Format(ErrorCodes.NullRequest);
+        }
+        public static string InvalidRequest()
+        {
+            return string.Format(ErrorCodes.InvalidRequest);
         }
 
         public static string NullField()
@@ -33,6 +37,11 @@ namespace OnlineRetailPortal.Core
         public static string GreaterValue()
         {
             return string.Format(ErrorCodes.GreaterValue);
+        }
+
+        public static string GreaterDate()
+        {
+            return string.Format(ErrorCodes.GreaterDate);
         }
     }
 }

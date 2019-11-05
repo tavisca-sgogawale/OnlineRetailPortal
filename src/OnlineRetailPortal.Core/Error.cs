@@ -8,9 +8,13 @@ namespace OnlineRetailPortal.Core
 {
     public class Error
     {
-        public static string Invalid()
+        public static string NullRequest()
         {
-            return string.Format(ErrorMessage.Invalid);
+            return string.Format(ErrorMessage.NullRequest);
+        }
+        public static string InvalidRequest()
+        {
+            return string.Format(ErrorMessage.InvalidRequest);
         }
 
         public static string NullField(string field)
@@ -32,6 +36,11 @@ namespace OnlineRetailPortal.Core
         public static string GreaterCharacter(string field, string value)
         {
             return string.Format(ErrorMessage.GreaterCharacter, field, value);
+        }
+
+        public static string GreaterDate(string field)
+        {
+            return string.Format(ErrorMessage.GreaterDate, field);
         }
     }
 }

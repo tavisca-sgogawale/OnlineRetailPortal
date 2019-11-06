@@ -31,6 +31,7 @@ namespace OnlineRetailPortal.Web.Models
             var tiff = new byte[] { 77, 77, 42 };                 // TIFF format for the NTFS systems
             var jpeg = new byte[] { 255, 216, 255, 224 };          // jpeg
             var jpegCanon = new byte[] { 255, 216, 255, 225 };         // jpeg canon
+            var jpeg4k = new byte[] { 255, 216, 255, 219 };         //jpeg4k
 
             if (bmp.SequenceEqual(bytes.Take(bmp.Length)))
                 return ImageFormat.bmp;
@@ -51,6 +52,9 @@ namespace OnlineRetailPortal.Web.Models
                 return ImageFormat.jpeg;
 
             if (jpegCanon.SequenceEqual(bytes.Take(jpegCanon.Length)))
+                return ImageFormat.jpeg;
+
+            if (jpeg4k.SequenceEqual(bytes.Take(jpeg4k.Length)))
                 return ImageFormat.jpeg;
 
             return ImageFormat.unknown;

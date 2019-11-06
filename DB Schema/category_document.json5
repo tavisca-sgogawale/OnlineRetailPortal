@@ -3,9 +3,9 @@ category document
 	id: String,
 	name: String,
 	tags:[
-		{type: String},
+		{name: String},
 		....
 	],
-	createdAt: Date,
-	UpdatedAt: Date
+	createdDate: Date,
+	updatedDate: Date
 }

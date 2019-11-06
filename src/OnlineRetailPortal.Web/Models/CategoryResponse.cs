@@ -9,7 +9,7 @@ namespace OnlineRetailPortal.Web
     public class CategoryResponse 
     {
         public List<Category> Categories { get; set; }
-        public int Status { get; set; }
+      
 
     }
 }

@@ -37,13 +37,14 @@ namespace OnlineRetailPortal.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseMiddleware<CustomExceptionMiddleware>();
             app.UseStaticFiles();
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
-
+           
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Services
 {
-    class ProductService : IProductService
+    public class ProductService : IProductService
     {
         public Task<GetProductResponse> GetProductAsync(string productId)
         {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Contracts.Contracts;
 using OnlineRetailPortal.Contracts.Models;
 using OnlineRetailPortal.Web.Models;
@@ -25,7 +26,11 @@ namespace OnlineRetailPortal.Web.Validations
             }
             catch (Exception ex)
             {
-                //throw new BaseException(StatusCodes.Status400BadRequest, "No file was recieved or was sent with an invalid form key",null,400);
+                if (ex.Message == "Request body too large.")
+                {
+                    throw new BaseException(StatusCodes.Status413PayloadTooLarge, "The sent file was too large..!\nLimit the Size to 24MB", null, System.Net.HttpStatusCode.BadRequest);
+                }
+                throw new BaseException(StatusCodes.Status400BadRequest, "No file was recieved or was sent with an invalid form key",null,System.Net.HttpStatusCode.BadRequest);
                 //Log(ex.message, ex.trace)
             }
 
@@ -35,13 +40,13 @@ namespace OnlineRetailPortal.Web.Validations
                 IFormFile file = request.Form.Files[0];
                 if (file == null || !CheckIfImageFile(file))
                 {
-                    //throw new BaseException(StatusCodes.Status415UnsupportedMediaType, "Invalid image file",null,400);
+                    throw new BaseException(StatusCodes.Status415UnsupportedMediaType, "Invalid image file",null, System.Net.HttpStatusCode.BadRequest);
 
                 }
             }
             else
             {
-                //throw new BaseException(StatusCodes.Status400BadRequest, "No file was recieved or was sent with an invalid form key",null,400);
+                throw new BaseException(StatusCodes.Status400BadRequest, "No file was recieved or was sent with an invalid form key",null, System.Net.HttpStatusCode.BadRequest);
             }
 
         }

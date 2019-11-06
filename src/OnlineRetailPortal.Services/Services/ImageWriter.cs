@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Contracts.Contracts;
 using OnlineRetailPortal.Contracts.Models;
 
@@ -45,7 +46,7 @@ namespace OnlineRetailPortal.Services.Services
             catch (Exception ex)
             {
                 //Log(ex.message, ex.trace)
-                //throw new BaseException(StatusCodes.Status500InternalServerError, "Internal Server Error",null,500);
+                throw new BaseException(StatusCodes.Status500InternalServerError, "Internal Server Error",null, System.Net.HttpStatusCode.InternalServerError);
             }
 
             return new ImageWriterResponse(){ Response = _tempImagefolder+ "/" + fileName};

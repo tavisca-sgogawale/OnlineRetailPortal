@@ -7,6 +7,7 @@ using System.IO;
 using System.Threading.Tasks;
 using OnlineRetailPortal.Services.Translators;
 using OnlineRetailPortal.Contracts.Models;
+using OnlineRetailPortal.Contracts;
 
 namespace OnlineRetailPortal.Services.Services
 {
@@ -51,7 +52,7 @@ namespace OnlineRetailPortal.Services.Services
             {
                 Console.WriteLine("Invalid Delete request: {@ex} ", ex);
                 //Logger.logInformation("Invalid Delete request: {@ex} ", ex)
-                //throw new BaseException(StatusCodes.Status500InternalServerError, "Internal Server Error",null,500);
+                throw new BaseException(StatusCodes.Status500InternalServerError, "Internal Server Error",null, System.Net.HttpStatusCode.InternalServerError);
             }
 
         }

@@ -1,0 +1,32 @@
+product document
+{
+	id: String,
+	sellerId: String,
+	categoryId: String,
+	name: String,
+	description: String,
+	purchasedDate: Date,
+	createdDate: Date,
+	updatedDate: Date,
+	expirationDate: Date,
+	price: {
+		currency: String,
+		amount: Double, 
+		isNegotiable: Boolean,
+		},
+	gallery: {
+		heroImageUrl: String,
+		imageUrls:[
+				{url: String},
+				....
+			]
+	},
+	pickupAddress: {
+			line1: String,
+			line2: String,
+			city: String,
+			state: String,
+			pincode: Integer
+		},
+	status: String
+}

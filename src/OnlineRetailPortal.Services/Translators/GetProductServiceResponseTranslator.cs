@@ -16,7 +16,7 @@ namespace OnlineRetailPortal.Services
                 {
                     Name = getProductResponse.Name,
                     Id = getProductResponse.Id,
-                    HeroImage = new Image() { Url = getProductResponse.HeroImage.Url },
+                    HeroImage =  getProductResponse.HeroImage.ToEntity(),
                     ExpirationDate = getProductResponse.ExpirationDate,
                     PostDateTime = getProductResponse.PostDateTime,
                     Description = getProductResponse.Description,
@@ -76,7 +76,8 @@ namespace OnlineRetailPortal.Services
                 case Core.Category.Other:
                     return Category.Other;
                 default:
-                    throw new NotSupportedException("This category is not available");
+                    throw new NotSupportedException($"This category is not supported:{category}");
+
             }
         }
         public static Status ToEntity(this Core.Status status)
@@ -90,7 +91,8 @@ namespace OnlineRetailPortal.Services
                 case Core.Status.Sold:
                     return Status.Sold;
                 default:
-                    throw new NotSupportedException("This status is not available");
+                    throw new NotSupportedException($"This status is not supported:{status}");
+
             }
         }
         public static Address ToEntity(this Core.Address pickupAddress)

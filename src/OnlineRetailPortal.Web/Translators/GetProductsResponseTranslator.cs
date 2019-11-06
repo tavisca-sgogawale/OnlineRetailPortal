@@ -11,22 +11,30 @@ namespace OnlineRetailPortal.Web
         {
             GetProductsResponse response = new GetProductsResponse()
             {
-                Products = getProductsServiceResponse.Products.Select(x => new Product()
-                {
-                    Name = x.Name,
-                    Id = x.Id,
-                    HeroImage = x.HeroImage.ToEntity(),
-                    PostDateTime = x.PostDateTime,
-                    Price = x.Price.ToEntity(),
-                }).ToList(),
-                PagingInfo = new PagingInfo()
-                {
-                    PageNumber = getProductsServiceResponse.PagingInfo.PageNumber,
-                    PageSize = getProductsServiceResponse.PagingInfo.PageSize,
-                    TotalPages = getProductsServiceResponse.PagingInfo.TotalPages
-                }
+                Products = getProductsServiceResponse.Products.ToEntity(),
+                PagingInfo = getProductsServiceResponse.PagingInfo.ToEntity()
             };
             return response;
+        }
+        public static PagingInfo ToEntity(this Contracts.PagingInfo pagingInfo)
+        {
+            return new PagingInfo()
+            {
+                PageNumber = pagingInfo.PageNumber,
+                PageSize = pagingInfo.PageSize,
+                TotalPages = pagingInfo.TotalPages
+            };
+        }
+        public static List<Product> ToEntity(this List<Contracts.Product> products)
+        {
+            return  products.Select(x => new Product()
+            {
+                Name = x.Name,
+                Id = x.Id,
+                HeroImage = x.HeroImage.ToEntity(),
+                PostDateTime = x.PostDateTime,
+                Price = x.Price.ToEntity(),
+            }).ToList();
         }
     }
     

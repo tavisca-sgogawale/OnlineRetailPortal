@@ -20,14 +20,7 @@ namespace OnlineRetailPortal.Core
                     PostDateTime = getProductResponse.Product.PostDateTime,
                     Description = getProductResponse.Product.Description,          
                     PurchasedDate = getProductResponse.Product.PurchasedDate,
-                    PickupAddress = new Address()
-                    {
-                        City = getProductResponse.Product.PickupAddress.City,
-                        State = getProductResponse.Product.PickupAddress.State,
-                        Line1 = getProductResponse.Product.PickupAddress.Line1,
-                        Line2 = getProductResponse.Product.PickupAddress.Line2,
-                        Pincode = getProductResponse.Product.PickupAddress.Pincode
-                    },
+                    PickupAddress = getProductResponse.Product.PickupAddress.ToEntity(),
                     Images = getProductResponse.Product.Images.ToEntity(),
                     Status = getProductResponse.Product.Status.ToEntity(),
                     Category = getProductResponse.Product.Category.ToEntity()
@@ -81,7 +74,7 @@ namespace OnlineRetailPortal.Core
                 case Contracts.Category.Other:
                     return Category.Other;
                 default:
-                    throw new NotSupportedException("This category is not available");
+                    throw new NotSupportedException($"This category is not supported:{category}");
             }
         }
         public static Status ToEntity(this Contracts.Status status)
@@ -95,7 +88,7 @@ namespace OnlineRetailPortal.Core
                 case Contracts.Status.Sold:
                     return Status.Sold;
                 default:
-                    throw new NotSupportedException("This status is not available");
+                    throw new NotSupportedException($"This status is not supported:{status}");
             }
         }
         public static Address ToEntity(this Contracts.Address pickupAddress)

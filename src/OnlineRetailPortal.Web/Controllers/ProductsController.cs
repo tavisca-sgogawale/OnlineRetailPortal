@@ -23,8 +23,8 @@ namespace OnlineRetailPortal.Web
         public async Task<GetProductsResponse> GetProductsAsync(int pageNo, int pageSize)
         {
             var request = GetProductsServiceRequestTranslator.ToServiceRequest(pageNo, pageSize);
-            GetProductsRequestValidator validationRules = new GetProductsRequestValidator();
-            validationRules.EnsureValid(request);
+            GetProductsRequestValidator validator = new GetProductsRequestValidator();
+            validator.EnsureValid(request);
             var response = await _productService.GetProductsAsync(request);
             return response.ToGetProductsContract();
         }
@@ -32,8 +32,8 @@ namespace OnlineRetailPortal.Web
         public async Task<GetProductResponse> GetProductAsync(string productId)
         {
             
-            GetProductRequestValidator validationRules = new GetProductRequestValidator();
-            validationRules.EnsureValid(productId);
+            GetProductRequestValidator validator = new GetProductRequestValidator();
+            validator.EnsureValid(productId);
            // validationRules.Validate(productId);
             var response = await _productService.GetProductAsync(productId);
             return response.ToEntity();

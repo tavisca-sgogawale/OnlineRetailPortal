@@ -74,8 +74,8 @@ namespace OnlineRetailPortal.Web
                     return Category.Electronic;
                 case Contracts.Category.Other: 
                     return Category.Other;
-                default : 
-                    throw new NotSupportedException("This category is not available");
+                default :
+                    throw new NotSupportedException($"This category is not supported:{category}");
             }
         }
         public static Status ToEntity(this Contracts.Status status)
@@ -88,8 +88,8 @@ namespace OnlineRetailPortal.Web
                     return Status.Disabled;
                 case Contracts.Status.Sold: 
                     return Status.Sold;
-                default: 
-                    throw new NotSupportedException("This status is not available");
+                default:
+                    throw new NotSupportedException($"This status is not supported:{status}");
             }
         }
         public static Address ToEntity(this Contracts.Address pickupAddress)

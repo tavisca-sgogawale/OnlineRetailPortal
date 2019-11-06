@@ -27,6 +27,11 @@ namespace OnlineRetailPortal.Core
         IProductStore productStore;
         private AddProductValidation validation;
 
+        public Product()
+        {
+
+        }
+
         public Product(string sellerId, string name, Price price)
         {
             this.SellerId = sellerId;

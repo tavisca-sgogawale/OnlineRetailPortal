@@ -1,4 +1,5 @@
 ﻿using OnlineRetailPortal.Contracts;
+using OnlineRetailPortal.Mock;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,19 +7,24 @@ using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Services
 {
-    class ProductService : IProductService
+    public class ProductService : IProductService
     {
-        public Task<GetProductResponse> GetProductAsync(string productId)
+        IProductStore productStore;
+        IProductStoreFactory storeFactory;
+
+        public ProductService()
         {
-            throw new NotImplementedException();
+            this.storeFactory = new ProductStoreFactory();
+            productStore = storeFactory.GetProductStore("Mock");
         }
 
         public async Task<AddProductResponse> AddProductAsync(AddProductRequest addProductRequest)
         {
-            //this code will be uncomminted with aditi code
-            //Core.Product response = await product.AddProductAsync(addProductRequest.ToEntity());
-            //return response.ToModel();
-            throw new NotImplementedException();
+            Core.Product product = new Core.Product(productStore,addProductRequest.SellerId,addProductRequest.Name,addProductRequest.Price.ToEntity());
+            product = addProductRequest.ToEntity(productStore);
+            Core.Product response = await product.AddProductAsync(product);
+            return response.ToModel();
         }
+
     }
 }

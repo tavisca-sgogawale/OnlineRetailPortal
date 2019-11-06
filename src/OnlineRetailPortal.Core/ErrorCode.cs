@@ -10,6 +10,10 @@ namespace OnlineRetailPortal.Core
 {
     public class ErrorCode
     {
+        public static string InvalidCurrency()
+        {
+            return string.Format(ErrorCodes.InvalidCurrency);
+        }
         public static string NullRequest()
         {
             return string.Format(ErrorCodes.NullRequest);

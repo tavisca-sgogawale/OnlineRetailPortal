@@ -17,7 +17,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OnlineRetailPortal.Contracts\OnlineRetailPortal.Contracts.csproj" />
-    <ProjectReference Include="..\OnlineRetailPortal.Core\OnlineRetailPortal.Core.csproj" />
+    <ProjectReference Include="..\OnlineRetailPortal.Mock\OnlineRetailPortal.Mock.csproj" />
+    <ProjectReference Include="..\OnlineRetailPortal.Services\OnlineRetailPortal.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

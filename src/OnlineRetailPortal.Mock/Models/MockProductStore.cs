@@ -39,9 +39,9 @@ namespace OnlineRetailPortal.Mock
 
         public async Task<AddProductStoreResponse> AddProductAsync(AddProductStoreRequest request)
         {
-            var product = request.ToModel();
-
             validation.EnsureValidResult(request);
+
+            var product = request.ToModel();
 
             product = await Task.Run(() => {
 

@@ -9,15 +9,12 @@ namespace OnlineRetailPortal.Services
 {
     public static class AddProductTranslator
     {
-        public static Core.Product ToEntity(this Contracts.AddProductRequest addProductRequest)
+        public static Core.Product ToEntity(this Contracts.AddProductRequest addProductRequest, IProductStore productStore)
         {
-            var product = new Core.Product()
+            var product = new Core.Product(productStore, addProductRequest.SellerId,addProductRequest.Name,addProductRequest.Price.ToEntity())
             {
-                SellerId = addProductRequest.SellerId,
-                Name = addProductRequest.Name,
                 Description = addProductRequest.Description,
                 HeroImage = addProductRequest.HeroImage.ToEntity(),
-                Price = addProductRequest.Price.ToEntity(),
                 Category = addProductRequest.Category.ToEntity(),
                 Images = addProductRequest.Images.ToEntity(),
                 PurchasedDate = addProductRequest.PurchasedDate,
@@ -103,10 +100,12 @@ namespace OnlineRetailPortal.Services
         {
             Contracts.AddProductResponse response = new Contracts.AddProductResponse()
             {
-                ProductId = product.ProductId,
+                ProductId = product.Id,
                 SellerId = product.SellerId,
+                Name = product.Name,
                 Description = product.Description,
                 HeroImage = product.HeroImage.ToModel(),
+                Price = product.Price.ToModel(),
                 Category = product.Category.ToModel(),
                 Status = product.Status.ToModel(),
                 PostDateTime = product.PostDateTime,
@@ -117,6 +116,17 @@ namespace OnlineRetailPortal.Services
             };
 
             return response;
+        }
+
+        public static Contracts.Price ToModel(this Core.Price price)
+        {
+            return new Contracts.Price()
+            {
+                Money = new Contracts.Money(
+                price.Money.Amount,
+                price.Money.Currency),
+                IsNegotiable = price.IsNegotiable
+            };
         }
 
         public static Contracts.Image ToModel(this Core.Image image)

@@ -13,6 +13,7 @@ namespace OnlineRetailPortal.Mock
             var product = new Product()
             {
                 SellerId = request.SellerId,
+                Id = request.Id,
                 Name = request.Name,
                 Description = request.Description,
                 HeroImage = request.HeroImage.ToModel(),

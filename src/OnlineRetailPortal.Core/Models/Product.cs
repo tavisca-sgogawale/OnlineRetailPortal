@@ -13,17 +13,14 @@ namespace OnlineRetailPortal.Core
         public string SellerId { get; set; }
         public string Name { get; set; }
         public Price Price { get; set; }
-        
         public Category Category { get; set; }
         public Image HeroImage { get; set; }
         public Address PickupAddress { get; set; }
         public List<Image> Images { get; set; }
-        public string UserId { get; set; }
         public DateTime PostDateTime { get; set; }
         public DateTime PurchasedDate { get; set; }
         public string Description { get; set; }
         public DateTime ExpirationDate { get; set; }
-
         public Status Status { get; set; }
 
         private static IProductStore _productStore;

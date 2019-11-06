@@ -8,7 +8,6 @@ namespace OnlineRetailPortal.Core
     {
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
-        public SortBy SortBy { get; set; }
         public int TotalPages { get; set; }
 
     }

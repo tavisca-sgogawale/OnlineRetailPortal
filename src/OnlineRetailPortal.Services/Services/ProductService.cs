@@ -7,18 +7,21 @@ namespace OnlineRetailPortal.Services
 {
    public class ProductService : IProductService
     {
+        private readonly IProductStore _productStore; // factory or logic to resolve the product store will be handled later 
+        //public ProductService(IProductStore productStore)
+        //{
+        //    _productStore = productStore;
+        //}
         public async Task<GetProductsServiceResponse> GetProductsAsync(GetProductsServiceRequest request)
         {
-            IProductStore productStore=null; // factory or logic to resolve the product store will be handled later 
-            var response = await Core.Product.GetProductsAsync(request,productStore );
+            var response = await Core.Product.GetProductsAsync(request,_productStore );
             //get list based on paging info 
             return await Task.FromResult(response.ToGetProductsContract());
         }
 
         public async Task<GetProductServiceResponse>  GetProductAsync(string productId)
         {
-            IProductStore productStore = null; // factory or logic to resolve the product store will be handled later 
-            var response = await Core.Product.GetProductAsync(productId, productStore);
+            var response = await Core.Product.GetProductAsync(productId, _productStore);
             return response.ToGetProductContract();
         }
 

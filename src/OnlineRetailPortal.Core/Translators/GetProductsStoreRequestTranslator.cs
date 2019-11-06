@@ -16,7 +16,6 @@ namespace OnlineRetailPortal.Core
                 {
                     PageNumber = request.PagingInfo.PageNumber,
                     PageSize = request.PagingInfo.PageSize,
-                    SortBy = request.PagingInfo.SortBy
                 }
             };
             return page;

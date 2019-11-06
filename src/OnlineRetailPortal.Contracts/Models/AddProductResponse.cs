@@ -7,7 +7,7 @@ namespace OnlineRetailPortal.Contracts
 {
     public class AddProductResponse
     {
-        public string ProductId { get; set; }
+        public string Id { get; set; }
         public string SellerId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

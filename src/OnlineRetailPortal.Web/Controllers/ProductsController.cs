@@ -19,36 +19,33 @@ namespace OnlineRetailPortal.Web
             _productService = productService;
         }
 
-        //[HttpGet("products/{productId}")]
-        //public async Task<GetProductResponse> GetProductAsync(string productId)
-        //{
-        //    var response = new Contracts.GetProductResponse() { Product = new Product{ Name = "Sheetal" } };
-        //   // response = await _productService.GetProductAsync(productId);
-        //    return response.ToDataContract();
-        //    //return new GetProductResponse();
-        //}
-
-        [HttpPost("products/add")]
-        public async Task<AddProductResponse> AddProductAsync([FromBody] AddProductRequest request)
-        {
-           var request = new Contracts.GetProductServiceRequest();
-           request.productId = productId;
-           GetProductRequestValidator validationRules = new GetProductRequestValidator();
-           validationRules.Validate(request);
-           var response = await _productService.GetProductAsync(request);
-           return response.ToGetProductContract();
-        }
         [HttpGet("products")]
-        public async Task<GetProductsResponse> GetProductsAsync(int pageNo,int pageSize ,PageSortBy sortBy)
+        public async Task<GetProductsResponse> GetProductsAsync(int pageNo, int pageSize)
         {
-            var request = new Contracts.GetProductsServiceRequest();
-            request.PageNo = pageNo;
-            request.PageSize = pageSize;
-            request.SortBy = (Contracts.PageSortBy)sortBy.GetHashCode();
+            var request = GetProductsServiceRequestTranslator.ToServiceRequest(pageNo, pageSize);
             GetProductsRequestValidator validationRules = new GetProductsRequestValidator();
-            validationRules.Validate(request);
+            validationRules.EnsureValid(request);
             var response = await _productService.GetProductsAsync(request);
             return response.ToGetProductsContract();
         }
+        [HttpGet("products/{productId}")]
+        public async Task<GetProductResponse> GetProductAsync(string productId)
+        {
+            
+            GetProductRequestValidator validationRules = new GetProductRequestValidator();
+            validationRules.EnsureValid(productId);
+           // validationRules.Validate(productId);
+            var response = await _productService.GetProductAsync(productId);
+            return response.ToEntity();
+        }
+        [HttpPost("products/add")]
+        public async Task<AddProductResponse> AddProductAsync([FromBody] AddProductRequest request)
+        {
+            AddProductRequestValidator validator = new AddProductRequestValidator();
+            validator.EnsureValid(request);
+            var response = await _productService.AddProductAsync(request.ToEntity());
+            return response.ToModel();
+        }
+        
     }
 }

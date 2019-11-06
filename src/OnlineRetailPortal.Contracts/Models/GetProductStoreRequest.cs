@@ -6,6 +6,6 @@ namespace OnlineRetailPortal.Contracts
 {
     public class GetProductStoreRequest
     {
-        public string ProductId { get; set; }
+        public string Id { get; set; }
     }
 }

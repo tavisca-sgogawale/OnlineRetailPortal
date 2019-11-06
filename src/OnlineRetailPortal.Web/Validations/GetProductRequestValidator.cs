@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation.Results;
 using FluentValidation;
-using OnlineRetailPortal.Contracts;
+using OnlineRetailPortal.Core;
 
 namespace OnlineRetailPortal.Web
 {
@@ -13,9 +13,16 @@ namespace OnlineRetailPortal.Web
         public  GetProductRequestValidator()
         {
             RuleFor(id => id)
+            .Cascade(CascadeMode.StopOnFirstFailure)
             .NotNull()
+            .WithErrorCode(ErrorCode.NullField())
+            .WithMessage(Error.NullField("Product Id"))
             .NotEmpty()
-            .WithMessage("The Product ID cannot be blank.");
+            .WithErrorCode(ErrorCode.MissingField())
+            .WithMessage(Error.MissingField("Product Id"))
+            .Length(2, 20)
+            .WithErrorCode(ErrorCode.GreaterCharacter())
+            .WithMessage(Error.GreaterCharacter("Product Id", "2"));
 
         }
     }

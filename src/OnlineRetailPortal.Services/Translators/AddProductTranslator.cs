@@ -11,13 +11,10 @@ namespace OnlineRetailPortal.Services
     {
         public static Core.Product ToEntity(this Contracts.AddProductRequest addProductRequest)
         {
-            var product = new Core.Product()
+            var product = new Core.Product(addProductRequest.Price.ToEntity(), addProductRequest.SellerId,addProductRequest.Name)
             {
-                SellerId = addProductRequest.SellerId,
-                Name = addProductRequest.Name,
                 Description = addProductRequest.Description,
                 HeroImage = addProductRequest.HeroImage.ToEntity(),
-                Price = addProductRequest.Price.ToEntity(),
                 Category = addProductRequest.Category.ToEntity(),
                 Images = addProductRequest.Images.ToEntity(),
                 PurchasedDate = addProductRequest.PurchasedDate,
@@ -76,7 +73,7 @@ namespace OnlineRetailPortal.Services
         {
             if (images == null)
                 return null;
-            return new Core.Product().Images = images.Select(x => new Core.Image
+            return images.Select(x => new Core.Image
             {
                 Url = x.Url
             }).ToList();
@@ -86,7 +83,7 @@ namespace OnlineRetailPortal.Services
         {
             if (pickupAddress == null)
                 return null;
-            return new Core.Product().PickupAddress = new Core.Address()
+            return  new Core.Address()
             {
                 Line1 = pickupAddress.Line1,
                 Line2 = pickupAddress.Line2,
@@ -99,11 +96,11 @@ namespace OnlineRetailPortal.Services
 
 
 
-        public static Contracts.AddProductResponse ToModel(this Core.Product product)
+        public static AddProductResponse ToModel(this Core.Product product)
         {
-            Contracts.AddProductResponse response = new Contracts.AddProductResponse()
+            AddProductResponse response = new AddProductResponse()
             {
-                ProductId = product.ProductId,
+                Id = product.Id,
                 SellerId = product.SellerId,
                 Description = product.Description,
                 HeroImage = product.HeroImage.ToModel(),

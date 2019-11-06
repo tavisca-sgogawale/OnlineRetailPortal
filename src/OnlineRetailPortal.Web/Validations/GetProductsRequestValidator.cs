@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using FluentValidation.Results;
+using OnlineRetailPortal.Core;
 
 namespace OnlineRetailPortal.Web
 {
@@ -13,14 +14,22 @@ namespace OnlineRetailPortal.Web
         public GetProductsRequestValidator()
         {
             RuleFor(x => x.PagingInfo.PageNumber)
+            .Cascade(CascadeMode.StopOnFirstFailure)
             .NotNull()
+            .WithErrorCode(ErrorCode.NullField())
+            .WithMessage(Error.NullField("Page Number"))
             .NotEmpty()
-            .WithMessage("The Page No cannot be blank.");
+            .WithErrorCode(ErrorCode.MissingField())
+            .WithMessage(Error.MissingField("Page Number"));
 
             RuleFor(x => x.PagingInfo.PageSize)
+            .Cascade(CascadeMode.StopOnFirstFailure)
             .NotNull()
+            .WithErrorCode(ErrorCode.NullField())
+            .WithMessage(Error.NullField("Page Size"))
             .NotEmpty()
-            .WithMessage("The Page size cannot be blank.");
+            .WithErrorCode(ErrorCode.MissingField())
+            .WithMessage(Error.MissingField("Page Size"));
 
         }
     }

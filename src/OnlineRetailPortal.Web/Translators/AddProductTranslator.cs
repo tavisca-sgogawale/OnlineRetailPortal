@@ -99,7 +99,7 @@ namespace OnlineRetailPortal.Web
         {
             AddProductResponse response = new AddProductResponse()
             {
-                ProductId = addProductResponse.ProductId,
+                Id = addProductResponse.Id,
                 SellerId = addProductResponse.SellerId,
                 Description = addProductResponse.Description,
                 HeroImage = addProductResponse.HeroImage.ToModel(),

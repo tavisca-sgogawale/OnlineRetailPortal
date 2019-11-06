@@ -96,7 +96,7 @@ namespace OnlineRetailPortal.Tests
         {
             Core.Product product = new Core.Product("1", "Bottle", new Core.Price { Money = new Core.Money(99.99, "INR"), IsNegotiable = false })
             {
-                ProductId = null,
+                Id = null,
                 Description = "Green Bottle",
                 HeroImage = new Core.Image { Url = "example.com" },
                 Category = Core.Category.Other,

@@ -15,7 +15,7 @@ namespace OnlineRetailPortal.Mock
                 Products = products.Select(x => new Contracts.Product()
                 {
                     Name = x.Name,
-                    ProductId = x.ProductId,
+                    Id = x.Id,
                     HeroImage = new Contracts.Image() { Url = x.HeroImage.Url },
                     ExpirationDate = x.ExpirationDate,
                     PostDateTime = x.PostDateTime,

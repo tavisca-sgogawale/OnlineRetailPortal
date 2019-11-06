@@ -100,7 +100,7 @@ namespace OnlineRetailPortal.Tests
             AddProductStoreResponse response = new AddProductStoreResponse
             {
                 SellerId = "1",
-                ProductId = null,
+                Id = null,
                 Name = "Bottle",
                 Description = "Green Bottle",
                 HeroImage = new Contracts.Image { Url = "example.com" },

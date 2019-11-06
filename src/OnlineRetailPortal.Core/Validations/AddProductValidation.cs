@@ -15,10 +15,10 @@ namespace OnlineRetailPortal.Core
             RuleFor(product => product.Name).NotEmpty().NotNull();
             RuleFor(product => product.Description).NotEmpty().NotNull();
             RuleFor(product => product.HeroImage.Url).NotEmpty().NotNull();
-            RuleFor(product => product.Price.Money.Amount).Must(IsPriceValid);
-            RuleFor(product => product.Price.Money.Currency).Must(IsCurrencyValid);
+            RuleFor(product => product.Price.Money.Amount).GreaterThan(0);
+            RuleFor(product => product.Price.Money.Currency).Equal("INR");
             RuleFor(product => product.Category.ToString()).NotEmpty().NotNull();
-            RuleFor(product => product.Images.Select(x=>x.Url).ToList()).Must(IsImagesValid);
+            RuleFor(product => product.Images.Count).GreaterThanOrEqualTo(0);
             When(k=>k.PickupAddress == null,
             () =>
             {
@@ -29,21 +29,6 @@ namespace OnlineRetailPortal.Core
             {
                 RuleFor(product => product.PickupAddress).SetValidator(new AddressValidator());
             });
-        }
-
-        public bool IsPriceValid(double price)
-        {
-            return (price > 0);
-        }
-
-        public bool IsImagesValid(List<string> urls)
-        {
-            return urls.Count >= 0;
-        }
-
-        public bool IsCurrencyValid(string currency)
-        {
-            return currency == "INR";
         }
     }
 

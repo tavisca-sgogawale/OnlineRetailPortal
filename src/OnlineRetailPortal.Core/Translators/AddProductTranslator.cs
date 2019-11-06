@@ -3,7 +3,6 @@ using OnlineRetailPortal.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
 namespace OnlineRetailPortal.Core
 {
     public static class AddProductTranslator
@@ -110,7 +109,7 @@ namespace OnlineRetailPortal.Core
         {
             var product = new Product(addProductStoreResponse.SellerId, addProductStoreResponse.Name, new Price { Money = new Money(addProductStoreResponse.Price.Money.Amount, addProductStoreResponse.Price.Money.Currency), IsNegotiable = addProductStoreResponse.Price.IsNegotiable })
             {
-                ProductId = addProductStoreResponse.ProductId,
+                Id = addProductStoreResponse.Id,
                 Description = addProductStoreResponse.Description,
                 HeroImage = addProductStoreResponse.HeroImage.ToModel(),
                 Category = addProductStoreResponse.Category.ToModel(),

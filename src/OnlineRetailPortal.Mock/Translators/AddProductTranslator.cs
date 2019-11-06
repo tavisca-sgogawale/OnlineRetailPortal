@@ -109,7 +109,7 @@ namespace OnlineRetailPortal.Mock
             var entityPostResponse = new AddProductStoreResponse()
             {
                 SellerId = product.SellerId,
-                ProductId = product.ProductId,
+                Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,
                 HeroImage = product.HeroImage.ToEntity(),

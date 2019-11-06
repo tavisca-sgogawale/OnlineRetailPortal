@@ -25,7 +25,7 @@ namespace OnlineRetailPortal.Core
         public Address PickupAddress { get; set; }
 
         IProductStore productStore;
-        AddProductValidation validation;
+        private AddProductValidation validation;
 
         public Product(string sellerId, string name, Price price)
         {

@@ -75,25 +75,7 @@ namespace OnlineRetailPortal.Tests
             Assert.Null(actualResponse.PickupAddress);
         }
 
-        [Fact]
-        public async void AddProduct_With_Null_Request_Should_Not_Be_Added_Successfully()
-        {
-            var request = GetRequest();
-
-            request.Name = null;
-
-            AddProductStoreResponse actualResponse = null;
-
-            MockProductStore mockProductStore = new MockProductStore();
-            try
-            {
-                actualResponse = await mockProductStore.AddProductAsync(null);
-        }
-            catch(Exception)
-            {
-                Assert.Null(actualResponse);
-            }
-        }
+        
 
         private AddProductStoreResponse GetExpectedResponse()
         {

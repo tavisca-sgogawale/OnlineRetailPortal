@@ -83,18 +83,9 @@ namespace OnlineRetailPortal.Mock
 
             response = await Task.Run(() =>
             {
-                if (request.SortBy == 0)
-                {
-                    List<Product> products = productList.Where(y => y.Status == Status.Active).OrderBy(x => x.PostDateTime).Take(50).ToList();
-                    response = products.ToGetProductsStoreResponse();
-                    return response;
-                }
-                else
-                {
-                    List<Product> products = productList.Where(y => y.Status == Status.Active).OrderBy(x => x.Price.Money.Amount).Take(50).ToList();
-                    response = products.ToGetProductsStoreResponse();
-                    return response;
-                }
+                List<Product> products = productList.Where(y => y.Status == Status.Active).OrderBy(x => x.PostDateTime).Take(50).ToList();
+                response = products.ToGetProductsStoreResponse();
+                return response;
             });
 
             return response;

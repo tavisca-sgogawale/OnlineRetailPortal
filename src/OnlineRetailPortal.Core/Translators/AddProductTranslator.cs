@@ -11,7 +11,6 @@ namespace OnlineRetailPortal.Core
         {
             var  addProductStoreRequest = new AddProductStoreRequest() {
                 SellerId = product.SellerId,
-                Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,
                 HeroImage = product.HeroImage.ToEntity(),

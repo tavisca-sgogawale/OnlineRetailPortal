@@ -24,10 +24,7 @@ namespace OnlineRetailPortal.Web
         {
             services.AddControllers();
             services.AddTransient<IImageHandler, ImageHandler>();
-            services.AddMvc(setup =>
-            {
 
-            }).AddFluentValidation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

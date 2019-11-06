@@ -11,11 +11,12 @@ namespace OnlineRetailPortal.Core
     {
         public static List<Category> ToCoreResponse(this Contracts.GetCategoriesStoreResponse getCategoriesStoreResponse)
         {
-            var response = getCategoriesStoreResponse.Categories.Select(x => new Category()
+            var categories = new List<Category>();
+            foreach(var x in getCategoriesStoreResponse.Categories)
             {
-                Id = x.Id,
-                Name = x.Name
-            }).ToList();
+                categories.Add(new Category(x.Name) { Id = x.Id });
+            }
+            var response = categories;
 
             return response;
         }

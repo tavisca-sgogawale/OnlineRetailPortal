@@ -8,4 +8,5 @@ namespace OnlineRetailPortal.Contracts
     {
         ICategoryStore GetCategoryStore();
     }
+    
 }

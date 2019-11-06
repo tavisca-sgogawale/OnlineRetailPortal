@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OnlineRetailPortal.Contracts;
-
+using OnlineRetailPortal.Core;
 using OnlineRetailPortal.Mock;
 using OnlineRetailPortal.Services;
 
@@ -31,8 +31,9 @@ namespace OnlineRetailPortal.Web
                     .AllowAnyMethod()
                     .AllowAnyHeader());
             });
-            services.AddTransient< ICategoryService, CategoryService> ();
+            services.AddTransient<ICategoryService, CategoryService> ();
             services.AddTransient<ICategoryStore, MockCategoryStore>();
+            services.AddTransient<ICategoryStoreFactory, CategoryObjectFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

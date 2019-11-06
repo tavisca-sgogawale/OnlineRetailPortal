@@ -7,8 +7,12 @@ namespace OnlineRetailPortal.Core
 {
     public class Category
     {
+        public Category(string name)
+        {
+            this.Name = name;
+        }
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Name { get; }
 
         //private ICategoryStore _categoryStore;
         
@@ -18,7 +22,7 @@ namespace OnlineRetailPortal.Core
         //  ICategoryStore _categoryStore = categoryObjectFactory.GetCategoryStore();
         //}
 
-        public async Task<List<Category>> GetCategoriesAsync(ICategoryStore categoryStore)
+        public async static Task<List<Category>> GetCategoriesAsync(ICategoryStore categoryStore)
         {
             var response = await categoryStore.GetCategoriesAsync();
             var CoreCategoriesResponse = response.ToCoreResponse();

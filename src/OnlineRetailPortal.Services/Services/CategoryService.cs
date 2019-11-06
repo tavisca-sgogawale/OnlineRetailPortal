@@ -7,22 +7,15 @@ namespace OnlineRetailPortal.Services
     public class CategoryService : ICategoryService
     {
         private ICategoryStore _categoryStore;
-        public CategoryService(ICategoryStore categoryStore)//CategoryObjectFactory objectFactory)
+        public CategoryService(ICategoryStoreFactory CategoryObjectFactory)// ICategoryStore categoryStore)
         {
-
-              //ICategoryStore categoryStore = objectFactory.GetCategoryStore();
+            ICategoryStore categoryStore = CategoryObjectFactory.GetCategoryStore();
             _categoryStore = categoryStore;
-
-
         }
+
         public async Task<GetCategoriesServiceResponse> GetCategoriesAsync()
         {
-            var category = new Core.Category();
-
-
-
-            var responce = await category.GetCategoriesAsync(_categoryStore);
-
+            var responce = await Core.Category.GetCategoriesAsync(_categoryStore);
             return responce.ToCategoriesResponse();
         }
     }

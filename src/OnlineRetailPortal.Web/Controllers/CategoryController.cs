@@ -19,21 +19,20 @@ namespace OnlineRetailPortal.Web
         [HttpGet("category")]
         public async Task<CategoryResponse> GetCategories()
         {
-            GetCategoriesServiceResponse serviceResponse;
-            CategoryResponse response=null;
 
             try {
 
-                serviceResponse = await _categoryService.GetCategoriesAsync();
-                 response = serviceResponse.ToCategoriesContract();
+              var  serviceResponse = await _categoryService.GetCategoriesAsync();
+                 return serviceResponse.ToCategoriesContract();
             }
-            catch(Exception exception)
+            catch(Exception )
             {
                 //Log(exception.Message, exception.trace);
-                //throw new BaseException(500,"Internal Server Error", null,404);
+               // throw new BaseException(500,"Internal Server Error", null,404);
+                throw new Exception();
    
             }
-            return response;
+           
 
         }
     }

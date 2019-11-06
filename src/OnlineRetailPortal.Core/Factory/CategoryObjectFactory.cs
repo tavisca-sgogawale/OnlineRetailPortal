@@ -6,6 +6,7 @@ using System.Text;
 
 namespace OnlineRetailPortal.Core
 {
+   
     public class CategoryObjectFactory:ICategoryStoreFactory 
     {
         public ICategoryStore GetCategoryStore()
@@ -17,4 +18,5 @@ namespace OnlineRetailPortal.Core
 
         }
     }
+    
 }

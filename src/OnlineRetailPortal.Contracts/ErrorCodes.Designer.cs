@@ -88,6 +88,15 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 707.
+        /// </summary>
+        public static string InvalidCurrency {
+            get {
+                return ResourceManager.GetString("InvalidCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 701.
         /// </summary>
         public static string InvalidRequest {

@@ -27,6 +27,8 @@ namespace OnlineRetailPortal.Web
 
         public static Contracts.Image ToEntity(this Image image)
         {
+            if (image == null)
+                return null;
             return new Contracts.Image()
             {
                 Url = image.Url
@@ -35,6 +37,8 @@ namespace OnlineRetailPortal.Web
 
         public static Contracts.Price ToEntity(this Price price)
         {
+            if (price == null)
+                return null;
             return new Contracts.Price()
             {
                 Money = new Contracts.Money(
@@ -44,31 +48,30 @@ namespace OnlineRetailPortal.Web
             };
         }
 
-        public static Contracts.Category ToEntity(this Category category)
+        public static Contracts.Category ToEntity(this string category)
         {
             switch (category)
             {
-                case Category.Bike:
+                case "Bike":
                     return Contracts.Category.Bike;
-                case Category.Book:
+                case "Book":
                     return Contracts.Category.Book;
-                case Category.Car:
+                case "Car":
                     return Contracts.Category.Car;
-                case Category.Electronic:
+                case "Electronic":
                     return Contracts.Category.Electronic;
-                case Category.Fashion:
+                case "Fashion":
                     return Contracts.Category.Fashion;
-                case Category.Furniture:
+                case "Furniture":
                     return Contracts.Category.Furniture;
-                case Category.Mobile:
+                case "Mobile":
                     return Contracts.Category.Mobile;
-                case Category.Other:
+                case "Other":
                     return Contracts.Category.Other;
-                case Category.Property:
+                case "Property":
                     return Contracts.Category.Property;
-                default:
-                    return Contracts.Category.Other;
             }
+            throw new NotSupportedException(category + " is not supported");
         }
 
         public static List<Contracts.Image> ToEntity(this List<Image> images)
@@ -99,10 +102,12 @@ namespace OnlineRetailPortal.Web
         {
             AddProductResponse response = new AddProductResponse()
             {
-                ProductId = addProductResponse.ProductId,
+                Id = addProductResponse.Id,
                 SellerId = addProductResponse.SellerId,
+                Name = addProductResponse.Name,
                 Description = addProductResponse.Description,
                 HeroImage = addProductResponse.HeroImage.ToModel(),
+                Price = addProductResponse.Price.ToModel(),
                 Category = addProductResponse.Category.ToModel(),
                 Status = addProductResponse.Status.ToModel(),
                 PostDateTime = addProductResponse.PostDateTime,
@@ -115,54 +120,67 @@ namespace OnlineRetailPortal.Web
             return response;
         }
 
+        public static Price ToModel(this Contracts.Price price)
+        {
+            if (price == null)
+                return null;
+            return new Price()
+            {
+                Money = new Money() { 
+                Amount = price.Money.Amount,
+                Currency = price.Money.Currency },
+                IsNegotiable = price.IsNegotiable
+            };
+        }
+
         public static Image ToModel(this Contracts.Image image)
         {
+            if (image == null)
+                return null;
             return new Image()
             {
                 Url = image.Url
             };
         }
 
-        public static Category ToModel(this Contracts.Category category)
+        public static string ToModel(this Contracts.Category category)
         {
             switch (category)
             {
                 case Contracts.Category.Bike:
-                    return Category.Bike;
+                    return "Bike";
                 case Contracts.Category.Book:
-                    return Category.Book;
+                    return "Book";
                 case Contracts.Category.Car:
-                    return Category.Car;
+                    return "Car";
                 case Contracts.Category.Electronic:
-                    return Category.Electronic;
+                    return "Electronic";
                 case Contracts.Category.Fashion:
-                    return Category.Fashion;
+                    return "Fashion";
                 case Contracts.Category.Furniture:
-                    return Category.Furniture;
+                    return "Furniture";
                 case Contracts.Category.Mobile:
-                    return Category.Mobile;
+                    return "Mobile";
                 case Contracts.Category.Other:
-                    return Category.Other;
+                    return "Other";
                 case Contracts.Category.Property:
-                    return Category.Property;
-                default:
-                    return Category.Other;
+                    return "Property";
             }
+            throw new NotSupportedException(category + " is not supported");
         }
 
-        public static Status ToModel(this Contracts.Status status)
+        public static string ToModel(this Contracts.Status status)
         {
             switch (status)
             {
                 case Contracts.Status.Active:
-                    return Status.Active;
+                    return "Active";
                 case Contracts.Status.Disabled:
-                    return Status.Disabled;
+                    return "Disabled";
                 case Contracts.Status.Sold:
-                    return Status.Sold;
-                default:
-                    return Status.Active;
+                    return "Sold";
             }
+            throw new NotSupportedException(status + " is not supported");
         }
 
         public static List<Image> ToModel(this List<Contracts.Image> images)

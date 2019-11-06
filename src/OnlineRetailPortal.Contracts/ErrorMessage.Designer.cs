@@ -61,15 +61,6 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string Empty {
-            get {
-                return ResourceManager.GetString("Empty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {0} should be at least  {1} characters..
         /// </summary>
         public static string GreaterCharacter {
@@ -93,6 +84,15 @@ namespace OnlineRetailPortal.Contracts {
         public static string GreaterValue {
             get {
                 return ResourceManager.GetString("GreaterValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency should be in {0}.
+        /// </summary>
+        public static string InvalidCurrency {
+            get {
+                return ResourceManager.GetString("InvalidCurrency", resourceCulture);
             }
         }
         

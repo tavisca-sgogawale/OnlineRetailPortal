@@ -1,12 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\OnlineRetailPortal.Contracts\OnlineRetailPortal.Contracts.csproj" />
     <ProjectReference Include="..\OnlineRetailPortal.Core\OnlineRetailPortal.Core.csproj" />
+    <ProjectReference Include="..\OnlineRetailPortal.Mock\OnlineRetailPortal.Mock.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="Translators\" />
   </ItemGroup>
 
 </Project>

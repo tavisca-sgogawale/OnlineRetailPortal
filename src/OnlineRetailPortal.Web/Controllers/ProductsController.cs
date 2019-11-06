@@ -14,7 +14,7 @@ namespace OnlineRetailPortal.Web
     {
         private readonly IProductService _productService;
 
-        public ProductsController(IProductService productService = null)
+        public ProductsController(IProductService productService)
         {
             _productService = productService;
         }

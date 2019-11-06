@@ -17,7 +17,7 @@ namespace OnlineRetailPortal.Core
                 case Contracts.Status.Sold:
                     return Status.Sold;
             }
-            throw new NotSupportedException();
+            throw new NotSupportedException(status + " is not supported");
         }
     }
 }

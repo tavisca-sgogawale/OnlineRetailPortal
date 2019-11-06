@@ -29,7 +29,7 @@ namespace OnlineRetailPortal.Core
                 case Category.Property:
                     return Contracts.Category.Property;
             }
-            throw new NotSupportedException();
+            throw new NotSupportedException(category + " is not supported");
         }
 
         public static Category ToModel(this Contracts.Category category)
@@ -55,7 +55,7 @@ namespace OnlineRetailPortal.Core
                 case Contracts.Category.Property:
                     return Category.Property;
             }
-            throw new NotSupportedException();
+            throw new NotSupportedException(category + " is not supported");
         }
     }
 }

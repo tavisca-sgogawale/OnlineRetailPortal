@@ -69,7 +69,7 @@ namespace OnlineRetailPortal.Services
                 case Contracts.Category.Property:
                     return Core.Category.Property;
             }
-            throw new NotSupportedException();
+            throw new NotSupportedException(category + " is not supported");
         }
 
         public static List<Core.Image> ToEntity(this List<Contracts.Image> images)
@@ -167,7 +167,7 @@ namespace OnlineRetailPortal.Services
                 case Core.Category.Property:
                     return Contracts.Category.Property;
             }
-            throw new NotSupportedException();
+            throw new NotSupportedException(category + " is not supported");
         }
 
         public static Contracts.Status ToModel(this Core.Status status)
@@ -181,7 +181,7 @@ namespace OnlineRetailPortal.Services
                 case Core.Status.Sold:
                     return Contracts.Status.Sold;
             }
-            throw new NotSupportedException();
+            throw new NotSupportedException(status + " is not supported");
         }
 
         public static List<Contracts.Image> ToModel(this List<Core.Image> images)

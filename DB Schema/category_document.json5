@@ -1,0 +1,11 @@
+category document
+{
+	id: String,
+	name: String,
+	tags:[
+		{type: String},
+		....
+	],
+	createdAt: Date,
+	UpdatedAt: Date
+}

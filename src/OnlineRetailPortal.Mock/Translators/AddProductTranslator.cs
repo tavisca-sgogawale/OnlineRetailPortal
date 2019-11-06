@@ -15,12 +15,12 @@ namespace OnlineRetailPortal.Mock
                 SellerId = request.SellerId,
                 Name = request.Name,
                 Description = request.Description,
-                HeroImage = request.HeroImage.ToModel(),
-                Price = request.Price.ToModel(),
-                Category = request.Category.ToModel(),
-                Images = request.Images.ToModel(),
+                HeroImage = request.HeroImage,
+                Price = request.Price,
+                Category = request.Category,
+                Images = request.Images,
                 PurchasedDate = request.PurchasedDate,
-                PickupAddress = request.PickupAddress.ToModel()
+                PickupAddress = request.PickupAddress
             };
 
             return product;
@@ -34,15 +34,15 @@ namespace OnlineRetailPortal.Mock
                 Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,
-                HeroImage = product.HeroImage.ToEntity(),
-                Price = product.Price.ToEntity(),
-                Category = product.Category.ToEntity(),
-                Status = product.Status.ToEntity(),
+                HeroImage = product.HeroImage,
+                Price = product.Price,
+                Category = product.Category,
+                Status = product.Status,
                 PostDateTime = product.PostDateTime,
                 ExpirationDate = product.ExpirationDate,
-                Images = product.Images.ToEntity(),
+                Images = product.Images,
                 PurchasedDate = product.PurchasedDate,
-                PickupAddress = product.PickupAddress.ToEntity()
+                PickupAddress = product.PickupAddress
             };
 
             return entityPostResponse;

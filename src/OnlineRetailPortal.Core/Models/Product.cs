@@ -26,11 +26,6 @@ namespace OnlineRetailPortal.Core
 
         IProductStore productStore;
 
-        public Product()
-        {
-
-        }
-
         public Product(string sellerId, string name, Price price)
         {
             this.SellerId = sellerId;
@@ -39,19 +34,9 @@ namespace OnlineRetailPortal.Core
 
         }
 
-        public Product(IProductStore productStore, string sellerId, string name, Price price)
-        {
-            this.SellerId = sellerId;
-            this.Name = name;
-            this.Price = price;
-
-            this.productStore = productStore;
-        }
-
-
-        public async Task<Product> AddProductAsync(Product product)
+        public async Task<Product> SaveAsync(IProductStore productStore)
         {           
-            var entityPostRequest = product.ToEntity();
+            var entityPostRequest = this.ToEntity();
             
             var entityPostResponse = await productStore.AddProductAsync(entityPostRequest);
             

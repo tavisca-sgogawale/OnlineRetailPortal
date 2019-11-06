@@ -9,9 +9,9 @@ namespace OnlineRetailPortal.Services
 {
     public static class AddProductTranslator
     {
-        public static Core.Product ToEntity(this Contracts.AddProductRequest addProductRequest, IProductStore productStore)
+        public static Core.Product ToEntity(this Contracts.AddProductRequest addProductRequest)
         {
-            var product = new Core.Product(productStore, addProductRequest.SellerId,addProductRequest.Name,addProductRequest.Price.ToEntity())
+            var product = new Core.Product(addProductRequest.SellerId,addProductRequest.Name,addProductRequest.Price.ToEntity())
             {
                 Description = addProductRequest.Description,
                 HeroImage = addProductRequest.HeroImage.ToEntity(),
@@ -73,7 +73,7 @@ namespace OnlineRetailPortal.Services
         {
             if (images == null)
                 return null;
-            return new Core.Product().Images = images.Select(x => new Core.Image
+            return images.Select(x => new Core.Image
             {
                 Url = x.Url
             }).ToList();
@@ -83,7 +83,7 @@ namespace OnlineRetailPortal.Services
         {
             if (pickupAddress == null)
                 return null;
-            return new Core.Product().PickupAddress = new Core.Address()
+            return new Core.Address()
             {
                 Line1 = pickupAddress.Line1,
                 Line2 = pickupAddress.Line2,

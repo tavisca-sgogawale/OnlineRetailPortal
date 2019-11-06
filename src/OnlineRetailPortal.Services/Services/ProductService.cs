@@ -9,20 +9,21 @@ namespace OnlineRetailPortal.Services
 {
     public class ProductService : IProductService
     {
-        IProductStore productStore;
-        IProductStoreFactory storeFactory;
+        private readonly IProductStoreFactory _productStoreFactory;
 
-        public ProductService()
+        public ProductService(IProductStoreFactory productStoreFactory)
         {
-            this.storeFactory = new ProductStoreFactory();
-            productStore = storeFactory.GetProductStore("Mock");
+            this._productStoreFactory = productStoreFactory;
         }
 
         public async Task<AddProductResponse> AddProductAsync(AddProductRequest addProductRequest)
         {
-            Core.Product product = new Core.Product(productStore,addProductRequest.SellerId,addProductRequest.Name,addProductRequest.Price.ToEntity());
-            product = addProductRequest.ToEntity(productStore);
-            Core.Product response = await product.AddProductAsync(product);
+            var store =_productStoreFactory.GetProductStore("Mock");
+
+            Core.Product product = addProductRequest.ToEntity();
+
+            Core.Product response = await product.SaveAsync(store);
+
             return response.ToModel();
         }
 

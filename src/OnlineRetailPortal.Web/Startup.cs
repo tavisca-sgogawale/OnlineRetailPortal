@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Mock;
+using OnlineRetailPortal.Services;
 
 namespace OnlineRetailPortal.Web
 {
@@ -30,7 +31,7 @@ namespace OnlineRetailPortal.Web
 
             services.AddControllers();
             services.AddTransient<IProductStoreFactory, ProductStoreFactory>();
-            services.AddSingleton<IProductService>(new Services.ProductService());
+            services.AddSingleton<IProductService, ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

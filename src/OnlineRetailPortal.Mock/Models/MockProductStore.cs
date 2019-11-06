@@ -30,30 +30,24 @@ namespace OnlineRetailPortal.Mock
                 PostDateTime =  new DateTime(2019,12,1),ExpirationDate = new DateTime(2019,12,1).AddDays(30), PurchasedDate = DateTime.Now, Status = Status.Active }
         };
 
-        AddProductValidation validation;
-
         public MockProductStore()
         {
-            validation = new AddProductValidation();
         }
 
         public async Task<AddProductStoreResponse> AddProductAsync(AddProductStoreRequest request)
         {
-            validation.EnsureValidResult(request);
 
             var product = request.ToModel();
 
-            product = await Task.Run(() => {
 
-                var guid = Guid.NewGuid();
-                product.Id = guid.ToString();
-                product.Status = Status.Active;
-                product.PostDateTime = DateTime.Now;
-                product.ExpirationDate = DateTime.Now.AddDays(30);
-                productList.Add(product);           
+            var guid = Guid.NewGuid();
+            product.Id = guid.ToString();
+            product.Status = Status.Active;
+            product.PostDateTime = DateTime.Now;
+            product.ExpirationDate = DateTime.Now.AddDays(30);
+            productList.Add(product);           
 
-                return productList.Last();
-            });
+             product = productList.Last();
 
             var entityPostResponse = product.ToEntity();
 

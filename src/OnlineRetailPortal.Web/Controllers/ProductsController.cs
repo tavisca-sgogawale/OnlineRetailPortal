@@ -16,7 +16,7 @@ namespace OnlineRetailPortal.Web
 
         public ProductsController(IProductService productService=null)
         {
-            this._productService = productService;
+            _productService = productService;
         }
         [HttpGet("products/{productId}")]
         public async Task<GetProductResponse> GetProductAsync(string productId)

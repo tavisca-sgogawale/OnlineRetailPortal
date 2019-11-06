@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-namespace OnlineRetailPortal.Core.Models
+namespace OnlineRetailPortal.Core.Model
 {
     public class Product
     {

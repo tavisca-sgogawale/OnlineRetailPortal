@@ -1,6 +1,9 @@
-﻿namespace OnlineRetailPortal.Core.Models
+﻿namespace OnlineRetailPortal.Core
 {
-    public class Status
+    public enum Status
     {
+        Active,
+        Disabled,
+        Sold
     }
 }

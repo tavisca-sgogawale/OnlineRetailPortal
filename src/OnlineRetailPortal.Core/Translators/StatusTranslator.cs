@@ -16,9 +16,8 @@ namespace OnlineRetailPortal.Core
                     return Status.Disabled;
                 case Contracts.Status.Sold:
                     return Status.Sold;
-                default:
-                    return Status.Active;
             }
+            throw new NotSupportedException();
         }
     }
 }

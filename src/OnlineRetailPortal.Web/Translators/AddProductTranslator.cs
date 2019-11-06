@@ -27,6 +27,8 @@ namespace OnlineRetailPortal.Web
 
         public static Contracts.Image ToEntity(this Image image)
         {
+            if (image == null)
+                return null;
             return new Contracts.Image()
             {
                 Url = image.Url
@@ -35,6 +37,8 @@ namespace OnlineRetailPortal.Web
 
         public static Contracts.Price ToEntity(this Price price)
         {
+            if (price == null)
+                return null;
             return new Contracts.Price()
             {
                 Money = new Contracts.Money(
@@ -66,9 +70,8 @@ namespace OnlineRetailPortal.Web
                     return Contracts.Category.Other;
                 case "Property":
                     return Contracts.Category.Property;
-                default:
-                    return Contracts.Category.Other;
             }
+            throw new NotSupportedException();
         }
 
         public static List<Contracts.Image> ToEntity(this List<Image> images)
@@ -99,7 +102,7 @@ namespace OnlineRetailPortal.Web
         {
             AddProductResponse response = new AddProductResponse()
             {
-                ProductId = addProductResponse.ProductId,
+                Id = addProductResponse.Id,
                 SellerId = addProductResponse.SellerId,
                 Name = addProductResponse.Name,
                 Description = addProductResponse.Description,
@@ -119,6 +122,8 @@ namespace OnlineRetailPortal.Web
 
         public static Price ToModel(this Contracts.Price price)
         {
+            if (price == null)
+                return null;
             return new Price()
             {
                 Money = new Money() { 
@@ -130,6 +135,8 @@ namespace OnlineRetailPortal.Web
 
         public static Image ToModel(this Contracts.Image image)
         {
+            if (image == null)
+                return null;
             return new Image()
             {
                 Url = image.Url
@@ -158,9 +165,8 @@ namespace OnlineRetailPortal.Web
                     return "Other";
                 case Contracts.Category.Property:
                     return "Property";
-                default:
-                    return "Other";
             }
+            throw new NotSupportedException();
         }
 
         public static string ToModel(this Contracts.Status status)
@@ -173,9 +179,8 @@ namespace OnlineRetailPortal.Web
                     return "Disabled";
                 case Contracts.Status.Sold:
                     return "Sold";
-                default:
-                    return "Active";
             }
+            throw new NotSupportedException();
         }
 
         public static List<Image> ToModel(this List<Contracts.Image> images)

@@ -28,9 +28,8 @@ namespace OnlineRetailPortal.Core
                     return Contracts.Category.Other;
                 case Category.Property:
                     return Contracts.Category.Property;
-                default:
-                    return Contracts.Category.Other;
             }
+            throw new NotSupportedException();
         }
 
         public static Category ToModel(this Contracts.Category category)
@@ -55,9 +54,8 @@ namespace OnlineRetailPortal.Core
                     return Category.Other;
                 case Contracts.Category.Property:
                     return Category.Property;
-                default:
-                    return Category.Other;
             }
+            throw new NotSupportedException();
         }
     }
 }

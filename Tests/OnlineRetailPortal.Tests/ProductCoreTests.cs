@@ -17,7 +17,9 @@ namespace OnlineRetailPortal.Tests
 
             var expectedResponse = GetExpectedResponse();
 
-            var actualResponse = await requestProduct.AddProductAsync(requestProduct);
+            IProductStore productStore = new MockProductStore();
+
+            var actualResponse = await requestProduct.SaveAsync(productStore);
 
             Assert.Equal(expectedResponse.SellerId, actualResponse.SellerId);
             Assert.Equal(expectedResponse.Name, actualResponse.Name);
@@ -54,7 +56,9 @@ namespace OnlineRetailPortal.Tests
             expectedResponse.PurchasedDate = null;
             expectedResponse.PickupAddress = null;
 
-            var actualResponse = await request.AddProductAsync(request);
+            IProductStore productStore = new MockProductStore();
+
+            var actualResponse = await request.SaveAsync(productStore);
 
             Assert.Equal(expectedResponse.SellerId, actualResponse.SellerId);
             Assert.Equal(expectedResponse.Name, actualResponse.Name);
@@ -101,7 +105,7 @@ namespace OnlineRetailPortal.Tests
 
         private Core.Product GetRequest()
         {
-            Core.Product product = new Core.Product(new MockProductStore(), "1", "Bottle", new Core.Price { Money = new Core.Money(99.99, "INR"), IsNegotiable = false })
+            Core.Product product = new Core.Product("1", "Bottle", new Core.Price { Money = new Core.Money(99.99, "INR"), IsNegotiable = false })
             {
                 Description = "Green Bottle",
                 HeroImage = new Core.Image { Url = "example.com" },

@@ -19,11 +19,8 @@ namespace OnlineRetailPortal.Services
         public async Task<AddProductResponse> AddProductAsync(AddProductRequest addProductRequest)
         {
             var store =_productStoreFactory.GetProductStore("Mock");
-
             Core.Product product = addProductRequest.ToEntity();
-
             Core.Product response = await product.SaveAsync(store);
-
             return response.ToModel();
         }
 

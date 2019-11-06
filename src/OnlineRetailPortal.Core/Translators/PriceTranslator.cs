@@ -8,6 +8,8 @@ namespace OnlineRetailPortal.Core
     {
         public static Contracts.Price ToEntity(this Price price)
         {
+            if (price == null)
+                return null;
             return new Contracts.Price()
             {
                 Money = new Contracts.Money(
@@ -19,6 +21,8 @@ namespace OnlineRetailPortal.Core
 
         public static Price ToModel(this Contracts.Price price)
         {
+            if (price == null)
+                return null;
             return new Price()
             {
                 Money = new Money(

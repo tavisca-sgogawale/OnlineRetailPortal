@@ -34,8 +34,8 @@ namespace OnlineRetailPortal.Mock
                     {
                         Url = y.Url
                     }).ToList(),
-                    Status = (Contracts.Status)x.Status.GetHashCode(),
-                    Category = (Contracts.Category)x.Category
+                    Status = x.Status,
+                    Category = x.Category
                 }).ToList()
             };
             return response;

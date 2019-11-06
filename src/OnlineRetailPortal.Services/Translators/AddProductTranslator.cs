@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using OnlineRetailPortal.Contracts;
+using OnlineRetailPortal.Core;
 
 namespace OnlineRetailPortal.Services
 {
@@ -25,7 +26,7 @@ namespace OnlineRetailPortal.Services
             return product;
         }
 
-        public static Core.Image ToEntity(this Image image)
+        public static Core.Image ToEntity(this Contracts.Image image)
         {
             return new Core.Image()
             {
@@ -33,7 +34,7 @@ namespace OnlineRetailPortal.Services
             };
         }
 
-        public static Core.Price ToEntity(this Price price)
+        public static Core.Price ToEntity(this Contracts.Price price)
         {
             return new Core.Price()
             {
@@ -44,34 +45,34 @@ namespace OnlineRetailPortal.Services
             };
         }
 
-        public static Core.Category ToEntity(this Category category)
+        public static Core.Category ToEntity(this Contracts.Category category)
         {
             switch (category)
             {
-                case Category.Bike:
+                case Contracts.Category.Bike:
                     return Core.Category.Bike;
-                case Category.Book:
+                case Contracts.Category.Book:
                     return Core.Category.Book;
-                case Category.Car:
+                case Contracts.Category.Car:
                     return Core.Category.Car;
-                case Category.Electronic:
+                case Contracts.Category.Electronic:
                     return Core.Category.Electronic;
-                case Category.Fashion:
+                case Contracts.Category.Fashion:
                     return Core.Category.Fashion;
-                case Category.Furniture:
+                case Contracts.Category.Furniture:
                     return Core.Category.Furniture;
-                case Category.Mobile:
+                case Contracts.Category.Mobile:
                     return Core.Category.Mobile;
-                case Category.Other:
+                case Contracts.Category.Other:
                     return Core.Category.Other;
-                case Category.Property:
+                case Contracts.Category.Property:
                     return Core.Category.Property;
                 default:
                     return Core.Category.Other;
             }
         }
 
-        public static List<Core.Image> ToEntity(this List<Image> images)
+        public static List<Core.Image> ToEntity(this List<Contracts.Image> images)
         {
             if (images == null)
                 return null;
@@ -88,7 +89,7 @@ namespace OnlineRetailPortal.Services
             return new Core.Product().PurchasedDate = purchasedDate;
         }
 
-        public static Core.Address ToEntity(this Address pickupAddress)
+        public static Core.Address ToEntity(this Contracts.Address pickupAddress)
         {
             if (pickupAddress == null)
                 return null;
@@ -125,61 +126,61 @@ namespace OnlineRetailPortal.Services
             return response;
         }
 
-        public static Image ToModel(this Core.Image image)
+        public static Contracts.Image ToModel(this Core.Image image)
         {
-            return new Image()
+            return new Contracts.Image()
             {
                 Url = image.Url
             };
         }
 
-        public static Category ToModel(this Core.Category category)
+        public static Contracts.Category ToModel(this Core.Category category)
         {
             switch (category)
             {
                 case Core.Category.Bike:
-                    return Category.Bike;
+                    return Contracts.Category.Bike;
                 case Core.Category.Book:
-                    return Category.Book;
+                    return Contracts.Category.Book;
                 case Core.Category.Car:
-                    return Category.Car;
+                    return Contracts.Category.Car;
                 case Core.Category.Electronic:
-                    return Category.Electronic;
+                    return Contracts.Category.Electronic;
                 case Core.Category.Fashion:
-                    return Category.Fashion;
+                    return Contracts.Category.Fashion;
                 case Core.Category.Furniture:
-                    return Category.Furniture;
+                    return Contracts.Category.Furniture;
                 case Core.Category.Mobile:
-                    return Category.Mobile;
+                    return Contracts.Category.Mobile;
                 case Core.Category.Other:
-                    return Category.Other;
+                    return Contracts.Category.Other;
                 case Core.Category.Property:
-                    return Category.Property;
+                    return Contracts.Category.Property;
                 default:
-                    return Category.Other;
+                    return Contracts.Category.Other;
             }
         }
 
-        public static Status ToModel(this Core.Status status)
+        public static Contracts.Status ToModel(this Core.Status status)
         {
             switch (status)
             {
                 case Core.Status.Active:
-                    return Status.Active;
+                    return Contracts.Status.Active;
                 case Core.Status.Disabled:
-                    return Status.Disabled;
+                    return Contracts.Status.Disabled;
                 case Core.Status.Sold:
-                    return Status.Sold;
+                    return Contracts.Status.Sold;
                 default:
-                    return Status.Active;
+                    return Contracts.Status.Active;
             }
         }
 
-        public static List<Image> ToModel(this List<Core.Image> images)
+        public static List<Contracts.Image> ToModel(this List<Core.Image> images)
         {
             if (images == null)
                 return null;
-            return images.Select(x => new Image
+            return images.Select(x => new Contracts.Image
             {
                 Url = x.Url
             }).ToList();
@@ -192,11 +193,11 @@ namespace OnlineRetailPortal.Services
             return purchasedDate;
         }
 
-        public static Address ToModel(this Core.Address address)
+        public static Contracts.Address ToModel(this Core.Address address)
         {
             if (address == null)
                 return null;
-            return new Address()
+            return new Contracts.Address()
             {
                 Line1 = address.Line1,
                 Line2 = address.Line2,

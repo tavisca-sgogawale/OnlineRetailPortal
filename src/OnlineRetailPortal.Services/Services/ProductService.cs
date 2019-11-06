@@ -12,5 +12,10 @@ namespace OnlineRetailPortal.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<AddProductResponse> AddProductAsync(AddProductRequest addProductRequest)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

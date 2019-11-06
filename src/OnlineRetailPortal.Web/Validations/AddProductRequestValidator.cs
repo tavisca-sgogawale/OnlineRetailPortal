@@ -7,7 +7,7 @@ using FluentValidation.Results;
 using OnlineRetailPortal.Core;
 
 
-namespace OnlineRetailPortal.Web.Validations
+namespace OnlineRetailPortal.Web
 {
     public class AddProductRequestValidator : AbstractValidator<AddProductRequest>
     {

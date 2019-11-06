@@ -7,11 +7,10 @@ using OnlineRetailPortal.Core;
 using System.Net;
 using System.Collections.Generic;
 
-namespace OnlineRetailPortal.Web.Validations
+namespace OnlineRetailPortal.Web
 {
     public static class EnsureValidator
-    {
-        
+    {    
         public static void EnsureValid<AddProductRequest>(this AbstractValidator<AddProductRequest> validator, AddProductRequest request)
         {
             List<ErrorInfo> info = new List<ErrorInfo>();

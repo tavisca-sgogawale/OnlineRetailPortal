@@ -20,7 +20,7 @@ namespace OnlineRetailPortal.Services
                 Price = addProductRequest.Price.ToEntity(),
                 Category = addProductRequest.Category.ToEntity(),
                 Images = addProductRequest.Images.ToEntity(),
-                PurchasedDate = addProductRequest.PurchasedDate.ToEntity(),
+                PurchasedDate = addProductRequest.PurchasedDate,
                 PickupAddress = addProductRequest.PickupAddress.ToEntity()
             };
             return product;
@@ -82,13 +82,6 @@ namespace OnlineRetailPortal.Services
             }).ToList();
         }
 
-        public static DateTime? ToEntity(this DateTime? purchasedDate)
-        {
-            if (purchasedDate == null)
-                return null;
-            return new Core.Product().PurchasedDate = purchasedDate;
-        }
-
         public static Core.Address ToEntity(this Contracts.Address pickupAddress)
         {
             if (pickupAddress == null)
@@ -119,7 +112,7 @@ namespace OnlineRetailPortal.Services
                 PostDateTime = product.PostDateTime,
                 ExpirationDate = product.ExpirationDate,
                 Images = product.Images.ToModel(),
-                PurchasedDate = product.PurchasedDate.ToModel(),
+                PurchasedDate = product.PurchasedDate,
                 PickupAddress = product.PickupAddress.ToModel()
             };
 
@@ -184,13 +177,6 @@ namespace OnlineRetailPortal.Services
             {
                 Url = x.Url
             }).ToList();
-        }
-
-        public static DateTime? ToModel(this DateTime? purchasedDate)
-        {
-            if (purchasedDate == null)
-                return null;
-            return purchasedDate;
         }
 
         public static Contracts.Address ToModel(this Core.Address address)

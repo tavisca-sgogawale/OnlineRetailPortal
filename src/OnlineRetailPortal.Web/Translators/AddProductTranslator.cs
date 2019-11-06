@@ -19,7 +19,7 @@ namespace OnlineRetailPortal.Web
                 Price = addProductRequest.Price.ToEntity(),
                 Category = addProductRequest.Category.ToEntity(),
                 Images = addProductRequest.Images.ToEntity(),
-                PurchasedDate = addProductRequest.PurchasedDate.ToEntity(),
+                PurchasedDate = addProductRequest.PurchasedDate,
                 PickupAddress = addProductRequest.PickupAddress.ToEntity()
             };
             return request;
@@ -81,13 +81,6 @@ namespace OnlineRetailPortal.Web
             }).ToList();
         }
 
-        public static DateTime? ToEntity(this DateTime? purchasedDate)
-        {
-            if (purchasedDate == null)
-                return null;
-            return new Contracts.AddProductRequest().PurchasedDate = purchasedDate;
-        }
-
         public static Contracts.Address ToEntity(this Address pickupAddress)
         {
             if (pickupAddress == null)
@@ -102,9 +95,6 @@ namespace OnlineRetailPortal.Web
             };
         }
 
-
-
-
         public static AddProductResponse ToModel(this Contracts.AddProductResponse addProductResponse)
         {
             AddProductResponse response = new AddProductResponse()
@@ -118,7 +108,7 @@ namespace OnlineRetailPortal.Web
                 PostDateTime = addProductResponse.PostDateTime,
                 ExpirationDate = addProductResponse.ExpirationDate,
                 Images = addProductResponse.Images.ToModel(),
-                PurchasedDate = addProductResponse.PurchasedDate.ToModel(),
+                PurchasedDate = addProductResponse.PurchasedDate,
                 PickupAddress = addProductResponse.PickupAddress.ToModel()
             };
 
@@ -183,13 +173,6 @@ namespace OnlineRetailPortal.Web
             {
                 Url = x.Url
             }).ToList();
-        }
-
-        public static DateTime? ToModel(this DateTime? purchasedDate)
-        {
-            if (purchasedDate == null)
-                return null;
-            return purchasedDate;
         }
 
         public static Address ToModel(this Contracts.Address address)

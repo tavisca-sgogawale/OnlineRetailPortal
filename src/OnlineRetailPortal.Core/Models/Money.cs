@@ -10,9 +10,5 @@
             this.Amount = amount;
             this.Currency = currency;
         }
-        public override string ToString()
-        {
-            return this.MemberwiseClone().ToString();
-        }
     }
 }

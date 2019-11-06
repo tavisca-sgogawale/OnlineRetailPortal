@@ -8,5 +8,7 @@ namespace OnlineRetailPortal.Contracts
     public interface ICategoryService
     {
         Task<GetCategoriesServiceResponse> GetCategoriesAsync();
+
+
     }
 }

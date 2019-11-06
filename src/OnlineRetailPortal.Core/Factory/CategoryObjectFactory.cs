@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineRetailPortal.Core.Object_Factory
+namespace OnlineRetailPortal.Core
 {
-    public class CategoryObjectFactory
+    public class CategoryObjectFactory:ICategoryStoreFactory 
     {
         public ICategoryStore GetCategoryStore()
         {

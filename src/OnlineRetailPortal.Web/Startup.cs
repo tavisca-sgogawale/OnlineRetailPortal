@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,7 +24,15 @@ namespace OnlineRetailPortal.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("default",
+                builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
             services.AddTransient< ICategoryService, CategoryService> ();
+            services.AddTransient<ICategoryStore, MockCategoryStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,6 +42,8 @@ namespace OnlineRetailPortal.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+            app.UseCors("default");
 
             app.UseHttpsRedirection();
 
@@ -44,6 +55,7 @@ namespace OnlineRetailPortal.Web
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }

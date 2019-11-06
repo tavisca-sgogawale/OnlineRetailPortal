@@ -6,7 +6,7 @@ using OnlineRetailPortal.Contracts;
 
 namespace OnlineRetailPortal.Web
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     [ApiController]
     public class CategoryController : ControllerBase
     {
@@ -16,7 +16,7 @@ namespace OnlineRetailPortal.Web
             _categoryService = categoryService;
         }
 
-        [HttpGet]
+        [HttpGet("category")]
         public async Task<CategoryResponse> GetCategories()
         {
             GetCategoriesServiceResponse serviceResponse;

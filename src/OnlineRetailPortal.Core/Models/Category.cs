@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using OnlineRetailPortal.Contracts;
-using OnlineRetailPortal.Core.Object_Factory;
 using OnlineRetailPortal.Mock;
 
 namespace OnlineRetailPortal.Core
@@ -11,20 +10,23 @@ namespace OnlineRetailPortal.Core
         public int Id { get; set; }
         public string Name { get; set; }
 
-        private ICategoryStore _categoryStore;
+        //private ICategoryStore _categoryStore;
         
-        public Category()
-        {
-            CategoryObjectFactory categoryObjectFactory = new CategoryObjectFactory();
-            _categoryStore = categoryObjectFactory.GetCategoryStore();
-        }
+        //public Category()
+        //{
+        //    CategoryObjectFactory categoryObjectFactory = new CategoryObjectFactory();
+        //  ICategoryStore _categoryStore = categoryObjectFactory.GetCategoryStore();
+        //}
 
-        public async Task<List<Category>> GetCategoriesAsync()
+        public async Task<List<Category>> GetCategoriesAsync(ICategoryStore categoryStore)
         {
-            var response = await _categoryStore.GetCategoriesAsync();
+            var response = await categoryStore.GetCategoriesAsync();
             var CoreCategoriesResponse = response.ToCoreResponse();
             return CoreCategoriesResponse;
         }
+
+
+        
     }
 
    

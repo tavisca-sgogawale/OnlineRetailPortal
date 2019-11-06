@@ -25,7 +25,6 @@ namespace OnlineRetailPortal.Core
         public Address PickupAddress { get; set; }
 
         IProductStore productStore;
-        private AddProductValidation validation;
 
         public Product()
         {
@@ -38,7 +37,6 @@ namespace OnlineRetailPortal.Core
             this.Name = name;
             this.Price = price;
 
-            validation = new AddProductValidation();
         }
 
         public Product(IProductStore productStore, string sellerId, string name, Price price)
@@ -48,14 +46,11 @@ namespace OnlineRetailPortal.Core
             this.Price = price;
 
             this.productStore = productStore;
-            validation = new AddProductValidation();//
         }
 
 
         public async Task<Product> AddProductAsync(Product product)
-        {
-            validation.EnsureValidResult(product);//
-           
+        {           
             var entityPostRequest = product.ToEntity();
             
             var entityPostResponse = await productStore.AddProductAsync(entityPostRequest);

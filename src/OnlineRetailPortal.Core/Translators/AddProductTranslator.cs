@@ -17,7 +17,7 @@ namespace OnlineRetailPortal.Core
                 Price = product.Price.ToEntity(),
                 Category = product.Category.ToEntity(),
                 Images = product.Images.ToEntity(),                
-                PurchasedDate = product.PurchasedDate.ToEntity(),
+                PurchasedDate = product.PurchasedDate,
                 PickupAddress = product.PickupAddress.ToEntity()
                 
             };
@@ -37,7 +37,7 @@ namespace OnlineRetailPortal.Core
                 PostDateTime = addProductStoreResponse.PostDateTime,
                 ExpirationDate = addProductStoreResponse.ExpirationDate,
                 Images = addProductStoreResponse.Images.ToModel(),
-                PurchasedDate = addProductStoreResponse.PurchasedDate.ToModel(),
+                PurchasedDate = addProductStoreResponse.PurchasedDate,
                 PickupAddress = addProductStoreResponse.PickupAddress.ToModel()
             };
 

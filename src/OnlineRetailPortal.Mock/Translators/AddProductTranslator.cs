@@ -19,7 +19,7 @@ namespace OnlineRetailPortal.Mock
                 Price = request.Price.ToModel(),
                 Category = request.Category.ToModel(),
                 Images = request.Images.ToModel(),
-                PurchasedDate = request.PurchasedDate.ToModel(),
+                PurchasedDate = request.PurchasedDate,
                 PickupAddress = request.PickupAddress.ToModel()
             };
 
@@ -41,7 +41,7 @@ namespace OnlineRetailPortal.Mock
                 PostDateTime = product.PostDateTime,
                 ExpirationDate = product.ExpirationDate,
                 Images = product.Images.ToEntity(),
-                PurchasedDate = product.PurchasedDate.ToEntity(),
+                PurchasedDate = product.PurchasedDate,
                 PickupAddress = product.PickupAddress.ToEntity()
             };
 

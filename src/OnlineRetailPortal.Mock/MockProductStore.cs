@@ -10,7 +10,7 @@ namespace OnlineRetailPortal.Mock
 {
     public class MockProductStore : IProductStore
     {
-        List<Product> productList = new List<Product>() {
+        static List<Product> productList = new List<Product>() {
             new Product{SellerId="1",Id="101",Name="Mobile", Price=new Price{Money = new Money(200.0, "INR"), IsNegotiable=true}, Category=Category.Mobile,
                 HeroImage =new Image{Url = "https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery"},
                 Description ="11 pro max 64 gb full box", Images=null,
@@ -36,27 +36,19 @@ namespace OnlineRetailPortal.Mock
 
         public async Task<AddProductStoreResponse> AddProductAsync(AddProductStoreRequest request)
         {
-
             var product = request.ToModel();
-
-
-            var guid = Guid.NewGuid();
-            product.Id = guid.ToString();
+            product.Id = Guid.NewGuid().ToString();
             product.Status = Status.Active;
             product.PostDateTime = DateTime.Now;
             product.ExpirationDate = DateTime.Now.AddDays(30);
-            productList.Add(product);           
-
-             product = productList.Last();
-
-            var entityPostResponse = product.ToEntity();
-
-            return entityPostResponse;
+            productList.Add(product);
+            return product.ToEntity();
         }
 
         public async Task<GetProductStoreResponse> GetProductAsync(GetProductStoreRequest request)
         {
-            Product response = await Task.Run(() => {
+            Product response = await Task.Run(() =>
+            {
                 try
                 {
                     response = productList.Where(x => x.Id == request.ProductId).First();

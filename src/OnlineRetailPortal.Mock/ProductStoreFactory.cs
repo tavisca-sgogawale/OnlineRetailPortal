@@ -10,9 +10,9 @@ namespace OnlineRetailPortal.Mock
         public IProductStore GetProductStore(string storeValue)
         {
             //returns mock object for this  string
-            if(storeValue == "Mock")
-            { 
-                    return new MockProductStore();
+            if (storeValue == "Mock")
+            {
+                return new MockProductStore();
             }
 
             //To get service object

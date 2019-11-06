@@ -43,13 +43,13 @@ namespace OnlineRetailPortal.Core
             this.Price = price;
 
             this.productStore = productStore;
-            validation = new AddProductValidation();
+            validation = new AddProductValidation();//
         }
 
 
         public async Task<Product> AddProductAsync(Product product)
         {
-            validation.EnsureValidResult(product);
+            validation.EnsureValidResult(product);//
            
             var entityPostRequest = product.ToEntity();
             

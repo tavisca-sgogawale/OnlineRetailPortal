@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.MongoDBStore
 {
-    public class ProductRepository : IProductStore
+    public class ProductStore : IProductStore
     {
         public Task<AddProductStoreResponse> AddProductAsync(AddProductStoreRequest request)
         {

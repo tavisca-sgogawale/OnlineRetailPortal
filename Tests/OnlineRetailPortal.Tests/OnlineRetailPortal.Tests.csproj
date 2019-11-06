@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="8.5.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
     <PackageReference Include="Moq" Version="4.13.1" />
     <PackageReference Include="xunit" Version="2.4.0" />
@@ -18,6 +19,7 @@
     <ProjectReference Include="..\..\src\OnlineRetailPortal.Contracts\OnlineRetailPortal.Contracts.csproj" />
     <ProjectReference Include="..\..\src\OnlineRetailPortal.Core\OnlineRetailPortal.Core.csproj" />
     <ProjectReference Include="..\..\src\OnlineRetailPortal.Mock\OnlineRetailPortal.Mock.csproj" />
+    <ProjectReference Include="..\..\src\OnlineRetailPortal.MongoDBStore\OnlineRetailPortal.MongoDBStore.csproj" />
     <ProjectReference Include="..\..\src\OnlineRetailPortal.Services\OnlineRetailPortal.Services.csproj" />
     <ProjectReference Include="..\..\src\OnlineRetailPortal.Web\OnlineRetailPortal.Web.csproj" />
   </ItemGroup>

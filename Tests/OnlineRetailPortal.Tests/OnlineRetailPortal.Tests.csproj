@@ -17,6 +17,7 @@
     <ProjectReference Include="..\..\src\OnlineRetailPortal.Contracts\OnlineRetailPortal.Contracts.csproj" />
     <ProjectReference Include="..\..\src\OnlineRetailPortal.Core\OnlineRetailPortal.Core.csproj" />
     <ProjectReference Include="..\..\src\OnlineRetailPortal.Mock\OnlineRetailPortal.Mock.csproj" />
+    <ProjectReference Include="..\..\src\OnlineRetailPortal.MongoDBStore\OnlineRetailPortal.MongoDBStore.csproj" />
     <ProjectReference Include="..\..\src\OnlineRetailPortal.Services\OnlineRetailPortal.Services.csproj" />
     <ProjectReference Include="..\..\src\OnlineRetailPortal.Web\OnlineRetailPortal.Web.csproj" />
   </ItemGroup>

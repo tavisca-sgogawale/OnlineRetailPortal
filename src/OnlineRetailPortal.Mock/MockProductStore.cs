@@ -46,44 +46,25 @@ namespace OnlineRetailPortal.Mock
 
         public async Task<GetProductStoreResponse> GetProductAsync(string productId)
         {
-            Product response = await Task.Run(() =>
-            {
-                try
-                {
-                    response = productList.Where(x => x.Id == productId).First();
-                    return response;
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
-            });
-
+            Product response = productList.Where(x => x.Id == productId).First();
             return response.ToGetProductStore();
         }
 
         public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreRequest request)
         {
-            GetProductsStoreResponse response = new GetProductsStoreResponse();
-
-            response = await Task.Run(() =>
+            List<Product> products = productList.OrderByDescending(x => x.PostDateTime).ToList();
+            int startIndex = (request.PagingInfo.PageNumber - 1) * (request.PagingInfo.PageSize);
+            int endIndex = startIndex + request.PagingInfo.PageSize - 1;
+            List<Product> responseProducts = new List<Product>();
+            for (int currentIndex = startIndex; currentIndex <= endIndex; currentIndex++)
             {
-                List<Product> products = productList.OrderByDescending(x => x.PostDateTime).ToList();
-                int startIndex = (request.PagingInfo.PageNumber - 1) * (request.PagingInfo.PageSize);
-                int endIndex = startIndex + request.PagingInfo.PageSize - 1;
-                List<Product> responseProducts = new List<Product>();
-                for (int currentIndex = startIndex; currentIndex <= endIndex; currentIndex++)
-                {
-                    if (currentIndex == products.Count())
-                        break;
-                    responseProducts.Add(products[currentIndex]);
-                }
-                request.PagingInfo.TotalPages = (productList.Count() / request.PagingInfo.PageSize) + (productList.Count() % request.PagingInfo.PageSize);
-                response = responseProducts.ToGetProductsStoreResponse(request.PagingInfo);
-                return response;
-            });
-
-            return response;
+                if (currentIndex == products.Count()|| currentIndex > products.Count())
+                    break;
+                responseProducts.Add(products[currentIndex]);
+            }
+            request.PagingInfo.TotalPages = (productList.Count() / request.PagingInfo.PageSize) + (productList.Count() % request.PagingInfo.PageSize);
+            var response = responseProducts.ToGetProductsStoreResponse(request.PagingInfo);
+            return response; 
         }
 
     }

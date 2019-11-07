@@ -9,7 +9,7 @@ namespace OnlineRetailPortal.Core
     public static class GetProductsCoreResponseTranslator
     {
 
-        public static ProductsWithPageInitiation ToProductsWithPageInitiation(this GetProductsStoreResponse getProductResponse)
+        public static ProductsWithPageInitiation ToModel(this GetProductsStoreResponse getProductResponse)
         {
             ProductsWithPageInitiation responce = new ProductsWithPageInitiation()
             {

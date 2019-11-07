@@ -22,8 +22,6 @@ namespace OnlineRetailPortal.Core
         public DateTime ExpirationDate { get; set; }
         public Status Status { get; set; }
 
-        private static IProductStore _productStore;
-
         public Product(Price price, string sellerId ,string name)
         {
             Price = price;
@@ -32,19 +30,16 @@ namespace OnlineRetailPortal.Core
         }
         public static async Task<ProductsWithPageInitiation>  GetProductsAsync(GetProductsServiceRequest serviceRequest, IProductStore productStore)
         {
-            _productStore = productStore;
-            GetProductsStoreRequest request = serviceRequest.ToProductStoreRequest();
-            GetProductsStoreResponse response = await _productStore.GetProductsAsync(request);
-            return response.ToProductsWithPageInitiation();
+            var getProductsRequest = serviceRequest.ToEntity();
+            var getProductsResponse = await productStore.GetProductsAsync(getProductsRequest);
+            return getProductsResponse.ToModel();
         }
        
         public static async Task<Product> GetProductAsync(string productId, IProductStore productStore)
         {
-            _productStore = productStore;
-            GetProductStoreResponse response = await _productStore.GetProductAsync(productId);
-            return response.ToGetProductServiceResponse();
-        }
-    
+            var getProductResponse = await productStore.GetProductAsync(productId);
+            return getProductResponse.ToModel();
+        }    
 
         public async Task<Product> SaveAsync(IProductStore productStore)
         {           

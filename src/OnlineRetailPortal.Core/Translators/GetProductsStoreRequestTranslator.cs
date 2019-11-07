@@ -4,7 +4,7 @@ namespace OnlineRetailPortal.Core
 {
     public static class GetProductServiceRequestTranslator
     {
-        public static GetProductsStoreRequest ToProductStoreRequest(this GetProductsServiceRequest request)
+        public static GetProductsStoreRequest ToEntity(this GetProductsServiceRequest request)
         {
             if (request.PagingInfo == null)
             {

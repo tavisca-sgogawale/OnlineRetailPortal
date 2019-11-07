@@ -61,6 +61,15 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unexpected Error Occured, Please Try Again Later.
+        /// </summary>
+        public static string DatabaseDown {
+            get {
+                return ResourceManager.GetString("DatabaseDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} should be at least  {1} characters..
         /// </summary>
         public static string GreaterCharacter {

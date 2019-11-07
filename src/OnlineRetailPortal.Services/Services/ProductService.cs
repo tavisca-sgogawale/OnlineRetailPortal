@@ -1,37 +1,29 @@
 ﻿using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Mock;
+using OnlineRetailPortal.MongoDBStore;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Services
 {
-   public class ProductService : IProductService
+    public class ProductService : IProductService
     {
-        private readonly IProductStoreFactory _productStoreFactory; // factory or logic to resolve the product store will be handled later 
-        private IProductStore _productStore = null;
+        private readonly IProductStoreFactory _productStoreFactory;
+
         public ProductService(IProductStoreFactory productStoreFactory)
         {
-            _productStoreFactory = productStoreFactory;
-            _productStore = _productStoreFactory.GetProductStore("Mock");
-        }
-        public async Task<GetProductsServiceResponse> GetProductsAsync(GetProductsServiceRequest getProductsServiceRequest)
-        {
-            var response = await Core.Product.GetProductsAsync(getProductsServiceRequest, _productStore);
-            return response.ToModel();
-        }
-
-        public async Task<GetProductServiceResponse>  GetProductAsync(string productId)
-        {
-            var response = await Core.Product.GetAsync(productId, _productStore);
-            return GetProductServiceResponseTranslator.ToModel(response);
+            this._productStoreFactory = productStoreFactory;
         }
 
         public async Task<AddProductResponse> AddProductAsync(AddProductRequest addProductRequest)
         {
+            var store =_productStoreFactory.GetProductStore("Mock");
+            var mongo = new ProductStore();
             Core.Product product = addProductRequest.ToEntity();
-            Core.Product response = await product.SaveAsync(_productStore);
-            return AddProductTranslator.ToModel(response);
+            Core.Product response = await product.SaveAsync(mongo);
+            return response.ToModel();
         }
 
     }

@@ -11,7 +11,7 @@ namespace OnlineRetailPortal.Services
     {
         public static Core.Product ToEntity(this Contracts.AddProductRequest addProductRequest)
         {
-            var product = new Core.Product(addProductRequest.Price.ToEntity(), addProductRequest.SellerId,addProductRequest.Name)
+            var product = new Core.Product(addProductRequest.SellerId,addProductRequest.Name,addProductRequest.Price.ToEntity())
             {
                 Description = addProductRequest.Description,
                 HeroImage = addProductRequest.HeroImage.ToEntity(),
@@ -25,6 +25,8 @@ namespace OnlineRetailPortal.Services
 
         public static Core.Image ToEntity(this Contracts.Image image)
         {
+            if (image == null)
+                return null;
             return new Core.Image()
             {
                 Url = image.Url
@@ -33,6 +35,8 @@ namespace OnlineRetailPortal.Services
 
         public static Core.Price ToEntity(this Contracts.Price price)
         {
+            if (price == null)
+                return null;
             return new Core.Price()
             {
                 Money = new Core.Money(
@@ -64,9 +68,8 @@ namespace OnlineRetailPortal.Services
                     return Core.Category.Other;
                 case Contracts.Category.Property:
                     return Core.Category.Property;
-                default:
-                    return Core.Category.Other;
             }
+            throw new NotSupportedException(category + " is not supported");
         }
 
         public static List<Core.Image> ToEntity(this List<Contracts.Image> images)
@@ -83,7 +86,7 @@ namespace OnlineRetailPortal.Services
         {
             if (pickupAddress == null)
                 return null;
-            return  new Core.Address()
+            return new Core.Address()
             {
                 Line1 = pickupAddress.Line1,
                 Line2 = pickupAddress.Line2,
@@ -96,14 +99,16 @@ namespace OnlineRetailPortal.Services
 
 
 
-        public static AddProductResponse ToModel(this Core.Product product)
+        public static Contracts.AddProductResponse ToModel(this Core.Product product)
         {
-            AddProductResponse response = new AddProductResponse()
+            Contracts.AddProductResponse response = new Contracts.AddProductResponse()
             {
                 Id = product.Id,
                 SellerId = product.SellerId,
+                Name = product.Name,
                 Description = product.Description,
                 HeroImage = product.HeroImage.ToModel(),
+                Price = product.Price.ToModel(),
                 Category = product.Category.ToModel(),
                 Status = product.Status.ToModel(),
                 PostDateTime = product.PostDateTime,
@@ -116,8 +121,23 @@ namespace OnlineRetailPortal.Services
             return response;
         }
 
+        public static Contracts.Price ToModel(this Core.Price price)
+        {
+            if (price == null)
+                return null;
+            return new Contracts.Price()
+            {
+                Money = new Contracts.Money(
+                price.Money.Amount,
+                price.Money.Currency),
+                IsNegotiable = price.IsNegotiable
+            };
+        }
+
         public static Contracts.Image ToModel(this Core.Image image)
         {
+            if (image == null)
+                return null;
             return new Contracts.Image()
             {
                 Url = image.Url
@@ -146,9 +166,8 @@ namespace OnlineRetailPortal.Services
                     return Contracts.Category.Other;
                 case Core.Category.Property:
                     return Contracts.Category.Property;
-                default:
-                    return Contracts.Category.Other;
             }
+            throw new NotSupportedException(category + " is not supported");
         }
 
         public static Contracts.Status ToModel(this Core.Status status)
@@ -161,9 +180,8 @@ namespace OnlineRetailPortal.Services
                     return Contracts.Status.Disabled;
                 case Core.Status.Sold:
                     return Contracts.Status.Sold;
-                default:
-                    return Contracts.Status.Active;
             }
+            throw new NotSupportedException(status + " is not supported");
         }
 
         public static List<Contracts.Image> ToModel(this List<Core.Image> images)

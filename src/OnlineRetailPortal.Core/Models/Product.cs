@@ -1,16 +1,15 @@
 ﻿using OnlineRetailPortal.Contracts;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+
 
 namespace OnlineRetailPortal.Core
 {
     public class Product
     {
-        public string Id { get; set; }
         public string SellerId { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public Price Price { get; set; }
         public Category Category { get; set; }
@@ -47,4 +46,11 @@ namespace OnlineRetailPortal.Core
         }
     }
 
+        public async Task<Product> SaveAsync(IProductStore productStore)
+        {           
+            var addProductRequest = this.ToEntity();            
+            var addProductResponse = await productStore.AddProductAsync(addProductRequest);            
+            return addProductResponse.ToModel();
+        }
+    }
 }

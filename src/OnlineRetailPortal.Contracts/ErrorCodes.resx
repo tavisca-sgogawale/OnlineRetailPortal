@@ -126,6 +126,9 @@
   <data name="GreaterValue" xml:space="preserve">
     <value>704</value>
   </data>
+  <data name="InvalidCurrency" xml:space="preserve">
+    <value>707</value>
+  </data>
   <data name="InvalidRequest" xml:space="preserve">
     <value>701</value>
   </data>

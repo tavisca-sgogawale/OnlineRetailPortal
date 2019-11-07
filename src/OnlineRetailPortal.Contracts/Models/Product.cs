@@ -15,8 +15,12 @@ namespace OnlineRetailPortal.Contracts
         public Status Status { get; set; }
         public DateTime PostDateTime { get; set; }
         public DateTime ExpirationDate { get; set; }
+
+
+
         public List<Image> Images { get; set; }
         public Nullable<DateTime> PurchasedDate { get; set; }
         public Address PickupAddress { get; set; }
+
     }
 }

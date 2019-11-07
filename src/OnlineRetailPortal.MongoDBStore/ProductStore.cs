@@ -12,7 +12,7 @@ namespace OnlineRetailPortal.MongoDBStore
 {
     public class ProductStore : IProductStore
     {
-        private static MongoClient _dbClient = new MongoClient(DatabaseConfiguration._mongoDBConnectionString);
+        private static readonly MongoClient _dbClient = new MongoClient(DatabaseConfiguration._mongoSettings);
         private IMongoDatabase _db = _dbClient.GetDatabase(DatabaseConfiguration._databaseName);
         private string _collection = DatabaseConfiguration._productTableName;
 
@@ -40,7 +40,7 @@ namespace OnlineRetailPortal.MongoDBStore
             throw new System.NotImplementedException();
         }
 
-        public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreRequest request)
+        public Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreRequest request)
         {
             throw new System.NotImplementedException();
         }

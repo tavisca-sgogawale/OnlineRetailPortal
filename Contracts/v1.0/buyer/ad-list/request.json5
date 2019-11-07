@@ -5,12 +5,19 @@
 {
     //[Optional] sort by 
     "sortBy" : "date",
-    //[Optional] order of Sorting
+    //[Optional] order of Sorting 
     "sortOrder" : "ascending",
-    //[Optional] query for search filter etc
-    "filters" :[
-	   {
-		    "searchKeyword":"watch"
-	   }
-   ]
+    //[Optional] Differnt types of filter
+    "filters" :[    
+        {
+            "searchQuery":"watch"
+        },
+        {
+        "price":
+                {
+                "min":123,
+                "max":345
+                }
+        }
+    ]
 }

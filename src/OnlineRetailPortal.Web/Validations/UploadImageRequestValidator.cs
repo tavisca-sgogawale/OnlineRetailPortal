@@ -44,15 +44,15 @@ namespace OnlineRetailPortal.Web.Validations
 
             RuleFor(req => req.Form.Files[0])
             .Cascade(CascadeMode.StopOnFirstFailure)
-            .Must(file => IsImageFile(file))
+            .Must(file => IsSupportedImageFile(file))
             .WithErrorCode(StatusCodes.Status415UnsupportedMediaType.ToString())
-            .WithMessage(Error.InvalidImage());
+            .WithMessage(Error.UnsupportedFileFormat());
 
 
         }
 
 
-        private static bool IsImageFile(IFormFile file)
+        private static bool IsSupportedImageFile(IFormFile file)
         {
             byte[] fileBytes;
             using (var ms = new MemoryStream())

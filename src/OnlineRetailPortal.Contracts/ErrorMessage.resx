@@ -129,9 +129,6 @@
   <data name="InvalidCurrency" xml:space="preserve">
     <value>Currency should be in {0}</value>
   </data>
-  <data name="InvalidImage" xml:space="preserve">
-    <value>Invalid image file was sent.</value>
-  </data>
   <data name="InvalidRequest" xml:space="preserve">
     <value>Errors occured</value>
   </data>
@@ -146,5 +143,8 @@
   </data>
   <data name="NullRequest" xml:space="preserve">
     <value>Request is null</value>
+  </data>
+  <data name="UnsupportedFileFormat" xml:space="preserve">
+    <value>File with unsupported format recieved in request.</value>
   </data>
 </root>

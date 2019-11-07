@@ -12,9 +12,9 @@ namespace OnlineRetailPortal.Core
         {
             return string.Format(ErrorMessage.InvalidCurrency, field);
         }
-        public static string InvalidImage()
+        public static string UnsupportedFileFormat()
         {
-            return string.Format(ErrorMessage.InvalidImage);
+            return string.Format(ErrorMessage.UnsupportedFileFormat);
         }
         public static string MissingImage()
         {

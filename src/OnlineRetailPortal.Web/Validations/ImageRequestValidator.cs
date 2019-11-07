@@ -20,24 +20,23 @@ namespace OnlineRetailPortal.Web.Validations
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public static void EnforcePostValidation(this AbstractValidator<HttpRequest> validator, HttpRequest request)
+        public static void Validate(this AbstractValidator<HttpRequest> validator, HttpRequest request)
         {
             if (request.ContentLength == 0)
-                throw new BaseException(StatusCodes.Status400BadRequest, "No file was recieved or was sent with an invalid form key", null, System.Net.HttpStatusCode.BadRequest);
+                throw new BaseException(StatusCodes.Status400BadRequest, "No file was recieved or file was sent with an invalid form key", null, System.Net.HttpStatusCode.BadRequest);
 
         var validationResult = validator.Validate(request);
 
             if (validationResult.IsValid == false)
             {
-                var error = validationResult.Errors[0];
-                var genericErrorCode = error.ErrorCode == StatusCodes.Status400BadRequest.ToString() ? HttpStatusCode.BadRequest : HttpStatusCode.UnsupportedMediaType;
-                throw new BaseException(Convert.ToInt32(error.ErrorCode),error.ErrorMessage,null,genericErrorCode);
+                var error = validationResult.Errors[0];                
+                throw new BaseException(Convert.ToInt32(error.ErrorCode),error.ErrorMessage,null, HttpStatusCode.BadRequest);
                 
             }
         }
 
 
-        public static void EnforceDeleteRequestValidation(this AbstractValidator<string> validator, string id)
+        public static void ValidateDeleteRequest(this AbstractValidator<string> validator, string id)
         {
             var validationResult = validator.Validate(id);
             if (validationResult.IsValid == false)
@@ -48,22 +47,5 @@ namespace OnlineRetailPortal.Web.Validations
            
         }
 
-
-        /// <summary>
-        /// Method to check if file is a valid image file
-        /// </summary>
-        /// <param name="file"></param>
-        /// <returns></returns>
-        private static bool CheckIfImageFile(IFormFile file)
-        {
-            byte[] fileBytes;
-            using (var ms = new MemoryStream())
-            {
-                file.CopyTo(ms);
-                fileBytes = ms.ToArray();
-            }
-
-            return SupportedImageFormats.GetImageFormat(fileBytes) != SupportedImageFormats.ImageFormat.unknown;
-        }
     }
 }

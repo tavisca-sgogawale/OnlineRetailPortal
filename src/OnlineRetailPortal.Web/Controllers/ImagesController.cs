@@ -26,8 +26,8 @@ namespace OnlineRetailPortal.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> UploadImage()
         {
-            UploadImageRequestValidator requestValidator = new UploadImageRequestValidator();
-            requestValidator.EnforcePostValidation(Request);
+            UploadImageRequestValidator validator = new UploadImageRequestValidator();
+            ImageRequestValidator.Validate(validator, Request);
 
             UploadImageResponse response = await _imageHandler.UploadImage(Request.ToUploadImageServiceContract());
             return response.ToUser();
@@ -40,7 +40,7 @@ namespace OnlineRetailPortal.Web.Controllers
         public IActionResult DeleteImage(string id)
         {
             DeleteImageRequestValidator requestValidator = new DeleteImageRequestValidator();
-            requestValidator.EnforceDeleteRequestValidation(id);
+            requestValidator.ValidateDeleteRequest(id);
 
             _imageHandler.DeleteTempImage(id.ToDeleteImageContract());
             return new StatusCodeResult(204);

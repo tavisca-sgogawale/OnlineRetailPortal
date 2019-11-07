@@ -3,22 +3,37 @@ using OnlineRetailPortal.Contracts;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using MongoDB.Bson;
+using OnlineRetailPortal.Mock;
+using System;
+using OnlineRetailPortal.Core;
+using System.Net;
 
 namespace OnlineRetailPortal.MongoDBStore
 {
     public class ProductStore : IProductStore
     {
-        private static MongoClient _dbClient = new MongoClient("mongodb://127.0.0.1:27017");
-        private IMongoDatabase _db = _dbClient.GetDatabase("ORP");
-        private const string _collection = "Product1";
+        private static MongoClient _dbClient = new MongoClient(DatabaseConfiguration._mongoDBConnectionString);
+        private IMongoDatabase _db = _dbClient.GetDatabase(DatabaseConfiguration._databaseName);
+        private string _collection = DatabaseConfiguration._productTableName;
 
         public async Task<AddProductStoreResponse> AddProductAsync(AddProductStoreRequest request)
         {
-            var productStoreCollection = _db.GetCollection<AddProductStoreRequest>(_collection);
-            await productStoreCollection.InsertOneAsync(request);
-            var filter = Builders<AddProductStoreResponse>.Filter.Eq("SellerId", request.SellerId);
-            var productCollection = _db.GetCollection<AddProductStoreResponse>(_collection);
-            return (await productCollection.FindAsync(filter)).First();
+            var product = request.ToModel();
+            product.Id = Guid.NewGuid().ToString();
+            product.Status = OnlineRetailPortal.Contracts.Status.Active;
+            product.PostDateTime = DateTime.Now;
+            product.ExpirationDate = DateTime.Now.AddDays(30);
+
+            var productStoreCollection = _db.GetCollection<AddProductStoreResponse>(_collection);
+            try
+            {
+                await productStoreCollection.InsertOneAsync(product.ToEntity());
+            }
+            catch
+            {
+                throw new BaseException(int.Parse(ErrorCode.DataBaseDown()),Error.DataBaseDown(),null,HttpStatusCode.GatewayTimeout);
+            }
+            return product.ToEntity();
         }
         public Task<GetProductStoreResponse> GetProductAsync(GetProductStoreRequest request)
         {

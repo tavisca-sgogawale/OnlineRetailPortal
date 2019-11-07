@@ -71,15 +71,15 @@ namespace OnlineRetailPortal.Mock
                 List<Product> products = productList.OrderByDescending(x => x.PostDateTime).ToList();
                 int startIndex = (request.PagingInfo.PageNumber - 1) * (request.PagingInfo.PageSize);
                 int endIndex = startIndex + request.PagingInfo.PageSize - 1;
-                List<Product> newProductList = new List<Product>();
-                for (int i = startIndex; i <= endIndex; i++)
+                List<Product> responseProducts = new List<Product>();
+                for (int currentIndex = startIndex; currentIndex <= endIndex; currentIndex++)
                 {
-                    if (i == products.Count())
+                    if (currentIndex == products.Count())
                         break;
-                    newProductList.Add(products[i]);
+                    responseProducts.Add(products[currentIndex]);
                 }
-                request.PagingInfo.TotalPages = productList.Count() / request.PagingInfo.PageSize+ productList.Count()% request.PagingInfo.PageSize;
-                response = newProductList.ToGetProductsStoreResponse(request.PagingInfo.PageNumber,request.PagingInfo.PageSize, request.PagingInfo.TotalPages);
+                request.PagingInfo.TotalPages = (productList.Count() / request.PagingInfo.PageSize) + (productList.Count() % request.PagingInfo.PageSize);
+                response = responseProducts.ToGetProductsStoreResponse(request.PagingInfo);
                 return response;
             });
 

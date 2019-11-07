@@ -34,7 +34,6 @@ namespace OnlineRetailPortal.Web
                 HeroImage = x.HeroImage.ToEntity(),
                 PostDateTime = x.PostDateTime,
                 Price = x.Price.ToEntity(),
-                //ExpirationDate = null,
             }).ToList();
         }
     }

@@ -31,10 +31,8 @@ namespace OnlineRetailPortal.Web
         [HttpGet("products/{productId}")]
         public async Task<GetProductResponse> GetProductAsync(string productId)
         {
-            
             GetProductRequestValidator validator = new GetProductRequestValidator();
             validator.EnsureValid(productId);
-           // validationRules.Validate(productId);
             var response = await _productService.GetProductAsync(productId);
             return response.ToEntity();
         }
@@ -46,6 +44,6 @@ namespace OnlineRetailPortal.Web
             var response = await _productService.AddProductAsync(request.ToEntity());
             return response.ToModel();
         }
-        
+
     }
 }

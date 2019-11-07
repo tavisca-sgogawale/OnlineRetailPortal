@@ -8,17 +8,12 @@ namespace OnlineRetailPortal.Mock
 {
     public static class GetProductsStoreResponceTranslator
     {
-        public static GetProductsStoreResponse ToGetProductsStoreResponse(this List<Product> products , int pageNo , int pageSize , int totalPages)
+        public static GetProductsStoreResponse ToGetProductsStoreResponse(this List<Product> products , PagingInfo pagingInfo)
         {
             GetProductsStoreResponse response = new GetProductsStoreResponse()
             {
                 Products = products,
-                PagingInfo = new PagingInfo()
-                {
-                    PageNumber =pageNo,
-                    PageSize = pageSize,
-                    TotalPages = totalPages
-                }
+                PagingInfo = pagingInfo
 
             };
             return response;

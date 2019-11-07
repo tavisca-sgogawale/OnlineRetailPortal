@@ -19,11 +19,7 @@ namespace OnlineRetailPortal.Web
             .WithMessage(Error.NullField("Product Id"))
             .NotEmpty()
             .WithErrorCode(ErrorCode.MissingField())
-            .WithMessage(Error.MissingField("Product Id"))
-            .Length(2, 20)
-            .WithErrorCode(ErrorCode.GreaterCharacter())
-            .WithMessage(Error.GreaterCharacter("Product Id", "2"));
-
+            .WithMessage(Error.MissingField("Product Id"));
         }
     }
 }

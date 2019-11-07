@@ -7,7 +7,7 @@ namespace OnlineRetailPortal.Web.Translators
     {
         public static DeleteImageRequest ToDeleteImageContract(this string imageId)
         {
-            var request = new DeleteImageRequest() { ImageID=imageId };
+            var request = new DeleteImageRequest() { ImageId=imageId };
             return request;
         }
     }

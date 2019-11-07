@@ -42,7 +42,7 @@ namespace OnlineRetailPortal.Services.Services
         /// <param name="request"></param>
         public void DeleteTempImage(DeleteImageRequest request)
         {
-            string imageId = request.ImageID;
+            string imageId = request.ImageId;
             try
             {
                 string path = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _tempImagefolder, imageId);
@@ -50,7 +50,6 @@ namespace OnlineRetailPortal.Services.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Invalid Delete request: {@ex} ", ex);
                 //Logger.logInformation("Invalid Delete request: {@ex} ", ex)
                 throw new BaseException(StatusCodes.Status500InternalServerError, "Internal Server Error",null, System.Net.HttpStatusCode.InternalServerError);
             }

@@ -49,7 +49,7 @@ namespace OnlineRetailPortal.Services.Services
                 throw new BaseException(StatusCodes.Status500InternalServerError, "Internal Server Error",null, System.Net.HttpStatusCode.InternalServerError);
             }
 
-            return new ImageWriterResponse(){ Response = _tempImagefolder+ "/" + fileName};
+            return new ImageWriterResponse() { Response =$"{ _tempImagefolder}/{fileName}"};
         }
     }
 }

@@ -8,6 +8,14 @@ namespace OnlineRetailPortal.Core
 {
     public class Error
     {
+        public static string InvalidImage()
+        {
+            return string.Format(ErrorMessage.InvalidImage);
+        }
+        public static string MissingImage()
+        {
+            return string.Format(ErrorMessage.MissingImage);
+        }
         public static string NullRequest()
         {
             return string.Format(ErrorMessage.NullRequest);

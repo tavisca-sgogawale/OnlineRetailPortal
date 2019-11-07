@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Server.IIS;
 using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Contracts.Contracts;
 using OnlineRetailPortal.Contracts.Models;
@@ -6,6 +8,7 @@ using OnlineRetailPortal.Web.Models;
 using System;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 
 namespace OnlineRetailPortal.Web.Validations
@@ -13,43 +16,38 @@ namespace OnlineRetailPortal.Web.Validations
     public static class ImageRequestValidator
     {
         /// <summary>
-        /// Checks if the incoming request is valid and throws an ImageUploadException if the request is invalid.
+        /// Checks if the incoming request is valid and throws an appropriate BaseException if the request is invalid.
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public static void ValidateImagePostRequest(Microsoft.AspNetCore.Http.HttpRequest request)
+        public static void EnforcePostValidation(this AbstractValidator<HttpRequest> validator, HttpRequest request)
         {
+            if (request.ContentLength == 0)
+                throw new BaseException(StatusCodes.Status400BadRequest, "No file was recieved or was sent with an invalid form key", null, System.Net.HttpStatusCode.BadRequest);
 
-            try
+        var validationResult = validator.Validate(request);
+
+            if (validationResult.IsValid == false)
             {
-                int formFiles= request.Form.Files.Count;
+                var error = validationResult.Errors[0];
+                var genericErrorCode = error.ErrorCode == StatusCodes.Status400BadRequest.ToString() ? HttpStatusCode.BadRequest : HttpStatusCode.UnsupportedMediaType;
+                throw new BaseException(Convert.ToInt32(error.ErrorCode),error.ErrorMessage,null,genericErrorCode);
+                
             }
-            catch (Exception ex)
-            {
-                if (ex.Message == "Request body too large.")
-                {
-                    throw new BaseException(StatusCodes.Status413PayloadTooLarge, "The sent file was too large..!\nLimit the Size to 24MB", null, System.Net.HttpStatusCode.BadRequest);
-                }
-                throw new BaseException(StatusCodes.Status400BadRequest, "No file was recieved or was sent with an invalid form key",null,System.Net.HttpStatusCode.BadRequest);
-                //Log(ex.message, ex.trace)
-            }
-
-
-            if (request.Form.Files.Count > 0)
-            {
-                IFormFile file = request.Form.Files[0];
-                if (file == null || !CheckIfImageFile(file))
-                {
-                    throw new BaseException(StatusCodes.Status415UnsupportedMediaType, "Invalid image file",null, System.Net.HttpStatusCode.BadRequest);
-
-                }
-            }
-            else
-            {
-                throw new BaseException(StatusCodes.Status400BadRequest, "No file was recieved or was sent with an invalid form key",null, System.Net.HttpStatusCode.BadRequest);
-            }
-
         }
+
+
+        public static void EnforceDeleteRequestValidation(this AbstractValidator<string> validator, string id)
+        {
+            var validationResult = validator.Validate(id);
+            if (validationResult.IsValid == false)
+            {
+                var error = validationResult.Errors[0];
+                throw new BaseException(Convert.ToInt32(error.ErrorCode), error.ErrorMessage, null, HttpStatusCode.BadRequest);
+            }
+           
+        }
+
 
         /// <summary>
         /// Method to check if file is a valid image file

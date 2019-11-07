@@ -97,6 +97,15 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid image file was sent..
+        /// </summary>
+        public static string InvalidImage {
+            get {
+                return ResourceManager.GetString("InvalidImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Errors occured.
         /// </summary>
         public static string InvalidRequest {
@@ -111,6 +120,15 @@ namespace OnlineRetailPortal.Contracts {
         public static string MissingField {
             get {
                 return ResourceManager.GetString("MissingField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No file was recieved or was sent with an invalid form key..
+        /// </summary>
+        public static string MissingImage {
+            get {
+                return ResourceManager.GetString("MissingImage", resourceCulture);
             }
         }
         

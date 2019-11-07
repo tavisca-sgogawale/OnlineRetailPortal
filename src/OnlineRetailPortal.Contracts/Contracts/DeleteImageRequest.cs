@@ -6,6 +6,6 @@ namespace OnlineRetailPortal.Contracts.Contracts
 {
     public class DeleteImageRequest
     {
-        public string ImageID { get; set; }
+        public string ImageId { get; set; }
     }
 }

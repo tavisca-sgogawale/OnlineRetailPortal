@@ -52,6 +52,12 @@ namespace OnlineRetailPortal.Web
             .WithErrorCode(ErrorCode.GreaterValue())
             .WithMessage(Error.GreaterValue("Price", "0"));
 
+            RuleFor(x => x.Price.Money.Currency)
+            .Cascade(CascadeMode.StopOnFirstFailure)
+            .Equal("INR")
+            .WithErrorCode(ErrorCode.InvalidCurrency())
+            .WithMessage(Error.InvalidCurrency("Currency"));
+
             RuleFor(x => x.Price.IsNegotiable)
             .NotEmpty()
             .WithErrorCode(ErrorCode.MissingField())

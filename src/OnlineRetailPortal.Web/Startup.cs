@@ -7,8 +7,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using OnlineRetailPortal.Contracts;
+using OnlineRetailPortal.Contracts.Contracts;
 using OnlineRetailPortal.Mock;
 using OnlineRetailPortal.Services;
+using OnlineRetailPortal.Services.Services;
 
 namespace OnlineRetailPortal.Web
 {

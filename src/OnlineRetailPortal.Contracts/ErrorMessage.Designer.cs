@@ -8,10 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OnlineRetailPortal.Contracts {
+namespace OnlineRetailPortal.Contracts
+{
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,131 +23,167 @@ namespace OnlineRetailPortal.Contracts {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ErrorMessage {
-        
+    public class ErrorMessage
+    {
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ErrorMessage() {
+        internal ErrorMessage()
+        {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
-            get {
-                if (object.ReferenceEquals(resourceMan, null)) {
+        public static global::System.Resources.ResourceManager ResourceManager
+        {
+            get
+            {
+                if (object.ReferenceEquals(resourceMan, null))
+                {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OnlineRetailPortal.Contracts.ErrorMessage", typeof(ErrorMessage).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
-            get {
+        public static global::System.Globalization.CultureInfo Culture
+        {
+            get
+            {
                 return resourceCulture;
             }
-            set {
+            set
+            {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        public static string Empty {
-            get {
+        public static string Empty
+        {
+            get
+            {
                 return ResourceManager.GetString("Empty", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to {0} should be at least  {1} characters..
         /// </summary>
-        public static string GreaterCharacter {
-            get {
+        public static string GreaterCharacter
+        {
+            get
+            {
                 return ResourceManager.GetString("GreaterCharacter", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to {0} should be less than Todays Date..
         /// </summary>
-        public static string GreaterDate {
-            get {
+        public static string GreaterDate
+        {
+            get
+            {
                 return ResourceManager.GetString("GreaterDate", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to {0} should be greater than  {1}..
         /// </summary>
-        public static string GreaterValue {
-            get {
+        public static string GreaterValue
+        {
+            get
+            {
                 return ResourceManager.GetString("GreaterValue", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Invalid image file was sent..
         /// </summary>
-        public static string InvalidImage {
-            get {
+        public static string InvalidImage
+        {
+            get
+            {
                 return ResourceManager.GetString("InvalidImage", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Errors occured.
         /// </summary>
-        public static string InvalidRequest {
-            get {
+        public static string InvalidRequest
+        {
+            get
+            {
                 return ResourceManager.GetString("InvalidRequest", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to {0} can not be blank..
         /// </summary>
-        public static string MissingField {
-            get {
+        public static string MissingField
+        {
+            get
+            {
                 return ResourceManager.GetString("MissingField", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to No file was recieved or was sent with an invalid form key..
         /// </summary>
-        public static string MissingImage {
-            get {
+        public static string MissingImage
+        {
+            get
+            {
                 return ResourceManager.GetString("MissingImage", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to {0} can not be null..
         /// </summary>
-        public static string NullField {
-            get {
+        public static string NullField
+        {
+            get
+            {
                 return ResourceManager.GetString("NullField", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Request is null.
         /// </summary>
-        public static string NullRequest {
-            get {
+        public static string NullRequest
+        {
+            get
+            {
                 return ResourceManager.GetString("NullRequest", resourceCulture);
+            }
+        }
+
+        public static string InvalidCurrency
+        {
+            get
+            {
+                return ResourceManager.GetString("InvalidCurrency", resourceCulture);
             }
         }
     }

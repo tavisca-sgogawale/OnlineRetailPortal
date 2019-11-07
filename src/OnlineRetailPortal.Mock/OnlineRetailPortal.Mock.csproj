@@ -17,4 +17,8 @@
     <Folder Include="Translators\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Translators\" />
+  </ItemGroup>
+
 </Project>

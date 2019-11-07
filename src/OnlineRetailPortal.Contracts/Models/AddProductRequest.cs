@@ -8,7 +8,6 @@ namespace OnlineRetailPortal.Contracts
     public class AddProductRequest
     {
         public string SellerId { get; set; }
-        public int ProductId { get; set; }
         public string Name { get; set; }
         public Category Category { get; set; }
         public Price Price { get; set; }

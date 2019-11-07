@@ -1,5 +1,4 @@
-﻿using FluentValidation.Results;
-using OnlineRetailPortal.Contracts;
+﻿using OnlineRetailPortal.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace OnlineRetailPortal.Mock
         static List<Product> productList = new List<Product>() {
             new Product{SellerId="1",Id="101",Name="Mobile", Price=new Price{Money = new Money(200.0, "INR"), IsNegotiable=true}, Category=Category.Mobile,
                 HeroImage =new Image{Url = "https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery"},
-                Description ="11 pro max 64 gb full box", Images=null,
+                Description ="11 pro max 64 gb full box", Images= new List<Image>(){new Image{Url = "https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery"},new Image{Url = "https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery"} },
                 PickupAddress =new Address{Line1="abc",Line2="xyz", City="Pune",State="Maharashtra", Pincode=411038 },
                 PostDateTime =  new DateTime(2019,12,1),ExpirationDate = new DateTime(2019,12,1).AddDays(30), PurchasedDate = DateTime.Now, Status = Status.Active },
 
@@ -45,13 +44,13 @@ namespace OnlineRetailPortal.Mock
             return product.ToEntity();
         }
 
-        public async Task<GetProductStoreResponse> GetProductAsync(GetProductStoreRequest request)
+        public async Task<GetProductStoreResponse> GetProductAsync(string productId)
         {
             Product response = await Task.Run(() =>
             {
                 try
                 {
-                    response = productList.Where(x => x.Id == request.ProductId).First();
+                    response = productList.Where(x => x.Id == productId).First();
                     return response;
                 }
                 catch (Exception)
@@ -69,8 +68,9 @@ namespace OnlineRetailPortal.Mock
 
             response = await Task.Run(() =>
             {
-                List<Product> products = productList.Where(y => y.Status == Status.Active).OrderBy(x => x.PostDateTime).Take(50).ToList();
-                response = products.ToGetProductsStoreResponse();
+                List<Product> products = productList.OrderBy(x => x.PostDateTime).Take(request.PagingInfo.PageSize).ToList();
+                request.PagingInfo.TotalPages = productList.Count() / request.PagingInfo.PageSize;
+                response = products.ToGetProductsStoreResponse(request.PagingInfo.PageNumber,request.PagingInfo.PageSize, request.PagingInfo.TotalPages);
                 return response;
             });
 

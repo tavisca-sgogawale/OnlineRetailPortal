@@ -33,18 +33,18 @@ namespace OnlineRetailPortal.Core
         public static async Task<ProductsWithPageInitiation>  GetProductsAsync(GetProductsServiceRequest serviceRequest, IProductStore productStore)
         {
             _productStore = productStore;
-            var request = serviceRequest.ToProductStoreRequest();
-            var response = await _productStore.GetProductsAsync(request);
+            GetProductsStoreRequest request = serviceRequest.ToProductStoreRequest();
+            GetProductsStoreResponse response = await _productStore.GetProductsAsync(request);
             return response.ToProductsWithPageInitiation();
         }
        
         public static async Task<Product> GetProductAsync(string productId, IProductStore productStore)
         {
             _productStore = productStore;
-            var response = await _productStore.GetProductAsync(productId);
+            GetProductStoreResponse response = await _productStore.GetProductAsync(productId);
             return response.ToGetProductServiceResponse();
         }
-    }
+    
 
         public async Task<Product> SaveAsync(IProductStore productStore)
         {           

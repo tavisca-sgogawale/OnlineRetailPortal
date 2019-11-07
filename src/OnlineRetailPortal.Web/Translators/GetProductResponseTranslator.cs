@@ -52,42 +52,42 @@ namespace OnlineRetailPortal.Web
             };
         }
         //category will change after category api implementation
-        public static Category ToEntity(this Contracts.Category category)
+        public static string ToEntity(this Contracts.Category category)
         {
             switch (category)
             {
-                case Contracts.Category.Property:
-                    return Category.Property;
-                case Contracts.Category.Car: 
-                    return Category.Car;
-                case Contracts.Category.Furniture: 
-                    return Category.Furniture;
-                case Contracts.Category.Mobile: 
-                    return Category.Mobile;
                 case Contracts.Category.Bike:
-                    return Category.Bike;
-                case Contracts.Category.Book: 
-                    return Category.Book;
-                case Contracts.Category.Fashion: 
-                    return Category.Fashion;
-                case Contracts.Category.Electronic: 
-                    return Category.Electronic;
-                case Contracts.Category.Other: 
-                    return Category.Other;
+                    return "Bike";
+                case Contracts.Category.Book:
+                    return "Book";
+                case Contracts.Category.Car:
+                    return "Car";
+                case Contracts.Category.Electronic:
+                    return "Electronic";
+                case Contracts.Category.Fashion:
+                    return "Fashion";
+                case Contracts.Category.Furniture:
+                    return "Furniture";
+                case Contracts.Category.Mobile:
+                    return "Mobile";
+                case Contracts.Category.Other:
+                    return "Other";
+                case Contracts.Category.Property:
+                    return "Property";
                 default :
                     throw new NotSupportedException($"This category is not supported:{category}");
             }
         }
-        public static Status ToEntity(this Contracts.Status status)
+        public static string ToEntity(this Contracts.Status status)
         {
             switch (status)
             {
-                case Contracts.Status.Active: 
-                    return Status.Active;
+                case Contracts.Status.Active:
+                    return "Active";
                 case Contracts.Status.Disabled:
-                    return Status.Disabled;
-                case Contracts.Status.Sold: 
-                    return Status.Sold;
+                    return "Disabled";
+                case Contracts.Status.Sold:
+                    return "Sold";
                 default:
                     throw new NotSupportedException($"This status is not supported:{status}");
             }

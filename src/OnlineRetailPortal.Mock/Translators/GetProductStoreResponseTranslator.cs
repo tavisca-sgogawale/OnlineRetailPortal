@@ -12,31 +12,7 @@ namespace OnlineRetailPortal.Mock
         {
             GetProductStoreResponse response = new GetProductStoreResponse()
             {
-                Product = new Contracts.Product()
-                {
-                    Id = product.Id,
-                    Name = product.Name,
-                    Description = product.Description,
-                    HeroImage = new Contracts.Image { Url = product.HeroImage.Url },
-                    Price = new Contracts.Price() { Money = { Amount = product.Price.Money.Amount, Currency = product.Price.Money.Currency }, IsNegotiable = product.Price.IsNegotiable },
-                    Category = product.Category,
-                    Status = product.Status,
-                    PostDateTime = product.PostDateTime,
-                    ExpirationDate = product.ExpirationDate,
-                    Images = product.Images.Select(x => new Contracts.Image
-                    {
-                        Url = x.Url
-                    }).ToList(),
-                    PurchasedDate = product.PurchasedDate,
-                    PickupAddress = new Contracts.Address()
-                    {
-                        Line1 = product.PickupAddress.Line1,
-                        Line2 = product.PickupAddress.Line2,
-                        City = product.PickupAddress.City,
-                        Pincode = product.PickupAddress.Pincode,
-                        State = product.PickupAddress.State
-                    }
-                }
+                Product = product
             };
             return response;
 

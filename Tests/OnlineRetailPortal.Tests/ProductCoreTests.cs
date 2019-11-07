@@ -79,7 +79,7 @@ namespace OnlineRetailPortal.Tests
 
         private Core.Product GetExpectedResponse()
         {
-            Core.Product product = new Core.Product("1", "Bottle", new Core.Price { Money = new Core.Money(99.99, "INR"), IsNegotiable = false })
+            Core.Product product = new Core.Product(new Core.Price { Money = new Core.Money(99.99, "INR"), IsNegotiable = false },"1", "Bottle")
             {
                 Id = null,
                 Description = "Green Bottle",
@@ -105,7 +105,7 @@ namespace OnlineRetailPortal.Tests
 
         private Core.Product GetRequest()
         {
-            Core.Product product = new Core.Product("1", "Bottle", new Core.Price { Money = new Core.Money(99.99, "INR"), IsNegotiable = false })
+            Core.Product product = new Core.Product(new Core.Price { Money = new Core.Money(99.99, "INR"), IsNegotiable = false },"1", "Bottle")
             {
                 Description = "Green Bottle",
                 HeroImage = new Core.Image { Url = "example.com" },

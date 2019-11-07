@@ -11,7 +11,7 @@ namespace OnlineRetailPortal.Services
     {
         public static Core.Product ToEntity(this Contracts.AddProductRequest addProductRequest)
         {
-            var product = new Core.Product(addProductRequest.SellerId,addProductRequest.Name,addProductRequest.Price.ToEntity())
+            var product = new Core.Product(addProductRequest.Price.ToEntity(), addProductRequest.SellerId, addProductRequest.Name)
             {
                 Description = addProductRequest.Description,
                 HeroImage = addProductRequest.HeroImage.ToEntity(),

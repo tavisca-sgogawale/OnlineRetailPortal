@@ -12,8 +12,8 @@ namespace OnlineRetailPortal.Web
         public string Description { get; set; }
         public Image HeroImage { get; set; }
         public Price Price { get; set; }
-        public Category Category { get; set; }
-        public Status Status { get; set; }
+        public string Category { get; set; }
+        public string Status { get; set; }
         public DateTime PostDateTime { get; set; }
         public DateTime ExpirationDate { get; set; }
         public List<Image> Images { get; set; }

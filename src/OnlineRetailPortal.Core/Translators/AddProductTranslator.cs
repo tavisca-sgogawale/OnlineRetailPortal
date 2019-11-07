@@ -28,7 +28,7 @@ namespace OnlineRetailPortal.Core
 
         public static Product ToModel(this AddProductStoreResponse addProductStoreResponse)
         {
-            var product = new Product(addProductStoreResponse.SellerId, addProductStoreResponse.Name, addProductStoreResponse.Price.ToModel()) { 
+            var product = new Product(addProductStoreResponse.Price.ToModel(),addProductStoreResponse.SellerId, addProductStoreResponse.Name ) { 
                 Id = addProductStoreResponse.Id,
                 Description = addProductStoreResponse.Description,
                 HeroImage = addProductStoreResponse.HeroImage.ToModel(),

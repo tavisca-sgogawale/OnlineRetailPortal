@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
+using OnlineRetailPortal.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineRetailPortal.Contracts.Contracts
+namespace OnlineRetailPortal.Contracts
 {
     public interface IImageHandler
     {
@@ -13,11 +14,12 @@ namespace OnlineRetailPortal.Contracts.Contracts
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task<UploadImageResponse> UploadImage(UploadImageRequest request);
+        Task<UploadImageResponse> UploadImageAsync(UploadImageRequest request);
+
         /// <summary>
         /// Takes a DeleteImageRequest object containing the name of the file to delete from the temporary folder
         /// </summary>
-        /// <param name="imageUrl"></param>
+        /// <param name="request"></param>
         void DeleteTempImage(DeleteImageRequest request);
     }
     

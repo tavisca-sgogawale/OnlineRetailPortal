@@ -1,4 +1,4 @@
-﻿using OnlineRetailPortal.Contracts.Contracts;
+﻿using OnlineRetailPortal.Contracts;
 
 
 namespace OnlineRetailPortal.Web.Translators

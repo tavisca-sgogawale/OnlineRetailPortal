@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Http;
-using OnlineRetailPortal.Contracts.Contracts;
-using OnlineRetailPortal.Contracts.Models;
+using OnlineRetailPortal.Contracts;
+using OnlineRetailPortal.Contracts;
 
 namespace OnlineRetailPortal.Services.Translators
 {

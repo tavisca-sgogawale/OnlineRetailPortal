@@ -11,7 +11,6 @@ namespace OnlineRetailPortal.Web.Validations
         public UploadImageRequestValidator()
         {
             RuleFor(req => req)
-           .Cascade(CascadeMode.StopOnFirstFailure)
            .NotNull()
            .WithErrorCode(StatusCodes.Status400BadRequest.ToString())
            .WithMessage(Error.MissingImage());
@@ -19,7 +18,6 @@ namespace OnlineRetailPortal.Web.Validations
 
 
             RuleFor(req => req.Form)
-            .Cascade(CascadeMode.StopOnFirstFailure)
             .NotNull()
             .WithErrorCode(StatusCodes.Status400BadRequest.ToString())
             .WithMessage(Error.MissingImage());
@@ -27,7 +25,6 @@ namespace OnlineRetailPortal.Web.Validations
 
 
             RuleFor(req => req.Form.Files)
-            .Cascade(CascadeMode.StopOnFirstFailure)
             .NotNull()
             .WithErrorCode(StatusCodes.Status400BadRequest.ToString())
             .WithMessage(Error.MissingImage());
@@ -35,7 +32,6 @@ namespace OnlineRetailPortal.Web.Validations
 
 
             RuleFor(req => req.Form.Files[0])
-            .Cascade(CascadeMode.StopOnFirstFailure)
             .NotNull()
             .WithErrorCode(StatusCodes.Status400BadRequest.ToString())
             .WithMessage(Error.MissingImage());
@@ -43,7 +39,6 @@ namespace OnlineRetailPortal.Web.Validations
 
 
             RuleFor(req => req.Form.Files[0])
-            .Cascade(CascadeMode.StopOnFirstFailure)
             .Must(file => IsSupportedImageFile(file))
             .WithErrorCode(StatusCodes.Status415UnsupportedMediaType.ToString())
             .WithMessage(Error.UnsupportedFileFormat());

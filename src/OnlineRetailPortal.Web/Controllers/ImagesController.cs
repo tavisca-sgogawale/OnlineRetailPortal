@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using OnlineRetailPortal.Contracts.Contracts;
-using OnlineRetailPortal.Contracts.Models;
+using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Web.Translators;
 using OnlineRetailPortal.Web.Validations;
 
@@ -29,7 +28,7 @@ namespace OnlineRetailPortal.Web.Controllers
             UploadImageRequestValidator validator = new UploadImageRequestValidator();
             ImageRequestValidator.Validate(validator, Request);
 
-            UploadImageResponse response = await _imageHandler.UploadImage(Request.ToUploadImageServiceContract());
+            UploadImageResponse response = await _imageHandler.UploadImageAsync(Request.ToUploadImageServiceContract());
             return response.ToUser();
             
         }

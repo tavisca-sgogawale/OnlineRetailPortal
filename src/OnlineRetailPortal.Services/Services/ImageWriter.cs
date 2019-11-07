@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using OnlineRetailPortal.Contracts;
-using OnlineRetailPortal.Contracts.Contracts;
-using OnlineRetailPortal.Contracts.Models;
+using OnlineRetailPortal.Contracts;
+using OnlineRetailPortal.Contracts;
 
 using System;
 using System.Collections.Generic;

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using OnlineRetailPortal.Contracts.Contracts;
+using OnlineRetailPortal.Contracts;
 using Newtonsoft.Json;
 
 namespace OnlineRetailPortal.Web.Translators

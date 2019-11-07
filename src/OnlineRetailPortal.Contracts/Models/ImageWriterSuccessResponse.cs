@@ -1,9 +1,9 @@
-﻿using OnlineRetailPortal.Contracts.Contracts;
+﻿using OnlineRetailPortal.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineRetailPortal.Contracts.Models
+namespace OnlineRetailPortal.Contracts
 {
     public class ImageWriterResponse
     {

@@ -1,4 +1,4 @@
-﻿namespace OnlineRetailPortal.Contracts.Contracts
+﻿namespace OnlineRetailPortal.Contracts
 {
     public class UploadImageResponse
     {

@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using OnlineRetailPortal.Contracts.Contracts;
+using OnlineRetailPortal.Contracts;
 using System;
 using System.IO;
 using System.Threading.Tasks;
 using OnlineRetailPortal.Services.Translators;
-using OnlineRetailPortal.Contracts.Models;
+using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Contracts;
 
 namespace OnlineRetailPortal.Services.Services
@@ -29,7 +29,7 @@ namespace OnlineRetailPortal.Services.Services
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<UploadImageResponse> UploadImage(UploadImageRequest request)
+        public async Task<UploadImageResponse> UploadImageAsync(UploadImageRequest request)
         {
             IFormFile file = request.File;
             ImageWriterResponse response =  await _imageWriter.WriteFile(file).ConfigureAwait(false);

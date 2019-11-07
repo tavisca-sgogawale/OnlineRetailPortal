@@ -14,19 +14,19 @@ namespace OnlineRetailPortal.Mock
                 HeroImage =new Image{Url = "https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery"},
                 Description ="11 pro max 64 gb full box", Images= new List<Image>(){new Image{Url = "https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery"},new Image{Url = "https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery"} },
                 PickupAddress =new Address{Line1="abc",Line2="xyz", City="Pune",State="Maharashtra", Pincode=411038 },
-                PostDateTime =  new DateTime(2019,12,1),ExpirationDate = new DateTime(2019,12,1).AddDays(30), PurchasedDate = DateTime.Now, Status = Status.Active },
+                PostDateTime =  new DateTime(2019,1,1),ExpirationDate = new DateTime(2019,12,1).AddDays(30), PurchasedDate = DateTime.Now, Status = Status.Active },
 
             new Product{SellerId="2",Id="102",Name="Bottle", Price=new Price{ Money = new Money(200.0, "INR"), IsNegotiable=true}, Category=Category.Other,
                 HeroImage =new Image{Url = "https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery"},
                 Description ="Tavisca green color bottle", Images=null,
                 PickupAddress =new Address{Line1="abc",Line2="xyz", City="Pune",State="Maharashtra", Pincode=411038 },
-                PostDateTime =  new DateTime(2019,12,1),ExpirationDate = new DateTime(2019,12,1).AddDays(30), PurchasedDate =  new DateTime(2019,12,1), Status = Status.Active },
+                PostDateTime =  new DateTime(2018,12,1),ExpirationDate = new DateTime(2019,12,1).AddDays(30), PurchasedDate =  new DateTime(2019,12,1), Status = Status.Active },
 
              new Product{SellerId="3",Id="103",Name="Computer", Price=new Price{Money= new Money(200.0, "INR"), IsNegotiable=false}, Category=Category.Electronic,
                 HeroImage =new Image{Url = "https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery"},
                 Description ="hp desktop", Images=null,
                 PickupAddress =new Address{Line1="abc",Line2="xyz", City="Pune",State="Maharashtra", Pincode=411038 },
-                PostDateTime =  new DateTime(2019,12,1),ExpirationDate = new DateTime(2019,12,1).AddDays(30), PurchasedDate = DateTime.Now, Status = Status.Active }
+                PostDateTime =  new DateTime(2011,12,1),ExpirationDate = new DateTime(2019,12,1).AddDays(30), PurchasedDate = DateTime.Now, Status = Status.Active }
         };
 
         public MockProductStore()
@@ -68,9 +68,18 @@ namespace OnlineRetailPortal.Mock
 
             response = await Task.Run(() =>
             {
-                List<Product> products = productList.OrderBy(x => x.PostDateTime).Take(request.PagingInfo.PageSize).ToList();
-                request.PagingInfo.TotalPages = productList.Count() / request.PagingInfo.PageSize;
-                response = products.ToGetProductsStoreResponse(request.PagingInfo.PageNumber,request.PagingInfo.PageSize, request.PagingInfo.TotalPages);
+                List<Product> products = productList.OrderByDescending(x => x.PostDateTime).ToList();
+                int startIndex = (request.PagingInfo.PageNumber - 1) * (request.PagingInfo.PageSize);
+                int endIndex = startIndex + request.PagingInfo.PageSize - 1;
+                List<Product> newProductList = new List<Product>();
+                for (int i = startIndex; i <= endIndex; i++)
+                {
+                    if (i == products.Count())
+                        break;
+                    newProductList.Add(products[i]);
+                }
+                request.PagingInfo.TotalPages = productList.Count() / request.PagingInfo.PageSize+ productList.Count()% request.PagingInfo.PageSize;
+                response = newProductList.ToGetProductsStoreResponse(request.PagingInfo.PageNumber,request.PagingInfo.PageSize, request.PagingInfo.TotalPages);
                 return response;
             });
 

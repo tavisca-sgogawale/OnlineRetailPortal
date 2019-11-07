@@ -15,7 +15,7 @@ namespace OnlineRetailPortal.Web
         public string Category { get; set; }
         public string Status { get; set; }
         public DateTime PostDateTime { get; set; }
-        public DateTime ExpirationDate { get; set; }
+        public DateTime? ExpirationDate { get; set; }
         public List<Image> Images { get; set; }
         public DateTime? PurchasedDate { get; set; }
         public Address PickupAddress { get; set; }

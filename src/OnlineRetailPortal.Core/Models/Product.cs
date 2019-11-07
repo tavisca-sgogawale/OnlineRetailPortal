@@ -1,11 +1,13 @@
-﻿using System;
+﻿using OnlineRetailPortal.Contracts;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-namespace OnlineRetailPortal.Core.Models
+using System.Threading.Tasks;
+
+namespace OnlineRetailPortal.Core
 {
     public class Product
     {
+        public string SellerId { get; set; }
         public string Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -15,11 +17,22 @@ namespace OnlineRetailPortal.Core.Models
         public Status Status { get; set; }
         public DateTime PostDateTime { get; set; }
         public DateTime ExpirationDate { get; set; }
-
         public List<Image> Images { get; set; }
-        public DateTime PurchasedDate { get; set; }
+        public Nullable<DateTime> PurchasedDate { get; set; }
         public Address PickupAddress { get; set; }
 
-    }
+        public Product(string sellerId, string name, Price price)
+        {
+            this.SellerId = sellerId;
+            this.Name = name;
+            this.Price = price;
+        }
 
+        public async Task<Product> SaveAsync(IProductStore productStore)
+        {           
+            var addProductRequest = this.ToEntity();            
+            var addProductResponse = await productStore.AddProductAsync(addProductRequest);            
+            return addProductResponse.ToModel();
+        }
+    }
 }

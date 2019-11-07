@@ -1,5 +1,5 @@
 //Error response object
 {
-	"status code": "500",
+	"code": "500",
 	"message": "Internal Server Error"
 }

@@ -1,0 +1,8 @@
+//Delete Error responses
+
+// If some Unknown error occurs
+{
+	"code":"500",
+	"message":"Internal Server Error",
+
+},

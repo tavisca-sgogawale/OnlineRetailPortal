@@ -1,0 +1,4 @@
+//DELETE /api/v1.0/{applicationname}/image/{imageId}
+
+// sessionId and userId go in header
+// Id of the Image to be removed to be included in the URL 

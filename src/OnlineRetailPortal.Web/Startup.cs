@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Core;
+using Microsoft.Extensions.Logging;
 using OnlineRetailPortal.Mock;
 using OnlineRetailPortal.Services;
 
@@ -23,6 +24,7 @@ namespace OnlineRetailPortal.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllers();
             services.AddCors(options =>
             {
@@ -34,6 +36,8 @@ namespace OnlineRetailPortal.Web
             services.AddTransient<ICategoryService, CategoryService> ();
             services.AddTransient<ICategoryStore, MockCategoryStore>();
             services.AddTransient<ICategoryStoreFactory, CategoryObjectFactory>();
+            services.AddTransient<IProductStoreFactory, ProductStoreFactory>();
+            services.AddSingleton<IProductService, ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +49,8 @@ namespace OnlineRetailPortal.Web
             }
             
             app.UseCors("default");
+
+            app.UseMiddleware<CustomExceptionMiddleware>();
 
             app.UseHttpsRedirection();
 

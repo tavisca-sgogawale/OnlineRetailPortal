@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.MongoDBStore
 {
-    public class ProductStore : IProductStore
+    public class MongoProductStore : IProductStore
     {
         private static MongoClient _dbClient = new MongoClient(new MongoClientSettings
         {

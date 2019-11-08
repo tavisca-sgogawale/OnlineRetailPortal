@@ -15,7 +15,7 @@ namespace OnlineRetailPortal.Mock
             }
             else if (storeValue == "Mongo")
             {
-                return new ProductStore();
+                return new MongoProductStore();
             }
 
             //To get service object

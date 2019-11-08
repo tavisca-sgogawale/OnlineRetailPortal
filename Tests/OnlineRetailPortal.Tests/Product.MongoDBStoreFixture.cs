@@ -10,7 +10,7 @@ namespace OnlineRetailPortal.Tests
         [Fact]
         public async Task Get_All_Products_Should_Return_List_Of_All_Products()
         {
-            ProductStore productStore = new ProductStore();
+            MongoProductStore productStore = new MongoProductStore();
             var pagingInfo = new PagingInfo() { PageNumber = 1, PageSize = 10, TotalPages = 100 };
             GetProductsEntity getProductsStoreRequest = new GetProductsEntity()
             {

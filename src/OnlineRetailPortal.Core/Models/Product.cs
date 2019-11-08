@@ -22,29 +22,29 @@ namespace OnlineRetailPortal.Core
         public DateTime ExpirationDate { get; set; }
         public Status Status { get; set; }
 
-        public Product(Price price, string sellerId ,string name)
+        public Product(Price price, string sellerId, string name)
         {
             Price = price;
             SellerId = sellerId;
             Name = name;
         }
-        public static async Task<ProductsWithPageInitiation>  GetProductsAsync(GetProductsServiceRequest serviceRequest, IProductStore productStore)
+        public static async Task<ProductsWithPageInitiation> GetProductsAsync(GetProductsServiceRequest serviceRequest, IProductStore productStore)
         {
             var getProductsRequest = serviceRequest.ToEntity();
             var getProductsResponse = await productStore.GetProductsAsync(getProductsRequest);
             return getProductsResponse.ToModel();
         }
-       
+
         public static async Task<Product> GetAsync(string productId, IProductStore productStore)
         {
             var getProductResponse = await productStore.GetProductAsync(productId);
             return getProductResponse.ToModel();
-        }    
+        }
 
         public async Task<Product> SaveAsync(IProductStore productStore)
-        {           
-            var addProductRequest = this.ToEntity();            
-            var addProductResponse = await productStore.AddProductAsync(addProductRequest);            
+        {
+            var addProductRequest = this.ToEntity();
+            var addProductResponse = await productStore.AddProductAsync(addProductRequest);
             return addProductResponse.ToModel();
         }
     }

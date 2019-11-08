@@ -1,9 +1,7 @@
-using Moq;
 using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Web;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace OnlineRetailPortal.Tests
@@ -42,13 +40,13 @@ namespace OnlineRetailPortal.Tests
                 {
                     new Web.Product()
                     {
-                        Id = "103",
+                        SellerId = null,
                         Name = "Bottle",
                         Description = "Green Bottle",
-                        HeroImage =  "example.com" ,
-                        Price = new Web.Price {Money = new Web.Money( 99.99,  "INR" ), IsNegotiable = true },
-                        Category = "Other",
-                        Images = new List<string>() {"ex.com"},
+                        HeroImage = "example.com",
+                        // Price = new Web.Price { Amount = 99.99, IsNegotiable = true },
+                        Category = "asdasd",
+                        Images = new List<string>() { "ex.com" },
                         PurchasedDate = DateTime.Now,
                         PickupAddress = new Web.Address
                         {
@@ -57,7 +55,7 @@ namespace OnlineRetailPortal.Tests
                             City = "Pune",
                             Pincode = 411001,
                             State = "Maharashtra"
-                         }
+                        }
 
                     }
 

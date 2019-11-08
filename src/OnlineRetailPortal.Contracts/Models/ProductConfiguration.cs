@@ -4,8 +4,8 @@ using System.Text;
 
 namespace OnlineRetailPortal.Contracts
 {
-    public class GetProductStoreResponse
+    public class ProductConfiguration
     {
-        public Product Product { get; set; }
+        public int ExpiryInDays { get; set; }
     }
 }

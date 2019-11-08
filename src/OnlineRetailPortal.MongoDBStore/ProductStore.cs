@@ -24,12 +24,12 @@ namespace OnlineRetailPortal.MongoDBStore
             throw new System.NotImplementedException();
         }
 
-        public async Task<GetProductStoreResponse> GetProductAsync(GetProductStoreRequest request)
+        public async Task<GetProductStoreResponse> GetProductAsync(string request)
         {
             throw new System.NotImplementedException();
         }
 
-        public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreRequest request)
+        public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsEntity request)
         {
             GetProductsStoreResponse getProductsStoreResponse = new GetProductsStoreResponse();
             var data = _db.GetCollection<Product>(_collection);

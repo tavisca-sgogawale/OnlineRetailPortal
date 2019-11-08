@@ -11,7 +11,7 @@ namespace OnlineRetailPortal.Tests
         public async Task Get_All_Products_Should_Return_List_Of_All_Products()
         {
             ProductStore productStore = new ProductStore();
-            GetProductsStoreRequest getProductsStoreRequest = new GetProductsStoreRequest()
+            GetProductsEntity getProductsStoreRequest = new GetProductsEntity()
             {
                 PageNumber = 1,
                 PageSize = 10

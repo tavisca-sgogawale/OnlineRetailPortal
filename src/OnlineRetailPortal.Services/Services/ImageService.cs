@@ -11,13 +11,13 @@ using OnlineRetailPortal.Contracts;
 
 namespace OnlineRetailPortal.Services.Services
 {
-    public class ImageHandler : IImageHandler
+    public class ImageService : IImageService
     {
         private readonly ImageWriter _imageWriter;
         private IHostingEnvironment _env;
         private string _tempImagefolder;
 
-        public ImageHandler(IHostingEnvironment env, IConfiguration iconfig)
+        public ImageService(IHostingEnvironment env, IConfiguration iconfig)
         {
             _imageWriter = new ImageWriter(iconfig,env);
             _env = env;
@@ -32,8 +32,8 @@ namespace OnlineRetailPortal.Services.Services
         public async Task<UploadImageResponse> UploadImageAsync(UploadImageRequest request)
         {
             IFormFile file = request.File;
-            ImageWriterResponse response =  await _imageWriter.WriteFile(file).ConfigureAwait(false);
-            return response.ToUploadImageResponse();
+            ImageWriterResponse response = await _imageWriter.WriteFile(file);
+            return response.ToModel();
         }
 
         /// <summary>

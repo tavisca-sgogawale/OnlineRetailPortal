@@ -2,7 +2,7 @@
 {
     public class UploadImageResponse
     {
-        public string Message { get; set; }
+        public string ImageUrl { get; set; }
 
     }
 }

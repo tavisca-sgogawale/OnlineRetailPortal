@@ -7,7 +7,7 @@ namespace OnlineRetailPortal.Web.Translators
 {
     public static class UploadImageTranslator
     {
-        public static UploadImageRequest ToUploadImageServiceContract(this Microsoft.AspNetCore.Http.HttpRequest httpRequest)//(this IFormFile file)
+        public static UploadImageRequest ToEntity(this Microsoft.AspNetCore.Http.HttpRequest httpRequest)//(this IFormFile file)
         {
             IFormFile file = httpRequest.Form.Files[0];
 

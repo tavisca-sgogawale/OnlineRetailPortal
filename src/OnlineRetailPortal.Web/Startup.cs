@@ -34,7 +34,7 @@ namespace OnlineRetailPortal.Web
             services.AddControllers();
             services.AddTransient<IProductStoreFactory, ProductStoreFactory>();
             services.AddSingleton<IProductService, ProductService>();
-            services.AddTransient<IImageHandler, ImageHandler>();
+            services.AddTransient<IImageService, ImageService>();
 
         }
 

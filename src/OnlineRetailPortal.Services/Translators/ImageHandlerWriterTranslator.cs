@@ -10,9 +10,9 @@ namespace OnlineRetailPortal.Services.Translators
     public static class ImageHandlerWriterTranslator
     {
 
-        public static UploadImageResponse ToUploadImageResponse(this ImageWriterResponse response)
+        public static UploadImageResponse ToModel(this ImageWriterResponse response)
         {
-            UploadImageResponse uploadImageResponse = new UploadImageResponse() { Message = response.Response};
+            UploadImageResponse uploadImageResponse = new UploadImageResponse() { ImageUrl = response.Response};
             return uploadImageResponse;
         }
     }

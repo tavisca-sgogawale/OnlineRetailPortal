@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Contracts
 {
-    public interface IImageHandler
+    public interface IImageService
     {
         /// <summary>
         /// Takes an UploadImageRequest type object and tries to save the image in it

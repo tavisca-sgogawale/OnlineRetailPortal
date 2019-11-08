@@ -11,37 +11,37 @@ using OnlineRetailPortal.Web.Validations;
 
 namespace OnlineRetailPortal.Web.Controllers
 {
-    [Route("api/v1.0/OnlineRetailPortal/[controller]")]
+    [Route("api/v1.0/OnlineRetailPortal")]
     [ApiController]
     public class ImagesController : ControllerBase
     {
-        private readonly IImageHandler _imageHandler;
-        public ImagesController(IImageHandler imageHandler)
+        private readonly IImageService _imageService;
+        public ImagesController(IImageService imageService)
         {
-            _imageHandler = imageHandler;
+            _imageService = imageService;
         }
 
         // POST: api/Images
-        [HttpPost]
+        [HttpPost("images")]
         public async Task<IActionResult> UploadImage()
         {
             UploadImageRequestValidator validator = new UploadImageRequestValidator();
             ImageRequestValidator.Validate(validator, Request);
 
-            UploadImageResponse response = await _imageHandler.UploadImageAsync(Request.ToUploadImageServiceContract());
+            UploadImageResponse response = await _imageService.UploadImageAsync(Request.ToEntity());
             return response.ToUser();
             
         }
 
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
+        [HttpDelete("images/{id}")]
         public IActionResult DeleteImage(string id)
         {
             DeleteImageRequestValidator requestValidator = new DeleteImageRequestValidator();
             requestValidator.ValidateDeleteRequest(id);
 
-            _imageHandler.DeleteTempImage(id.ToDeleteImageContract());
+            _imageService.DeleteTempImage(id.ToDeleteImageContract());
             return new StatusCodeResult(204);
 
         }

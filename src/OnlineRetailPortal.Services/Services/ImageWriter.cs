@@ -34,13 +34,14 @@ namespace OnlineRetailPortal.Services.Services
             try
             {
                 var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
-                fileName = Guid.NewGuid().ToString() + extension; //Create a new Name for the file due to security reasons.
+
+                fileName = GenerateNewImageName() + extension; //Create a new Name for the file due to security reasons.
 
                 path = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _tempImagefolder, fileName);
 
                 using (var bits = new FileStream(path, FileMode.Create))
                 {
-                    await file.CopyToAsync(bits).ConfigureAwait(false);
+                    await file.CopyToAsync(bits);
                 }
             }
             catch (Exception ex)
@@ -50,6 +51,11 @@ namespace OnlineRetailPortal.Services.Services
             }
 
             return new ImageWriterResponse() { Response =$"{ _tempImagefolder}/{fileName}"};
+        }
+
+        private string GenerateNewImageName()
+        {
+            return ("tmp_" + Guid.NewGuid().ToString());
         }
     }
 }

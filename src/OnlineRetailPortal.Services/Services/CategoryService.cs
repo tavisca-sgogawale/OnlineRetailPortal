@@ -7,7 +7,7 @@ namespace OnlineRetailPortal.Services
     public class CategoryService : ICategoryService
     {
         private ICategoryStore _categoryStore;
-        public CategoryService(ICategoryStoreFactory CategoryObjectFactory)// ICategoryStore categoryStore)
+        public CategoryService(ICategoryStoreFactory CategoryObjectFactory)
         {
             ICategoryStore categoryStore = CategoryObjectFactory.GetCategoryStore();
             _categoryStore = categoryStore;

@@ -14,14 +14,6 @@ namespace OnlineRetailPortal.Core
         public int Id { get; set; }
         public string Name { get; }
 
-        //private ICategoryStore _categoryStore;
-        
-        //public Category()
-        //{
-        //    CategoryObjectFactory categoryObjectFactory = new CategoryObjectFactory();
-        //  ICategoryStore _categoryStore = categoryObjectFactory.GetCategoryStore();
-        //}
-
         public async static Task<List<Category>> GetCategoriesAsync(ICategoryStore categoryStore)
         {
             var response = await categoryStore.GetCategoriesAsync();

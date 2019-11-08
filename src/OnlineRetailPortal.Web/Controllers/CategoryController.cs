@@ -28,8 +28,8 @@ namespace OnlineRetailPortal.Web
             catch(Exception )
             {
                 //Log(exception.Message, exception.trace);
-               // throw new BaseException(500,"Internal Server Error", null,404);
-                throw new Exception();
+                throw new BaseException(500,"Internal Server Error", null,404);
+                
    
             }
            

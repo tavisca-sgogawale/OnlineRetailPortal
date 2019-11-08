@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/v1.0/OnlineRetailPortal/products",
+      "launchUrl": "api/v1.0/OnlineRetailPortal/products?pageNo=1&pageSize=2",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

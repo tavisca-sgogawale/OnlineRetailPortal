@@ -10,7 +10,7 @@ namespace OnlineRetailPortal.Tests
 {
     public class ProductControllerTestClass
     {
-        static IProductStoreFactory storeFactory;
+        static IProductStoreFactory storeFactory= new ProductStoreFactory();
         private IProductService _productService = new Services.ProductService(storeFactory);
         [Fact]
         public async void AddProduct_Request_With_Valid_Request_Format()
@@ -46,10 +46,10 @@ namespace OnlineRetailPortal.Tests
                 SellerId = "P123",
                 Name = "Bottle",
                 Description = "Green Bottle",
-                HeroImage = new Web.Image { Url = "example.com" },
-                Price = new Web.Price {Money = new Web.Money { Amount = 99.99, Currency = "INR" }, IsNegotiable = true },
+                HeroImage =  "example.com" ,
+                Price = new Web.Price {Money = new Web.Money( 99.99,  "INR" ), IsNegotiable = true },
                 Category = "Other",
-                Images = new List<Web.Image>() { new Web.Image { Url = "ex.com" } },
+                Images = new List<string>() { "ex.com" },
                 PurchasedDate = DateTime.Now,
                 PickupAddress = new Web.Address
                 {
@@ -71,10 +71,10 @@ namespace OnlineRetailPortal.Tests
                 SellerId="P123",
                 Name = "Bottle",
                 Description = "Green Bottle",
-                HeroImage = new Web.Image { Url = "example.com" },
-                Price = new Web.Price { Money = new Web.Money { Amount = 99.99, Currency = "INR" }, IsNegotiable = true },
+                HeroImage = "example.com",
+                Price = new Web.Price { Money = new Web.Money( 99.99, "INR"), IsNegotiable = true },
                 Category = "Other",
-                Images = new List<Web.Image>() { new Web.Image { Url = "ex.com" } },
+                Images = new List<string>() { "ex.com"},
                 PurchasedDate = DateTime.Now,
                 PickupAddress = new Web.Address
                 {

@@ -24,7 +24,7 @@ namespace OnlineRetailPortal.Tests
             Assert.Equal(expectedResponse.SellerId, actualResponse.SellerId);
             Assert.Equal(expectedResponse.Name, actualResponse.Name);
             Assert.Equal(expectedResponse.Description, actualResponse.Description);
-            Assert.Equal(expectedResponse.HeroImage.Url, actualResponse.HeroImage.Url);
+            Assert.Equal(expectedResponse.HeroImage, actualResponse.HeroImage);
             Assert.Equal(expectedResponse.Price.Money.Amount, actualResponse.Price.Money.Amount);
             Assert.Equal(expectedResponse.Price.Money.Currency, actualResponse.Price.Money.Currency);
             Assert.Equal(expectedResponse.Price.IsNegotiable, actualResponse.Price.IsNegotiable);
@@ -33,7 +33,7 @@ namespace OnlineRetailPortal.Tests
             Assert.Equal(expectedResponse.PostDateTime.ToString(), actualResponse.PostDateTime.ToString());
             Assert.Equal(expectedResponse.ExpirationDate.ToString(), actualResponse.ExpirationDate.ToString());
             for (var i = 0; i < actualResponse.Images.Count; i++)
-                Assert.Equal(expectedResponse.Images[i].Url, actualResponse.Images[i].Url);
+                Assert.Equal(expectedResponse.Images[i], actualResponse.Images[i]);
             Assert.Equal(expectedResponse.PurchasedDate.ToString(), actualResponse.PurchasedDate.ToString());
             Assert.Equal(expectedResponse.PickupAddress.Line1, actualResponse.PickupAddress.Line1);
             Assert.Equal(expectedResponse.PickupAddress.Line2, actualResponse.PickupAddress.Line2);
@@ -47,12 +47,12 @@ namespace OnlineRetailPortal.Tests
         public async void AddProduct_With_Null_Values_In_Optional_Field_In_Request_Should_Be_Added_Successfully()
         {
             var request = GetRequest();
-            request.Images = new List<Core.Image>();
+            request.Images = new List<string>();
             request.PurchasedDate = null;
             request.PickupAddress = null;
 
             var expectedResponse = GetExpectedResponse();
-            expectedResponse.Images = new List<Core.Image>();
+            expectedResponse.Images = new List<string>();
             expectedResponse.PurchasedDate = null;
             expectedResponse.PickupAddress = null;
 
@@ -63,7 +63,7 @@ namespace OnlineRetailPortal.Tests
             Assert.Equal(expectedResponse.SellerId, actualResponse.SellerId);
             Assert.Equal(expectedResponse.Name, actualResponse.Name);
             Assert.Equal(expectedResponse.Description, actualResponse.Description);
-            Assert.Equal(expectedResponse.HeroImage.Url, actualResponse.HeroImage.Url);
+            Assert.Equal(expectedResponse.HeroImage, actualResponse.HeroImage);
             Assert.Equal(expectedResponse.Price.Money.Amount, actualResponse.Price.Money.Amount);
             Assert.Equal(expectedResponse.Price.Money.Currency, actualResponse.Price.Money.Currency);
             Assert.Equal(expectedResponse.Price.IsNegotiable, actualResponse.Price.IsNegotiable);
@@ -72,23 +72,23 @@ namespace OnlineRetailPortal.Tests
             Assert.Equal(expectedResponse.PostDateTime.ToString(), actualResponse.PostDateTime.ToString());
             Assert.Equal(expectedResponse.ExpirationDate.ToString(), actualResponse.ExpirationDate.ToString());
             for (var i = 0; i < actualResponse.Images.Count; i++)
-                Assert.Equal(expectedResponse.Images[i].Url, actualResponse.Images[i].Url);
+                Assert.Equal(expectedResponse.Images[i], actualResponse.Images[i]);
             Assert.Null(actualResponse.PickupAddress);
         }
 
 
         private Core.Product GetExpectedResponse()
         {
-            Core.Product product = new Core.Product("1", "Bottle", new Core.Price { Money = new Core.Money(99.99, "INR"), IsNegotiable = false })
+            Core.Product product = new Core.Product(new Core.Price { Money = new Core.Money(99.99, "INR"), IsNegotiable = false },"1", "Bottle")
             {
                 Id = null,
                 Description = "Green Bottle",
-                HeroImage = new Core.Image { Url = "example.com" },
+                HeroImage = "example.com" ,
                 Category = Core.Category.Other,
                 Status = Core.Status.Active,
                 PostDateTime = DateTime.Now,
                 ExpirationDate = DateTime.Now.AddDays(30),
-                Images = new List<Core.Image>() { new Core.Image { Url = "ex.com" } },
+                Images = new List<string>() {"ex.com"  },
                 PurchasedDate = new DateTime(2010, 7, 7),
                 PickupAddress = new Core.Address
                 {
@@ -105,12 +105,12 @@ namespace OnlineRetailPortal.Tests
 
         private Core.Product GetRequest()
         {
-            Core.Product product = new Core.Product("1", "Bottle", new Core.Price { Money = new Core.Money(99.99, "INR"), IsNegotiable = false })
+            Core.Product product = new Core.Product(new Core.Price { Money = new Core.Money(99.99, "INR"), IsNegotiable = false },"1", "Bottle")
             {
                 Description = "Green Bottle",
-                HeroImage = new Core.Image { Url = "example.com" },
+                HeroImage =  "example.com" ,
                 Category = Core.Category.Other,
-                Images = new List<Core.Image>() { new Core.Image { Url = "ex.com" } },
+                Images = new List<string>() { "ex.com"  },
                 PurchasedDate = new DateTime(2010, 7, 7),
                 PickupAddress = new Core.Address
                 {

@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineRetailPortal.Contracts
+namespace OnlineRetailPortal.Web
 {
-    public class GetProductsStoreRequest
+    public class PagingInfo
     {
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
+        public int TotalPages { get; set; }
     }
 }

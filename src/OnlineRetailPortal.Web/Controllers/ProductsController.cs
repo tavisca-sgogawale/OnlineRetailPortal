@@ -19,15 +19,21 @@ namespace OnlineRetailPortal.Web
             _productService = productService;
         }
 
-        //[HttpGet("products/{productId}")]
-        //public async Task<GetProductResponse> GetProductAsync(string productId)
-        //{
-        //    var response = new Contracts.GetProductResponse() { Product = new Product{ Name = "Sheetal" } };
-        //   // response = await _productService.GetProductAsync(productId);
-        //    return response.ToDataContract();
-        //    //return new GetProductResponse();
-        //}
-
+        [HttpGet("products")]
+        public async Task<GetProductsResponse> GetProductsAsync(int pageNo, int pageSize)
+        {
+            var request = GetProductsServiceRequestTranslator.ToServiceRequest(pageNo, pageSize);//pageSize and pageNumber is will  be set in app setings
+            var response = await _productService.GetProductsAsync(request);
+            return response.ToGetProductsContract();
+        }
+        [HttpGet("products/{productId}")]
+        public async Task<GetProductResponse> GetProductAsync(string productId)
+        {
+            GetProductRequestValidator validator = new GetProductRequestValidator();
+            validator.EnsureValid(productId);
+            var response = await _productService.GetProductAsync(productId);
+            return response.ToEntity();
+        }
         [HttpPost("products/add")]
         public async Task<AddProductResponse> AddProductAsync([FromBody] AddProductRequest request)
         {
@@ -36,5 +42,6 @@ namespace OnlineRetailPortal.Web
             var response = await _productService.AddProductAsync(request.ToEntity());
             return response.ToModel();
         }
+
     }
 }

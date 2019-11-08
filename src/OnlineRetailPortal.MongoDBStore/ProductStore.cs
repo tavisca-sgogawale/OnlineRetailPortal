@@ -1,23 +1,41 @@
-﻿using OnlineRetailPortal.Contracts;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using OnlineRetailPortal.Contracts;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.MongoDBStore
 {
     public class ProductStore : IProductStore
     {
-        public Task<AddProductStoreResponse> AddProductAsync(AddProductStoreRequest request)
+        private static MongoClient _dbClient = new MongoClient(new MongoClientSettings
+        {
+            Server = new MongoServerAddress("mongodb://127.0.0.1"),
+            SocketTimeout = new TimeSpan(0, 0, 0, 2),
+            WaitQueueTimeout = new TimeSpan(0, 0, 0, 2),
+            ConnectTimeout = new TimeSpan(0, 0, 0, 2),
+
+        });
+        private IMongoDatabase _db = _dbClient.GetDatabase("ORP");
+        private const string _collection = "Product";
+        public async Task<AddProductStoreResponse> AddProductAsync(AddProductStoreRequest request)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<GetProductStoreResponse> GetProductAsync(GetProductStoreRequest request)
+        public async Task<GetProductStoreResponse> GetProductAsync(GetProductStoreRequest request)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreRequest request)
+        public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreRequest request)
         {
-            throw new System.NotImplementedException();
+            GetProductsStoreResponse getProductsStoreResponse = new GetProductsStoreResponse();
+            var data = _db.GetCollection<Product>(_collection);
+            List<Product> products = (await data.FindAsync(new BsonDocument())).ToList();
+            getProductsStoreResponse.Products = products;
+            return getProductsStoreResponse;
         }
     }
 }

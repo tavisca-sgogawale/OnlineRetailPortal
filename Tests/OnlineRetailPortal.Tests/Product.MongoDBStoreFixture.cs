@@ -19,7 +19,7 @@ namespace OnlineRetailPortal.Tests
 
             var productList = await productStore.GetProductsAsync(getProductsStoreRequest);
 
-            Assert.Equal(productList.Products.Count, 0);
+            Assert.Equal(1, productList.Products.Count);
         }
     }
 }

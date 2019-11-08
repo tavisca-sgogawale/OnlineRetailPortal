@@ -30,5 +30,14 @@ namespace OnlineRetailPortal.Services
             return response.ToModel();
         }
 
+        public Task<GetProductServiceResponse> GetProductAsync(string productId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<GetProductsServiceResponse> GetProductsAsync(GetProductsServiceRequest request)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

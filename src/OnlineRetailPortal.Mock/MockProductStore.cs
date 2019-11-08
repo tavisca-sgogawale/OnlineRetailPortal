@@ -33,7 +33,7 @@ namespace OnlineRetailPortal.Mock
         {
         }
 
-        public async Task<AddProductStoreResponse> AddProductAsync(AddProductStoreRequest request)
+        public async Task<ProductEntity> AddProductAsync(ProductEntity request)
         {
             var product = request.ToModel();
             product.Id = Guid.NewGuid().ToString();

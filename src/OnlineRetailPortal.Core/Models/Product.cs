@@ -41,11 +41,16 @@ namespace OnlineRetailPortal.Core
             return getProductResponse.ToModel();
         }    
 
-        public async Task<Product> SaveAsync(IProductStore productStore)
+        public async Task<Product> SaveAsync(IProductStore productStore,ProductConfiguration config)
         {           
-            var addProductRequest = this.ToEntity();            
-            var addProductResponse = await productStore.AddProductAsync(addProductRequest);            
+            var productEntity = this.ToEntity();
+            productEntity.Id = Guid.NewGuid().ToString();
+            productEntity.Status = OnlineRetailPortal.Contracts.Status.Active;
+            productEntity.PostDateTime = DateTime.Now;
+            productEntity.ExpirationDate = DateTime.Now.AddDays(config.ExpiryInDays);
+            var addProductResponse = await productStore.AddProductAsync(productEntity);            
             return addProductResponse.ToModel();
+
         }
     }
 }

@@ -3,7 +3,7 @@ namespace OnlineRetailPortal.Contracts
 {
     public interface IProductStore
     {
-        Task<AddProductStoreResponse> AddProductAsync(AddProductStoreRequest request);
+        Task<ProductEntity> AddProductAsync(ProductEntity request);
         Task<GetProductStoreResponse> GetProductAsync(string productId);
         Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreRequest request);
     }

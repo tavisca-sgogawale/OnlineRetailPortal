@@ -16,12 +16,12 @@ namespace OnlineRetailPortal.Tests
             SellerId = "IVDR12RED",
             Name = "Iphone",
             Description = "Iphone 1 year old",
-            HeroImage = new Image() { Url = "www.image1.com" },
+            HeroImage =  "www.image1.com" ,
             Price = new Price() { Money = new Money(123, "asdas"), IsNegotiable = true },
             Category = Category.Book,
-            Images = new List<Image>() { new Image() { Url = "www.image1.com" },
-                                             new Image() { Url = "www.image1.com" },
-                                             new Image() { Url = "www.image1.com" } },
+            Images = new List<string>() { "www.image1.com" ,
+                                              "www.image1.com" ,
+                                              "www.image1.com"  },
             PurchasedDate = DateTime.Now,
             PickupAddress = new Address()
             {
@@ -45,7 +45,7 @@ namespace OnlineRetailPortal.Tests
             Assert.Equal(product.SellerId, demoProductEntity.SellerId);
             Assert.Equal(product.Name, demoProductEntity.Name);
             Assert.Equal(product.Description, demoProductEntity.Description);
-            Assert.Equal(product.HeroImage.Url, demoProductEntity.HeroImage.Url);
+            Assert.Equal(product.HeroImage, demoProductEntity.HeroImage);
             Assert.Equal(product.Price.Money.Amount, demoProductEntity.Price.Money.Amount);
             Assert.Equal(product.Price.Money.Currency, demoProductEntity.Price.Money.Currency);
             Assert.Equal(product.Price.IsNegotiable, demoProductEntity.Price.IsNegotiable);
@@ -54,7 +54,7 @@ namespace OnlineRetailPortal.Tests
             Assert.Equal(product.PostDateTime.ToString(), demoProductEntity.PostDateTime.ToString());
             Assert.Equal(product.ExpirationDate.ToString(), demoProductEntity.ExpirationDate.ToString());
             for (var i = 0; i < demoProductEntity.Images.Count; i++)
-                Assert.Equal(product.Images[i].Url, demoProductEntity.Images[i].Url);
+                Assert.Equal(product.Images[i], demoProductEntity.Images[i]);
             Assert.Equal(product.PurchasedDate.ToString(), demoProductEntity.PurchasedDate.ToString());
             Assert.Equal(product.PickupAddress.Line1, demoProductEntity.PickupAddress.Line1);
             Assert.Equal(product.PickupAddress.Line2, demoProductEntity.PickupAddress.Line2);

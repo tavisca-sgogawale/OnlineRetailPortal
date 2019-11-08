@@ -35,14 +35,15 @@ namespace OnlineRetailPortal.MongoDBStore
             return productEntity;
         }
 
-        public Task<ProductEntity> GetProductAsync(ProductEntity request)
+
+        public Task<GetProductStoreResponse> GetProductAsync(string productId)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public Task<ProductEntity> GetProductsAsync(ProductEntity request)
+        public Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreRequest request)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

@@ -12,4 +12,19 @@
     <ProjectReference Include="..\OnlineRetailPortal.Contracts\OnlineRetailPortal.Contracts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="MongoDBConfiguration.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MongoDBConfiguration.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="MongoDBConfiguration.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MongoDBConfiguration.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

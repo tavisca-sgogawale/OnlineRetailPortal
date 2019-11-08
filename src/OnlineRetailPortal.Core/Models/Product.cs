@@ -30,9 +30,11 @@ namespace OnlineRetailPortal.Core
         }
         public static async Task<ProductsWithPageInitiation> GetProductsAsync(GetProductsServiceRequest serviceRequest, IProductStore productStore)
         {
-            var getProductsRequest = serviceRequest.ToEntity();
-            var getProductsResponse = await productStore.GetProductsAsync(getProductsRequest);
-            return getProductsResponse.ToModel();
+            var getProductsEntity = serviceRequest.ToEntity();
+            var getProductsResponse = await productStore.GetProductsAsync(getProductsEntity);
+            var coreProductResponse = getProductsResponse.ToModel();
+            coreProductResponse.PagingInfo = new PagingInfo() { PageNumber = 1, PageSize = 10, TotalPages = 100 };
+            return coreProductResponse;
         }
 
         public static async Task<Product> GetAsync(string productId, IProductStore productStore)

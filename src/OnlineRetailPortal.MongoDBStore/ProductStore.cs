@@ -11,14 +11,13 @@ namespace OnlineRetailPortal.MongoDBStore
     {
         private static MongoClient _dbClient = new MongoClient(new MongoClientSettings
         {
-            Server = new MongoServerAddress("mongodb://127.0.0.1"),
-            SocketTimeout = new TimeSpan(0, 0, 0, 2),
+            Server = new MongoServerAddress(MongoDBConfiguration.Url, int.Parse(MongoDBConfiguration.Port)),
+            SocketTimeout = new TimeSpan(0, 0, 0, 10),
             WaitQueueTimeout = new TimeSpan(0, 0, 0, 2),
-            ConnectTimeout = new TimeSpan(0, 0, 0, 2),
-
+            ConnectTimeout = new TimeSpan(0, 0, 0, 10)
         });
-        private IMongoDatabase _db = _dbClient.GetDatabase("ORP");
-        private const string _collection = "Product";
+        private IMongoDatabase _db = _dbClient.GetDatabase(MongoDBConfiguration.Database);
+        private string _collection = MongoDBConfiguration.ProductCollection;
         public async Task<AddProductStoreResponse> AddProductAsync(AddProductStoreRequest request)
         {
             throw new System.NotImplementedException();
@@ -31,11 +30,9 @@ namespace OnlineRetailPortal.MongoDBStore
 
         public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsEntity request)
         {
-            GetProductsStoreResponse getProductsStoreResponse = new GetProductsStoreResponse();
             var data = _db.GetCollection<Product>(_collection);
             List<Product> products = (await data.FindAsync(new BsonDocument())).ToList();
-            getProductsStoreResponse.Products = products;
-            return getProductsStoreResponse;
+            return new GetProductsStoreResponse() { Products = products };
         }
     }
 }

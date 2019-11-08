@@ -1,8 +1,4 @@
 ﻿using OnlineRetailPortal.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace OnlineRetailPortal.Core
 {
@@ -13,13 +9,12 @@ namespace OnlineRetailPortal.Core
         {
             ProductsWithPageInitiation responce = new ProductsWithPageInitiation()
             {
-                Products = getProductResponse.Products.ToModel(),
-                PagingInfo = getProductResponse.PagingInfo.ToModel()
+                Products = getProductResponse.Products.ToModel()
             };
             return responce;
         }
-       
-        
+
+
 
     }
 }

@@ -1,7 +1,6 @@
 ﻿using OnlineRetailPortal.Contracts;
+using OnlineRetailPortal.MongoDBStore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OnlineRetailPortal.Mock
 {
@@ -13,6 +12,10 @@ namespace OnlineRetailPortal.Mock
             if (storeValue == "Mock")
             {
                 return new MockProductStore();
+            }
+            else if (storeValue == "Mongo")
+            {
+                return new ProductStore();
             }
 
             //To get service object

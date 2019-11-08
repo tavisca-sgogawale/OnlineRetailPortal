@@ -7,40 +7,40 @@ using OnlineRetailPortal.Mock;
 using System;
 using OnlineRetailPortal.Core;
 using System.Net;
-
 namespace OnlineRetailPortal.MongoDBStore
 {
     public class ProductStore : IProductStore
     {
-        private static readonly MongoClient _dbClient = new MongoClient(DatabaseConfiguration._mongoSettings);
-        private IMongoDatabase _db = _dbClient.GetDatabase(DatabaseConfiguration._databaseName);
-        private string _collection = DatabaseConfiguration._productTableName;
-
-        public async Task<AddProductStoreResponse> AddProductAsync(AddProductStoreRequest request)
+        private static MongoClient _dbClient = new MongoClient(new MongoClientSettings
         {
-            var product = request.ToModel();
-            product.Id = Guid.NewGuid().ToString();
-            product.Status = OnlineRetailPortal.Contracts.Status.Active;
-            product.PostDateTime = DateTime.Now;
-            product.ExpirationDate = DateTime.Now.AddDays(30);
+            Server = new MongoServerAddress(MongoDBConfiguration.Url, int.Parse(MongoDBConfiguration.Port)),
+            SocketTimeout = new TimeSpan(0, 0, 0, 10),
+            WaitQueueTimeout = new TimeSpan(0, 0, 0, 2),
+            ConnectTimeout = new TimeSpan(0, 0, 0, 10)
+        });
+        private IMongoDatabase _db = _dbClient.GetDatabase(MongoDBConfiguration.Database);
+        private string _collection = MongoDBConfiguration.ProductCollection;
 
-            var productStoreCollection = _db.GetCollection<AddProductStoreResponse>(_collection);
+        public async Task<ProductEntity> AddProductAsync(ProductEntity productEntity)
+        {
+            var productStoreCollection = _db.GetCollection<ProductEntity>(_collection);
             try
             {
-                await productStoreCollection.InsertOneAsync(product.ToEntity());
+                await productStoreCollection.InsertOneAsync(productEntity);
             }
             catch
             {
-                throw new BaseException(int.Parse(ErrorCode.DataBaseDown()),Error.DataBaseDown(),null,HttpStatusCode.GatewayTimeout);
+                throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
             }
-            return product.ToEntity();
+            return productEntity;
         }
-        public Task<GetProductStoreResponse> GetProductAsync(GetProductStoreRequest request)
+
+        public Task<ProductEntity> GetProductAsync(ProductEntity request)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreRequest request)
+        public Task<ProductEntity> GetProductsAsync(ProductEntity request)
         {
             throw new System.NotImplementedException();
         }

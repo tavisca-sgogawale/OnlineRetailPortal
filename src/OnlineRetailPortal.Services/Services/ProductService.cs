@@ -21,8 +21,12 @@ namespace OnlineRetailPortal.Services
         {
             var store =_productStoreFactory.GetProductStore("Mock");
             var mongo = new ProductStore();
+            var config = new ProductConfiguration() 
+            {
+                ExpiryInDays=30
+            };
             Core.Product product = addProductRequest.ToEntity();
-            Core.Product response = await product.SaveAsync(mongo);
+            Core.Product response = await product.SaveAsync(mongo,config);
             return response.ToModel();
         }
 

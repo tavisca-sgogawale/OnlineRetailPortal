@@ -8,7 +8,7 @@ namespace OnlineRetailPortal.Mock
 {
     public static class AddProductTranslator
     {
-        public static Product ToModel(this AddProductStoreRequest request)
+        public static Product ToModel(this ProductEntity request)
         {
             var product = new Product()
             {

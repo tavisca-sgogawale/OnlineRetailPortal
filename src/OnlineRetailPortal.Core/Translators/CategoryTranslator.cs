@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using OnlineRetailPortal.Contracts;
 
 namespace OnlineRetailPortal.Core
 {
@@ -8,32 +9,37 @@ namespace OnlineRetailPortal.Core
     {
         public static Contracts.Category ToEntity(this Category category)
         {
-            switch (category)
-            {
-                case Category.Bike:
-                    return Contracts.Category.Bike;
-                case Category.Book:
-                    return Contracts.Category.Book;
-                case Category.Car:
-                    return Contracts.Category.Car;
-                case Category.Electronic:
-                    return Contracts.Category.Electronic;
-                case Category.Fashion:
-                    return Contracts.Category.Fashion;
-                case Category.Furniture:
-                    return Contracts.Category.Furniture;
-                case Category.Mobile:
-                    return Contracts.Category.Mobile;
-                case Category.Other:
-                    return Contracts.Category.Other;
-                case Category.Property:
-                    return Contracts.Category.Property;
-            }
-            throw new NotSupportedException(category + " is not supported");
+            /*
+             switch (category)
+             {
+                 case Category.Bike:
+                     return Contracts.Category.Bike;
+                 case Category.Book:
+                     return Contracts.Category.Book;
+                 case Category.Car:
+                     return Contracts.Category.Car;
+                 case Category.Electronic:
+                     return Contracts.Category.Electronic;
+                 case Category.Fashion:
+                     return Contracts.Category.Fashion;
+                 case Category.Furniture:
+                     return Contracts.Category.Furniture;
+                 case Category.Mobile:
+                     return Contracts.Category.Mobile;
+                 case Category.Other:
+                     return Contracts.Category.Other;
+                 case Category.Property:
+                     return Contracts.Category.Property;
+             }
+             throw new NotSupportedException(category + " is not supported");
+             */
+            Contracts.Category contractsCategory = new Contracts.Category() { Name = category.Name };
+            return contractsCategory;
         }
 
         public static Category ToModel(this Contracts.Category category)
         {
+            /*
             switch (category)
             {
                 case Contracts.Category.Bike:
@@ -56,6 +62,9 @@ namespace OnlineRetailPortal.Core
                     return Category.Property;
             }
             throw new NotSupportedException(category + " is not supported");
-        }
+            */
+            Category coreCategory = new Category(category.Name);
+            return coreCategory;
+    }
     }
 }

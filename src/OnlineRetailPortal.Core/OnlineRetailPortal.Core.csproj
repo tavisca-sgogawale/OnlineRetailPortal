@@ -10,7 +10,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OnlineRetailPortal.Contracts\OnlineRetailPortal.Contracts.csproj" />
-    <ProjectReference Include="..\OnlineRetailPortal.Mock\OnlineRetailPortal.Mock.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Factory\" />
   </ItemGroup>
 
 </Project>

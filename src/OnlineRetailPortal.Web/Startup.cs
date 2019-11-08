@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using OnlineRetailPortal.Contracts;
+using OnlineRetailPortal.Core;
 using OnlineRetailPortal.Mock;
 using OnlineRetailPortal.Services;
 
@@ -38,6 +39,8 @@ namespace OnlineRetailPortal.Web
             });
             services.AddTransient<ICategoryService, CategoryService> ();
             services.AddTransient<ICategoryStore, MockCategoryStore>();
+            services.AddTransient<IProductStoreFactory, ProductStoreFactory>();
+            services.AddSingleton<IProductService, ProductService>();
             services.AddTransient<ICategoryStoreFactory, CategoryObjectFactory>();
         }
 

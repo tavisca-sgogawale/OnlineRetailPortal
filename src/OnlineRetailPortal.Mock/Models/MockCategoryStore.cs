@@ -26,7 +26,7 @@ namespace OnlineRetailPortal.Mock
         public async Task<GetCategoriesStoreResponse> GetCategoriesAsync()
         {
             
-            return await Task.FromResult<GetCategoriesStoreResponse>(Categories.ToCategoriesStroeResponse());
+            return await Task.FromResult<GetCategoriesStoreResponse>(Categories.ToCategoriesStoreResponse());
         }
     }
 }

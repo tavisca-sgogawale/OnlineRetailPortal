@@ -7,7 +7,7 @@ using System.Text;
 namespace OnlineRetailPortal.Core
 
 {
-    public static class GetCategoryCoreResponse
+    public static class GetCategoryCoreResponseTranslator
     {
         public static List<Category> ToCoreResponse(this Contracts.GetCategoriesStoreResponse getCategoriesStoreResponse)
         {

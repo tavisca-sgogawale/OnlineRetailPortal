@@ -1,13 +1,11 @@
 ﻿using OnlineRetailPortal.Contracts;
-using OnlineRetailPortal.Mock;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineRetailPortal.Core
+namespace OnlineRetailPortal.Mock
 {
-   
-    public class CategoryObjectFactory:ICategoryStoreFactory 
+    public class CategoryObjectFactory : ICategoryStoreFactory
     {
         public ICategoryStore GetCategoryStore()
         {
@@ -18,5 +16,4 @@ namespace OnlineRetailPortal.Core
 
         }
     }
-    
 }

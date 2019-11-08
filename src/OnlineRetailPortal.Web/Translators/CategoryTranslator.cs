@@ -8,6 +8,7 @@ namespace OnlineRetailPortal.Web
     {
         public static Contracts.Category ToEntity(this string category)
         {
+            /*
             switch (category)
             {
                 case "Bike":
@@ -29,11 +30,17 @@ namespace OnlineRetailPortal.Web
                 case "Property":
                     return Contracts.Category.Property;
             }
+
             throw new NotSupportedException(category + " is not supported");
+            */
+            Contracts.Category contractsCategory = new Contracts.Category();
+            contractsCategory.Name = category;
+            return contractsCategory;
         }
 
         public static string ToModel(this Contracts.Category category)
         {
+            /*
             switch (category)
             {
                 case Contracts.Category.Bike:
@@ -56,6 +63,8 @@ namespace OnlineRetailPortal.Web
                     return "Property";
             }
             throw new NotSupportedException(category + " is not supported");
+            */
+            return category.Name;
         }
     }
 }

@@ -12,13 +12,13 @@ namespace OnlineRetailPortal.Tests
         [Fact]
         public async void AddProduct_With_Valid_Request_Should_Be_Added_Successfully()
         {
-            AddProductStoreRequest entityPostRequest = GetRequest();
+            ProductEntity entityPostRequest = GetRequest();
 
-            AddProductStoreResponse expectedResponse = GetExpectedResponse();
+            ProductEntity expectedResponse = GetExpectedResponse();
 
             MockProductStore mockProductStore = new MockProductStore();
 
-            AddProductStoreResponse actualResponse = await mockProductStore.AddProductAsync(entityPostRequest);
+            ProductEntity actualResponse = await mockProductStore.AddProductAsync(entityPostRequest);
 
             Assert.Equal(expectedResponse.SellerId, actualResponse.SellerId);
             Assert.Equal(expectedResponse.Name, actualResponse.Name);
@@ -77,9 +77,9 @@ namespace OnlineRetailPortal.Tests
 
         
 
-        private AddProductStoreResponse GetExpectedResponse()
+        private ProductEntity GetExpectedResponse()
         {
-            AddProductStoreResponse response = new AddProductStoreResponse
+            ProductEntity response = new ProductEntity
             {
                 SellerId = "1",
                 Id = null,
@@ -106,9 +106,9 @@ namespace OnlineRetailPortal.Tests
             return response;
         }
 
-        private AddProductStoreRequest GetRequest()
+        private ProductEntity GetRequest()
         {
-            AddProductStoreRequest request = new AddProductStoreRequest
+            ProductEntity request = new ProductEntity
             {
                 SellerId = "1",
                 Name = "Bottle",

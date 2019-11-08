@@ -38,7 +38,7 @@ namespace OnlineRetailPortal.Tests
         [Fact]
         public async Task Add_Product_Should_Return_Added_Product()
         {
-            ProductStore productStore = new ProductStore();
+            MongoProductStore productStore = new MongoProductStore();
             var product = await productStore.AddProductAsync(demoProductEntity);
 
             Assert.Equal(product.Name, demoProductEntity.Name);
@@ -66,7 +66,7 @@ namespace OnlineRetailPortal.Tests
         [Fact]
         public async Task Add_Product_Should_Not_Add_When_Database_Is_Down()
         {
-            ProductStore productStore = new ProductStore();
+            MongoProductStore productStore = new MongoProductStore();
             Exception ex = await Assert.ThrowsAsync<BaseException>(() => productStore.AddProductAsync(demoProductEntity));
 
             Assert.Equal("Unexpected Error Occured, Please Try Again Later", ex.Message);

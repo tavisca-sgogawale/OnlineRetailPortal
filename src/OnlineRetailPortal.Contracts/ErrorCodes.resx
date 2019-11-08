@@ -132,6 +132,9 @@
   <data name="InvalidCurrency" xml:space="preserve">
     <value>707</value>
   </data>
+  <data name="InvalidId" xml:space="preserve">
+    <value>709</value>
+  </data>
   <data name="InvalidRequest" xml:space="preserve">
     <value>701</value>
   </data>

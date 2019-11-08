@@ -1,15 +1,13 @@
 ﻿using System.Threading.Tasks;
 using OnlineRetailPortal.Contracts;
 using MongoDB.Driver;
-using System.Collections.Generic;
-using MongoDB.Bson;
-using OnlineRetailPortal.Mock;
+
 using System;
 using OnlineRetailPortal.Core;
 using System.Net;
 namespace OnlineRetailPortal.MongoDBStore
 {
-    public class ProductStore : IProductStore
+    public class MongoProductStore : IProductStore
     {
         private static MongoClient _dbClient = new MongoClient(new MongoClientSettings
         {
@@ -36,8 +34,20 @@ namespace OnlineRetailPortal.MongoDBStore
         }
 
 
-        public Task<GetProductStoreResponse> GetProductAsync(string productId)
+        public async Task<GetProductStoreResponse> GetProductAsync(string productId)
         {
+            //ProductEntity product;
+            //try
+            //{
+            //    var productStoreCollection = _db.GetCollection<ProductEntity>(_collection);
+            //    var filter = Builders<ProductEntity>.Filter.Eq("Id", productId);
+            //    product =  await productStoreCollection.FindAsync(filter);
+            //}
+            //catch
+            //{
+            //    throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
+            //}
+            //return product;
             throw new NotImplementedException();
         }
 

@@ -11,22 +11,21 @@ namespace OnlineRetailPortal.Services
     public class ProductService : IProductService
     {
         private readonly IProductStoreFactory _productStoreFactory;
-
+        private readonly IProductStore _productStore ;
         public ProductService(IProductStoreFactory productStoreFactory)
         {
             this._productStoreFactory = productStoreFactory;
+            _productStore = _productStoreFactory.GetProductStore();
         }
 
         public async Task<AddProductResponse> AddProductAsync(AddProductRequest addProductRequest)
         {
-            var store =_productStoreFactory.GetProductStore("Mock");
-            var mongo = new ProductStore();
             var config = new ProductConfiguration() 
             {
                 ExpiryInDays=30
             };
             Core.Product product = addProductRequest.ToEntity();
-            Core.Product response = await product.SaveAsync(mongo,config);
+            Core.Product response = await product.SaveAsync(_productStore, config);
             return response.ToModel();
         }
 

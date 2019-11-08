@@ -1,10 +1,12 @@
-﻿using System.Threading.Tasks;
-using OnlineRetailPortal.Contracts;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
-
-using System;
+using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Core;
+using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
+
 namespace OnlineRetailPortal.MongoDBStore
 {
     public class MongoProductStore : IProductStore
@@ -51,9 +53,11 @@ namespace OnlineRetailPortal.MongoDBStore
             throw new NotImplementedException();
         }
 
-        public Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreRequest request)
+        public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsEntity request)
         {
-            throw new NotImplementedException();
+            var data = _db.GetCollection<Contracts.Product>(_collection);
+            List<Contracts.Product> products = (await data.FindAsync(new BsonDocument())).ToList();
+            return new GetProductsStoreResponse() { Products = products };
         }
     }
 }

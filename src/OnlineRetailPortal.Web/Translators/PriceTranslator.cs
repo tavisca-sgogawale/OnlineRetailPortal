@@ -25,9 +25,11 @@ namespace OnlineRetailPortal.Web
                 return null;
             return new Price()
             {
-                Money = new Money(
-                price.Money.Amount,
-                price.Money.Currency),
+                Money = new Money()
+                {
+                    Amount = price.Money.Amount,
+                    Currency = price.Money.Currency
+                },
                 IsNegotiable = price.IsNegotiable
             };
         }

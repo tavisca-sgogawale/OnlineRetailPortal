@@ -28,8 +28,8 @@ namespace OnlineRetailPortal.Tests
             //var createdResult = product as Task<GetProductResponse>;
 
             //result
-            Assert.Equal("IPhone", product.Product.Id);
-            //Assert.AreEqual(values[0], "value1");
+            //Assert.Equal("IPhone", product.Product.Id);
+            Assert.Equal(1, actualResponse.PagingInfo.TotalPages);
             //Assert.AreEqual(values[1], "value2");
 
         }
@@ -45,10 +45,10 @@ namespace OnlineRetailPortal.Tests
                         Id = "103",
                         Name = "Bottle",
                         Description = "Green Bottle",
-                        HeroImage = new Web.Image { Url = "example.com" },
+                        HeroImage =  "example.com" ,
                         Price = new Web.Price {Money = new Web.Money( 99.99,  "INR" ), IsNegotiable = true },
                         Category = "Other",
-                        Images = new List<Web.Image>() { new Web.Image { Url = "ex.com" } },
+                        Images = new List<string>() {"ex.com"},
                         PurchasedDate = DateTime.Now,
                         PickupAddress = new Web.Address
                         {

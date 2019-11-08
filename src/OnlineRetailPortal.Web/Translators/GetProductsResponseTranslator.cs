@@ -31,9 +31,9 @@ namespace OnlineRetailPortal.Web
             {
                 Name = x.Name,
                 Id = x.Id,
-                HeroImage = x.HeroImage.ToEntity(),
+                HeroImage = x.HeroImage,
                 PostDateTime = x.PostDateTime,
-                Price = x.Price.ToEntity(),
+                Price = x.Price.ToModel(),
             }).ToList();
         }
     }

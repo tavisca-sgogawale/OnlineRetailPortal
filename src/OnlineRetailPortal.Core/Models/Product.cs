@@ -13,9 +13,9 @@ namespace OnlineRetailPortal.Core
         public string Name { get; set; }
         public Price Price { get; set; }
         public Category Category { get; set; }
-        public Image HeroImage { get; set; }
+        public string HeroImage { get; set; }
         public Address PickupAddress { get; set; }
-        public List<Image> Images { get; set; }
+        public List<string> Images { get; set; }
         public DateTime PostDateTime { get; set; }
         public DateTime? PurchasedDate { get; set; }
         public string Description { get; set; }
@@ -35,7 +35,7 @@ namespace OnlineRetailPortal.Core
             return getProductsResponse.ToModel();
         }
        
-        public static async Task<Product> GetProductAsync(string productId, IProductStore productStore)
+        public static async Task<Product> GetAsync(string productId, IProductStore productStore)
         {
             var getProductResponse = await productStore.GetProductAsync(productId);
             return getProductResponse.ToModel();

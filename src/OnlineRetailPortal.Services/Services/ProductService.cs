@@ -23,7 +23,7 @@ namespace OnlineRetailPortal.Services
 
         public async Task<GetProductServiceResponse>  GetProductAsync(string productId)
         {
-            var response = await Core.Product.GetProductAsync(productId, _productStore);
+            var response = await Core.Product.GetAsync(productId, _productStore);
             return GetProductServiceResponseTranslator.ToModel(response);
         }
 

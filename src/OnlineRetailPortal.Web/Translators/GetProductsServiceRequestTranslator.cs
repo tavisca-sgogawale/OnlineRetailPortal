@@ -8,18 +8,18 @@ namespace OnlineRetailPortal.Web
 {
     public static class GetProductsServiceRequestTranslator
     {
+        private const int _pageNo = 1;
+        private const int _pageSize = 100;
         public static GetProductsServiceRequest ToServiceRequest(int pageNo, int pageSize)
         {
-            GetProductsServiceRequest request = new GetProductsServiceRequest()
+            return new GetProductsServiceRequest()
             {
                 PagingInfo = new Contracts.PagingInfo()
                 {
-                    PageNumber = pageNo,
-                    PageSize = pageSize
+                    PageNumber = pageNo == 0 ? _pageNo : pageNo,
+                    PageSize = pageSize == 0 ? _pageSize : pageSize
                 }
             };
-            return request;
         }
-        
     }
 }

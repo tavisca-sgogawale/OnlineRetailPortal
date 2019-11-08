@@ -13,10 +13,10 @@ namespace OnlineRetailPortal.Core
                 SellerId = product.SellerId,
                 Name = product.Name,
                 Description = product.Description,
-                HeroImage = product.HeroImage.ToEntity(),
+                HeroImage = product.HeroImage,
                 Price = product.Price.ToEntity(),
                 Category = product.Category.ToEntity(),
-                Images = product.Images.ToEntity(),                
+                Images = product.Images,                
                 PurchasedDate = product.PurchasedDate,
                 PickupAddress = product.PickupAddress.ToEntity()
                 
@@ -31,12 +31,12 @@ namespace OnlineRetailPortal.Core
             var product = new Product(addProductStoreResponse.Price.ToModel(),addProductStoreResponse.SellerId, addProductStoreResponse.Name ) { 
                 Id = addProductStoreResponse.Id,
                 Description = addProductStoreResponse.Description,
-                HeroImage = addProductStoreResponse.HeroImage.ToModel(),
+                HeroImage = addProductStoreResponse.HeroImage,
                 Category = addProductStoreResponse.Category.ToModel(),
                 Status = addProductStoreResponse.Status.ToModel(),
                 PostDateTime = addProductStoreResponse.PostDateTime,
                 ExpirationDate = addProductStoreResponse.ExpirationDate,
-                Images = addProductStoreResponse.Images.ToModel(),
+                Images = addProductStoreResponse.Images,
                 PurchasedDate = addProductStoreResponse.PurchasedDate,
                 PickupAddress = addProductStoreResponse.PickupAddress.ToModel()
             };

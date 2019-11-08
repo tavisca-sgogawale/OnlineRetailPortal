@@ -22,9 +22,7 @@ namespace OnlineRetailPortal.Web
         [HttpGet("products")]
         public async Task<GetProductsResponse> GetProductsAsync(int pageNo, int pageSize)
         {
-            var request = GetProductsServiceRequestTranslator.ToServiceRequest(pageNo, pageSize);
-            GetProductsRequestValidator validator = new GetProductsRequestValidator();
-            validator.EnsureValid(request);
+            var request = GetProductsServiceRequestTranslator.ToServiceRequest(pageNo, pageSize);//pageSize and pageNumber is will  be set in app setings
             var response = await _productService.GetProductsAsync(request);
             return response.ToGetProductsContract();
         }

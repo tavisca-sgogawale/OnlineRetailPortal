@@ -6,8 +6,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using OnlineRetailPortal.Services.Translators;
-using OnlineRetailPortal.Contracts;
-using OnlineRetailPortal.Contracts;
+using System.Collections.Generic;
 
 namespace OnlineRetailPortal.Services.Services
 {
@@ -15,13 +14,15 @@ namespace OnlineRetailPortal.Services.Services
     {
         private readonly ImageWriter _imageWriter;
         private IHostingEnvironment _env;
-        private string _tempImagefolder;
+        private string _tempImageFolder;
+        private string _storageFolder;
 
         public ImageService(IHostingEnvironment env, IConfiguration iconfig)
         {
             _imageWriter = new ImageWriter(iconfig,env);
             _env = env;
-            _tempImagefolder = iconfig.GetSection("TempImageFolder").Value;
+            _tempImageFolder = iconfig.GetSection("TempImageFolder").Value;
+            _storageFolder = iconfig.GetSection("PermanentImageFolder").Value;
         }
 
         /// <summary>
@@ -43,9 +44,10 @@ namespace OnlineRetailPortal.Services.Services
         public void DeleteTempImage(DeleteImageRequest request)
         {
             string imageId = request.ImageId;
+            string imageFolder = GetImageFolder(imageId); 
             try
             {
-                string path = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _tempImagefolder, imageId);
+                string path = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _tempImageFolder, imageId);
                 File.Delete(path);
             }
             catch (Exception ex)
@@ -55,5 +57,56 @@ namespace OnlineRetailPortal.Services.Services
             }
 
         }
+
+        public List<string> MoveToStorage(List<string> images)
+        {
+            List<string> storedImages = new List<string>();
+            string tempPath = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _tempImageFolder);
+            string storagePath = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _storageFolder);
+            try 
+            {
+                foreach (string image in images)
+                {
+                    var img = image.Split("tmp_")[1];
+                    File.Move(Path.Combine(tempPath, image), Path.Combine(storagePath, img));
+                    storedImages.Add(Path.Combine(storagePath, img));
+                }
+                return storedImages;
+            }
+            catch (Exception ex)
+            {
+                //Logger.logInformation("Invalid Delete request: {@ex} ", ex)
+                throw new BaseException(StatusCodes.Status500InternalServerError, "Internal Server Error", null, System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
+
+        public string MoveToStorage(string image)
+        {
+            string storedImage;
+            string tempPath = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _tempImageFolder);
+            string storagePath = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _storageFolder);
+            try
+            {
+
+                var img = image.Split("tmp_")[1];
+                File.Move(Path.Combine(tempPath, image), Path.Combine(storagePath, img));
+                storedImage = Path.Combine(storagePath, img);
+                return storedImage;
+            }
+            catch (Exception ex)
+            {
+                //Logger.logInformation("Invalid Delete request: {@ex} ", ex)
+                throw new BaseException(StatusCodes.Status500InternalServerError, "Internal Server Error", null, System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
+
+        private string GetImageFolder(string imageId)
+        {
+            if (imageId.StartsWith("tmp_"))
+                return _tempImageFolder;
+            else
+                return _storageFolder;
+        }
+
     }
 }

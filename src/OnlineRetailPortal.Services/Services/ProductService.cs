@@ -10,10 +10,12 @@ namespace OnlineRetailPortal.Services
     {
         private readonly IProductStoreFactory _productStoreFactory; // factory or logic to resolve the product store will be handled later 
         private IProductStore _productStore = null;
-        public ProductService(IProductStoreFactory productStoreFactory)
+        private IImageService _imageService;
+        public ProductService(IProductStoreFactory productStoreFactory, IImageService imageService)
         {
             _productStoreFactory = productStoreFactory;
             _productStore = _productStoreFactory.GetProductStore("Mock");
+            _imageService = imageService;
         }
         public async Task<GetProductsServiceResponse> GetProductsAsync(GetProductsServiceRequest getProductsServiceRequest)
         {
@@ -29,6 +31,9 @@ namespace OnlineRetailPortal.Services
 
         public async Task<AddProductResponse> AddProductAsync(AddProductRequest addProductRequest)
         {
+            addProductRequest.HeroImage = _imageService.MoveToStorage(addProductRequest.HeroImage);
+            addProductRequest.Images = _imageService.MoveToStorage(addProductRequest.Images);
+
             Core.Product product = addProductRequest.ToEntity();
             Core.Product response = await product.SaveAsync(_productStore);
             return AddProductTranslator.ToModel(response);

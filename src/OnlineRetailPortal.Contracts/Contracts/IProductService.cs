@@ -8,5 +8,8 @@ namespace OnlineRetailPortal.Contracts
     public interface IProductService
     {
         Task<AddProductResponse> AddProductAsync(AddProductRequest addProductRequest);
+        Task<GetProductServiceResponse> GetProductAsync(string productId);
+        Task<GetProductsServiceResponse> GetProductsAsync(GetProductsServiceRequest request);
     }
+
 }

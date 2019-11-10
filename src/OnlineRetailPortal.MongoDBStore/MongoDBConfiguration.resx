@@ -117,34 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DatabaseDown" xml:space="preserve">
-    <value>Unexpected Error Occured, Please Try Again Later</value>
+  <data name="Database" xml:space="preserve">
+    <value>ORP</value>
   </data>
-  <data name="GreaterCharacter" xml:space="preserve">
-    <value>{0} should be at least  {1} characters.</value>
+  <data name="Port" xml:space="preserve">
+    <value>27017</value>
   </data>
-  <data name="GreaterDate" xml:space="preserve">
-    <value>{0} should be less than Todays Date.</value>
+  <data name="ProductCollection" xml:space="preserve">
+    <value>Product</value>
   </data>
-  <data name="GreaterValue" xml:space="preserve">
-    <value>{0} should be greater than  {1}.</value>
-  </data>
-  <data name="InvalidCurrency" xml:space="preserve">
-    <value>Currency should be in {0}</value>
-  </data>
-  <data name="InvalidId" xml:space="preserve">
-    <value>Requested Id is not found.</value>
-  </data>
-  <data name="InvalidRequest" xml:space="preserve">
-    <value>Errors occured</value>
-  </data>
-  <data name="MissingField" xml:space="preserve">
-    <value>{0} can not be blank.</value>
-  </data>
-  <data name="NullField" xml:space="preserve">
-    <value>{0} can not be null.</value>
-  </data>
-  <data name="NullRequest" xml:space="preserve">
-    <value>Request is null</value>
+  <data name="Url" xml:space="preserve">
+    <value>127.0.0.1</value>
   </data>
 </root>

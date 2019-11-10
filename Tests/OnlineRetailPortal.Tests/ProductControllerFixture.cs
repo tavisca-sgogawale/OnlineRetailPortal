@@ -46,7 +46,11 @@ namespace OnlineRetailPortal.Tests
                         Name = "Bottle",
                         Description = "Green Bottle",
                         HeroImage =  "example.com" ,
+<<<<<<< HEAD
                        // Price = new Web.Price {Money = new Web.Money( 99.99,  "INR" ), IsNegotiable = true },
+=======
+                        //Price = new Web.Price {Money = new Web.Money( 99.99,  "INR" ), IsNegotiable = true },
+>>>>>>> 4245e8e60218b7187579d13e6e5e625daab0e18d
                         Category = "Other",
                         Images = new List<string>() {"ex.com"},
                         PurchasedDate = DateTime.Now,

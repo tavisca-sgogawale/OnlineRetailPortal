@@ -4,8 +4,8 @@ using System.Text;
 
 namespace OnlineRetailPortal.Contracts
 {
-    public interface IProductStoreFactory
+    public class ProductConfiguration
     {
-        IProductStore GetProductStore();
+        public int ExpiryInDays { get; set; }
     }
 }

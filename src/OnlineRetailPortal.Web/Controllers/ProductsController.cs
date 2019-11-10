@@ -19,13 +19,6 @@ namespace OnlineRetailPortal.Web
             _productService = productService;
         }
 
-        [HttpGet("products")]
-        public async Task<GetProductsResponse> GetProductsAsync(int pageNo, int pageSize)
-        {
-            var request = GetProductsServiceRequestTranslator.ToServiceRequest(pageNo, pageSize);//pageSize and pageNumber is will  be set in app setings
-            var response = await _productService.GetProductsAsync(request);
-            return response.ToGetProductsContract();
-        }
         [HttpGet("products/{productId}")]
         public async Task<GetProductResponse> GetProductAsync(string productId)
         {
@@ -34,6 +27,22 @@ namespace OnlineRetailPortal.Web
             var response = await _productService.GetProductAsync(productId);
             return response.ToEntity();
         }
+
+        [HttpPost("products")]
+        public async Task<OnlineRetailPortal.Contracts.GetProductsServiceRequest> GetProductsAsync(int pageNo, int pageSize,[FromBody] GetProductRequest request)
+        {
+            var serviceRequest = request.ToServiceRequest(pageNo, pageSize);//pageSize and pageNumber is will  be set in app setings
+            return serviceRequest;
+        }
+
+        //[HttpPost("products")]
+        //public async Task<GetProductsResponse> GetProductsAsync(int pageNo, int pageSize, [FromBody] GetProductRequest request)
+        //{
+        //    var serviceRequest = request.ToServiceRequest(pageNo, pageSize);//pageSize and pageNumber is will  be set in app setings
+        //    var response = await _productService.GetProductsAsync(serviceRequest);
+        //    return response.ToGetProductsContract();
+        //}
+
         [HttpPost("products/add")]
         public async Task<AddProductResponse> AddProductAsync([FromBody] AddProductRequest request)
         {
@@ -42,6 +51,5 @@ namespace OnlineRetailPortal.Web
             var response = await _productService.AddProductAsync(request.ToEntity());
             return response.ToModel();
         }
-
     }
 }

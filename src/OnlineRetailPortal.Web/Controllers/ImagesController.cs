@@ -41,7 +41,7 @@ namespace OnlineRetailPortal.Web.Controllers
             DeleteImageRequestValidator requestValidator = new DeleteImageRequestValidator();
             requestValidator.ValidateDeleteRequest(id);
 
-            _imageService.DeleteTempImage(id.ToDeleteImageContract());
+            _imageService.DeleteImage(id.ToDeleteImageContract());
             return new StatusCodeResult(204);
 
         }

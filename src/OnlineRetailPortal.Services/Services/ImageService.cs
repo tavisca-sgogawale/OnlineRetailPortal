@@ -41,7 +41,7 @@ namespace OnlineRetailPortal.Services.Services
         /// Takes an imageID inside a DeleteImageRequest Object and deletes the image from the temporary Storage
         /// </summary>
         /// <param name="request"></param>
-        public void DeleteTempImage(DeleteImageRequest request)
+        public void DeleteImage(DeleteImageRequest request)
         {
             string imageId = request.ImageId;
             string imageFolder = GetImageFolder(imageId);

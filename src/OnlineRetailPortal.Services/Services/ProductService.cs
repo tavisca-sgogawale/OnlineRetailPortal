@@ -24,6 +24,7 @@ namespace OnlineRetailPortal.Services
             };
  
             addProductRequest.HeroImage = _imageService.MoveToStorage(addProductRequest.HeroImage);
+
             addProductRequest.Images = _imageService.MoveToStorage(addProductRequest.Images);
 
             Core.Product product = addProductRequest.ToEntity();

@@ -19,7 +19,7 @@ namespace OnlineRetailPortal.Services.Services
 
         public ImageService(IHostingEnvironment env, IConfiguration iconfig)
         {
-            _imageWriter = new ImageWriter(iconfig,env);
+            _imageWriter = new ImageWriter(iconfig, env);
             _env = env;
             _tempImageFolder = iconfig.GetSection("TempImageFolder").Value;
             _storageFolder = iconfig.GetSection("PermanentImageFolder").Value;
@@ -44,34 +44,37 @@ namespace OnlineRetailPortal.Services.Services
         public void DeleteTempImage(DeleteImageRequest request)
         {
             string imageId = request.ImageId;
-            string imageFolder = GetImageFolder(imageId); 
+            string imageFolder = GetImageFolder(imageId);
             try
             {
-                string path = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _tempImageFolder, imageId);
+                string path = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, imageFolder, imageId);
                 File.Delete(path);
             }
             catch (Exception ex)
             {
                 //Logger.logInformation("Invalid Delete request: {@ex} ", ex)
-                throw new BaseException(StatusCodes.Status500InternalServerError, "Internal Server Error",null, System.Net.HttpStatusCode.InternalServerError);
+                throw new BaseException(StatusCodes.Status500InternalServerError, "Internal Server Error", null, System.Net.HttpStatusCode.InternalServerError);
             }
 
         }
 
-        public List<string> MoveToStorage(List<string> images)
+        public List<string> MoveToStorage(List<string> tempImageUrls)
         {
-            List<string> storedImages = new List<string>();
+            if (tempImageUrls == null)
+                return null;
+
+            List<string> imageUrls = new List<string>();
             string tempPath = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _tempImageFolder);
             string storagePath = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _storageFolder);
-            try 
+            try
             {
-                foreach (string image in images)
+                foreach (string imageUrl in tempImageUrls)
                 {
-                    var img = image.Split("tmp_")[1];
-                    File.Move(Path.Combine(tempPath, image), Path.Combine(storagePath, img));
-                    storedImages.Add(Path.Combine(storagePath, img));
+                    var imageName = imageUrl.Split("tmp_")[1];
+                    File.Move(Path.Combine(tempPath, imageUrl), Path.Combine(storagePath, imageName));
+                    imageUrls.Add(Path.Combine(storagePath, imageName));
                 }
-                return storedImages;
+                return imageUrls;
             }
             catch (Exception ex)
             {

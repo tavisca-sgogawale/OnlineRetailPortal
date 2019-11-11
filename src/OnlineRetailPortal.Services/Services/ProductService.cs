@@ -12,7 +12,7 @@ namespace OnlineRetailPortal.Services
         public ProductService(IProductStoreFactory productStoreFactory, IImageService imageService)
         {
             _productStoreFactory = productStoreFactory;
-            _productStore = _productStoreFactory.GetProductStore("Mock");
+            _productStore = _productStoreFactory.GetProductStore();
             _imageService = imageService;
         }
 

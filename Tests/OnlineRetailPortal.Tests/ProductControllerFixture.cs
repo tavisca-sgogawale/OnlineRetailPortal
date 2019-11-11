@@ -11,11 +11,11 @@ namespace OnlineRetailPortal.Tests
 {
     public class ProductControllerFixture
     {
-        private static IProductStoreFactory storeFactory = new ProductStoreFactory();
-        private static IProductService _productService = new Services.ProductService(storeFactory);
-        ProductsController productsController = new ProductsController(_productService);
+        private static IProductStoreFactory _storeFactory = new ProductStoreFactory();
+        private static IProductService _productService = new Services.ProductService(_storeFactory);
+        ProductsController _productsController = new ProductsController(_productService);
         [Fact]
-        public async void ToGetListOfProducts()
+        public async void GetProducts_PageNoAndPageSizeGiven_ShouldReturnListOfProductsWithPageInfo()
         {
             //Arrenge 
             int pageNo = 1;
@@ -24,7 +24,7 @@ namespace OnlineRetailPortal.Tests
             GetProductsResponse expectedResponse = GetExpectedResponse();
 
             //Act
-            GetProductsResponse actualResponse = await productsController.GetProductsAsync(pageNo, pageSize);
+            GetProductsResponse actualResponse = await _productsController.GetProductsAsync(pageNo, pageSize);
 
             //Test
             Assert.Equal(expectedResponse.PagingInfo.PageNumber, actualResponse.PagingInfo.PageNumber);
@@ -41,13 +41,13 @@ namespace OnlineRetailPortal.Tests
             }
         }
         [Fact]
-        public async void To_product_By_Id()
+        public async void GetProduct_ProductIdGiven_ShouldShowRespectiveProductDetails()
         {
             //Arrenge 
             GetProductResponse expectedResponse = GetExpectedProduct();
 
             //Act
-            GetProductResponse actualResponse = await productsController.GetProductAsync("101");
+            GetProductResponse actualResponse = await _productsController.GetProductAsync("101");
 
             //Test
             {
@@ -92,10 +92,10 @@ namespace OnlineRetailPortal.Tests
         }
 
         [Fact]
-        public async void Test_for_passing_invalid_product_id()
+        public async void Should_ThrowException_When_ProductId_is_Ivalid()
         {
             var expectedErrorMsg = "Product does not exist with \"1q1\" product id.";
-           var exception = await Assert.ThrowsAnyAsync<BaseException>(() => productsController.GetProductAsync("1q1"));
+           var exception = await Assert.ThrowsAnyAsync<BaseException>(() => _productsController.GetProductAsync("1q1"));
            Assert.Equal(expectedErrorMsg, exception.Message);
         }
         private GetProductsResponse GetExpectedResponse()

@@ -33,7 +33,7 @@ namespace OnlineRetailPortal.Mock
         {
         }
 
-        public async Task<AddProductStoreResponse> AddProductAsync(AddProductStoreRequest request)
+        public async Task<ProductEntity> AddProductAsync(ProductEntity request)
         {
             var product = request.ToModel();
             product.Id = Guid.NewGuid().ToString();
@@ -50,7 +50,7 @@ namespace OnlineRetailPortal.Mock
             return response.ToGetProductStore();
         }
 
-        public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreRequest request)
+        public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsEntity request)
         {
             List<Product> products = productList.OrderByDescending(x => x.PostDateTime).ToList();
             int startIndex = (request.PagingInfo.PageNumber - 1) * (request.PagingInfo.PageSize);

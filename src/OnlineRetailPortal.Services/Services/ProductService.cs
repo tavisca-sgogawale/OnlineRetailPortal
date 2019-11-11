@@ -17,18 +17,6 @@ namespace OnlineRetailPortal.Services
             _productStore = _productStoreFactory.GetProductStore("Mock");
             _imageService = imageService;
         }
-        public async Task<GetProductsServiceResponse> GetProductsAsync(GetProductsServiceRequest getProductsServiceRequest)
-        {
-            var response = await Core.Product.GetProductsAsync(getProductsServiceRequest, _productStore);
-            return response.ToModel();
-        }
-
-        public async Task<GetProductServiceResponse>  GetProductAsync(string productId)
-        {
-            var response = await Core.Product.GetAsync(productId, _productStore);
-            return GetProductServiceResponseTranslator.ToModel(response);
-        }
-
         public async Task<AddProductResponse> AddProductAsync(AddProductRequest addProductRequest)
         {
             addProductRequest.HeroImage = _imageService.MoveToStorage(addProductRequest.HeroImage);
@@ -38,6 +26,19 @@ namespace OnlineRetailPortal.Services
             Core.Product response = await product.SaveAsync(_productStore);
             return AddProductTranslator.ToModel(response);
         }
+
+        public async Task<GetProductServiceResponse>  GetProductAsync(string productId)
+        {
+            var response = await Core.Product.GetAsync(productId, _productStore);
+            return GetProductServiceResponseTranslator.ToModel(response);
+        }
+
+        public async Task<GetProductsServiceResponse> GetProductsAsync(GetProductsServiceRequest getProductsServiceRequest)
+        {
+            var response = await Core.Product.GetProductsAsync(getProductsServiceRequest, _productStore);
+            return response.ToModel();
+        }
+
 
     }
 }

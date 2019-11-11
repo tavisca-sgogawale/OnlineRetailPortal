@@ -1,7 +1,9 @@
 ﻿using OnlineRetailPortal.Contracts;
+using OnlineRetailPortal.Core;
 using OnlineRetailPortal.Mock;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Services
@@ -24,6 +26,7 @@ namespace OnlineRetailPortal.Services
         public async Task<GetProductServiceResponse>  GetProductAsync(string productId)
         {
             var response = await Core.Product.GetAsync(productId, _productStore);
+            response.EnsureValid(productId);
             return GetProductServiceResponseTranslator.ToModel(response);
         }
 

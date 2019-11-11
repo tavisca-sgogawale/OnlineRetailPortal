@@ -141,4 +141,7 @@
   <data name="NullRequest" xml:space="preserve">
     <value>Request is null</value>
   </data>
+  <data name="ProductNotFound" xml:space="preserve">
+    <value>Product does not exist with "{0}" product id.</value>
+  </data>
 </root>

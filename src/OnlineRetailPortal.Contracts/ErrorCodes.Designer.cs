@@ -131,5 +131,14 @@ namespace OnlineRetailPortal.Contracts {
                 return ResourceManager.GetString("NullRequest", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 708.
+        /// </summary>
+        public static string ProductNotFound {
+            get {
+                return ResourceManager.GetString("ProductNotFound", resourceCulture);
+            }
+        }
     }
 }

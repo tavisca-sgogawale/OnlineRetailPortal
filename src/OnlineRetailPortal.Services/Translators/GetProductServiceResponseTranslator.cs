@@ -1,7 +1,9 @@
 ﻿using OnlineRetailPortal.Contracts;
+using OnlineRetailPortal.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 
 namespace OnlineRetailPortal.Services
@@ -12,7 +14,7 @@ namespace OnlineRetailPortal.Services
         {
             GetProductServiceResponse response = new GetProductServiceResponse()
             {
-                Product = new Product()
+                Product = new Contracts.Product()
                 {
                     Name = getProductResponse.Name,
                     Id = getProductResponse.Id,

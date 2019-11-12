@@ -11,9 +11,9 @@ namespace OnlineRetailPortal.Tests
     {
         ProductEntity demoProductEntity = new ProductEntity()
         {
-            Id = "984667PPZZ",
+            Id = "984667qwert",
             SellerId = "IVDR12RED",
-            Name = "Iphone",
+            Name = "IphoneUpdated",
             Description = "Iphone 1 year old",
             HeroImage = "www.image1.com",
             Price = new Price() { Money = new Money(123, "asdas"), IsNegotiable = true },
@@ -46,27 +46,27 @@ namespace OnlineRetailPortal.Tests
                 pro.Price.Money.Amount = i * 1.37;
                 await productStore.AddProductAsync(pro);
             }
-            Assert.Equal(1, 1);
-            //Assert.Equal(product.Name, demoProductEntity.Name);
-            //Assert.Equal(product.SellerId, demoProductEntity.SellerId);
-            //Assert.Equal(product.Name, demoProductEntity.Name);
-            //Assert.Equal(product.Description, demoProductEntity.Description);
-            //Assert.Equal(product.HeroImage, demoProductEntity.HeroImage);
-            //Assert.Equal(product.Price.Money.Amount, demoProductEntity.Price.Money.Amount);
-            //Assert.Equal(product.Price.Money.Currency, demoProductEntity.Price.Money.Currency);
-            //Assert.Equal(product.Price.IsNegotiable, demoProductEntity.Price.IsNegotiable);
-            //Assert.Equal(product.Category, demoProductEntity.Category);
-            //Assert.Equal(product.Status, demoProductEntity.Status);
-            //Assert.Equal(product.PostDateTime.ToString(), demoProductEntity.PostDateTime.ToString());
-            //Assert.Equal(product.ExpirationDate.ToString(), demoProductEntity.ExpirationDate.ToString());
-            //for (var i = 0; i < demoProductEntity.Images.Count; i++)
-            //    Assert.Equal(product.Images[i], demoProductEntity.Images[i]);
-            //Assert.Equal(product.PurchasedDate.ToString(), demoProductEntity.PurchasedDate.ToString());
-            //Assert.Equal(product.PickupAddress.Line1, demoProductEntity.PickupAddress.Line1);
-            //Assert.Equal(product.PickupAddress.Line2, demoProductEntity.PickupAddress.Line2);
-            //Assert.Equal(product.PickupAddress.City, demoProductEntity.PickupAddress.City);
-            //Assert.Equal(product.PickupAddress.State, demoProductEntity.PickupAddress.State);
-            //Assert.Equal(product.PickupAddress.Pincode, demoProductEntity.PickupAddress.Pincode);
+
+            Assert.Equal(product.Name, demoProductEntity.Name);
+            Assert.Equal(product.SellerId, demoProductEntity.SellerId);
+            Assert.Equal(product.Name, demoProductEntity.Name);
+            Assert.Equal(product.Description, demoProductEntity.Description);
+            Assert.Equal(product.HeroImage, demoProductEntity.HeroImage);
+            Assert.Equal(product.Price.Money.Amount, demoProductEntity.Price.Money.Amount);
+            Assert.Equal(product.Price.Money.Currency, demoProductEntity.Price.Money.Currency);
+            Assert.Equal(product.Price.IsNegotiable, demoProductEntity.Price.IsNegotiable);
+            Assert.Equal(product.Category, demoProductEntity.Category);
+            Assert.Equal(product.Status, demoProductEntity.Status);
+            Assert.Equal(product.PostDateTime.ToString(), demoProductEntity.PostDateTime.ToString());
+            Assert.Equal(product.ExpirationDate.ToString(), demoProductEntity.ExpirationDate.ToString());
+            for (var i = 0; i < demoProductEntity.Images.Count; i++)
+                Assert.Equal(product.Images[i], demoProductEntity.Images[i]);
+            Assert.Equal(product.PurchasedDate.ToString(), demoProductEntity.PurchasedDate.ToString());
+            Assert.Equal(product.PickupAddress.Line1, demoProductEntity.PickupAddress.Line1);
+            Assert.Equal(product.PickupAddress.Line2, demoProductEntity.PickupAddress.Line2);
+            Assert.Equal(product.PickupAddress.City, demoProductEntity.PickupAddress.City);
+            Assert.Equal(product.PickupAddress.State, demoProductEntity.PickupAddress.State);
+            Assert.Equal(product.PickupAddress.Pincode, demoProductEntity.PickupAddress.Pincode);
         }
 
         [Fact]
@@ -89,7 +89,7 @@ namespace OnlineRetailPortal.Tests
             };
 
             var response = await productStore.GetProductsAsync(getProductsStoreEntity);
-            Assert.Equal(6, response.Products.Count);
+            Assert.Equal(4, response.Products.Count);
         }
 
         [Fact]
@@ -108,5 +108,21 @@ namespace OnlineRetailPortal.Tests
             Assert.Equal("Unexpected Error Occured, Please Try Again Later", ex.Message);
         }
 
+        [Fact]
+        public async Task Update_Product_By_ID_Should_Update_The_Correct_Product()
+        {
+            MongoProductStore productStore = new MongoProductStore();
+            var result = await productStore.UpdateProductAsync(demoProductEntity);           
+            Assert.Equal(result.Name, demoProductEntity.Name);
+        }
+
+        [Fact]
+        public async Task Update_Product_By_ID_Should_Not_Update_If_Id_Is_Wrong()
+        {
+            MongoProductStore productStore = new MongoProductStore();
+            Exception ex = await Assert.ThrowsAsync<BaseException>(() => productStore.UpdateProductAsync(demoProductEntity));
+            Assert.Equal("Unexpected Error Occured, Please Try Again Later", ex.Message);
+
+        }
     }
 }

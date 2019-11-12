@@ -35,5 +35,12 @@ namespace OnlineRetailPortal.Services
             var response = await Core.Product.GetProductsAsync(request, _productStore);
             return response.ToModel();
         }
+
+        public async Task<UpdateProductEntity> UpdateProductAsync(UpdateProductEntity updateProductEntity)
+        {
+            Core.Product product = updateProductEntity.ToEntity();
+            var response = await product.UpdateAsync(_productStore);
+            return response.ToResponseModel();
+        }
     }
 }

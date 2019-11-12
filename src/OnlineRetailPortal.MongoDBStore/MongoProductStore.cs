@@ -36,7 +36,6 @@ namespace OnlineRetailPortal.MongoDBStore
             return storeEntity.ToModel();
         }
 
-
         public async Task<GetProductStoreResponse> GetProductAsync(string productId)
         {
             MongoEntity mongoEntity;
@@ -69,6 +68,24 @@ namespace OnlineRetailPortal.MongoDBStore
                 throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
             }
             return new GetProductsStoreResponse() { Products = products.ToModel(), PagingInfo = request.PagingInfo };
+        }
+
+        public async Task<ProductEntity> UpdateProductAsync(ProductEntity productEntity)
+        {
+            var mongoEntity = productEntity.ToEntity();
+            var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
+
+            var filter = Builders<MongoEntity>.Filter.Eq("Id", productEntity.Id);
+            var result = await productStoreCollection.ReplaceOneAsync(
+            filter,
+            mongoEntity,
+            new UpdateOptions { IsUpsert = false });
+            if (result.MatchedCount == 0)
+            {
+                throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
+            }
+
+            return mongoEntity.ToModel();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace OnlineRetailPortal.Tests
         [Fact]
         public async void ToGetListOfProducts()
         {
-            //Arrenge 
+            //Arrange 
             int pageNo = 2;
             int pageSize = 1;
             ProductsController productsController = new ProductsController(_productService);

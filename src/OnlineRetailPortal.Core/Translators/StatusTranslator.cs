@@ -17,5 +17,19 @@ namespace OnlineRetailPortal.Core
             }
             throw new NotSupportedException(status + " is not supported");
         }
+
+        public static Contracts.Status ToEntity(this Status status)
+        {
+            switch (status)
+            {
+                case Status.Active:
+                    return Contracts.Status.Active;
+                case Status.Disabled:
+                    return Contracts.Status.Disabled;
+                case Status.Sold:
+                    return Contracts.Status.Sold;
+            }
+            throw new NotSupportedException(status + " is not supported");
+        }
     }
 }

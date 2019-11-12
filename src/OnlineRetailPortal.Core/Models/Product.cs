@@ -54,5 +54,12 @@ namespace OnlineRetailPortal.Core
             return addProductResponse.ToModel();
 
         }
+
+        public async Task<Product> UpdateAsync(IProductStore productStore)
+        {
+            var productEntity = this.ToStoreEntity();
+            var updateProductResponse = await productStore.UpdateProductAsync(productEntity);
+            return updateProductResponse.ToStoreModel();
+        }
     }
 }

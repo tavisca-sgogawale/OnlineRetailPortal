@@ -1,25 +1,4 @@
 //Response Data
 {
-    "Categories" : [
-        {
-            "id":"631273",
-            "name":"Electronics"
-        },
-        {
-            "id":"78237",
-            "name":"Home Appliances"
-        },
-        {
-            "id":62873",
-            "name":"Clothings"
-        },
-        {
-            "id":"531273",
-            "name":"Toys"
-        },
-        {
-            "id":"6482731",
-            "name":"Books"
-        }
-    ]
+    "Categories" : ["Electronics","Home Appliances","Clothings","Toys","Books"]
 }

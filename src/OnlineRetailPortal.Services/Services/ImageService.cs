@@ -58,6 +58,11 @@ namespace OnlineRetailPortal.Services.Services
 
         }
 
+        /// <summary>
+        /// Moves the images provided as string URLs from temporary to permanent
+        /// </summary>
+        /// <param name="tempImageUrls"></param>
+        /// <returns></returns>
         public List<string> MoveToStorage(List<string> tempImageUrls)
         {
             if (tempImageUrls == null)
@@ -66,15 +71,25 @@ namespace OnlineRetailPortal.Services.Services
             List<string> imageUrls = new List<string>();
             string tempPath = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _tempImageFolder);
             string storagePath = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _storageFolder);
+            
             try
             {
                 foreach (string imageUrl in tempImageUrls)
                 {
+                    if (!imageUrl.StartsWith("tmp_"))
+                        throw new System.IO.FileNotFoundException(message:"The FileName didnt start with \"tmp_\". Is not a valid Image.") ;
+
                     var imageName = imageUrl.Split("tmp_")[1];
                     File.Move(Path.Combine(tempPath, imageUrl), Path.Combine(storagePath, imageName));
                     imageUrls.Add(Path.Combine(storagePath, imageName));
                 }
                 return imageUrls;
+            }
+            catch (System.IO.FileNotFoundException exf)
+            {
+                //Logger.logInformation("Invalid Move request: {@ex} ", ex)
+                throw new BaseException(StatusCodes.Status404NotFound, "The Image corresponding to the product was not found", null, System.Net.HttpStatusCode.NotFound);
+
             }
             catch (Exception ex)
             {
@@ -82,23 +97,36 @@ namespace OnlineRetailPortal.Services.Services
                 throw new BaseException(StatusCodes.Status500InternalServerError, "Internal Server Error", null, System.Net.HttpStatusCode.InternalServerError);
             }
         }
-
+        /// <summary>
+        /// Moves the image provided as a string URL from temporary to permanent
+        /// </summary>
+        /// <param name="image"></param>
+        /// <returns></returns>
         public string MoveToStorage(string image)
         {
             string storedImage;
             string tempPath = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _tempImageFolder);
             string storagePath = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _storageFolder);
+
             try
             {
+                if (!image.StartsWith("tmp_"))
+                    throw new System.IO.FileNotFoundException(message: "The FileName didnt start with \"tmp_\". Is not a valid Image.");
 
                 var img = image.Split("tmp_")[1];
                 File.Move(Path.Combine(tempPath, image), Path.Combine(storagePath, img));
                 storedImage = Path.Combine(storagePath, img);
                 return storedImage;
             }
+            catch (System.IO.FileNotFoundException ex)
+            {
+                //Logger.logInformation("Invalid Move request: {@ex} ", ex)
+                throw new BaseException(StatusCodes.Status404NotFound, "The Hero image corresponding to the product was not found", null, System.Net.HttpStatusCode.NotFound);
+
+            }
             catch (Exception ex)
             {
-                //Logger.logInformation("Invalid Delete request: {@ex} ", ex)
+                //Logger.logInformation("Invalid Move request: {@ex} ", ex)
                 throw new BaseException(StatusCodes.Status500InternalServerError, "Internal Server Error", null, System.Net.HttpStatusCode.InternalServerError);
             }
         }

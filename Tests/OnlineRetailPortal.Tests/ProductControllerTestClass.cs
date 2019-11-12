@@ -46,6 +46,7 @@ namespace OnlineRetailPortal.Tests
                 Id = "103",
                 Name = "Bottle",
                 Description = "Green Bottle",
+
                 HeroImage = "example.com",
                 Price = new Web.Price
                 {
@@ -80,6 +81,7 @@ namespace OnlineRetailPortal.Tests
                 Name = "Bottle",
                 Description = "Green Bottle",
                 HeroImage = "example.com",
+
                 Price = new Web.Price
                 {
                     Money = new Web.Money()

@@ -7,9 +7,9 @@ namespace OnlineRetailPortal.Core
 {
     public static class AddProductTranslator
     {
-        public static AddProductStoreRequest ToEntity(this Product product)
+        public static ProductEntity ToEntity(this Product product)
         {
-            var  addProductStoreRequest = new AddProductStoreRequest() {
+            var  addProductStoreRequest = new ProductEntity() {
                 SellerId = product.SellerId,
                 Name = product.Name,
                 Description = product.Description,
@@ -26,7 +26,7 @@ namespace OnlineRetailPortal.Core
         } 
 
 
-        public static Product ToModel(this AddProductStoreResponse addProductStoreResponse)
+        public static Product ToModel(this ProductEntity addProductStoreResponse)
         {
             var product = new Product(addProductStoreResponse.Price.ToModel(),addProductStoreResponse.SellerId, addProductStoreResponse.Name ) { 
                 Id = addProductStoreResponse.Id,

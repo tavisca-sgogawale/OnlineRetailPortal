@@ -61,6 +61,15 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 708.
+        /// </summary>
+        public static string DatabaseDown {
+            get {
+                return ResourceManager.GetString("DatabaseDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 705.
         /// </summary>
         public static string GreaterCharacter {
@@ -93,6 +102,15 @@ namespace OnlineRetailPortal.Contracts {
         public static string InvalidCurrency {
             get {
                 return ResourceManager.GetString("InvalidCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 709.
+        /// </summary>
+        public static string InvalidId {
+            get {
+                return ResourceManager.GetString("InvalidId", resourceCulture);
             }
         }
         

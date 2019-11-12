@@ -12,6 +12,11 @@ namespace OnlineRetailPortal.Core
         {
             return string.Format(ErrorMessage.ProductNotFound,field);
         }
+        public static string DataBaseDown()
+        {
+            return string.Format(ErrorMessage.DatabaseDown);
+
+        }
         public static string InvalidCurrency(string field)
         {
             return string.Format(ErrorMessage.InvalidCurrency, field);

@@ -53,7 +53,7 @@ namespace OnlineRetailPortal.Web
             .WithMessage(Error.GreaterValue("Price", "0"));
 
             RuleFor(x => x.Price.IsNegotiable)
-            .NotEmpty()
+            .NotNull()
             .WithErrorCode(ErrorCode.MissingField())
             .WithMessage(Error.MissingField("IsNegotiable"));
 
@@ -74,7 +74,7 @@ namespace OnlineRetailPortal.Web
             .WithErrorCode(ErrorCode.GreaterDate())
             .WithMessage(Error.GreaterDate("PurchasedDate"));
 
-            When(x => x.PickupAddress.Line1 != null &&
+            When(x => x.PickupAddress != null && x.PickupAddress.Line1 != null &&
             x.PickupAddress.City != null && x.PickupAddress.Pincode > 0 && x.PickupAddress.State != null,
             () =>
             {

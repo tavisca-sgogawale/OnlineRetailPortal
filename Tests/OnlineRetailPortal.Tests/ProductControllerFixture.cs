@@ -71,8 +71,9 @@ namespace OnlineRetailPortal.Tests
                     Name = "Mobile",
                     Price = new Web.Price
                     {
+
                         Money = new Web.Money()
-                        {
+                       {
                             Amount = 200,
                             Currency = "INR"
                         },

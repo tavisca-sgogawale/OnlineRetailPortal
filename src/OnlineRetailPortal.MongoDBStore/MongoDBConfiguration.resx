@@ -117,37 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DatabaseDown" xml:space="preserve">
-    <value>708</value>
+  <data name="Database" xml:space="preserve">
+    <value>ORP</value>
   </data>
-  <data name="GreaterCharacter" xml:space="preserve">
-    <value>705</value>
+  <data name="Port" xml:space="preserve">
+    <value>27017</value>
   </data>
-  <data name="GreaterDate" xml:space="preserve">
-    <value>706</value>
+  <data name="ProductCollection" xml:space="preserve">
+    <value>Product</value>
   </data>
-  <data name="GreaterValue" xml:space="preserve">
-    <value>704</value>
-  </data>
-  <data name="InvalidCurrency" xml:space="preserve">
-    <value>707</value>
-  </data>
-  <data name="InvalidId" xml:space="preserve">
-    <value>709</value>
-  </data>
-  <data name="InvalidRequest" xml:space="preserve">
-    <value>701</value>
-  </data>
-  <data name="MissingField" xml:space="preserve">
-    <value>703</value>
-  </data>
-  <data name="NullField" xml:space="preserve">
-    <value>702</value>
-  </data>
-  <data name="NullRequest" xml:space="preserve">
-    <value>700</value>
-  </data>
-  <data name="ProductNotFound" xml:space="preserve">
-    <value>708</value>
+  <data name="Url" xml:space="preserve">
+    <value>127.0.0.1</value>
   </data>
 </root>

@@ -15,17 +15,21 @@ namespace OnlineRetailPortal.Mock
          public MockCategoryStore()
         {
             Categories = new List<Category>() {
-             new Category(){Id = 631273, Name = "Electronics"},
-             new Category(){Id = 78237, Name = "Home Appliances"},
-             new Category(){Id = 62873, Name = "Clothings"},
-             new Category(){Id = 531273, Name = "Toys"},
-             new Category(){Id = 6482731, Name = "Books"},
+             
+             new Category(){Name = "Electronics"},
+             new Category(){Name = "Home Appliances"},
+             new Category(){Name = "Clothings"},
+             new Category(){Name = "Toys"},
+             new Category(){Name = "Books"},
          };
         }
 
         public async Task<GetCategoriesStoreResponse> GetCategoriesAsync()
         {
-            
+            if(Categories==null)
+            {
+                return null;
+            }
             return await Task.FromResult<GetCategoriesStoreResponse>(Categories.ToCategoriesStoreResponse());
         }
     }

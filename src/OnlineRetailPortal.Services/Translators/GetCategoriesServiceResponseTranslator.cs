@@ -8,13 +8,14 @@ namespace OnlineRetailPortal.Services
 {
     public static class GetCategoriesServiceResponseTranslator
     {
-        public static GetCategoriesServiceResponse ToCategoriesResponse(this List<Core.Category> categories)
+        public static CategoriesServiceResponse ToCategoriesResponse(this List<Core.Category> categories)
         {
-            GetCategoriesServiceResponse response = new GetCategoriesServiceResponse()
+            if (categories == null)
+                return null;
+            CategoriesServiceResponse response = new CategoriesServiceResponse()
             {
                 Categories = categories.Select(x => new Category()
                 {
-                    Id = x.Id,
                     Name = x.Name
                 }).ToList()
             };

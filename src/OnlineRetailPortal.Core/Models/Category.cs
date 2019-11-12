@@ -11,14 +11,14 @@ namespace OnlineRetailPortal.Core
         {
             this.Name = name;
         }
-        public int Id { get; set; }
+
         public string Name { get; }
 
         public async static Task<List<Category>> GetCategoriesAsync(ICategoryStore categoryStore)
         {
             var response = await categoryStore.GetCategoriesAsync();
-            var CoreCategoriesResponse = response.ToCoreResponse();
-            return CoreCategoriesResponse;
+            var coreCategoriesResponse = response.ToCoreResponse();
+            return coreCategoriesResponse;
         }
 
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using OnlineRetailPortal.Contracts;
@@ -6,7 +7,7 @@ using OnlineRetailPortal.Contracts;
 
 namespace OnlineRetailPortal.Web
 {
-    [Route("api")]
+    [Route("api/v1.0/onlineretailportal")]
     [ApiController]
     public class CategoryController : ControllerBase
     {
@@ -16,23 +17,17 @@ namespace OnlineRetailPortal.Web
             _categoryService = categoryService;
         }
 
-        [HttpGet("category")]
-        public async Task<CategoryResponse> GetCategories()
-        {
+        
+        [Route("api/v1.0/onlineretailportal/categories")]
+        [HttpGet("categories")]
+        public async Task<List<string>> GetCategories()
+        { 
+            var serviceResponse = await _categoryService.GetCategoriesAsync();
+            var listOfCategories = serviceResponse.ToCategoriesContract();
 
-            try {
+            var response = CategoryResponse.CategoriesToString(listOfCategories);
+            return response;
 
-              var  serviceResponse = await _categoryService.GetCategoriesAsync();
-                 return serviceResponse.ToCategoriesContract();
-            }
-            catch(Exception )
-            {
-                //Log(exception.Message, exception.trace);
-                throw new BaseException(500,"Internal Server Error", null,System.Net.HttpStatusCode.NotFound);
-                
-   
-            }
-           
 
         }
     }

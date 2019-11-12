@@ -9,15 +9,19 @@ namespace OnlineRetailPortal.Mock
     public static class GetCategoriesStoreResponseTranslator
     {
         public static GetCategoriesStoreResponse ToCategoriesStoreResponse(this List<Category> categories)
-        {
+        {     
+            if(categories==null)
+            {
+                return null;
+            }
             GetCategoriesStoreResponse response = new GetCategoriesStoreResponse()
             {
                 Categories = categories.Select(x => new Contracts.Category()
                 {
-                    Id = x.Id,
                     Name = x.Name
                 }).ToList()
             };
+           
             return response;
         }
     }

@@ -7,13 +7,15 @@ namespace OnlineRetailPortal.Web
 {
     public static class ServiceResponseTranslator
     {
-        public static CategoryResponse ToCategoriesContract(this Contracts.GetCategoriesServiceResponse getCategoriesServiceResponse)
+        public static CategoryResponse ToCategoriesContract(this Contracts.CategoriesServiceResponse getCategoriesServiceResponse)
         {
+            
+            if (getCategoriesServiceResponse == null)
+                return null;
             CategoryResponse response = new CategoryResponse()
             {
                 Categories = getCategoriesServiceResponse.Categories.Select(x => new Category()
                 {
-                    Id = x.Id,
                     Name = x.Name
                 }).ToList()
             };

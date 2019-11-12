@@ -29,5 +29,23 @@ namespace OnlineRetailPortal.Web
                 throw new BaseException(Convert.ToInt32(ErrorCode.InvalidRequest()), Error.InvalidRequest(), info , HttpStatusCode.BadRequest);
             }
         }
+
+        public static void EnsureUpdateRequestValid<UpdateProductEntity>(this AbstractValidator<UpdateProductEntity> validator, UpdateProductEntity request)
+        {
+            List<ErrorInfo> info = new List<ErrorInfo>();
+            var validationResult = validator.Validate(request);
+
+            if (request == null)
+                throw new BaseException(Convert.ToInt32(ErrorCode.NullRequest()), Error.NullRequest(), null, HttpStatusCode.BadRequest);
+
+            if (validationResult.IsValid == false)
+            {
+                foreach (var error in validationResult.Errors)
+                {
+                    info.Add(new ErrorInfo { Code = error.ErrorCode, Message = error.ErrorMessage });
+                }
+                throw new BaseException(Convert.ToInt32(ErrorCode.InvalidRequest()), Error.InvalidRequest(), info, HttpStatusCode.BadRequest);
+            }
+        }
     }
 }

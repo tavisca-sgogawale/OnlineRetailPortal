@@ -1,5 +1,4 @@
 ﻿using OnlineRetailPortal.Contracts;
-using System;
 using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Services
@@ -25,9 +24,10 @@ namespace OnlineRetailPortal.Services
             return response.ToModel();
         }
 
-        public Task<GetProductServiceResponse> GetProductAsync(string productId)
+        public async Task<GetProductServiceResponse> GetProductAsync(string productId)
         {
-            throw new NotImplementedException();
+            var response = await Core.Product.GetAsync(productId, _productStore);
+            return response.ToServiceModel();
         }
 
         public async Task<GetProductsServiceResponse> GetProductsAsync(GetProductsServiceRequest request)

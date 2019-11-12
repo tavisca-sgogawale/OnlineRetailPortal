@@ -1,8 +1,4 @@
 ﻿using OnlineRetailPortal.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace OnlineRetailPortal.Mock
 {
@@ -12,7 +8,7 @@ namespace OnlineRetailPortal.Mock
         {
             GetProductStoreResponse response = new GetProductStoreResponse()
             {
-                Product = product
+                Product = product.ToEntity()
             };
             return response;
 

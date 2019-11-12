@@ -75,7 +75,7 @@ namespace OnlineRetailPortal.Tests
         {
             MongoProductStore productStore = new MongoProductStore();
 
-            GetProductsStoreEntity getProductsStoreEntity = new GetProductsStoreEntity()
+            SearchQuery getProductsStoreEntity = new SearchQuery()
             {
                 PagingInfo = new PagingInfo() { PageNumber = 1, PageSize = 20, TotalPages = 100 }
             };

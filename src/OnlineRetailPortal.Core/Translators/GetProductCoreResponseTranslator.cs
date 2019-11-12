@@ -4,7 +4,7 @@ namespace OnlineRetailPortal.Core
 {
     public static class GetProductServiceResponseTranslator
     {
-        public static Product ToModel(this GetProductStoreResponse getProductResponse)
+        public static Product ToModel(this ProductStoreResult getProductResponse)
         {
             Price price = getProductResponse.Product.Price.ToModel();
             Product response = new Product(price, getProductResponse.Product.SellerId, getProductResponse.Product.Name)

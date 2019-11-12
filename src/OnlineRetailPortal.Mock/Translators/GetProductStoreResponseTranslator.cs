@@ -4,9 +4,9 @@ namespace OnlineRetailPortal.Mock
 {
     public static class GetProductStoreResponseTranslator
     {
-        public static GetProductStoreResponse ToGetProductStore(this Product product)
+        public static ProductStoreResult ToGetProductStore(this Product product)
         {
-            GetProductStoreResponse response = new GetProductStoreResponse()
+            ProductStoreResult response = new ProductStoreResult()
             {
                 Product = product.ToEntity()
             };

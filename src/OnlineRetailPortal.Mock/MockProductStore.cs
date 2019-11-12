@@ -43,13 +43,13 @@ namespace OnlineRetailPortal.Mock
             return product.ToEntity();
         }
 
-        public async Task<GetProductStoreResponse> GetProductAsync(string productId)
+        public async Task<ProductStoreResult> GetProductAsync(string productId)
         {
             Product response = productList.Where(x => x.Id == productId).First();
             return response.ToGetProductStore();
         }
 
-        public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreEntity request)
+        public async Task<ProductStoreResults> GetProductsAsync(SearchQuery request)
         {
             List<Product> products = productList.OrderByDescending(x => x.PostDateTime).ToList();
             int startIndex = (request.PagingInfo.PageNumber - 1) * (request.PagingInfo.PageSize);

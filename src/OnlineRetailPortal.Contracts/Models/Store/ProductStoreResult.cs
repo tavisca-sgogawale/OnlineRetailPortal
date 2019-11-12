@@ -1,6 +1,6 @@
 ﻿namespace OnlineRetailPortal.Contracts
 {
-    public class GetProductStoreResponse
+    public class ProductStoreResult
     {
         public ProductEntity Product { get; set; }
     }

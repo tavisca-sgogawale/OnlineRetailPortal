@@ -2,7 +2,7 @@
 
 namespace OnlineRetailPortal.Contracts
 {
-    public class GetProductsStoreResponse
+    public class ProductStoreResults
     {
         public List<ProductEntity> Products { get; set; }
         public PagingInfo PagingInfo { get; set; }

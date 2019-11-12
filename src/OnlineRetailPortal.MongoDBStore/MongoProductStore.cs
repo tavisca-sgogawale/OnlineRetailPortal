@@ -23,36 +23,36 @@ namespace OnlineRetailPortal.MongoDBStore
 
         public async Task<ProductEntity> AddProductAsync(ProductEntity productEntity)
         {
-            var storeEntity = productEntity.ToEntity();
+            var mongoEntity = productEntity.ToEntity();
             var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
             try
             {
-                await productStoreCollection.InsertOneAsync(storeEntity);
+                await productStoreCollection.InsertOneAsync(mongoEntity);
             }
             catch
             {
                 throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
             }
-            return storeEntity.ToModel();
+            return mongoEntity.ToModel();
         }
 
 
-        public async Task<GetProductStoreResponse> GetProductAsync(string productId)
+        public async Task<ProductStoreResult> GetProductAsync(string productId)
         {
-            MongoEntity mongoEntity;
+            MongoEntity product;
             try
             {
                 var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
-                mongoEntity = await productStoreCollection.Find(x => x.Id == productId).FirstAsync();
+                product = await productStoreCollection.Find(x => x.Id == productId).FirstAsync();
             }
             catch
             {
                 throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
             }
-            return new GetProductStoreResponse() { Product = mongoEntity.ToModel() };
+            return new ProductStoreResult() { Product = product.ToModel() };
         }
 
-        public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreEntity request)
+        public async Task<ProductStoreResults> GetProductsAsync(SearchQuery query)
         {
             List<MongoEntity> products;
             try
@@ -68,7 +68,7 @@ namespace OnlineRetailPortal.MongoDBStore
             {
                 throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
             }
-            return new GetProductsStoreResponse() { Products = products.ToModel(), PagingInfo = request.PagingInfo };
+            return new ProductStoreResults() { Products = products.ToModel(), PagingInfo = query.PagingInfo };
         }
     }
 }

@@ -18,7 +18,7 @@ namespace OnlineRetailPortal.MongoDBStore
             }
             throw new NotSupportedException(status + " is not supported");
         }
-        public static Status ToModel(this string status)
+        public static Status ToStatusModel(this string status)
         {
             switch (status)
             {

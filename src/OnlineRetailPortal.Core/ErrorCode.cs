@@ -18,7 +18,6 @@ namespace OnlineRetailPortal.Core
         public static string DataBaseDown()
         {
             return string.Format(ErrorCodes.DatabaseDown);
-
         }
         public static string InvalidCurrency()
         {

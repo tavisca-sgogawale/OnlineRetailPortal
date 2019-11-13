@@ -23,6 +23,8 @@ namespace OnlineRetailPortal.Services
 
         public static Contracts.AddProductResponse ToModel(this Core.Product product)
         {
+            if (product == null)
+                return null;
             Contracts.AddProductResponse response = new Contracts.AddProductResponse()
             {
                 Id = product.Id,

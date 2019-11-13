@@ -23,7 +23,7 @@ namespace OnlineRetailPortal.MongoDBStore
 
         public async Task<ProductEntity> AddProductAsync(ProductEntity productEntity)
         {
-            var storeEntity = productEntity.ToEntity();          
+            var storeEntity = productEntity.ToEntity();
             try
             {
                 var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
@@ -38,17 +38,9 @@ namespace OnlineRetailPortal.MongoDBStore
 
         public async Task<GetProductStoreResponse> GetProductAsync(string productId)
         {
-            MongoEntity mongoEntity;
-            try
-            {
-                var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
-                mongoEntity = await productStoreCollection.Find(x => x.Id == productId).FirstAsync();
-            }
-            catch
-            {
-                throw new BaseException(int.Parse(ErrorCode.InvalidId()), Error.InvalidId(), null, HttpStatusCode.GatewayTimeout);
-            }
-            return new GetProductStoreResponse() { Product = mongoEntity.ToModel() };
+            var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
+            var mongoEntity = await productStoreCollection.Find(x => x.Id == productId).FirstOrDefaultAsync();
+            return mongoEntity.ToGetResponseModel();
         }
 
         public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreEntity request)
@@ -56,18 +48,18 @@ namespace OnlineRetailPortal.MongoDBStore
             List<MongoEntity> products;
             try
             {
-                var sort = Builders<MongoEntity>.Sort.Descending("PostDateTime");
-
+                var sort = Builders<MongoEntity>.Sort.Descending("Id");
                 var data = _db.GetCollection<MongoEntity>(_collection);
                 products = await data.Find(new BsonDocument())
                                         .Sort(sort)
                                         .ToListAsync();
+
             }
             catch
             {
                 throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
             }
-            return new GetProductsStoreResponse() { Products = products.ToModel(), PagingInfo = request.PagingInfo };
+            return products.ToModel(request.PagingInfo);
         }
 
         public async Task<ProductEntity> UpdateProductAsync(ProductEntity productEntity)
@@ -78,19 +70,13 @@ namespace OnlineRetailPortal.MongoDBStore
                 var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
                 var filter = Builders<MongoEntity>.Filter.Eq("Id", productEntity.Id);
                 var result = await productStoreCollection.ReplaceOneAsync(
-                filter,
-                mongoEntity,
-                new UpdateOptions { IsUpsert = false });
-                if (result.MatchedCount == 0)
-                {
-                    throw new BaseException(int.Parse(ErrorCode.InvalidId()), Error.InvalidId(), null, HttpStatusCode.GatewayTimeout);
-                }
+                                filter,
+                                mongoEntity,
+                                new UpdateOptions { IsUpsert = false });
             }
             catch
             {
-
                 throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
-
             }
 
             return mongoEntity.ToModel();

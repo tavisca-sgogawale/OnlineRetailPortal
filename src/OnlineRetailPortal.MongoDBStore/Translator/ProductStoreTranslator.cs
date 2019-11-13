@@ -11,6 +11,7 @@ namespace OnlineRetailPortal.MongoDBStore
                 Id = productEntity.Id,
                 SellerId = productEntity.SellerId,
                 Name = productEntity.Name,
+                Category = productEntity.Category.ToEntity(),
                 Description = productEntity.Description,
                 Gallery = new Gallery() { HeroImageUrl = productEntity.HeroImage, ImageUrls = productEntity.Images },
                 Price = productEntity.Price.ToEntity(),
@@ -21,20 +22,47 @@ namespace OnlineRetailPortal.MongoDBStore
                 PickupAddress = productEntity.PickupAddress
             };
             return mongoEntity;
-
+        }
+        public static GetProductStoreResponse ToGetResponseModel(this MongoEntity mongoEntity)
+        {
+            if (mongoEntity == null)
+                return null;
+            GetProductStoreResponse getProductStoreResponse = new GetProductStoreResponse()
+            {
+                Product = new ProductEntity()
+                {
+                    Id = mongoEntity.Id,
+                    SellerId = mongoEntity.SellerId,
+                    Name = mongoEntity.Name,
+                    Category = mongoEntity.Category.ToModel(),
+                    Description = mongoEntity.Description,
+                    HeroImage = mongoEntity.Gallery.HeroImageUrl,
+                    Images = mongoEntity.Gallery.ImageUrls,
+                    Price = mongoEntity.Price.ToModel(),
+                    Status = mongoEntity.Status.ToStatusModel(),
+                    PostDateTime = mongoEntity.CreatedDate,
+                    ExpirationDate = mongoEntity.ExpirationDate,
+                    PurchasedDate = mongoEntity.PurchasedDate,
+                    PickupAddress = mongoEntity.PickupAddress
+                }
+            };
+            return getProductStoreResponse;
         }
         public static ProductEntity ToModel(this MongoEntity mongoEntity)
         {
+            if (mongoEntity == null)
+                return null;
             ProductEntity productEntity = new ProductEntity()
             {
                 Id = mongoEntity.Id,
                 SellerId = mongoEntity.SellerId,
                 Name = mongoEntity.Name,
+                Category = mongoEntity.Category.ToModel(),
                 Description = mongoEntity.Description,
                 HeroImage = mongoEntity.Gallery.HeroImageUrl,
                 Images = mongoEntity.Gallery.ImageUrls,
                 Price = mongoEntity.Price.ToModel(),
-                Status = mongoEntity.Status.ToModel(),
+                Status = mongoEntity.Status.ToStatusModel(),
                 PostDateTime = mongoEntity.CreatedDate,
                 ExpirationDate = mongoEntity.ExpirationDate,
                 PurchasedDate = mongoEntity.PurchasedDate,

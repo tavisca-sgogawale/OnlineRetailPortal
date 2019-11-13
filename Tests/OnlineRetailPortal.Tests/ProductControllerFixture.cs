@@ -24,12 +24,12 @@ namespace OnlineRetailPortal.Tests
 
 
             //Act
-            //GetProductsResponse actualResponse = await productsController.GetProductsAsync(pageNo, pageSize);
+            GetProductsResponse actualResponse = await productsController.GetProductsAsync(pageNo, pageSize);
             //var createdResult = product as Task<GetProductResponse>;
 
             //result
             //Assert.Equal("IPhone", product.Product.Id);
-            //Assert.Equal(1, actualResponse.PagingInfo.TotalPages);
+            Assert.Equal(1, actualResponse.PagingInfo.TotalPages);
             //Assert.AreEqual(values[1], "value2");
 
         }
@@ -46,11 +46,7 @@ namespace OnlineRetailPortal.Tests
                         Name = "Bottle",
                         Description = "Green Bottle",
                         HeroImage =  "example.com" ,
-<<<<<<< HEAD
                        // Price = new Web.Price {Money = new Web.Money( 99.99,  "INR" ), IsNegotiable = true },
-=======
-                        //Price = new Web.Price {Money = new Web.Money( 99.99,  "INR" ), IsNegotiable = true },
->>>>>>> 4245e8e60218b7187579d13e6e5e625daab0e18d
                         Category = "Other",
                         Images = new List<string>() {"ex.com"},
                         PurchasedDate = DateTime.Now,

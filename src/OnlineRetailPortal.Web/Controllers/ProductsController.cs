@@ -19,6 +19,14 @@ namespace OnlineRetailPortal.Web
             _productService = productService;
         }
 
+        [HttpPost("products")]
+        public async Task<GetProductsResponse> GetProductsAsync(int pageNo, int pageSize, [FromBody] GetProductsRequest request)
+        {
+            var serviceRequest = request.ToServiceRequest(pageNo, pageSize); //pageSize and pageNumber is will  be set in app setings
+            var response = await _productService.GetProductsAsync(serviceRequest);
+            return response.ToGetProductsContract();
+        }
+
         [HttpGet("products/{productId}")]
         public async Task<GetProductResponse> GetProductAsync(string productId)
         {
@@ -26,14 +34,6 @@ namespace OnlineRetailPortal.Web
             validator.EnsureValid(productId);
             var response = await _productService.GetProductAsync(productId);
             return response.ToEntity();
-        }
-
-        [HttpPost("products")]
-        public async Task<GetProductsResponse> GetProductsAsync(int pageNo, int pageSize,[FromBody] GetProductsRequest request)
-        {
-            var serviceRequest = request.ToServiceRequest(pageNo, pageSize); //pageSize and pageNumber is will  be set in app setings
-            var response = await _productService.GetProductsAsync(serviceRequest);
-            return response.ToGetProductsContract();
         }
 
         [HttpPost("products/add")]

@@ -133,6 +133,15 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No file was recieved or was sent with an invalid form key..
+        /// </summary>
+        public static string MissingImage {
+            get {
+                return ResourceManager.GetString("MissingImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} can not be null..
         /// </summary>
         public static string NullField {
@@ -147,6 +156,15 @@ namespace OnlineRetailPortal.Contracts {
         public static string NullRequest {
             get {
                 return ResourceManager.GetString("NullRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File with unsupported format recieved in request..
+        /// </summary>
+        public static string UnsupportedFileFormat {
+            get {
+                return ResourceManager.GetString("UnsupportedFileFormat", resourceCulture);
             }
         }
         

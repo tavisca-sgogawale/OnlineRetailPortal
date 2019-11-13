@@ -141,6 +141,9 @@
   <data name="MissingField" xml:space="preserve">
     <value>{0} can not be blank.</value>
   </data>
+  <data name="MissingImage" xml:space="preserve">
+    <value>No file was recieved or was sent with an invalid form key.</value>
+  </data>
   <data name="NullField" xml:space="preserve">
     <value>{0} can not be null.</value>
   </data>
@@ -149,5 +152,8 @@
   </data>
   <data name="ProductNotFound" xml:space="preserve">
     <value>Product does not exist with "{0}" product id.</value>
+  </data>
+  <data name="UnsupportedFileFormat" xml:space="preserve">
+    <value>File with unsupported format recieved in request.</value>
   </data>
 </root>

@@ -21,6 +21,14 @@ namespace OnlineRetailPortal.Core
         {
             return string.Format(ErrorMessage.InvalidCurrency, field);
         }
+        public static string UnsupportedFileFormat()
+        {
+            return string.Format(ErrorMessage.UnsupportedFileFormat);
+        }
+        public static string MissingImage()
+        {
+            return string.Format(ErrorMessage.MissingImage);
+        }
         public static string NullRequest()
         {
             return string.Format(ErrorMessage.NullRequest);

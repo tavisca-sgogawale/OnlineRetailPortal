@@ -11,11 +11,12 @@ namespace OnlineRetailPortal.Services
 {
     public class ProductService : IProductService
     {
-        private readonly IProductStoreFactory _productStoreFactory;
-        private readonly IProductStore _productStore;
+        private readonly IProductStoreFactory _productStoreFactory; // factory or logic to resolve the product store will be handled later 
+        private IProductStore _productStore = null;
+        private IImageService _imageService;
         public ProductService(IProductStoreFactory productStoreFactory)
         {
-            this._productStoreFactory = productStoreFactory;
+            _productStoreFactory = productStoreFactory;
             _productStore = _productStoreFactory.GetProductStore();
         }
 
@@ -25,6 +26,7 @@ namespace OnlineRetailPortal.Services
             {
                 ExpiryInDays = 30
             };
+
             Core.Product product = addProductRequest.ToEntity();
             Core.Product response = await product.SaveAsync(_productStore, config);
             return response.ToModel();

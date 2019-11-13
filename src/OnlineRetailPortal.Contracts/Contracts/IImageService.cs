@@ -21,8 +21,8 @@ namespace OnlineRetailPortal.Contracts
         /// </summary>
         /// <param name="request"></param>
         void DeleteImage(DeleteImageRequest request);
-        List<string> MoveToStorage(List<string> images);
-        string MoveToStorage(string image);
+        void MoveToStorage(List<string> images);
+        void MoveToStorage(string image);
     }
     
 }

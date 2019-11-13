@@ -22,11 +22,11 @@ namespace OnlineRetailPortal.Web.Controllers
         }
 
         // POST: api/Images
-        [HttpPost("images")]
+        [HttpPost("image")]
         public async Task<IActionResult> UploadImage()
         {
             UploadImageRequestValidator validator = new UploadImageRequestValidator();
-            ImageRequestValidator.Validate(validator, Request);
+            validator.EnsureValidity(Request);
 
             UploadImageResponse response = await _imageService.UploadImageAsync(Request.ToEntity());
             return response.ToUser();
@@ -35,7 +35,7 @@ namespace OnlineRetailPortal.Web.Controllers
 
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("images/{id}")]
+        [HttpDelete("image/{id}")]
         public IActionResult DeleteImage(string id)
         {
             DeleteImageRequestValidator requestValidator = new DeleteImageRequestValidator();
@@ -43,6 +43,21 @@ namespace OnlineRetailPortal.Web.Controllers
 
             _imageService.DeleteImage(id.ToDeleteImageContract());
             return new StatusCodeResult(204);
+
+        }
+
+        //Move images from temporary to permanent storage
+        // POST: api/Images
+        [HttpPost("image/store")]
+        public void MoveImages([FromBody] MoveImagesRequest request)
+        {
+            //UploadImageRequestValidator validator = new UploadImageRequestValidator();
+            //validator.EnsureValidity(Request);
+
+            //UploadImageResponse response = await _imageService.UploadImageAsync(Request.ToEntity());
+            //return response.ToUser();
+            _imageService.MoveToStorage(request.HeroImageUrl);
+            _imageService.MoveToStorage(request.ImageUrls);
 
         }
 

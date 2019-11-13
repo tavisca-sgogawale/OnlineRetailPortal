@@ -44,10 +44,11 @@ namespace OnlineRetailPortal.Services.Services
         public void DeleteImage(DeleteImageRequest request)
         {
             string imageId = request.ImageId;
-            string imageFolder = GetImageFolder(imageId);
             try
             {
-                string path = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, imageFolder, imageId);
+                string path = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _tempImageFolder, imageId);
+                File.Delete(path);
+                path = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _storageFolder , imageId);
                 File.Delete(path);
             }
             catch (Exception ex)
@@ -63,27 +64,19 @@ namespace OnlineRetailPortal.Services.Services
         /// </summary>
         /// <param name="tempImageUrls"></param>
         /// <returns></returns>
-        public List<string> MoveToStorage(List<string> tempImageUrls)
+        public void MoveToStorage(List<string> tempImageUrls)
         {
             if (tempImageUrls == null)
-                return null;
+                return;
 
-            List<string> imageUrls = new List<string>();
             string tempPath = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _tempImageFolder);
             string storagePath = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _storageFolder);
             
             try
             {
                 foreach (string imageUrl in tempImageUrls)
-                {
-                    if (!imageUrl.StartsWith("tmp_"))
-                        throw new System.IO.FileNotFoundException(message:"The FileName didnt start with \"tmp_\". Is not a valid Image.") ;
-
-                    var imageName = imageUrl.Split("tmp_")[1];
-                    File.Move(Path.Combine(tempPath, imageUrl), Path.Combine(storagePath, imageName));
-                    imageUrls.Add(Path.Combine(storagePath, imageName));
-                }
-                return imageUrls;
+                    File.Move(Path.Combine(tempPath, imageUrl), Path.Combine(storagePath, imageUrl));
+                
             }
             catch (System.IO.FileNotFoundException exf)
             {
@@ -102,21 +95,14 @@ namespace OnlineRetailPortal.Services.Services
         /// </summary>
         /// <param name="image"></param>
         /// <returns></returns>
-        public string MoveToStorage(string image)
+        public void MoveToStorage(string image)
         {
-            string storedImage;
             string tempPath = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _tempImageFolder);
             string storagePath = Path.Combine(Directory.GetCurrentDirectory(), _env.WebRootPath, _storageFolder);
 
             try
             {
-                if (!image.StartsWith("tmp_"))
-                    throw new System.IO.FileNotFoundException(message: "The FileName didnt start with \"tmp_\". Is not a valid Image.");
-
-                var img = image.Split("tmp_")[1];
-                File.Move(Path.Combine(tempPath, image), Path.Combine(storagePath, img));
-                storedImage = Path.Combine(storagePath, img);
-                return storedImage;
+                File.Move(Path.Combine(tempPath, image), Path.Combine(storagePath, image));
             }
             catch (System.IO.FileNotFoundException ex)
             {
@@ -129,14 +115,6 @@ namespace OnlineRetailPortal.Services.Services
                 //Logger.logInformation("Invalid Move request: {@ex} ", ex)
                 throw new BaseException(StatusCodes.Status500InternalServerError, "Internal Server Error", null, System.Net.HttpStatusCode.InternalServerError);
             }
-        }
-
-        private string GetImageFolder(string imageId)
-        {
-            if (imageId.StartsWith("tmp_"))
-                return _tempImageFolder;
-            else
-                return _storageFolder;
         }
 
     }

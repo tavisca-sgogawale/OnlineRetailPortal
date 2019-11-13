@@ -20,7 +20,7 @@ namespace OnlineRetailPortal.Web.Validations
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public static void Validate(this AbstractValidator<HttpRequest> validator, HttpRequest request)
+        public static void EnsureValidity(this UploadImageRequestValidator validator, HttpRequest request)
         {
             if (request.ContentLength == 0)
                 throw new BaseException(StatusCodes.Status400BadRequest, "No file was recieved or file was sent with an invalid form key", null, System.Net.HttpStatusCode.BadRequest);

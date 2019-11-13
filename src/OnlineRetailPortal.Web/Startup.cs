@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -12,6 +13,7 @@ using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Mock;
 using OnlineRetailPortal.Services;
 using OnlineRetailPortal.Services.Services;
+using System.IO;
 
 namespace OnlineRetailPortal.Web
 {
@@ -55,7 +57,19 @@ namespace OnlineRetailPortal.Web
 
             app.UseCors("CorsPolicy");
             app.UseMiddleware<CustomExceptionMiddleware>();
-            app.UseStaticFiles();
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/storage"))
+            });
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                 Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images"))
+            });
+
+
             app.UseHttpsRedirection();
 
             app.UseRouting();

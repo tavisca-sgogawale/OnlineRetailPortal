@@ -12,7 +12,7 @@ namespace OnlineRetailPortal.MongoDBStore
         public StorePrice Price { get; set; }
         public string Category { get; set; }
         public Gallery Gallery { get; set; }
-        public Nullable<DateTime> PurchasedDate { get; set; }
+        public DateTime? PurchasedDate { get; set; }
         public Address PickupAddress { get; set; }
         public string Status { get; set; }
         public DateTime CreatedDate { get; set; }

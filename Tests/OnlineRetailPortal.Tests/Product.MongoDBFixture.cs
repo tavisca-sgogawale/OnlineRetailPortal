@@ -11,16 +11,17 @@ namespace OnlineRetailPortal.Tests
     {
         ProductEntity demoProductEntity = new ProductEntity()
         {
-            Id = "984667qwert",
-            SellerId = "IVDR12RED",
+            Id = "111",
+            SellerId = "222",
             Name = "IphoneUpdated",
             Description = "Iphone 1 year old",
             HeroImage = "www.image1.com",
             Price = new Price() { Money = new Money(123, "asdas"), IsNegotiable = true },
             Category = Category.Book,
-            Images = new List<string>() { "www.image1.com" ,
-                                              "www.image1.com" ,
-                                              "www.image1.com"  },
+            Images = new List<string>() { "www.image1.com",
+                "www.image1.com",
+                "www.image1.com" },
+            Status = Status.Active,
             PurchasedDate = DateTime.Now,
             PickupAddress = new Address()
             {
@@ -29,23 +30,42 @@ namespace OnlineRetailPortal.Tests
                 City = "Pune",
                 State = "Maharashtra",
                 Pincode = 123213
-            }
+            },
+            ExpirationDate = DateTime.Now.AddDays(30),
+            PostDateTime = DateTime.Now          
         };
 
+        ProductEntity demoProductEntity2 = new ProductEntity()
+        {
+            Id = "112",
+            SellerId = "222",
+            Name = "IphoneUpdated",
+            Description = "Iphone 1 year old",
+            HeroImage = "www.image1.com",
+            Price = new Price() { Money = new Money(123, "asdas"), IsNegotiable = true },
+            Category = Category.Book,
+            Images = new List<string>() { "www.image1.com",
+                "www.image1.com",
+                "www.image1.com" },
+            Status = Status.Active,
+            PurchasedDate = DateTime.Now,
+            PickupAddress = new Address()
+            {
+                Line1 = "123 Street",
+                Line2 = "MOngo road",
+                City = "Pune",
+                State = "Maharashtra",
+                Pincode = 123213
+            },
+            ExpirationDate = DateTime.Now.AddDays(30),
+            PostDateTime = DateTime.Now
+        };
 
         [Fact]
         public async Task Add_Product_Should_Return_Added_Product()
         {
             MongoProductStore productStore = new MongoProductStore();
             var product = await productStore.AddProductAsync(demoProductEntity);
-
-            for (int i = 0; i < 200000; i++)
-            {
-                var pro = product;
-                pro.Id = i.ToString();
-                pro.Price.Money.Amount = i * 1.37;
-                await productStore.AddProductAsync(pro);
-            }
 
             Assert.Equal(product.Name, demoProductEntity.Name);
             Assert.Equal(product.SellerId, demoProductEntity.SellerId);
@@ -89,7 +109,7 @@ namespace OnlineRetailPortal.Tests
             };
 
             var response = await productStore.GetProductsAsync(getProductsStoreEntity);
-            Assert.Equal(4, response.Products.Count);
+            Assert.Equal(1, response.Products.Count);
         }
 
         [Fact]
@@ -105,7 +125,7 @@ namespace OnlineRetailPortal.Tests
         {
             MongoProductStore productStore = new MongoProductStore();
             Exception ex = await Assert.ThrowsAsync<BaseException>(() => productStore.GetProductAsync(demoProductEntity.Id + "INVALID_ID"));
-            Assert.Equal("Unexpected Error Occured, Please Try Again Later", ex.Message);
+            Assert.Equal("Requested Id is not found.", ex.Message);
         }
 
         [Fact]
@@ -120,8 +140,8 @@ namespace OnlineRetailPortal.Tests
         public async Task Update_Product_By_ID_Should_Not_Update_If_Id_Is_Wrong()
         {
             MongoProductStore productStore = new MongoProductStore();
-            Exception ex = await Assert.ThrowsAsync<BaseException>(() => productStore.UpdateProductAsync(demoProductEntity));
-            Assert.Equal("Unexpected Error Occured, Please Try Again Later", ex.Message);
+            Exception ex = await Assert.ThrowsAsync<BaseException>(() => productStore.UpdateProductAsync(demoProductEntity2));
+            Assert.Equal("Requested Id is not found.", ex.Message);
 
         }
     }

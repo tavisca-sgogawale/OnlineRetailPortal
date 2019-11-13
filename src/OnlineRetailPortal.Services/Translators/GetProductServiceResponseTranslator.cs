@@ -18,7 +18,7 @@ namespace OnlineRetailPortal.Services
                 {
                     Name = getProductResponse.Name,
                     Id = getProductResponse.Id,
-                    HeroImage =  getProductResponse.HeroImage,
+                    HeroImage = getProductResponse.HeroImage,
                     ExpirationDate = getProductResponse.ExpirationDate,
                     PostDateTime = getProductResponse.PostDateTime,
                     Description = getProductResponse.Description,
@@ -29,8 +29,8 @@ namespace OnlineRetailPortal.Services
                     Status = getProductResponse.Status.ToModel(),
                     Category = getProductResponse.Category.ToModel()
                 }
-            };            
+            };
             return response;
-        }   
+        }
     }
 }

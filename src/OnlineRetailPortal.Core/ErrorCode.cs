@@ -17,7 +17,11 @@ namespace OnlineRetailPortal.Core
         }
         public static string ProductNotFound()
         {
-            return string.Format(ErrorCodes.ProductNotFound);
+            return string.Format(ErrorCodes.ProductsNotFound);
+        }
+        public static string ProductsNotFound()
+        {
+            return string.Format(ErrorCodes.ProductsNotFound);
         }
         public static string DataBaseDown()
         {

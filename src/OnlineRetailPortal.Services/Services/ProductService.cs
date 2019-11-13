@@ -48,6 +48,7 @@ namespace OnlineRetailPortal.Services
         {
             Core.Product product = updateProductEntity.ToEntity();
             var response = await product.UpdateAsync(_productStore);
+            response.EnsureValid(updateProductEntity);
             return response.ToResponseModel();
         }
     }

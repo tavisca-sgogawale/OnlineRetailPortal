@@ -120,6 +120,9 @@
   <data name="DatabaseDown" xml:space="preserve">
     <value>Unexpected Error Occured, Please Try Again Later</value>
   </data>
+  <data name="DuplicateProduct" xml:space="preserve">
+    <value>Product already exists.</value>
+  </data>
   <data name="GreaterCharacter" xml:space="preserve">
     <value>{0} should be at least  {1} characters.</value>
   </data>
@@ -131,9 +134,6 @@
   </data>
   <data name="InvalidCurrency" xml:space="preserve">
     <value>Currency should be in {0}</value>
-  </data>
-  <data name="InvalidId" xml:space="preserve">
-    <value>Requested Id is not found.</value>
   </data>
   <data name="InvalidRequest" xml:space="preserve">
     <value>Errors occured</value>
@@ -152,6 +152,9 @@
   </data>
   <data name="ProductNotFound" xml:space="preserve">
     <value>Product does not exist with "{0}" product id.</value>
+  </data>
+  <data name="ProductsNotFound" xml:space="preserve">
+    <value>No Products Available.</value>
   </data>
   <data name="UnsupportedFileFormat" xml:space="preserve">
     <value>File with unsupported format recieved in request.</value>

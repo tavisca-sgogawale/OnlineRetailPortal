@@ -33,6 +33,8 @@ namespace OnlineRetailPortal.Core
 
         public static Product ToStoreModel(this ProductEntity addProductStoreResponse)
         {
+            if (addProductStoreResponse == null)
+                return null;
             var product = new Product(addProductStoreResponse.Price.ToModel(), addProductStoreResponse.SellerId, addProductStoreResponse.Name)
             {
                 Id = addProductStoreResponse.Id,

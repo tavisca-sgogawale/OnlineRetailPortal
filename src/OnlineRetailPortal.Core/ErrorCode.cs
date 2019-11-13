@@ -11,6 +11,10 @@ namespace OnlineRetailPortal.Core
     public class ErrorCode
     {
 
+        public static string DuplicateProduct()
+        {
+            return string.Format(ErrorCodes.DuplicateProduct);
+        }
         public static string ProductNotFound()
         {
             return string.Format(ErrorCodes.ProductNotFound);
@@ -31,27 +35,22 @@ namespace OnlineRetailPortal.Core
         {
             return string.Format(ErrorCodes.InvalidRequest);
         }
-
         public static string NullField()
         {
             return string.Format(ErrorCodes.NullField);
         }
-
         public static string MissingField()
         {
             return string.Format(ErrorCodes.MissingField);
         }
-
         public static string GreaterCharacter()
         {
             return string.Format(ErrorCodes.GreaterCharacter);
         }
-
         public static string GreaterValue()
         {
             return string.Format(ErrorCodes.GreaterValue);
         }
-
         public static string GreaterDate()
         {
             return string.Format(ErrorCodes.GreaterDate);

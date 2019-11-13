@@ -8,6 +8,10 @@ namespace OnlineRetailPortal.Core
 {
     public class Error
     {
+        public static string DuplicateProduct()
+        {
+            return string.Format(ErrorMessage.DuplicateProduct);
+        }
         public static string ProductNotFound(string field)
         {
             return string.Format(ErrorMessage.ProductNotFound, field);

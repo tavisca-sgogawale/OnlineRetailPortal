@@ -18,8 +18,8 @@ namespace OnlineRetailPortal.Tests
             var expectedResponse = GetExpectedResponse();
 
             IProductStore productStore = new MockProductStore();
-
-            var actualResponse = await requestProduct.SaveAsync(productStore);
+            var config = new ProductConfiguration();
+            var actualResponse = await requestProduct.SaveAsync(productStore, config);
 
             Assert.Equal(expectedResponse.SellerId, actualResponse.SellerId);
             Assert.Equal(expectedResponse.Name, actualResponse.Name);
@@ -57,8 +57,8 @@ namespace OnlineRetailPortal.Tests
             expectedResponse.PickupAddress = null;
 
             IProductStore productStore = new MockProductStore();
-
-            var actualResponse = await request.SaveAsync(productStore);
+            var config = new ProductConfiguration();
+            var actualResponse = await request.SaveAsync(productStore, config);
 
             Assert.Equal(expectedResponse.SellerId, actualResponse.SellerId);
             Assert.Equal(expectedResponse.Name, actualResponse.Name);

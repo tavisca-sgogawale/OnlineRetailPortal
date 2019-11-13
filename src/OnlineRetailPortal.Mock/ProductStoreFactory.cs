@@ -1,4 +1,5 @@
 ﻿using OnlineRetailPortal.Contracts;
+using OnlineRetailPortal.MongoDBStore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,19 +8,26 @@ namespace OnlineRetailPortal.Mock
 {
     public class ProductStoreFactory : IProductStoreFactory
     {
-        public IProductStore GetProductStore(string storeValue)
+        //temporary variable
+        private const string _storeValue = "Mock";
+        public IProductStore GetProductStore()
         {
             //returns mock object for this  string
-            if (storeValue == "Mock")
+            if (_storeValue == "Mock")
             {
                 return new MockProductStore();
             }
+            else if (_storeValue == "Mongo")
+            {
+                return new MongoProductStore();
+            }
+            //To be implemented in future
 
             //To get service object
-            IServiceProvider serviceProvider = null;
+            //IServiceProvider serviceProvider = null;
 
-            // returns service object of the specified type by mapping using DI
-            return serviceProvider.GetService(typeof(IProductStore)) as IProductStore;
+            //// returns service object of the specified type by mapping using DI
+            //return serviceProvider.GetService(typeof(IProductStore)) as IProductStore;
         }
     }
 }

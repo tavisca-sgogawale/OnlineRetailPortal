@@ -43,11 +43,20 @@ namespace OnlineRetailPortal.Tests
         {
             Web.AddProductResponse addProductResponse = new Web.AddProductResponse
             {
-                SellerId = "P123",
+                Id = "103",
                 Name = "Bottle",
                 Description = "Green Bottle",
-                HeroImage =  "example.com" ,
-                Price = new Web.Price {Money = new Web.Money( 99.99,  "INR" ), IsNegotiable = true },
+
+                HeroImage = "example.com",
+                Price = new Web.Price
+                {
+                    Money = new Web.Money()
+                    {
+                        Amount = 99.99,
+                        Currency = "INR"
+                    },
+                    IsNegotiable = true
+                },
                 Category = "Other",
                 Images = new List<string>() { "ex.com" },
                 PurchasedDate = DateTime.Now,
@@ -68,13 +77,22 @@ namespace OnlineRetailPortal.Tests
         {
             Web.AddProductRequest addProductRequest = new Web.AddProductRequest()
             {
-                SellerId="P123",
+                SellerId = "103",
                 Name = "Bottle",
                 Description = "Green Bottle",
                 HeroImage = "example.com",
-                Price = new Web.Price { Money = new Web.Money( 99.99, "INR"), IsNegotiable = true },
+
+                Price = new Web.Price
+                {
+                    Money = new Web.Money()
+                    {
+                        Amount = 99.99,
+                        Currency = "INR"
+                    },
+                    IsNegotiable = true
+                },
                 Category = "Other",
-                Images = new List<string>() { "ex.com"},
+                Images = new List<string>() { "ex.com" },
                 PurchasedDate = DateTime.Now,
                 PickupAddress = new Web.Address
                 {

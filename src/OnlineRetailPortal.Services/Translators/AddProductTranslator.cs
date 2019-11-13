@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using OnlineRetailPortal.Contracts;
-using OnlineRetailPortal.Core;
 
 namespace OnlineRetailPortal.Services
 {

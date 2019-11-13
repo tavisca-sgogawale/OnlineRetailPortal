@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 
 namespace OnlineRetailPortal.Core
@@ -10,6 +11,11 @@ namespace OnlineRetailPortal.Core
     {
         public static Product ToModel(this Contracts.GetProductStoreResponse getProductResponse)
         {
+            if (getProductResponse == null)
+            {
+               return null;
+            }
+
             Price price = getProductResponse.Product.Price.ToModel();
             Product response = new Product(price,getProductResponse.Product.SellerId,getProductResponse.Product.Name)
             

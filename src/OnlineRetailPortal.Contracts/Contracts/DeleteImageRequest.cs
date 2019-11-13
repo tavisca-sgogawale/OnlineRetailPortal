@@ -4,8 +4,8 @@ using System.Text;
 
 namespace OnlineRetailPortal.Contracts
 {
-    public interface IProductStoreFactory
+    public class DeleteImageRequest
     {
-        IProductStore GetProductStore();
+        public string ImageId { get; set; }
     }
 }

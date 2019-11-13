@@ -8,9 +8,26 @@ namespace OnlineRetailPortal.Core
 {
     public class Error
     {
+        public static string ProductNotFound(string field)
+        {
+            return string.Format(ErrorMessage.ProductNotFound,field);
+        }
+        public static string DataBaseDown()
+        {
+            return string.Format(ErrorMessage.DatabaseDown);
+
+        }
         public static string InvalidCurrency(string field)
         {
             return string.Format(ErrorMessage.InvalidCurrency, field);
+        }
+        public static string UnsupportedFileFormat()
+        {
+            return string.Format(ErrorMessage.UnsupportedFileFormat);
+        }
+        public static string MissingImage()
+        {
+            return string.Format(ErrorMessage.MissingImage);
         }
         public static string NullRequest()
         {

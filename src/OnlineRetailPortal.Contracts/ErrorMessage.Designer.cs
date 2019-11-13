@@ -61,6 +61,15 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unexpected Error Occured, Please Try Again Later.
+        /// </summary>
+        public static string DatabaseDown {
+            get {
+                return ResourceManager.GetString("DatabaseDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} should be at least  {1} characters..
         /// </summary>
         public static string GreaterCharacter {
@@ -97,6 +106,15 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Requested Id is not found..
+        /// </summary>
+        public static string InvalidId {
+            get {
+                return ResourceManager.GetString("InvalidId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Errors occured.
         /// </summary>
         public static string InvalidRequest {
@@ -115,6 +133,15 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No file was recieved or was sent with an invalid form key..
+        /// </summary>
+        public static string MissingImage {
+            get {
+                return ResourceManager.GetString("MissingImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} can not be null..
         /// </summary>
         public static string NullField {
@@ -129,6 +156,24 @@ namespace OnlineRetailPortal.Contracts {
         public static string NullRequest {
             get {
                 return ResourceManager.GetString("NullRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File with unsupported format recieved in request..
+        /// </summary>
+        public static string UnsupportedFileFormat {
+            get {
+                return ResourceManager.GetString("UnsupportedFileFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product does not exist with &quot;{0}&quot; product id..
+        /// </summary>
+        public static string ProductNotFound {
+            get {
+                return ResourceManager.GetString("ProductNotFound", resourceCulture);
             }
         }
     }

@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\OnlineRetailPortal.Contracts\OnlineRetailPortal.Contracts.csproj" />
     <ProjectReference Include="..\OnlineRetailPortal.Core\OnlineRetailPortal.Core.csproj" />
+    <ProjectReference Include="..\OnlineRetailPortal.MongoDBStore\OnlineRetailPortal.MongoDBStore.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,8 +1,11 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -10,6 +13,8 @@ using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Core;
 using OnlineRetailPortal.Mock;
 using OnlineRetailPortal.Services;
+using OnlineRetailPortal.Services.Services;
+using System.IO;
 
 namespace OnlineRetailPortal.Web
 {
@@ -25,22 +30,22 @@ namespace OnlineRetailPortal.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
             services.AddMvc()
             .AddJsonOptions(options => {
                 options.JsonSerializerOptions.IgnoreNullValues = true;
             });
             services.AddControllers();
-            services.AddCors(options =>
-            {
-                options.AddPolicy("default",
-                builder => builder.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader());
-            });
-            services.AddTransient<ICategoryService, CategoryService> ();
-            services.AddTransient<ICategoryStore, MockCategoryStore>();
             services.AddTransient<IProductStoreFactory, ProductStoreFactory>();
             services.AddSingleton<IProductService, ProductService>();
+            services.AddTransient<IImageService, ImageService>();
+
             services.AddTransient<ICategoryStoreFactory, CategoryObjectFactory>();
         }
 
@@ -52,10 +57,20 @@ namespace OnlineRetailPortal.Web
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("CorsPolicy");
             app.UseMiddleware<CustomExceptionMiddleware>();
 
-            
-            app.UseCors("default");
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/storage"))
+            });
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                 Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images"))
+            });
+
 
             app.UseHttpsRedirection();
 
@@ -67,7 +82,6 @@ namespace OnlineRetailPortal.Web
             {
                 endpoints.MapControllers();
             });
-
         }
     }
 }

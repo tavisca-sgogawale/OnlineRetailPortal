@@ -24,61 +24,69 @@ namespace OnlineRetailPortal.MongoDBStore
         public async Task<ProductEntity> AddProductAsync(ProductEntity productEntity)
         {
             var storeEntity = productEntity.ToEntity();
+            var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
             try
             {
-                var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
                 await productStoreCollection.InsertOneAsync(storeEntity);
+            }
+            catch (MongoWriteException mongoWriteException)
+            {
+                if (mongoWriteException.WriteError.Category == ServerErrorCategory.DuplicateKey)
+                {
+                    throw new BaseException(int.Parse(ErrorCode.DuplicateProduct()), Error.DuplicateProduct(), null, HttpStatusCode.GatewayTimeout);
+                }
+            }
+            var mongoEntity = (await productStoreCollection.Find(_ => _.Id == productEntity.Id).FirstOrDefaultAsync()).ToModel();
+            return mongoEntity;
+        }
+
+        public async Task<GetProductStoreResponse> GetProductAsync(string productId)
+        {
+            MongoEntity mongoEntity;
+            var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
+            try
+            {
+                mongoEntity = await productStoreCollection.Find(x => x.Id == productId).FirstOrDefaultAsync();
             }
             catch
             {
                 throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
             }
-            return storeEntity.ToModel();
-        }
-
-        public async Task<GetProductStoreResponse> GetProductAsync(string productId)
-        {
-            var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
-            var mongoEntity = await productStoreCollection.Find(x => x.Id == productId).FirstOrDefaultAsync();
             return mongoEntity.ToGetResponseModel();
         }
 
         public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreEntity request)
         {
-            List<MongoEntity> products;
+            List<MongoEntity> mongoEntities;
             try
             {
                 var sort = Builders<MongoEntity>.Sort.Descending("Id");
                 var data = _db.GetCollection<MongoEntity>(_collection);
-                products = await data.Find(new BsonDocument())
+                mongoEntities = await data.Find(new BsonDocument())
                                         .Sort(sort)
                                         .ToListAsync();
-
             }
             catch
             {
                 throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
             }
-            return products.ToModel(request.PagingInfo);
+            return mongoEntities.ToModel(request.PagingInfo);
         }
 
         public async Task<ProductEntity> UpdateProductAsync(ProductEntity productEntity)
         {
             var mongoEntity = productEntity.ToEntity();
-            try
-            {
-                var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
-                var filter = Builders<MongoEntity>.Filter.Eq("Id", productEntity.Id);
-                var result = await productStoreCollection.ReplaceOneAsync(
-                                filter,
-                                mongoEntity,
-                                new UpdateOptions { IsUpsert = false });
-            }
-            catch
-            {
-                throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
-            }
+            var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
+            var filter = Builders<MongoEntity>.Filter.Eq("Id", productEntity.Id);
+            var result = await productStoreCollection.ReplaceOneAsync(
+                            filter,
+                            mongoEntity,
+                            new UpdateOptions { IsUpsert = false });
 
+            if (result.MatchedCount == 0)
+            {
+                return null;
+            }
             return mongoEntity.ToModel();
         }
     }

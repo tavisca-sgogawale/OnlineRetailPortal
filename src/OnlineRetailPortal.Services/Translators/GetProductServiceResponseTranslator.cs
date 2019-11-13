@@ -10,7 +10,7 @@ namespace OnlineRetailPortal.Services
 {
     public static class GetProductServiceResponseTranslator
     {
-        public static GetProductServiceResponse ToModel(this Core.Product getProductResponse)
+        public static GetProductServiceResponse ToModel(Core.Product getProductResponse)
         {
             GetProductServiceResponse response = new GetProductServiceResponse()
             {

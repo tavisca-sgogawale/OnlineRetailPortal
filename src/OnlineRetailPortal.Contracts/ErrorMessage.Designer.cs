@@ -167,5 +167,14 @@ namespace OnlineRetailPortal.Contracts {
                 return ResourceManager.GetString("UnsupportedFileFormat", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product does not exist with &quot;{0}&quot; product id..
+        /// </summary>
+        public static string ProductNotFound {
+            get {
+                return ResourceManager.GetString("ProductNotFound", resourceCulture);
+            }
+        }
     }
 }

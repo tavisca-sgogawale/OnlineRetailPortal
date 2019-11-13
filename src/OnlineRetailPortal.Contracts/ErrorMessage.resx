@@ -150,6 +150,9 @@
   <data name="NullRequest" xml:space="preserve">
     <value>Request is null</value>
   </data>
+  <data name="ProductNotFound" xml:space="preserve">
+    <value>Product does not exist with "{0}" product id.</value>
+  </data>
   <data name="UnsupportedFileFormat" xml:space="preserve">
     <value>File with unsupported format recieved in request.</value>
   </data>

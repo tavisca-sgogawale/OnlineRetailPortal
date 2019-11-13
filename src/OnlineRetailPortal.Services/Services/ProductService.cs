@@ -1,5 +1,10 @@
 ﻿using OnlineRetailPortal.Contracts;
+using OnlineRetailPortal.Core;
+using OnlineRetailPortal.Mock;
 using System;
+using System.Collections.Generic;
+using System.Net;
+
 using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Services
@@ -32,9 +37,11 @@ namespace OnlineRetailPortal.Services
             return response.ToModel();
         }
 
-        public Task<GetProductServiceResponse> GetProductAsync(string productId)
+        public async Task<GetProductServiceResponse> GetProductAsync(string productId)
         {
-            throw new NotImplementedException();
+            var response = await Core.Product.GetAsync(productId, _productStore);
+            response.EnsureValid(productId);
+            return GetProductServiceResponseTranslator.ToModel(response);
         }
 
         public async Task<GetProductsServiceResponse> GetProductsAsync(GetProductsServiceRequest request)

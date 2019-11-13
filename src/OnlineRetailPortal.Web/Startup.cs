@@ -39,20 +39,10 @@ namespace OnlineRetailPortal.Web
                     .AllowAnyMethod()
                     .AllowAnyHeader());
             });
-            services.AddMvc().AddJsonOptions(options =>
-            {
+            services.AddMvc()
+            .AddJsonOptions(options=> {
                 options.JsonSerializerOptions.IgnoreNullValues = true;
             });
-            //services.AddMvc()
-            //.AddNewtonsoftJson(options =>
-            //{
-            //    options.SerializerSettings.Formatting = Formatting.Indented;
-            //    options.SerializerSettings.TypeNameHandling = TypeNameHandling.Auto;
-            //    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            //    options.SerializerSettings.Converters.Add(new StringEnumConverter());
-            //    options.SerializerSettings.SerializationBinder =
-            //        new CustomJsonSerializationBinder(namespaceToTypes);
-            //}); 
             services.AddControllers();
             services.AddTransient<IProductStoreFactory, ProductStoreFactory>();
             services.AddSingleton<IProductService, ProductService>();

@@ -10,7 +10,7 @@ namespace OnlineRetailPortal.Web
     [DataContract]
     public class GetProductsRequest
     {
-        public ProductSort ProductSort { get; set; }
+        public Sort ProductSort { get; set; }
         public List<Filter> Filters { get; set; }
 
     }

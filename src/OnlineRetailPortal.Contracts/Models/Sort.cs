@@ -1,9 +1,8 @@
 ﻿namespace OnlineRetailPortal.Contracts
 { 
-    public class ProductSort
+    public class Sort
     {
-        public string SortBy { get; set; }
-
+        public string Type { get; set; }
         public string Order { get; set; }
     }
 }

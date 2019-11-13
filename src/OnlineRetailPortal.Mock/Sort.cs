@@ -8,11 +8,11 @@ namespace OnlineRetailPortal.Mock
 {
     public static class Sort
     {
-        public static List<Product> ApplySort(this List<Product> productList ,Contracts.ProductSort productSort)
+        public static List<Product> ApplySort(this List<Product> productList , Contracts.Sort sort)
         {
-            if (productSort == null)
+            if (sort == null)
                 return productList;
-            return productSort.Order == "Asc" ? productList.SortAsc(productSort.SortBy) : productList.SortDesc(productSort.SortBy);
+            return sort.Order == "Asc" ? productList.SortAsc(sort.Type) : productList.SortDesc(sort.Type);
 
         }
         public static List<Product> SortAsc(this List<Product> products, string sortBy)

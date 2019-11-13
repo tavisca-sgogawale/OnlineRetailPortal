@@ -21,6 +21,8 @@ namespace OnlineRetailPortal.Mock
              new Category(){Name = "Clothings"},
              new Category(){Name = "Toys"},
              new Category(){Name = "Books"},
+             new Category(){Name = "Others"}
+
          };
         }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using OnlineRetailPortal.Contracts;
-
+using OnlineRetailPortal.Web.Models;
 
 namespace OnlineRetailPortal.Web
 {
@@ -20,12 +20,13 @@ namespace OnlineRetailPortal.Web
         
         [Route("api/v1.0/onlineretailportal/categories")]
         [HttpGet("categories")]
-        public async Task<List<string>> GetCategories()
+        public async Task<ListOfCategory> GetCategories()
         { 
             var serviceResponse = await _categoryService.GetCategoriesAsync();
             var listOfCategories = serviceResponse.ToCategoriesContract();
-
+            
             var response = CategoryResponse.CategoriesToString(listOfCategories);
+            
             return response;
 
 

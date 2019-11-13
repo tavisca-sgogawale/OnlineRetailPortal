@@ -1,4 +1,5 @@
 ﻿
+using OnlineRetailPortal.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,18 +9,21 @@ namespace OnlineRetailPortal.Web
 {
     public class CategoryResponse 
     {
+        
         public List<Category> Categories { get; set; }
 
-        public static List<string> CategoriesToString(CategoryResponse listOfCategories)
+        public static ListOfCategory CategoriesToString(CategoryResponse listOfCategories)
         {
-            List<string> response = new List<string>();
+            
             if (listOfCategories==null)
             {
-                return response;
+                return null;       
             }
+            ListOfCategory response = new ListOfCategory();
             foreach (Category categoryObject in listOfCategories.Categories)
             {
-                response.Add(categoryObject.Name);
+                
+                response.listOfCategory.Add(categoryObject.Name);
             }
             return response;
 

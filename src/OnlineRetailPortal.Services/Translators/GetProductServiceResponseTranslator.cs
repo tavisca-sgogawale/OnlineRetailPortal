@@ -27,7 +27,8 @@ namespace OnlineRetailPortal.Services
                     PickupAddress = getProductResponse.PickupAddress.ToModel(),
                     Images = getProductResponse.Images,
                     Status = getProductResponse.Status.ToModel(),
-                    Category = getProductResponse.Category.ToModel()
+                    Category = getProductResponse.Category.ToModel(),
+                    SellerId=getProductResponse.SellerId
                 }
             };
             return response;

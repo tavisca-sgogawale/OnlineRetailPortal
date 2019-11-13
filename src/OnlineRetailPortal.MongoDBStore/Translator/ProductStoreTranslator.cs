@@ -19,7 +19,7 @@ namespace OnlineRetailPortal.MongoDBStore
                 CreatedDate = productEntity.PostDateTime,
                 ExpirationDate = productEntity.ExpirationDate,
                 PurchasedDate = productEntity.PurchasedDate,
-                PickupAddress = productEntity.PickupAddress
+                PickupAddress = productEntity.PickupAddress.ToEntity()
             };
             return mongoEntity;
         }
@@ -43,7 +43,7 @@ namespace OnlineRetailPortal.MongoDBStore
                     PostDateTime = mongoEntity.CreatedDate,
                     ExpirationDate = mongoEntity.ExpirationDate,
                     PurchasedDate = mongoEntity.PurchasedDate,
-                    PickupAddress = mongoEntity.PickupAddress
+                    PickupAddress = mongoEntity.PickupAddress.ToModel()
                 }
             };
             return getProductStoreResponse;
@@ -66,7 +66,7 @@ namespace OnlineRetailPortal.MongoDBStore
                 PostDateTime = mongoEntity.CreatedDate,
                 ExpirationDate = mongoEntity.ExpirationDate,
                 PurchasedDate = mongoEntity.PurchasedDate,
-                PickupAddress = mongoEntity.PickupAddress
+                PickupAddress = mongoEntity.PickupAddress.ToModel()
             };
             return productEntity;
         }

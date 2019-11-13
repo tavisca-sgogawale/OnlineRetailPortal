@@ -147,4 +147,7 @@
   <data name="NullRequest" xml:space="preserve">
     <value>700</value>
   </data>
+  <data name="ProductNotFound" xml:space="preserve">
+    <value>708</value>
+  </data>
 </root>

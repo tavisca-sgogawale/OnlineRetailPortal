@@ -6,6 +6,8 @@ namespace OnlineRetailPortal.Mock
     {
         public static GetProductStoreResponse ToGetProductStore(this Product product)
         {
+            if (product == null)
+                return null;
             GetProductStoreResponse response = new GetProductStoreResponse()
             {
                 Product = product.ToEntity()

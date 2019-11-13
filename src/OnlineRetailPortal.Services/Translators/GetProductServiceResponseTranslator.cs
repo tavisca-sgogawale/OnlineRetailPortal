@@ -1,18 +1,24 @@
 ﻿using OnlineRetailPortal.Contracts;
+using OnlineRetailPortal.Core;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Text;
 
 namespace OnlineRetailPortal.Services
 {
     public static class GetProductServiceResponseTranslator
     {
-        public static GetProductServiceResponse ToServiceModel(this Core.Product getProductResponse)
+        public static GetProductServiceResponse ToModel(Core.Product getProductResponse)
         {
             GetProductServiceResponse response = new GetProductServiceResponse()
             {
-                Product = new Product()
+                Product = new Contracts.Product()
                 {
                     Name = getProductResponse.Name,
                     Id = getProductResponse.Id,
-                    HeroImage = getProductResponse.HeroImage,
+                    HeroImage =  getProductResponse.HeroImage,
                     ExpirationDate = getProductResponse.ExpirationDate,
                     PostDateTime = getProductResponse.PostDateTime,
                     Description = getProductResponse.Description,
@@ -23,8 +29,8 @@ namespace OnlineRetailPortal.Services
                     Status = getProductResponse.Status.ToModel(),
                     Category = getProductResponse.Category.ToModel()
                 }
-            };
+            };            
             return response;
-        }
+        }   
     }
 }

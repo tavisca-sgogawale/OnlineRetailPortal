@@ -45,7 +45,7 @@ namespace OnlineRetailPortal.Mock
 
         public async Task<GetProductStoreResponse> GetProductAsync(string productId)
         {
-            Product response = productList.Where(x => x.Id == productId).First();
+            Product response = productList.Where(x => x.Id == productId).FirstOrDefault();
             return response.ToGetProductStore();
         }
 

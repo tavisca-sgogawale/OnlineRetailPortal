@@ -11,6 +11,11 @@ namespace OnlineRetailPortal.Core
     public class ErrorCode
     {
 
+        public static string ProductNotFound()
+        {
+            return string.Format(ErrorCodes.ProductNotFound);
+        }
+
         public static string InvalidId()
         {
             return string.Format(ErrorCodes.InvalidId);
@@ -18,6 +23,7 @@ namespace OnlineRetailPortal.Core
         public static string DataBaseDown()
         {
             return string.Format(ErrorCodes.DatabaseDown);
+
         }
         public static string InvalidCurrency()
         {

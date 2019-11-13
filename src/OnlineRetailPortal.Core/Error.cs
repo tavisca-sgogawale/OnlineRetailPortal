@@ -8,6 +8,10 @@ namespace OnlineRetailPortal.Core
 {
     public class Error
     {
+        public static string ProductNotFound(string field)
+        {
+            return string.Format(ErrorMessage.ProductNotFound,field);
+        }
         public static string InvalidId()
         {
             return string.Format(ErrorMessage.InvalidId);
@@ -15,6 +19,7 @@ namespace OnlineRetailPortal.Core
         public static string DataBaseDown()
         {
             return string.Format(ErrorMessage.DatabaseDown);
+
         }
         public static string InvalidCurrency(string field)
         {

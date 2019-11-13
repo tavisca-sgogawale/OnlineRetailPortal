@@ -1,10 +1,13 @@
-﻿using OnlineRetailPortal.Contracts;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Services
 {
     public static class AddProductTranslator
     {
-        public static Core.Product ToEntity(this AddProductRequest addProductRequest)
+        public static Core.Product ToEntity(this Contracts.AddProductRequest addProductRequest)
         {
             var product = new Core.Product(addProductRequest.Price.ToEntity(), addProductRequest.SellerId, addProductRequest.Name)
             {
@@ -18,9 +21,9 @@ namespace OnlineRetailPortal.Services
             return product;
         }
 
-        public static AddProductResponse ToModel(this Core.Product product)
+        public static Contracts.AddProductResponse ToModel(this Core.Product product)
         {
-            AddProductResponse response = new AddProductResponse()
+            Contracts.AddProductResponse response = new Contracts.AddProductResponse()
             {
                 Id = product.Id,
                 SellerId = product.SellerId,

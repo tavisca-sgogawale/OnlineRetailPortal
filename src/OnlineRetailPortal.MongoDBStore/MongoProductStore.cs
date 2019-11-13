@@ -23,41 +23,52 @@ namespace OnlineRetailPortal.MongoDBStore
 
         public async Task<ProductEntity> AddProductAsync(ProductEntity productEntity)
         {
-            var productStoreCollection = _db.GetCollection<ProductEntity>(_collection);
+            var storeEntity = productEntity.ToEntity();
+            var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
             try
             {
-                await productStoreCollection.InsertOneAsync(productEntity);
+                await productStoreCollection.InsertOneAsync(storeEntity);
             }
             catch
             {
                 throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
             }
-            return productEntity;
+            return storeEntity.ToModel();
         }
 
 
         public async Task<GetProductStoreResponse> GetProductAsync(string productId)
         {
-            //ProductEntity product;
-            //try
-            //{
-            //    var productStoreCollection = _db.GetCollection<ProductEntity>(_collection);
-            //    var filter = Builders<ProductEntity>.Filter.Eq("Id", productId);
-            //    product =  await productStoreCollection.FindAsync(filter);
-            //}
-            //catch
-            //{
-            //    throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
-            //}
-            //return product;
-            throw new NotImplementedException();
+            MongoEntity mongoEntity;
+            try
+            {
+                var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
+                mongoEntity = await productStoreCollection.Find(x => x.Id == productId).FirstAsync();
+            }
+            catch
+            {
+                throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
+            }
+            return new GetProductStoreResponse() { Product = mongoEntity.ToModel() };
         }
 
-        public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsEntity request)
+        public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreEntity request)
         {
-            var data = _db.GetCollection<Contracts.Product>(_collection);
-            List<Contracts.Product> products = (await data.FindAsync(new BsonDocument())).ToList();
-            return new GetProductsStoreResponse() { Products = products };
+            List<MongoEntity> products;
+            try
+            {
+                var sort = Builders<MongoEntity>.Sort.Descending("PostDateTime");
+
+                var data = _db.GetCollection<MongoEntity>(_collection);
+                products = await data.Find(new BsonDocument())
+                                        .Sort(sort)
+                                        .ToListAsync();
+            }
+            catch
+            {
+                throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
+            }
+            return new GetProductsStoreResponse() { Products = products.ToModel(), PagingInfo = request.PagingInfo };
         }
     }
 }

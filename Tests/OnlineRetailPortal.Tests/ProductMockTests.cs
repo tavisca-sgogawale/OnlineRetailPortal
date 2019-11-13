@@ -1,9 +1,8 @@
 using OnlineRetailPortal.Contracts;
-using System;
-using Xunit;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using OnlineRetailPortal.Mock;
+using System;
+using System.Collections.Generic;
+using Xunit;
 
 namespace OnlineRetailPortal.Tests
 {
@@ -75,7 +74,7 @@ namespace OnlineRetailPortal.Tests
             Assert.Null(actualResponse.PickupAddress);
         }
 
-        
+
 
         private ProductEntity GetExpectedResponse()
         {
@@ -85,8 +84,8 @@ namespace OnlineRetailPortal.Tests
                 Id = null,
                 Name = "Bottle",
                 Description = "Green Bottle",
-                HeroImage =  "example.com",
-                Price = new Contracts.Price { Money = new Contracts.Money (99.99, "INR" ), IsNegotiable = false },
+                HeroImage = "example.com",
+                Price = new Contracts.Price { Money = new Contracts.Money(99.99, "INR"), IsNegotiable = false },
                 Category = Contracts.Category.Other,
                 Status = Contracts.Status.Active,
                 PostDateTime = DateTime.Now,
@@ -113,8 +112,8 @@ namespace OnlineRetailPortal.Tests
                 SellerId = "1",
                 Name = "Bottle",
                 Description = "Green Bottle",
-                HeroImage = "example.com" ,
-                Price = new Contracts.Price {Money = new Contracts.Money(99.99, "INR"), IsNegotiable = false },
+                HeroImage = "example.com",
+                Price = new Contracts.Price { Money = new Contracts.Money(99.99, "INR"), IsNegotiable = false },
                 Category = Contracts.Category.Other,
                 Images = new List<string>() { "ex.com" },
                 PurchasedDate = new DateTime(2010, 7, 7),

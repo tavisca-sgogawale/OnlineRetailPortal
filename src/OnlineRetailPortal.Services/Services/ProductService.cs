@@ -13,7 +13,6 @@ namespace OnlineRetailPortal.Services
     {
         private readonly IProductStoreFactory _productStoreFactory; // factory or logic to resolve the product store will be handled later 
         private IProductStore _productStore = null;
-        private IImageService _imageService;
         public ProductService(IProductStoreFactory productStoreFactory)
         {
             _productStoreFactory = productStoreFactory;

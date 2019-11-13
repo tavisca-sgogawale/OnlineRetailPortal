@@ -30,8 +30,8 @@ namespace OnlineRetailPortal.Core
         }
         public static async Task<ProductsWithPageInitiation> GetProductsAsync(GetProductsServiceRequest serviceRequest, IProductStore productStore)
         {
-            var getProductsEntity = serviceRequest.ToEntity();
-            var getProductsResponse = await productStore.GetProductsAsync(getProductsEntity);
+            var getProductsStoreEntity = serviceRequest.ToEntity();
+            var getProductsResponse = await productStore.GetProductsAsync(getProductsStoreEntity);
             var coreProductResponse = getProductsResponse.ToModel();
             coreProductResponse.PagingInfo = new PagingInfo() { PageNumber = 1, PageSize = 10, TotalPages = 100 };
             return coreProductResponse;
@@ -47,7 +47,7 @@ namespace OnlineRetailPortal.Core
         {
             var productEntity = this.ToEntity();
             productEntity.Id = Guid.NewGuid().ToString();
-            productEntity.Status = OnlineRetailPortal.Contracts.Status.Active;
+            productEntity.Status = Contracts.Status.Active;
             productEntity.PostDateTime = DateTime.Now;
             productEntity.ExpirationDate = DateTime.Now.AddDays(config.ExpiryInDays);
             var addProductResponse = await productStore.AddProductAsync(productEntity);

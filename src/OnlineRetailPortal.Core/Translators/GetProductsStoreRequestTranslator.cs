@@ -6,14 +6,14 @@ namespace OnlineRetailPortal.Core
     {
         public static GetProductsEntity ToEntity(this GetProductsServiceRequest request)
         {
-            if (request.PagingInfo == null && request.ProductSort == null)
+            if (request.PagingInfo == null)
             {
                 return null;
             }
             GetProductsEntity page = new GetProductsEntity()
             {
                 PagingInfo = request.PagingInfo,
-                ProductSort = request.ProductSort,
+                ProductSort = request.ProductSort
             };            
             return page;
         }

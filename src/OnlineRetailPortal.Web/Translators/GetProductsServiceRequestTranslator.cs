@@ -26,7 +26,7 @@ namespace OnlineRetailPortal.Web
                     SortBy = String.IsNullOrEmpty(request.ProductSort.SortBy) ? _sortBy : request.ProductSort.SortBy,
                     Order = String.IsNullOrEmpty(request.ProductSort.Order) ? _sortOrder : request.ProductSort.Order
                 }
-
+                //Filter is not implemented
                 /*
                 ,
                 Filters = request.Filters.Select(x => new Contracts.Filter() 

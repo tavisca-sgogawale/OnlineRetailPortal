@@ -52,7 +52,8 @@ namespace OnlineRetailPortal.Mock
 
         public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsEntity request)
         {
-            List<Product> products = SortFilters.Apply(request,productList);
+            productList.ApplyFilter(request.Filters);
+            productList = productList.ApplySort(request.ProductSort);
 
             int startIndex = (request.PagingInfo.PageNumber - 1) * (request.PagingInfo.PageSize);
             int endIndex = startIndex + request.PagingInfo.PageSize - 1;
@@ -60,13 +61,13 @@ namespace OnlineRetailPortal.Mock
 
             for (int currentIndex = startIndex; currentIndex <= endIndex; currentIndex++)
             {
-                if (currentIndex == products.Count()|| currentIndex > products.Count())
+                if (currentIndex == productList.Count() || currentIndex > productList.Count())
                     break;
-                responseProducts.Add(products[currentIndex]);
+                responseProducts.Add(productList[currentIndex]);
             }
-            request.PagingInfo.TotalPages = (productList.Count() / request.PagingInfo.PageSize) + (productList.Count() % request.PagingInfo.PageSize);
+            request.PagingInfo.TotalPages = (productList.Count() >= request.PagingInfo.PageSize) ? ((productList.Count() / request.PagingInfo.PageSize) + (productList.Count() % request.PagingInfo.PageSize)) : 1;
             var response = responseProducts.ToGetProductsStoreResponse(request.PagingInfo);
-            return response; 
+            return response;
         }
     }
 }

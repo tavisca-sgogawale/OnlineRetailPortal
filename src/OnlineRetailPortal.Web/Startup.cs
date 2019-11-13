@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Mock;
 using OnlineRetailPortal.Services;
@@ -29,6 +31,7 @@ namespace OnlineRetailPortal.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var namespaceToTypes = typeof(Filter).Namespace;
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
@@ -36,10 +39,20 @@ namespace OnlineRetailPortal.Web
                     .AllowAnyMethod()
                     .AllowAnyHeader());
             });
-            services.AddMvc()
-            .AddJsonOptions(options => {
+            services.AddMvc().AddJsonOptions(options =>
+            {
                 options.JsonSerializerOptions.IgnoreNullValues = true;
             });
+            //services.AddMvc()
+            //.AddNewtonsoftJson(options =>
+            //{
+            //    options.SerializerSettings.Formatting = Formatting.Indented;
+            //    options.SerializerSettings.TypeNameHandling = TypeNameHandling.Auto;
+            //    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            //    options.SerializerSettings.Converters.Add(new StringEnumConverter());
+            //    options.SerializerSettings.SerializationBinder =
+            //        new CustomJsonSerializationBinder(namespaceToTypes);
+            //}); 
             services.AddControllers();
             services.AddTransient<IProductStoreFactory, ProductStoreFactory>();
             services.AddSingleton<IProductService, ProductService>();

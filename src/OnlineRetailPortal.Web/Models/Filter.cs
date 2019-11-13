@@ -2,6 +2,5 @@
 {
     public class Filter
     {
-        public string searchQuery { get; set; }
     }
 }

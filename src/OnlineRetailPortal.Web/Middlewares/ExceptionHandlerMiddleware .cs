@@ -21,7 +21,7 @@ namespace OnlineRetailPortal.Web
             try
             {
                 await _next.Invoke(context);
-            }
+            }   
             catch (Exception ex)
             {
                 await HandleExceptionAsync(context, ex);

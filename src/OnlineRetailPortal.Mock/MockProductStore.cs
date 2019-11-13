@@ -52,10 +52,16 @@ namespace OnlineRetailPortal.Mock
 
         public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsEntity request)
         {
-            List<Product> products = productList.OrderByDescending(x => x.PostDateTime).ToList();
+            ApplaySortFilters applaySortFilters = new ApplaySortFilters();
+
+            List<Product> products = applaySortFilters.ApplyFilter(request,productList);
+
+            products = applaySortFilters.ApplySort(products,request);
+
             int startIndex = (request.PagingInfo.PageNumber - 1) * (request.PagingInfo.PageSize);
             int endIndex = startIndex + request.PagingInfo.PageSize - 1;
             List<Product> responseProducts = new List<Product>();
+
             for (int currentIndex = startIndex; currentIndex <= endIndex; currentIndex++)
             {
                 if (currentIndex == products.Count()|| currentIndex > products.Count())

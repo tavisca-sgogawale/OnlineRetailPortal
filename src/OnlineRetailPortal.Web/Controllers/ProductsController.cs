@@ -29,19 +29,12 @@ namespace OnlineRetailPortal.Web
         }
 
         [HttpPost("products")]
-        public async Task<OnlineRetailPortal.Contracts.GetProductsServiceRequest> GetProductsAsync(int pageNo, int pageSize,[FromBody] GetProductRequest request)
+        public async Task<GetProductsResponse> GetProductsAsync(int pageNo, int pageSize,[FromBody] GetProductsRequest request)
         {
-            var serviceRequest = request.ToServiceRequest(pageNo, pageSize);//pageSize and pageNumber is will  be set in app setings
-            return serviceRequest;
+            var serviceRequest = request.ToServiceRequest(pageNo, pageSize); //pageSize and pageNumber is will  be set in app setings
+            var response = await _productService.GetProductsAsync(serviceRequest);
+            return response.ToGetProductsContract();
         }
-
-        //[HttpPost("products")]
-        //public async Task<GetProductsResponse> GetProductsAsync(int pageNo, int pageSize, [FromBody] GetProductRequest request)
-        //{
-        //    var serviceRequest = request.ToServiceRequest(pageNo, pageSize);//pageSize and pageNumber is will  be set in app setings
-        //    var response = await _productService.GetProductsAsync(serviceRequest);
-        //    return response.ToGetProductsContract();
-        //}
 
         [HttpPost("products/add")]
         public async Task<AddProductResponse> AddProductAsync([FromBody] AddProductRequest request)

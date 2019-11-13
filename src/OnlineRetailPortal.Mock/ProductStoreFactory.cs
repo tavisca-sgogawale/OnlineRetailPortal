@@ -19,7 +19,8 @@ namespace OnlineRetailPortal.Mock
             }
             else if (_storeValue == "Mongo")
             {
-                return new MongoProductStore();
+                return new MockProductStore();
+                //return new MongoProductStore();
             }
             //To be implemented in future
 

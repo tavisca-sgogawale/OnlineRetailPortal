@@ -11,8 +11,8 @@ namespace OnlineRetailPortal.Web
         private const int _pageNo = 1;
         private const int _pageSize = 100;
         private const string _sortBy = "Date";
-        private const string _sortOrder = "asc"; // Enum
-        public static GetProductsServiceRequest ToServiceRequest(this GetProductRequest request, int pageNo, int pageSize)
+        private const string _sortOrder = "Desc"; 
+        public static GetProductsServiceRequest ToServiceRequest(this GetProductsRequest request, int pageNo, int pageSize)
         {
             return new GetProductsServiceRequest()
             {
@@ -21,13 +21,26 @@ namespace OnlineRetailPortal.Web
                     PageNumber = pageNo == 0 ? _pageNo : pageNo,
                     PageSize = pageSize == 0 ? _pageSize : pageSize
                 },
-                ProductSort = new Contracts.Sort()
+                ProductSort = new Contracts.ProductSort()
                 {
                     SortBy = String.IsNullOrEmpty(request.ProductSort.SortBy) ? _sortBy : request.ProductSort.SortBy,
-                    SortOrder = String.IsNullOrEmpty(request.ProductSort.SortOrder) ? _sortOrder : request.ProductSort.SortOrder
-                },
-                Filters = request.Filters.Select(x => new Contracts.Filter() { searchQuery = x.searchQuery }).ToList()
+                    Order = String.IsNullOrEmpty(request.ProductSort.Order) ? _sortOrder : request.ProductSort.Order
+                }
+
+                /*
+                ,
+                Filters = request.Filters.Select(x => new Contracts.Filter() 
+                { 
+                   Search = new Contracts.SearchFilter() 
+                   { 
+                       SearchQuery = x.Search.SearchQuery 
+                   },
+                   Price = new Contracts.PriceFilter()
+                   { 
+                       Min =x.Price.Min, 
+                       Max = x.Price.Max }
+                }).ToList()*/
             };
-            }
+        }
     }
 }

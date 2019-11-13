@@ -46,6 +46,15 @@ namespace OnlineRetailPortal.Web.Validations
             }
            
         }
+        public static void EnsureMoveValidity(this MoveImageRequestValidator validator, MoveImagesRequest request)
+        {
+            var validationResult = validator.Validate(request);
+            if (validationResult.IsValid == false)
+            {
+                var error = validationResult.Errors[0];
+                throw new BaseException(Convert.ToInt32(error.ErrorCode), error.ErrorMessage, null, HttpStatusCode.BadRequest);
+            }
+        }
 
     }
 }

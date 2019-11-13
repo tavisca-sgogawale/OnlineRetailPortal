@@ -51,11 +51,9 @@ namespace OnlineRetailPortal.Web.Controllers
         [HttpPost("image/store")]
         public void MoveImages([FromBody] MoveImagesRequest request)
         {
-            //UploadImageRequestValidator validator = new UploadImageRequestValidator();
-            //validator.EnsureValidity(Request);
+            MoveImageRequestValidator validator = new MoveImageRequestValidator();
+            validator.EnsureMoveValidity(request);
 
-            //UploadImageResponse response = await _imageService.UploadImageAsync(Request.ToEntity());
-            //return response.ToUser();
             _imageService.MoveToStorage(request.HeroImageUrl);
             _imageService.MoveToStorage(request.ImageUrls);
 

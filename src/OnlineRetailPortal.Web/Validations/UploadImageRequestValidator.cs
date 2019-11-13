@@ -75,4 +75,25 @@ namespace OnlineRetailPortal.Web.Validations
             .WithMessage("No image id was provided");
         }
     }
+
+    public class MoveImageRequestValidator : AbstractValidator<MoveImagesRequest>
+    {
+        public MoveImageRequestValidator()
+        {
+            RuleFor(req => req)
+            .NotNull()
+            .WithErrorCode(StatusCodes.Status400BadRequest.ToString())
+            .WithMessage("Null Request");
+
+            RuleFor(req => req.HeroImageUrl)
+            .Cascade(CascadeMode.StopOnFirstFailure)
+            .NotNull()
+            .WithErrorCode(StatusCodes.Status400BadRequest.ToString())
+            .WithMessage("No Hero image To Move")
+            .NotEmpty()
+            .WithErrorCode(StatusCodes.Status400BadRequest.ToString())
+            .WithMessage("No Hero image To Move");
+
+        }
+    }
 }

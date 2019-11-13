@@ -8,6 +8,10 @@ namespace OnlineRetailPortal.Core
 {
     public class Error
     {
+        public static string InvalidId()
+        {
+            return string.Format(ErrorMessage.InvalidId);
+        }
         public static string DataBaseDown()
         {
             return string.Format(ErrorMessage.DatabaseDown);

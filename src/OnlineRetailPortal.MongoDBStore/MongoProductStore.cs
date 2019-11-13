@@ -23,10 +23,10 @@ namespace OnlineRetailPortal.MongoDBStore
 
         public async Task<ProductEntity> AddProductAsync(ProductEntity productEntity)
         {
-            var storeEntity = productEntity.ToEntity();
-            var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
+            var storeEntity = productEntity.ToEntity();          
             try
             {
+                var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
                 await productStoreCollection.InsertOneAsync(storeEntity);
             }
             catch
@@ -46,7 +46,7 @@ namespace OnlineRetailPortal.MongoDBStore
             }
             catch
             {
-                throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
+                throw new BaseException(int.Parse(ErrorCode.InvalidId()), Error.InvalidId(), null, HttpStatusCode.GatewayTimeout);
             }
             return new GetProductStoreResponse() { Product = mongoEntity.ToModel() };
         }
@@ -73,16 +73,24 @@ namespace OnlineRetailPortal.MongoDBStore
         public async Task<ProductEntity> UpdateProductAsync(ProductEntity productEntity)
         {
             var mongoEntity = productEntity.ToEntity();
-            var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
-
-            var filter = Builders<MongoEntity>.Filter.Eq("Id", productEntity.Id);
-            var result = await productStoreCollection.ReplaceOneAsync(
-            filter,
-            mongoEntity,
-            new UpdateOptions { IsUpsert = false });
-            if (result.MatchedCount == 0)
+            try
             {
+                var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
+                var filter = Builders<MongoEntity>.Filter.Eq("Id", productEntity.Id);
+                var result = await productStoreCollection.ReplaceOneAsync(
+                filter,
+                mongoEntity,
+                new UpdateOptions { IsUpsert = false });
+                if (result.MatchedCount == 0)
+                {
+                    throw new BaseException(int.Parse(ErrorCode.InvalidId()), Error.InvalidId(), null, HttpStatusCode.GatewayTimeout);
+                }
+            }
+            catch
+            {
+
                 throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
+
             }
 
             return mongoEntity.ToModel();

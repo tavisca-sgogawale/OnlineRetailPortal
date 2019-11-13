@@ -9,7 +9,7 @@ namespace OnlineRetailPortal.Mock
     public class ProductStoreFactory : IProductStoreFactory
     {
         //temporary variable
-        private const string _storeValue = "Mongo";
+        private const string _storeValue = "Mock";
         public IProductStore GetProductStore()
         {
             //returns mock object for this  string
@@ -19,8 +19,7 @@ namespace OnlineRetailPortal.Mock
             }
             else if (_storeValue == "Mongo")
             {
-                return new MockProductStore();
-                //return new MongoProductStore();
+                return new MongoProductStore();
             }
             //To be implemented in future
 

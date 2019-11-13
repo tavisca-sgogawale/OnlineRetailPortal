@@ -6,7 +6,7 @@ namespace OnlineRetailPortal.Core
     {
         public static GetProductsEntity ToEntity(this GetProductsServiceRequest request)
         {
-            if (request.PagingInfo == null && request.Filters == null)
+            if (request.PagingInfo == null && request.ProductSort == null)
             {
                 return null;
             }
@@ -14,7 +14,6 @@ namespace OnlineRetailPortal.Core
             {
                 PagingInfo = request.PagingInfo,
                 ProductSort = request.ProductSort,
-                Filters = request.Filters
             };            
             return page;
         }

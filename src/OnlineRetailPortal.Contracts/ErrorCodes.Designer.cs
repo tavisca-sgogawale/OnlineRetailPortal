@@ -61,7 +61,7 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 708.
+        ///   Looks up a localized string similar to 710.
         /// </summary>
         public static string DatabaseDown {
             get {

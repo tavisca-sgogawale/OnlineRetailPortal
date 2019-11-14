@@ -1,4 +1,4 @@
-﻿    using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Core;
@@ -58,13 +58,30 @@ namespace OnlineRetailPortal.MongoDBStore
         public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreEntity request)
         {
             List<MongoEntity> mongoEntities;
+            var pageSize = request.PagingInfo.PageSize;
+            var pageNumber = request.PagingInfo.PageNumber;
+            var collection = _db.GetCollection<MongoEntity>(_collection);
+            var sortDefinition = Builders<MongoEntity>.Sort.Ascending(request.ProductSort.Type);
             try
             {
-                var sort = Builders<MongoEntity>.Sort.Descending("Id");
-                var data = _db.GetCollection<MongoEntity>(_collection);
-                mongoEntities = await data.Find(new BsonDocument())
-                                        .Sort(sort)
-                                        .ToListAsync();
+                if (request.ProductSort.Order == "Asc")            // for ascending order
+                {
+                    sortDefinition = Builders<MongoEntity>.Sort.Ascending(request.ProductSort.Type);
+                }
+                else
+                {
+                    sortDefinition = Builders<MongoEntity>.Sort.Ascending(request.ProductSort.Type);
+                }
+
+
+                mongoEntities = await collection.Find(FilterDefinition<MongoEntity>.Empty)
+                                                .Skip(pageNumber - 1)
+                                                .Limit(pageSize)
+                                                .Sort(sortDefinition)
+                                                .ToListAsync();
+
+                var docCount = await collection.CountAsync(new BsonDocument());
+                request.PagingInfo.TotalPages = (int)docCount;
             }
             catch
             {

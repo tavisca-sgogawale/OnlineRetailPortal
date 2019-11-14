@@ -70,7 +70,7 @@ namespace OnlineRetailPortal.MongoDBStore
                 }
                 else
                 {
-                    sortDefinition = Builders<MongoEntity>.Sort.Ascending(request.ProductSort.Type);
+                    sortDefinition = Builders<MongoEntity>.Sort.Descending(request.ProductSort.Type);
                 }
 
 

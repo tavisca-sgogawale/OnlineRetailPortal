@@ -26,20 +26,6 @@ namespace OnlineRetailPortal.Web
                     Type = String.IsNullOrEmpty(request.ProductSort.Type) ? _sortType : request.ProductSort.Type,
                     Order = String.IsNullOrEmpty(request.ProductSort.Order) ? _sortOrder : request.ProductSort.Order
                 }
-                //Filter is not implemented
-                /*
-                ,
-                Filters = request.Filters.Select(x => new Contracts.Filter() 
-                { 
-                   Search = new Contracts.SearchFilter() 
-                   { 
-                       SearchQuery = x.Search.SearchQuery 
-                   },
-                   Price = new Contracts.PriceFilter()
-                   { 
-                       Min =x.Price.Min, 
-                       Max = x.Price.Max }
-                }).ToList()*/
             };
         }
     }

@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Web
 {
-    [DataContract]
     public class GetProductsRequest
     {
         public Sort ProductSort { get; set; }

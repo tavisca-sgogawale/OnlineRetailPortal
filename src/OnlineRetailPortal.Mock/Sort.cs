@@ -8,7 +8,7 @@ namespace OnlineRetailPortal.Mock
 {
     public static class Sort
     {
-        public static List<Product> ApplySort(this List<Product> productList , Contracts.Sort sort)
+        public static List<Product> Apply(this List<Product> productList , Contracts.Sort sort)
         {
             if (sort == null)
                 return productList;

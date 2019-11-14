@@ -7,7 +7,7 @@ namespace OnlineRetailPortal.Mock
 {
     public static class Filter
     {
-        public static List<Product> ApplyFilter(this List<Product> productList, List<Contracts.Filter> filters)
+        public static List<Product> Apply(this List<Product> productList, List<Contracts.Filter> filters)
         {
             if (filters == null)
                 return productList;

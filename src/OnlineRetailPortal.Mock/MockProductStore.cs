@@ -52,8 +52,8 @@ namespace OnlineRetailPortal.Mock
 
         public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsEntity request)
         {
-            productList.ApplyFilter(request.Filters);
-            productList = productList.ApplySort(request.ProductSort);
+            productList.Apply(request.Filters);
+            productList = productList.Apply(request.ProductSort);
 
             int startIndex = (request.PagingInfo.PageNumber - 1) * (request.PagingInfo.PageSize);
             int endIndex = startIndex + request.PagingInfo.PageSize - 1;

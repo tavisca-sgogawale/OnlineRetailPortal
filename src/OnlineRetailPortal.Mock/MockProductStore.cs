@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Mock
@@ -50,22 +49,26 @@ namespace OnlineRetailPortal.Mock
             return response.ToGetProductStore();
         }
 
-        public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsEntity request)
+        public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreEntity request)
         {
             List<Product> products = productList.OrderByDescending(x => x.PostDateTime).ToList();
             int startIndex = (request.PagingInfo.PageNumber - 1) * (request.PagingInfo.PageSize);
             int endIndex = startIndex + request.PagingInfo.PageSize - 1;
-            List<Product> responseProducts = new List<Product>();
+            List<ProductEntity> responseProducts = new List<ProductEntity>();
             for (int currentIndex = startIndex; currentIndex <= endIndex; currentIndex++)
             {
-                if (currentIndex == products.Count()|| currentIndex > products.Count())
+                if (currentIndex == products.Count() || currentIndex > products.Count())
                     break;
-                responseProducts.Add(products[currentIndex]);
+                responseProducts.Add(products[currentIndex].ToEntity());
             }
             request.PagingInfo.TotalPages = (productList.Count() / request.PagingInfo.PageSize) + (productList.Count() % request.PagingInfo.PageSize);
             var response = responseProducts.ToGetProductsStoreResponse(request.PagingInfo);
-            return response; 
+            return response;
         }
 
+        public Task<ProductEntity> UpdateProductAsync(ProductEntity request)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,37 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using OnlineRetailPortal.Contracts;
+using System;
 
-namespace OnlineRetailPortal.Web
+namespace OnlineRetailPortal.MongoDBStore
 {
     public static class StatusTranslator
     {
-        public static string ToModel(this Contracts.Status status)
+        public static string ToStatusEntity(this Status status)
         {
             switch (status)
             {
-                case Contracts.Status.Active:
+                case Status.Active:
                     return "Active";
-                case Contracts.Status.Disabled:
+                case Status.Disabled:
                     return "Disabled";
-                case Contracts.Status.Sold:
+                case Status.Sold:
                     return "Sold";
             }
             throw new NotSupportedException(status + " is not supported");
         }
-
-        public static Contracts.Status ToStatusEntity(this string status)
+        public static Status ToStatusModel(this string status)
         {
             switch (status)
             {
                 case "Active":
-                    return Contracts.Status.Active;
+                    return Status.Active;
                 case "Disabled":
-                    return Contracts.Status.Disabled;
+                    return Status.Disabled;
                 case "Sold":
-                    return Contracts.Status.Sold;
+                    return Status.Sold;
             }
             throw new NotSupportedException(status + " is not supported");
         }
     }
+
 }

@@ -1,6 +1,6 @@
 ﻿namespace OnlineRetailPortal.Contracts
 {
-    public class GetProductsEntity
+    public class GetProductsStoreEntity
     {
         public PagingInfo PagingInfo { get; set; }
     }

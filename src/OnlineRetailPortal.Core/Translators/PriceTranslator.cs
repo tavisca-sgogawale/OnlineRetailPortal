@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OnlineRetailPortal.Core
+﻿namespace OnlineRetailPortal.Core
 {
     public static class PriceTranslator
     {

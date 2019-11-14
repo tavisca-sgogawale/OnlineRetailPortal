@@ -1,12 +1,17 @@
 ﻿using OnlineRetailPortal.Contracts;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
 namespace OnlineRetailPortal.Core
 {
-    public static class AddProductTranslator
+    public static class UpdateProductTranslator
     {
-        public static ProductEntity ToEntity(this Product product)
+        public static ProductEntity ToStoreEntity(this Product product)
         {
             var addProductStoreRequest = new ProductEntity()
             {
+                Id = product.Id,
                 SellerId = product.SellerId,
                 Name = product.Name,
                 Description = product.Description,
@@ -15,7 +20,10 @@ namespace OnlineRetailPortal.Core
                 Category = product.Category.ToEntity(),
                 Images = product.Images,
                 PurchasedDate = product.PurchasedDate,
-                PickupAddress = product.PickupAddress.ToEntity()
+                PickupAddress = product.PickupAddress.ToEntity(),
+                PostDateTime = product.PostDateTime,
+                ExpirationDate = product.ExpirationDate,
+                Status = product.Status.ToEntity()
 
             };
 
@@ -23,8 +31,10 @@ namespace OnlineRetailPortal.Core
         }
 
 
-        public static Product ToModel(this ProductEntity addProductStoreResponse)
+        public static Product ToStoreModel(this ProductEntity addProductStoreResponse)
         {
+            if (addProductStoreResponse == null)
+                return null;
             var product = new Product(addProductStoreResponse.Price.ToModel(), addProductStoreResponse.SellerId, addProductStoreResponse.Name)
             {
                 Id = addProductStoreResponse.Id,

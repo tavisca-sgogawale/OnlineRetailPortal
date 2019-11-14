@@ -61,7 +61,7 @@ namespace OnlineRetailPortal.MongoDBStore
             var pageSize = request.PagingInfo.PageSize;
             var pageNumber = request.PagingInfo.PageNumber;
             var collection = _db.GetCollection<MongoEntity>(_collection);
-            var sortDefinition = Builders<MongoEntity>.Sort.Ascending(request.ProductSort.Type);
+            SortDefinition<MongoEntity> sortDefinition;
             try
             {
                 if (request.ProductSort.Order == "Asc")            // for ascending order
@@ -75,7 +75,7 @@ namespace OnlineRetailPortal.MongoDBStore
 
 
                 mongoEntities = await collection.Find(FilterDefinition<MongoEntity>.Empty)
-                                                .Skip(pageNumber - 1)
+                                                .Skip(pageNumber - 1 * pageSize)
                                                 .Limit(pageSize)
                                                 .Sort(sortDefinition)
                                                 .ToListAsync();

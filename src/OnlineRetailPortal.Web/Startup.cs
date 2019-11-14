@@ -8,6 +8,8 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Mock;
@@ -29,6 +31,7 @@ namespace OnlineRetailPortal.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var namespaceToTypes = typeof(Filter).Namespace;
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
@@ -37,7 +40,7 @@ namespace OnlineRetailPortal.Web
                     .AllowAnyHeader());
             });
             services.AddMvc()
-            .AddJsonOptions(options => {
+            .AddJsonOptions(options=> {
                 options.JsonSerializerOptions.IgnoreNullValues = true;
             });
             services.AddControllers();

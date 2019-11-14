@@ -1,9 +1,8 @@
 using OnlineRetailPortal.Contracts;
-using System;
-using Xunit;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using OnlineRetailPortal.Mock;
+using System;
+using System.Collections.Generic;
+using Xunit;
 
 namespace OnlineRetailPortal.Tests
 {

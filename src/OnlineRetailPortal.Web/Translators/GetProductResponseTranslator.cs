@@ -23,6 +23,7 @@ namespace OnlineRetailPortal.Web
                     PurchasedDate = getProductServiceResponse.Product.PurchasedDate,
                     PickupAddress = getProductServiceResponse.Product.PickupAddress.ToModel(),
                     Images = getProductServiceResponse.Product.Images,
+                    SellerId= getProductServiceResponse.Product.SellerId,
                     Status = getProductServiceResponse.Product.Status.ToModel(),
                     Category = getProductServiceResponse.Product.Category.ToModel()
                 }

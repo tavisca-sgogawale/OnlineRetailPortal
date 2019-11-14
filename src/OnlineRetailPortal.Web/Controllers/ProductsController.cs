@@ -19,13 +19,14 @@ namespace OnlineRetailPortal.Web
             _productService = productService;
         }
 
-        [HttpGet("products")]
-        public async Task<GetProductsResponse> GetProductsAsync(int pageNo, int pageSize)
+        [HttpPost("products")]
+        public async Task<GetProductsResponse> GetProductsAsync(int pageNo, int pageSize, [FromBody] GetProductsRequest request)
         {
-            var request = GetProductsServiceRequestTranslator.ToServiceRequest(pageNo, pageSize);//pageSize and pageNumber is will  be set in app setings
-            var response = await _productService.GetProductsAsync(request);
+            var serviceRequest = request.ToServiceRequest(pageNo, pageSize); //pageSize and pageNumber is will  be set in app setings
+            var response = await _productService.GetProductsAsync(serviceRequest);
             return response.ToGetProductsContract();
         }
+
         [HttpGet("products/{productId}")]
         public async Task<GetProductResponse> GetProductAsync(string productId)
         {
@@ -34,6 +35,7 @@ namespace OnlineRetailPortal.Web
             var response = await _productService.GetProductAsync(productId);
             return response.ToEntity();
         }
+
         [HttpPost("products/add")]
         public async Task<AddProductResponse> AddProductAsync([FromBody] AddProductRequest request)
         {
@@ -41,6 +43,15 @@ namespace OnlineRetailPortal.Web
             validator.EnsureValid(request);
             var response = await _productService.AddProductAsync(request.ToEntity());
             return response.ToModel();
+        }
+
+        [HttpPut("products/update")]
+        public async Task<UpdateProductEntity> UpdateProductAsync([FromBody] UpdateProductEntity request)
+        {
+            UpdateProductRequestValidator validator = new UpdateProductRequestValidator();
+            validator.EnsureUpdateRequestValid(request);
+            var response = await _productService.UpdateProductAsync(request.ToEntity());
+            return response.ToResponseModel();
         }
 
     }

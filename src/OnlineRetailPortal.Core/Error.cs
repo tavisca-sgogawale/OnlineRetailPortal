@@ -8,14 +8,17 @@ namespace OnlineRetailPortal.Core
 {
     public class Error
     {
+        public static string DuplicateProduct()
+        {
+            return string.Format(ErrorMessage.DuplicateProduct);
+        }
         public static string ProductNotFound(string field)
         {
-            return string.Format(ErrorMessage.ProductNotFound,field);
+            return string.Format(ErrorMessage.ProductNotFound, field);
         }
         public static string DataBaseDown()
         {
             return string.Format(ErrorMessage.DatabaseDown);
-
         }
         public static string InvalidCurrency(string field)
         {
@@ -43,7 +46,7 @@ namespace OnlineRetailPortal.Core
             return string.Format(ErrorMessage.NullField, field);
         }
 
-        public static string GreaterValue(string field,string value)
+        public static string GreaterValue(string field, string value)
         {
             return string.Format(ErrorMessage.GreaterValue, field, value);
         }

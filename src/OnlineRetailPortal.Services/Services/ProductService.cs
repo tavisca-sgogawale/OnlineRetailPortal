@@ -13,7 +13,6 @@ namespace OnlineRetailPortal.Services
     {
         private readonly IProductStoreFactory _productStoreFactory; // factory or logic to resolve the product store will be handled later 
         private IProductStore _productStore = null;
-        private IImageService _imageService;
         public ProductService(IProductStoreFactory productStoreFactory)
         {
             _productStoreFactory = productStoreFactory;
@@ -43,6 +42,14 @@ namespace OnlineRetailPortal.Services
         {
             var response = await Core.Product.GetProductsAsync(request, _productStore);
             return response.ToModel();
+        }
+
+        public async Task<UpdateProductEntity> UpdateProductAsync(UpdateProductEntity updateProductEntity)
+        {
+            Core.Product product = updateProductEntity.ToEntity();
+            var response = await product.UpdateAsync(_productStore);
+            response.EnsureValid(updateProductEntity);
+            return response.ToResponseModel();
         }
     }
 }

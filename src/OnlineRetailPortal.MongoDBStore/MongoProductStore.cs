@@ -1,4 +1,4 @@
-﻿using MongoDB.Bson;
+﻿    using MongoDB.Bson;
 using MongoDB.Driver;
 using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Core;
@@ -23,41 +23,71 @@ namespace OnlineRetailPortal.MongoDBStore
 
         public async Task<ProductEntity> AddProductAsync(ProductEntity productEntity)
         {
-            var productStoreCollection = _db.GetCollection<ProductEntity>(_collection);
+            var storeEntity = productEntity.ToEntity();
+            var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
             try
             {
-                await productStoreCollection.InsertOneAsync(productEntity);
+                await productStoreCollection.InsertOneAsync(storeEntity);
+            }
+            catch (MongoWriteException mongoWriteException)
+            {
+                if (mongoWriteException.WriteError.Category == ServerErrorCategory.DuplicateKey)
+                {
+                    throw new BaseException(int.Parse(ErrorCode.DuplicateProduct()), Error.DuplicateProduct(), null, HttpStatusCode.GatewayTimeout);
+                }
+            }
+            var mongoEntity = (await productStoreCollection.Find(_ => _.Id == productEntity.Id).FirstOrDefaultAsync()).ToModel();
+            return mongoEntity;
+        }
+
+        public async Task<GetProductStoreResponse> GetProductAsync(string productId)
+        {
+            MongoEntity mongoEntity;
+            var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
+            try
+            {
+                mongoEntity = await productStoreCollection.Find(x => x.Id == productId).FirstOrDefaultAsync();
             }
             catch
             {
                 throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
             }
-            return productEntity;
+            return mongoEntity.ToGetResponseModel();
         }
 
-
-        public async Task<GetProductStoreResponse> GetProductAsync(string productId)
+        public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreEntity request)
         {
-            //ProductEntity product;
-            //try
-            //{
-            //    var productStoreCollection = _db.GetCollection<ProductEntity>(_collection);
-            //    var filter = Builders<ProductEntity>.Filter.Eq("Id", productId);
-            //    product =  await productStoreCollection.FindAsync(filter);
-            //}
-            //catch
-            //{
-            //    throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
-            //}
-            //return product;
-            throw new NotImplementedException();
+            List<MongoEntity> mongoEntities;
+            try
+            {
+                var sort = Builders<MongoEntity>.Sort.Descending("Id");
+                var data = _db.GetCollection<MongoEntity>(_collection);
+                mongoEntities = await data.Find(new BsonDocument())
+                                        .Sort(sort)
+                                        .ToListAsync();
+            }
+            catch
+            {
+                throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
+            }
+            return mongoEntities.ToModel(request.PagingInfo);
         }
 
-        public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsEntity request)
+        public async Task<ProductEntity> UpdateProductAsync(ProductEntity productEntity)
         {
-            var data = _db.GetCollection<Contracts.Product>(_collection);
-            List<Contracts.Product> products = (await data.FindAsync(new BsonDocument())).ToList();
-            return new GetProductsStoreResponse() { Products = products };
+            var mongoEntity = productEntity.ToEntity();
+            var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
+            var filter = Builders<MongoEntity>.Filter.Eq("Id", productEntity.Id);
+            var result = await productStoreCollection.ReplaceOneAsync(
+                            filter,
+                            mongoEntity,
+                            new UpdateOptions { IsUpsert = false });
+
+            if (result.MatchedCount == 0)
+            {
+                return null;
+            }
+            return mongoEntity.ToModel();
         }
     }
 }

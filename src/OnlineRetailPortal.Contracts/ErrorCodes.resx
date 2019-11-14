@@ -118,7 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DatabaseDown" xml:space="preserve">
-    <value>708</value>
+    <value>710</value>
+  </data>
+  <data name="DuplicateProduct" xml:space="preserve">
+    <value>711</value>
   </data>
   <data name="GreaterCharacter" xml:space="preserve">
     <value>705</value>
@@ -131,9 +134,6 @@
   </data>
   <data name="InvalidCurrency" xml:space="preserve">
     <value>707</value>
-  </data>
-  <data name="InvalidId" xml:space="preserve">
-    <value>709</value>
   </data>
   <data name="InvalidRequest" xml:space="preserve">
     <value>701</value>
@@ -149,5 +149,8 @@
   </data>
   <data name="ProductNotFound" xml:space="preserve">
     <value>708</value>
+  </data>
+  <data name="ProductsNotFound" xml:space="preserve">
+    <value>709</value>
   </data>
 </root>

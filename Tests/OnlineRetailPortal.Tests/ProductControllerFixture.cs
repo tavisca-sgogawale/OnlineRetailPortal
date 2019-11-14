@@ -73,7 +73,7 @@ namespace OnlineRetailPortal.Tests
                     {
 
                         Money = new Web.Money()
-                       {
+                        {
                             Amount = 200,
                             Currency = "INR"
                         },
@@ -96,8 +96,8 @@ namespace OnlineRetailPortal.Tests
         public async void Should_ThrowException_When_ProductId_is_Ivalid()
         {
             var expectedErrorMsg = "Product does not exist with \"1q1\" product id.";
-           var exception = await Assert.ThrowsAnyAsync<BaseException>(() => _productsController.GetProductAsync("1q1"));
-           Assert.Equal(expectedErrorMsg, exception.Message);
+            var exception = await Assert.ThrowsAnyAsync<BaseException>(() => _productsController.GetProductAsync("1q1"));
+            Assert.Equal(expectedErrorMsg, exception.Message);
         }
         private GetProductsResponse GetExpectedResponse()
         {

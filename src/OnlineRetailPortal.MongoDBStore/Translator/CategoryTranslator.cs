@@ -9,6 +9,7 @@ namespace OnlineRetailPortal.MongoDBStore
     {
         public static string ToEntity(this Category category)
         {
+            /*
             switch (category)
             {
                 case Category.Bike:
@@ -31,12 +32,18 @@ namespace OnlineRetailPortal.MongoDBStore
                     return "Property";
             }
             throw new NotSupportedException(category + " is not supported");
+            */
+            return category.Name;
         }
 
         public static Category ToModel(this string category)
         {
+            Category res = new Category() { Name = category };
+            /*
             switch (category)
             {
+                
+                
                 case "Bike":
                     return Category.Bike;
                 case "Book":
@@ -57,6 +64,8 @@ namespace OnlineRetailPortal.MongoDBStore
                     return Category.Property;
             }
             throw new NotSupportedException(category + " is not supported");
-        }
+            */
+            return res;
+    }
     }
 }

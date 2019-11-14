@@ -57,7 +57,7 @@ namespace OnlineRetailPortal.MongoDBStore
 
         public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreEntity request)
         {
-            List<MongoEntity> mongoEntities;
+            List<MongoEntity> mongoEntities = new List<MongoEntity>();
             var pageSize = request.PagingInfo.PageSize;
             var pageNumber = request.PagingInfo.PageNumber;
             var collection = _db.GetCollection<MongoEntity>(_collection);
@@ -73,8 +73,8 @@ namespace OnlineRetailPortal.MongoDBStore
             {
                 var docCount = (int)await collection.CountAsync(new BsonDocument());
 
-                request.PagingInfo.TotalPages = (docCount >= pageSize) ? 
-                                                ((docCount / pageSize) + (docCount % pageSize)) : 1;
+                request.PagingInfo.TotalPages = (docCount >= pageSize) ?
+                                                ((docCount / pageSize) + ((docCount % pageSize) == 0 ? 0 : 1)) : 1;
 
                 var skipDocumentEnabled = (pageNumber - 1 * pageSize) > docCount ? false : true;
 
@@ -85,10 +85,6 @@ namespace OnlineRetailPortal.MongoDBStore
                                                 .Limit(pageSize)
                                                 .Sort(sortDefinition)
                                                 .ToListAsync();
-                }
-                else
-                {
-                    return null;
                 }
 
             }

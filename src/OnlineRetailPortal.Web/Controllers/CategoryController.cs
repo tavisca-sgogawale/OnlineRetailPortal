@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Web.Models;
 
-namespace OnlineRetailPortal.Web
+namespace OnlineRetailPortal.Web.Controllers
 {
     [Route("api/v1.0/onlineretailportal")]
     [ApiController]
@@ -16,20 +18,18 @@ namespace OnlineRetailPortal.Web
         {
             _categoryService = categoryService;
         }
-
-        
-        [Route("api/v1.0/onlineretailportal/categories")]
+        // GET: api/Category
         [HttpGet("categories")]
-        public async Task<ListOfCategory> GetCategories()
-        { 
+        public async Task<ListOfCategory> Get()
+        
+        {
             var serviceResponse = await _categoryService.GetCategoriesAsync();
             var listOfCategories = serviceResponse.ToCategoriesContract();
-            
+
             var response = CategoryResponse.CategoriesToString(listOfCategories);
-            
+
             return response;
-
-
         }
+
     }
 }

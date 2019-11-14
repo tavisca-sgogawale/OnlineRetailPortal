@@ -8,7 +8,7 @@ namespace OnlineRetailPortal.Web
     {
         public static Contracts.Category ToEntity(this string category)
         {
-            
+
             Contracts.Category contractsCategory = new Contracts.Category();
             contractsCategory.Name = category;
             return contractsCategory;

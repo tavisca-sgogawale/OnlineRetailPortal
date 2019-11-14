@@ -9,7 +9,7 @@ namespace OnlineRetailPortal.Core
 {
     public static class GetProductServiceResponseTranslator
     {
-        public static Product ToModel(this Contracts.GetProductStoreResponse getProductResponse)
+        public static Product ToModel(this GetProductStoreResponse getProductResponse)
         {
             if (getProductResponse == null)
             {

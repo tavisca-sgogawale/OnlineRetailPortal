@@ -58,13 +58,13 @@ namespace OnlineRetailPortal.Mock
             List<Product> responseProducts = new List<Product>();
             for (int currentIndex = startIndex; currentIndex <= endIndex; currentIndex++)
             {
-                if (currentIndex == products.Count()|| currentIndex > products.Count())
+                if (currentIndex == products.Count() || currentIndex > products.Count())
                     break;
                 responseProducts.Add(products[currentIndex]);
             }
             request.PagingInfo.TotalPages = (productList.Count() / request.PagingInfo.PageSize) + (productList.Count() % request.PagingInfo.PageSize);
             var response = responseProducts.ToGetProductsStoreResponse(request.PagingInfo);
-            return response; 
+            return response;
         }
 
     }

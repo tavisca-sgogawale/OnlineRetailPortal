@@ -87,7 +87,7 @@ namespace OnlineRetailPortal.Tests
                 Description = "Green Bottle",
                 HeroImage =  "example.com",
                 Price = new Contracts.Price { Money = new Contracts.Money (99.99, "INR" ), IsNegotiable = false },
-                Category = new Contracts.Category() { Name = "Others" },
+                Category = Contracts.Category.Other,
                 Status = Contracts.Status.Active,
                 PostDateTime = DateTime.Now,
                 ExpirationDate = DateTime.Now.AddDays(30),
@@ -115,7 +115,7 @@ namespace OnlineRetailPortal.Tests
                 Description = "Green Bottle",
                 HeroImage = "example.com" ,
                 Price = new Contracts.Price {Money = new Contracts.Money(99.99, "INR"), IsNegotiable = false },
-                Category = new Contracts.Category() { Name="Others"},
+                Category = Contracts.Category.Other,
                 Images = new List<string>() { "ex.com" },
                 PurchasedDate = new DateTime(2010, 7, 7),
                 PickupAddress = new Contracts.Address

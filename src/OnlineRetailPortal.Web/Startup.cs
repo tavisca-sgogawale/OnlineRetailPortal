@@ -1,7 +1,6 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,7 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using OnlineRetailPortal.Contracts;
-using OnlineRetailPortal.Core;
+using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Mock;
 using OnlineRetailPortal.Services;
 using OnlineRetailPortal.Services.Services;
@@ -45,8 +44,10 @@ namespace OnlineRetailPortal.Web
             services.AddTransient<IProductStoreFactory, ProductStoreFactory>();
             services.AddSingleton<IProductService, ProductService>();
             services.AddTransient<IImageService, ImageService>();
-
             services.AddTransient<ICategoryStoreFactory, CategoryObjectFactory>();
+            services.AddTransient<ICategoryService, CategoryService>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,7 +78,7 @@ namespace OnlineRetailPortal.Web
             app.UseRouting();
 
             app.UseAuthorization();
-
+           
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

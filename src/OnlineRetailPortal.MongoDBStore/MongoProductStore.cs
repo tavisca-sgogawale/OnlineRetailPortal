@@ -61,27 +61,36 @@ namespace OnlineRetailPortal.MongoDBStore
             var pageSize = request.PagingInfo.PageSize;
             var pageNumber = request.PagingInfo.PageNumber;
             var collection = _db.GetCollection<MongoEntity>(_collection);
-            SortDefinition<MongoEntity> sortDefinition;
+            var sortType = request.ProductSort.Type.ToEntity();
+            var skipDocuments = (pageNumber - 1) * pageSize;
+            var orderBy = request.ProductSort.Order;
+
+            var sortDefinition = (orderBy == "Asc") ?
+                                 (Builders<MongoEntity>.Sort.Ascending(sortType)) :
+                                 (Builders<MongoEntity>.Sort.Descending(sortType));
+
             try
             {
-                if (request.ProductSort.Order == "Asc")            // for ascending order
-                {
-                    sortDefinition = Builders<MongoEntity>.Sort.Ascending(request.ProductSort.Type);
-                }
-                else
-                {
-                    sortDefinition = Builders<MongoEntity>.Sort.Descending(request.ProductSort.Type);
-                }
+                var docCount = (int)await collection.CountAsync(new BsonDocument());
 
+                request.PagingInfo.TotalPages = (docCount >= pageSize) ? 
+                                                ((docCount / pageSize) + (docCount % pageSize)) : 1;
 
-                mongoEntities = await collection.Find(FilterDefinition<MongoEntity>.Empty)
-                                                .Skip(pageNumber - 1 * pageSize)
+                var skipDocumentEnabled = (pageNumber - 1 * pageSize) > docCount ? false : true;
+
+                if (skipDocumentEnabled)
+                {
+                    mongoEntities = await collection.Find(FilterDefinition<MongoEntity>.Empty)
+                                                .Skip(skipDocuments)
                                                 .Limit(pageSize)
                                                 .Sort(sortDefinition)
                                                 .ToListAsync();
+                }
+                else
+                {
+                    return null;
+                }
 
-                var docCount = await collection.CountAsync(new BsonDocument());
-                request.PagingInfo.TotalPages = (int)docCount;
             }
             catch
             {

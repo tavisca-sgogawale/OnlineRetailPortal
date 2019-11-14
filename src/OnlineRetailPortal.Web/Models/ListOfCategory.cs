@@ -7,10 +7,10 @@ namespace OnlineRetailPortal.Web.Models
 {
     public class ListOfCategory
     {
-        public List<string> listOfCategory { get; set; }
+        public List<string> categories { get; set; }
         public ListOfCategory()
         {
-            listOfCategory = new List<string>();
+            categories = new List<string>();
         }
 
      

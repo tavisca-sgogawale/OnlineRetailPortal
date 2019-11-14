@@ -14,15 +14,19 @@ namespace OnlineRetailPortal.Mock
 
          public MockCategoryStore()
         {
-            Categories = new List<Category>() {
-             
-             new Category(){Name = "Electronics"},
-             new Category(){Name = "Home Appliances"},
-             new Category(){Name = "Clothings"},
-             new Category(){Name = "Toys"},
+            Categories = new List<Category>() {             
+             new Category(){Name = "Assoseries"},
+             new Category(){Name = "Bikes"},
              new Category(){Name = "Books"},
-             new Category(){Name = "Others"}
-
+             new Category(){Name = "Cars"},
+             new Category(){Name = "Electronics"},
+             new Category(){Name = "Fashions"},
+             new Category(){Name = "Furnitures"},
+             new Category(){Name = "Home & Kitchens"},
+             new Category(){Name = "Mobiles"},
+             new Category(){Name = "Properties"},
+             new Category(){Name = "Toys"},             
+             new Category(){Name = "Others"}            
          };
         }
 

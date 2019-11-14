@@ -25,7 +25,7 @@ namespace OnlineRetailPortal.Web.Controllers
         {
             var serviceResponse = await _categoryService.GetCategoriesAsync();
             var listOfCategories = serviceResponse.ToCategoriesContract();
-
+            //listOfCategories = null;
             var response = CategoryResponse.CategoriesToString(listOfCategories);
 
             return response;

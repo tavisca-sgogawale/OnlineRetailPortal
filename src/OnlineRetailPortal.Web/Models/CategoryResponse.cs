@@ -14,16 +14,16 @@ namespace OnlineRetailPortal.Web
 
         public static ListOfCategory CategoriesToString(CategoryResponse listOfCategories)
         {
-            
+            ListOfCategory response = new ListOfCategory();
             if (listOfCategories==null)
             {
-                return null;       
+                return response;       
             }
-            ListOfCategory response = new ListOfCategory();
+            //ListOfCategory response = new ListOfCategory();
             foreach (Category categoryObject in listOfCategories.Categories)
             {
                 
-                response.listOfCategory.Add(categoryObject.Name);
+                response.categories.Add(categoryObject.Name);
             }
             return response;
 

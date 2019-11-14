@@ -44,10 +44,10 @@ namespace OnlineRetailPortal.Tests
         public async void GetProduct_ProductIdGiven_ShouldShowRespectiveProductDetails()
         {
             //Arrenge 
-            GetProductResponse expectedResponse = GetExpectedProduct();
+            Web.GetProductResponse expectedResponse = GetExpectedProduct();
 
             //Act
-            GetProductResponse actualResponse = await _productsController.GetProductAsync("101");
+            Web.GetProductResponse actualResponse = await _productsController.GetProductAsync("101");
 
             //Test
             {
@@ -60,9 +60,9 @@ namespace OnlineRetailPortal.Tests
                 Assert.Equal(expectedResponse.Product.Price.Money.Currency, actualResponse.Product.Price.Money.Currency);
             }
         }
-        private GetProductResponse GetExpectedProduct()
+        private Web.GetProductResponse GetExpectedProduct()
         {
-            return new GetProductResponse()
+            return new Web.GetProductResponse()
             {
                 Product = new Web.Product()
                 {

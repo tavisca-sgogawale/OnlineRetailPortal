@@ -50,24 +50,30 @@ namespace OnlineRetailPortal.Mock
             return response.ToGetProductStore();
         }
 
-        public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsEntity request)
+        public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreEntity request)
         {
             productList.Apply(request.Filters);
-            productList = productList.Apply(request.ProductSort);
+            var products = productList.Apply(request.ProductSort);
 
             int startIndex = (request.PagingInfo.PageNumber - 1) * (request.PagingInfo.PageSize);
             int endIndex = startIndex + request.PagingInfo.PageSize - 1;
-            List<Product> responseProducts = new List<Product>();
-
+            List<ProductEntity> responseProducts = new List<ProductEntity>();
             for (int currentIndex = startIndex; currentIndex <= endIndex; currentIndex++)
             {
-                if (currentIndex == productList.Count() || currentIndex > productList.Count())
+                if (currentIndex == products.Count() || currentIndex > products.Count())
                     break;
-                responseProducts.Add(productList[currentIndex]);
+                responseProducts.Add(products[currentIndex].ToEntity());
             }
+
             request.PagingInfo.TotalPages = (productList.Count() >= request.PagingInfo.PageSize) ? ((productList.Count() / request.PagingInfo.PageSize) + (productList.Count() % request.PagingInfo.PageSize)) : 1;
             var response = responseProducts.ToGetProductsStoreResponse(request.PagingInfo);
             return response;
+        }
+
+
+        public Task<ProductEntity> UpdateProductAsync(ProductEntity request)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -11,6 +11,8 @@ namespace OnlineRetailPortal.Services
 
         public static GetProductsServiceResponse ToModel(this Core.ProductsWithPageInitiation getProductsResponse)
         {
+            if (getProductsResponse == null)
+                return null;
             GetProductsServiceResponse response = new GetProductsServiceResponse()
             {
                 Products = getProductsResponse.Products.ToModel(),

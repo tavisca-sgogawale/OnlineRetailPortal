@@ -1,4 +1,4 @@
-﻿    using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Core;
@@ -57,14 +57,36 @@ namespace OnlineRetailPortal.MongoDBStore
 
         public async Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreEntity request)
         {
-            List<MongoEntity> mongoEntities;
+            List<MongoEntity> mongoEntities = new List<MongoEntity>();
+            var pageSize = request.PagingInfo.PageSize;
+            var pageNumber = request.PagingInfo.PageNumber;
+            var collection = _db.GetCollection<MongoEntity>(_collection);
+            var sortType = request.ProductSort.Type.ToEntity();
+            var skipDocuments = (pageNumber - 1) * pageSize;
+            var orderBy = request.ProductSort.Order;
+
+            var sortDefinition = (orderBy == "Asc") ?
+                                 (Builders<MongoEntity>.Sort.Ascending(sortType)) :
+                                 (Builders<MongoEntity>.Sort.Descending(sortType));
+
             try
             {
-                var sort = Builders<MongoEntity>.Sort.Descending("Id");
-                var data = _db.GetCollection<MongoEntity>(_collection);
-                mongoEntities = await data.Find(new BsonDocument())
-                                        .Sort(sort)
-                                        .ToListAsync();
+                var docCount = (int)await collection.CountAsync(new BsonDocument());
+
+                request.PagingInfo.TotalPages = (docCount >= pageSize) ?
+                                                ((docCount / pageSize) + ((docCount % pageSize) == 0 ? 0 : 1)) : 1;
+
+                var skipDocumentEnabled = (pageNumber - 1 * pageSize) > docCount ? false : true;
+
+                if (skipDocumentEnabled)
+                {
+                    mongoEntities = await collection.Find(FilterDefinition<MongoEntity>.Empty)
+                                                .Skip(skipDocuments)
+                                                .Limit(pageSize)
+                                                .Sort(sortDefinition)
+                                                .ToListAsync();
+                }
+
             }
             catch
             {

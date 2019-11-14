@@ -9,6 +9,8 @@ namespace OnlineRetailPortal.Web
     {
         public static GetProductsResponse ToGetProductsContract(this Contracts.GetProductsServiceResponse getProductsServiceResponse)
         {
+            if (getProductsServiceResponse == null)
+                return null;
             GetProductsResponse response = new GetProductsResponse()
             {
                 Products = getProductsServiceResponse.Products.ToEntity(),

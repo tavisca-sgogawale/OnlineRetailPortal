@@ -61,11 +61,20 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 708.
+        ///   Looks up a localized string similar to 710.
         /// </summary>
         public static string DatabaseDown {
             get {
                 return ResourceManager.GetString("DatabaseDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 711.
+        /// </summary>
+        public static string DuplicateProduct {
+            get {
+                return ResourceManager.GetString("DuplicateProduct", resourceCulture);
             }
         }
         
@@ -106,15 +115,6 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 709.
-        /// </summary>
-        public static string InvalidId {
-            get {
-                return ResourceManager.GetString("InvalidId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 701.
         /// </summary>
         public static string InvalidRequest {
@@ -147,6 +147,24 @@ namespace OnlineRetailPortal.Contracts {
         public static string NullRequest {
             get {
                 return ResourceManager.GetString("NullRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 708.
+        /// </summary>
+        public static string ProductNotFound {
+            get {
+                return ResourceManager.GetString("ProductNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 709.
+        /// </summary>
+        public static string ProductsNotFound {
+            get {
+                return ResourceManager.GetString("ProductsNotFound", resourceCulture);
             }
         }
     }

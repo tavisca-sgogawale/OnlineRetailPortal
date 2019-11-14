@@ -5,6 +5,7 @@ namespace OnlineRetailPortal.Contracts
     {
         Task<ProductEntity> AddProductAsync(ProductEntity request);
         Task<GetProductStoreResponse> GetProductAsync(string productId);
-        Task<GetProductsStoreResponse> GetProductsAsync(GetProductsEntity request);
+        Task<GetProductsStoreResponse> GetProductsAsync(GetProductsStoreEntity request);
+        Task<ProductEntity> UpdateProductAsync(ProductEntity request);
     }
 }

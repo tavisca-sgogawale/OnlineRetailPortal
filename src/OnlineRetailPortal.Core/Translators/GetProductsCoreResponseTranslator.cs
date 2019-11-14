@@ -11,6 +11,8 @@ namespace OnlineRetailPortal.Core
 
         public static ProductsWithPageInitiation ToModel(this GetProductsStoreResponse getProductResponse)
         {
+            if (getProductResponse == null)
+                return null;
             ProductsWithPageInitiation responce = new ProductsWithPageInitiation()
             {
                 Products = getProductResponse.Products.ToModel(),
@@ -18,8 +20,8 @@ namespace OnlineRetailPortal.Core
             };
             return responce;
         }
-       
-        
+
+
 
     }
 }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OnlineRetailPortal.Core
 {
@@ -16,6 +14,20 @@ namespace OnlineRetailPortal.Core
                     return Status.Disabled;
                 case Contracts.Status.Sold:
                     return Status.Sold;
+            }
+            throw new NotSupportedException(status + " is not supported");
+        }
+
+        public static Contracts.Status ToEntity(this Status status)
+        {
+            switch (status)
+            {
+                case Status.Active:
+                    return Contracts.Status.Active;
+                case Status.Disabled:
+                    return Contracts.Status.Disabled;
+                case Status.Sold:
+                    return Contracts.Status.Sold;
             }
             throw new NotSupportedException(status + " is not supported");
         }

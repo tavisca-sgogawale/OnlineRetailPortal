@@ -10,21 +10,21 @@ namespace OnlineRetailPortal.Tests
 {
     public class ProductControllerTestClass
     {
-        static IProductStoreFactory storeFactory= new ProductStoreFactory();
+        static IProductStoreFactory storeFactory = new ProductStoreFactory();
         private IProductService _productService = new Services.ProductService(storeFactory);
         [Fact]
         public async void AddProduct_Request_With_Valid_Request_Format()
-        { 
+        {
             Web.ProductsController productsController = new ProductsController(_productService);
             var addProductRequest = GetRequest();
             var expectedResponse = GetExpectedResponse();
-            Web.AddProductResponse actualResponse =  await productsController.AddProductAsync(addProductRequest);
+            Web.AddProductResponse actualResponse = await productsController.AddProductAsync(addProductRequest);
 
             Assert.Equal(expectedResponse.SellerId, actualResponse.SellerId);
             //Assert.Equal(expectedResponse.Name, actualResponse.Name);
             //Assert.Equal(expectedResponse.Description, actualResponse.Description);
             //Assert.Equal(expectedResponse.HeroImage.Url, actualResponse.HeroImage.Url);
-          //  Assert.Equal(expectedResponse.Price.Amount, actualResponse.Price.Amount);
+            //  Assert.Equal(expectedResponse.Price.Amount, actualResponse.Price.Amount);
             //Assert.Equal(expectedResponse.Price.IsNegotiable, actualResponse.Price.IsNegotiable);
             //Assert.Equal(expectedResponse.Status, actualResponse.Status);
             //Assert.Equal(expectedResponse.PostDateTime.ToString(), actualResponse.PostDateTime.ToString());
@@ -43,11 +43,20 @@ namespace OnlineRetailPortal.Tests
         {
             Web.AddProductResponse addProductResponse = new Web.AddProductResponse
             {
-                SellerId = "P123",
+                Id = "103",
                 Name = "Bottle",
                 Description = "Green Bottle",
-                HeroImage =  "example.com" ,
-                //Price = new Web.Price {Money = new Web.Money( 99.99,  "INR" ), IsNegotiable = true },
+
+                HeroImage = "example.com",
+                Price = new Web.Price
+                {
+                    Money = new Web.Money()
+                    {
+                        Amount = 99.99,
+                        Currency = "INR"
+                    },
+                    IsNegotiable = true
+                },
                 Category = "Other",
                 Images = new List<string>() { "ex.com" },
                 PurchasedDate = DateTime.Now,
@@ -68,13 +77,22 @@ namespace OnlineRetailPortal.Tests
         {
             Web.AddProductRequest addProductRequest = new Web.AddProductRequest()
             {
-                SellerId="P123",
+                SellerId = "103",
                 Name = "Bottle",
                 Description = "Green Bottle",
                 HeroImage = "example.com",
-                //Price = new Web.Price { Money = new Web.Money( 99.99, "INR"), IsNegotiable = true },
+
+                Price = new Web.Price
+                {
+                    Money = new Web.Money()
+                    {
+                        Amount = 99.99,
+                        Currency = "INR"
+                    },
+                    IsNegotiable = true
+                },
                 Category = "Other",
-                Images = new List<string>() { "ex.com"},
+                Images = new List<string>() { "ex.com" },
                 PurchasedDate = DateTime.Now,
                 PickupAddress = new Web.Address
                 {

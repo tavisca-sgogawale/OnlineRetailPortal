@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using OnlineRetailPortal.Contracts;
-using OnlineRetailPortal.Core;
 
 namespace OnlineRetailPortal.Services
 {
@@ -25,6 +23,8 @@ namespace OnlineRetailPortal.Services
 
         public static Contracts.AddProductResponse ToModel(this Core.Product product)
         {
+            if (product == null)
+                return null;
             Contracts.AddProductResponse response = new Contracts.AddProductResponse()
             {
                 Id = product.Id,

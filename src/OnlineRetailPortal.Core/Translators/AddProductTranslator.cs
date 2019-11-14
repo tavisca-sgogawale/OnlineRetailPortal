@@ -1,34 +1,32 @@
 ﻿using OnlineRetailPortal.Contracts;
-using OnlineRetailPortal.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 namespace OnlineRetailPortal.Core
 {
     public static class AddProductTranslator
     {
         public static ProductEntity ToEntity(this Product product)
         {
-            var  addProductStoreRequest = new ProductEntity() {
+            var addProductStoreRequest = new ProductEntity()
+            {
                 SellerId = product.SellerId,
                 Name = product.Name,
                 Description = product.Description,
                 HeroImage = product.HeroImage,
                 Price = product.Price.ToEntity(),
                 Category = product.Category.ToEntity(),
-                Images = product.Images,                
+                Images = product.Images,
                 PurchasedDate = product.PurchasedDate,
                 PickupAddress = product.PickupAddress.ToEntity()
-                
+
             };
 
             return addProductStoreRequest;
-        } 
+        }
 
 
         public static Product ToModel(this ProductEntity addProductStoreResponse)
         {
-            var product = new Product(addProductStoreResponse.Price.ToModel(),addProductStoreResponse.SellerId, addProductStoreResponse.Name ) { 
+            var product = new Product(addProductStoreResponse.Price.ToModel(), addProductStoreResponse.SellerId, addProductStoreResponse.Name)
+            {
                 Id = addProductStoreResponse.Id,
                 Description = addProductStoreResponse.Description,
                 HeroImage = addProductStoreResponse.HeroImage,
@@ -42,6 +40,6 @@ namespace OnlineRetailPortal.Core
             };
 
             return product;
-        }      
+        }
     }
 }

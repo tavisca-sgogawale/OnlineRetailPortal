@@ -30,8 +30,8 @@ namespace OnlineRetailPortal.Core
         }
         public static async Task<ProductsWithPageInitiation> GetProductsAsync(GetProductsServiceRequest serviceRequest, IProductStore productStore)
         {
-            var getProductsEntity = serviceRequest.ToEntity();
-            var getProductsResponse = await productStore.GetProductsAsync(getProductsEntity);
+            var getProductsStoreEntity = serviceRequest.ToEntity();
+            var getProductsResponse = await productStore.GetProductsAsync(getProductsStoreEntity);
             var coreProductResponse = getProductsResponse.ToModel();
             return coreProductResponse;
         }
@@ -46,12 +46,19 @@ namespace OnlineRetailPortal.Core
         {
             var productEntity = this.ToEntity();
             productEntity.Id = Guid.NewGuid().ToString();
-            productEntity.Status = OnlineRetailPortal.Contracts.Status.Active;
+            productEntity.Status = Contracts.Status.Active;
             productEntity.PostDateTime = DateTime.Now;
             productEntity.ExpirationDate = DateTime.Now.AddDays(config.ExpiryInDays);
             var addProductResponse = await productStore.AddProductAsync(productEntity);
             return addProductResponse.ToModel();
 
+        }
+
+        public async Task<Product> UpdateAsync(IProductStore productStore)
+        {
+            var productEntity = this.ToStoreEntity();
+            var updateProductResponse = await productStore.UpdateProductAsync(productEntity);
+            return updateProductResponse.ToStoreModel();
         }
     }
 }

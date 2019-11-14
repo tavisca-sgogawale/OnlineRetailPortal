@@ -1,14 +1,11 @@
 ﻿using OnlineRetailPortal.Contracts;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace OnlineRetailPortal.Mock
 {
     public static class GetProductsStoreResponceTranslator
     {
-        public static GetProductsStoreResponse ToGetProductsStoreResponse(this List<Product> products , PagingInfo pagingInfo)
+        public static GetProductsStoreResponse ToGetProductsStoreResponse(this List<ProductEntity> products, PagingInfo pagingInfo)
         {
             GetProductsStoreResponse response = new GetProductsStoreResponse()
             {

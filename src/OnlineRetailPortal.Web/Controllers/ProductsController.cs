@@ -44,5 +44,15 @@ namespace OnlineRetailPortal.Web
             var response = await _productService.AddProductAsync(request.ToEntity());
             return response.ToModel();
         }
+
+        [HttpPut("products/update")]
+        public async Task<UpdateProductEntity> UpdateProductAsync([FromBody] UpdateProductEntity request)
+        {
+            UpdateProductRequestValidator validator = new UpdateProductRequestValidator();
+            validator.EnsureUpdateRequestValid(request);
+            var response = await _productService.UpdateProductAsync(request.ToEntity());
+            return response.ToResponseModel();
+        }
+
     }
 }

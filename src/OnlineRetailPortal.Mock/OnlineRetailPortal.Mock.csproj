@@ -14,12 +14,4 @@
     <ProjectReference Include="..\OnlineRetailPortal.MongoDBStore\OnlineRetailPortal.MongoDBStore.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Translators\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Translators\" />
-  </ItemGroup>
-
 </Project>

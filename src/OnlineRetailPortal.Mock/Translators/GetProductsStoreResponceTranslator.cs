@@ -11,7 +11,6 @@ namespace OnlineRetailPortal.Mock
             {
                 Products = products,
                 PagingInfo = pagingInfo
-
             };
             return response;
         }

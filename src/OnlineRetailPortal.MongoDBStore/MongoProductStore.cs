@@ -78,7 +78,7 @@ namespace OnlineRetailPortal.MongoDBStore
 
                 var skipDocumentEnabled = (pageNumber - 1 * pageSize) > docCount ? false : true;
 
-                if (skipDocumentEnabled && pageSize > 0)
+                if (skipDocumentEnabled)
                 {
                     mongoEntities = await collection.Find(FilterDefinition<MongoEntity>.Empty)
                                                 .Skip(skipDocuments)

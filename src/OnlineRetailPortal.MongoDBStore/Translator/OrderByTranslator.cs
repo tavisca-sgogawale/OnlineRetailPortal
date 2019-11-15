@@ -12,7 +12,7 @@ namespace OnlineRetailPortal.MongoDBStore
                 case "Date":
                     return "CreatedDate";
                 case "Price":
-                    return "Amount";
+                    return "Price.Amount";
             }
             throw new NotSupportedException(type + " is not supported");
         }

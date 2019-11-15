@@ -17,7 +17,7 @@ namespace OnlineRetailPortal.Web
 
         public static string ToModel(this Contracts.Category category)
         {
-            return category.Name;
+            return category?.Name;
         }
     }
 }

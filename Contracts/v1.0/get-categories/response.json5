@@ -1,17 +1,17 @@
 //Response Data
 {
     "Categories" : [
-            "Accessories",
-            "Bikes",
-            "Books",
-            "Cars",
-            "Electronics",
-            "Fashions",
-            "Furnitures",
-            "Home & Kitchens",
-            "Mobiles",
-            "Properties",
-            "Toys",
-            "Others"
+            "Accessory",
+            "Bike",
+            "Book",
+            "Car",
+            "Electronic",
+            "Fashion",
+            "Furniture",
+            "Home & Kitchen",
+            "Mobile",
+            "Property",
+            "Toy",
+            "Other"
     ]
 }

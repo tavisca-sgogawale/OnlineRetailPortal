@@ -11,7 +11,7 @@ namespace OnlineRetailPortal.Web
         {
             CategoryResponse response = new CategoryResponse() { Categories = new List<string>() { } };
             
-            if (getCategoriesServiceResponse == null)
+            if (getCategoriesServiceResponse?.Categories == null)
             {
                 return response;
             }         

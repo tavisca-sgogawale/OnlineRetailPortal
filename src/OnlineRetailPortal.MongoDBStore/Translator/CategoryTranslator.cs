@@ -14,8 +14,8 @@ namespace OnlineRetailPortal.MongoDBStore
 
         public static Category ToModel(this string category)
         {
-            Category res = new Category() { Name = category };
-            return res;
+            Category response = new Category() { Name = category };
+            return response;
         }
     }
 }

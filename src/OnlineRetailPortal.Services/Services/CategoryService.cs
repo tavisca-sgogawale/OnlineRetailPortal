@@ -9,14 +9,13 @@ namespace OnlineRetailPortal.Services
         private ICategoryStore _categoryStore;
         public CategoryService(ICategoryStoreFactory CategoryObjectFactory)
         {
-            ICategoryStore categoryStore = CategoryObjectFactory.GetCategoryStore();
-            _categoryStore = categoryStore;
+            _categoryStore = CategoryObjectFactory.GetCategoryStore();
         }
 
         public async Task<CategoriesServiceResponse> GetCategoriesAsync()
         {
-            var responce = await Core.Category.GetCategoriesAsync(_categoryStore);
-            return responce.ToModel();
+            var response = await Core.Category.GetCategoriesAsync(_categoryStore);
+            return response.ToModel();
         }
     }
 }

@@ -13,28 +13,28 @@ namespace OnlineRetailPortal.Mock
          public MockCategoryStore()
         {
             Categories = new List<Category>() {             
-             new Category(){Name = "Assoseries"},
-             new Category(){Name = "Bikes"},
-             new Category(){Name = "Books"},
-             new Category(){Name = "Cars"},
-             new Category(){Name = "Electronics"},
-             new Category(){Name = "Fashions"},
-             new Category(){Name = "Furnitures"},
-             new Category(){Name = "Home & Kitchens"},
-             new Category(){Name = "Mobiles"},
-             new Category(){Name = "Properties"},
-             new Category(){Name = "Toys"},             
-             new Category(){Name = "Others"}            
+             new Category(){Name = "Accessory"},
+             new Category(){Name = "Bike"},
+             new Category(){Name = "Book"},
+             new Category(){Name = "Car"},
+             new Category(){Name = "Electronic"},
+             new Category(){Name = "Fashion"},
+             new Category(){Name = "Furniture"},
+             new Category(){Name = "Home & Kitchen"},
+             new Category(){Name = "Mobile"},
+             new Category(){Name = "Property"},
+             new Category(){Name = "Toy"},             
+             new Category(){Name = "Other"}            
          };
         }
 
-        public async Task<GetCategoriesStoreResponse> GetCategoriesAsync()
+        public async Task<CategoriesStoreResponse> GetCategoriesAsync()
         {
             if(Categories==null)
             {
                 return null;
             }
-            return await Task.FromResult<GetCategoriesStoreResponse>(Categories.ToEntity());
+            return await Task.FromResult<CategoriesStoreResponse>(Categories.ToEntity());
         }
     }
 }

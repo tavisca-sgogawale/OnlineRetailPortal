@@ -9,11 +9,8 @@ namespace OnlineRetailPortal.Mock
     {
         public ICategoryStore GetCategoryStore()
         {
-            //if (typeOfCategoryStore == "Mock")
+            //current implementation for mock,will add DB implementation later  
             return new MockCategoryStore();
-            //else
-            // implementation for DB
-
         }
     }
 }

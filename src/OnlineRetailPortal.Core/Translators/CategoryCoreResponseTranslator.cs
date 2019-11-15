@@ -7,9 +7,9 @@ using System.Text;
 namespace OnlineRetailPortal.Core
 
 {
-    public static class GetCategoryCoreResponseTranslator
+    public static class CategoryCoreResponseTranslator
     {
-        public static List<Category> ToEntity(this Contracts.GetCategoriesStoreResponse getCategoriesStoreResponse)
+        public static List<Category> ToEntity(this Contracts.CategoriesStoreResponse getCategoriesStoreResponse)
         {
             if (getCategoriesStoreResponse == null)
                 return null;
@@ -18,9 +18,7 @@ namespace OnlineRetailPortal.Core
             {
                 categories.Add(new Category(x.Name));
             }
-            var response = categories;
-
-            return response;
+            return categories;
         }
     }
 }

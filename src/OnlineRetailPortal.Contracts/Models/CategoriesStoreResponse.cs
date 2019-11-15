@@ -2,7 +2,7 @@
 
 namespace OnlineRetailPortal.Contracts
 {
-    public class GetCategoriesStoreResponse
+    public class CategoriesStoreResponse
     {
         public List<Category> Categories { get; set; }
     }

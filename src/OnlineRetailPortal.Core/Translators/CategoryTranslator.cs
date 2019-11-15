@@ -4,18 +4,14 @@ namespace OnlineRetailPortal.Core
 {
     public static class CategoryTranslator
     {
-        
         public static Contracts.Category ToEntity(this Category category)
         {
-            Contracts.Category contractsCategory = new Contracts.Category() { Name = category.Name };
-            return contractsCategory;
+            return new Contracts.Category() { Name = category?.Name };
         }
 
         public static Category ToModel(this Contracts.Category category)
         {
-            Category coreCategory = new Category(category.Name);
-            return coreCategory;
+            return new Category(category?.Name);
         }
-        
     }
 }

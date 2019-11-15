@@ -9,15 +9,11 @@ namespace OnlineRetailPortal.Services
     {
         public static Category ToEntity(this Contracts.Category category)
         {
-            Category coreCategory = new Category(category.Name);
-            return coreCategory;
+            return new Category(category?.Name);
         }
         public static Contracts.Category ToModel(this Category category)
         {
-            Contracts.Category contractsCategory = new Contracts.Category() { Name = category.Name };
-            return contractsCategory;
+            return new Contracts.Category() { Name = category?.Name };
         }
-
-
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace OnlineRetailPortal.Services
 {
-    public static class GetCategoriesServiceResponseTranslator
+    public static class CategoriesServiceResponseTranslator
     {
        public static CategoriesServiceResponse ToModel(this List<Core.Category> categories)
         {

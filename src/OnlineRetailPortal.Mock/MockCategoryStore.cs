@@ -9,9 +9,7 @@ namespace OnlineRetailPortal.Mock
 {
     public class MockCategoryStore : ICategoryStore
     {
-        
-        public List<Category> Categories;
-
+        private List<Category> Categories;
          public MockCategoryStore()
         {
             Categories = new List<Category>() {             
@@ -36,7 +34,7 @@ namespace OnlineRetailPortal.Mock
             {
                 return null;
             }
-            return await Task.FromResult<GetCategoriesStoreResponse>(Categories.ToCategoriesStoreResponse());
+            return await Task.FromResult<GetCategoriesStoreResponse>(Categories.ToEntity());
         }
     }
 }

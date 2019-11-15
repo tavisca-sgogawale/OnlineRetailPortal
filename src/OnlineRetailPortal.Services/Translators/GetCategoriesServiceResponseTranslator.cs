@@ -8,7 +8,7 @@ namespace OnlineRetailPortal.Services
 {
     public static class GetCategoriesServiceResponseTranslator
     {
-        public static CategoriesServiceResponse ToCategoriesResponse(this List<Core.Category> categories)
+       public static CategoriesServiceResponse ToModel(this List<Core.Category> categories)
         {
             if (categories == null)
                 return null;

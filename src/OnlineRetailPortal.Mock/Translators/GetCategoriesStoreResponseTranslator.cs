@@ -8,7 +8,7 @@ namespace OnlineRetailPortal.Mock
 {
     public static class GetCategoriesStoreResponseTranslator
     {
-        public static GetCategoriesStoreResponse ToCategoriesStoreResponse(this List<Category> categories)
+        public static GetCategoriesStoreResponse ToEntity(this List<Category> categories)
         {     
             if(categories==null)
             {

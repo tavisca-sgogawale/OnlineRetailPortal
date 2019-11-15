@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OnlineRetailPortal.Mock
 {
-    public class CategoryObjectFactory : ICategoryStoreFactory
+    public class CategoryStoreFactory : ICategoryStoreFactory
     {
         public ICategoryStore GetCategoryStore()
         {

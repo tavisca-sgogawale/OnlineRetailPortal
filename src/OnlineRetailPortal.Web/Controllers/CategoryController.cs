@@ -18,17 +18,12 @@ namespace OnlineRetailPortal.Web.Controllers
         {
             _categoryService = categoryService;
         }
-        // GET: api/Category
+       
         [HttpGet("categories")]
-        public async Task<ListOfCategory> Get()
-        
+        public async Task<CategoryResponse> Get()        
         {
-            var serviceResponse = await _categoryService.GetCategoriesAsync();
-            var listOfCategories = serviceResponse.ToCategoriesContract();
-            //listOfCategories = null;
-            var response = CategoryResponse.CategoriesToString(listOfCategories);
-
-            return response;
+            var response = await _categoryService.GetCategoriesAsync();
+            return response.ToEntity();
         }
 
     }

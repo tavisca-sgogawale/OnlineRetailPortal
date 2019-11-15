@@ -9,7 +9,7 @@ namespace OnlineRetailPortal.Core
 {
     public static class GetCategoryCoreResponseTranslator
     {
-        public static List<Category> ToCoreResponse(this Contracts.GetCategoriesStoreResponse getCategoriesStoreResponse)
+        public static List<Category> ToEntity(this Contracts.GetCategoriesStoreResponse getCategoriesStoreResponse)
         {
             if (getCategoriesStoreResponse == null)
                 return null;

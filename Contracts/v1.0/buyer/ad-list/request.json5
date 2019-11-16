@@ -3,10 +3,11 @@
 //Header contains "sessionId": "FAE04EC0-301F-11D3-BF4B-00C04F79EFBC" and "userId": "1111"
 //Request object
 {
-    //[Optional] sort by 
-    "sortBy" : "date",
-    //[Optional] order of Sorting 
-    "sortOrder" : "ascending",
+    //[Optional]
+    "ProductSort": {
+            "Type":"Date",
+            "Order":"Desc"
+    }
     //[Optional] Differnt types of filter
     "filters" :[    
         {

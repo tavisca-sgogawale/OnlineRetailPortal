@@ -1,8 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Runtime.Serialization;
-
-namespace OnlineRetailPortal.Web
+﻿namespace OnlineRetailPortal.Web
 {
     public class SearchFilter : Filter
     {

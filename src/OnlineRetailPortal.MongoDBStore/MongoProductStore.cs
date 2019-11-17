@@ -71,20 +71,57 @@ namespace OnlineRetailPortal.MongoDBStore
 
             try
             {
-                var docCount = (int)await collection.CountAsync(new BsonDocument());
-
-                request.PagingInfo.TotalPages = (docCount >= pageSize) ?
-                                                ((docCount / pageSize) + ((docCount % pageSize) == 0 ? 0 : 1)) : 1;
-
-                var skipDocumentEnabled = (pageNumber - 1 * pageSize) > docCount ? false : true;
-
-                if (skipDocumentEnabled)
+                if (request.Filters.Count > 0)
                 {
-                    mongoEntities = await collection.Find(FilterDefinition<MongoEntity>.Empty)
-                                                .Skip(skipDocuments)
-                                                .Limit(pageSize)
-                                                .Sort(sortDefinition)
-                                                .ToListAsync();
+                    FilterDefinition<MongoEntity> filters = FilterDefinition<MongoEntity>.Empty;
+                    var builder = Builders<MongoEntity>.Filter;
+                    foreach (var filter in request.Filters)
+                    {
+                        if (filter.GetType().Name == "PriceFilter")
+                        {
+                            PriceFilter price = filter as PriceFilter;
+                            filters = filters & builder.Gt("Price.Amount", price.Min) & builder.Lte("Price.Amount", price.Max);
+                        }
+                        else if (filter.GetType().Name == "SearchFilter")
+                        {
+                            SearchFilter search = filter as SearchFilter;
+                            filters = filters & builder.Text(search.SearchQuery);
+                        }
+                        else if (filter.GetType().Name == "IdFilter")
+                        {
+                            IdFilter id = filter as IdFilter;
+                            filters = builder.Eq("SellerId", id.SellerId);
+                        }
+                    }
+                    var docCount = (int)await collection.Find(filters).CountDocumentsAsync();
+                    request.PagingInfo.TotalPages = (docCount >= pageSize) ?
+                                                    ((docCount / pageSize) + ((docCount % pageSize) == 0 ? 0 : 1)) : 1;
+
+                    mongoEntities = await collection.Find(filters)
+                                                    .Skip(skipDocuments)
+                                                    .Limit(pageSize)
+                                                    .Sort(sortDefinition)
+                                                    .ToListAsync();
+
+
+                }
+                else
+                {
+                    var docCount = (int)await collection.CountDocumentsAsync(new BsonDocument());
+
+                    request.PagingInfo.TotalPages = (docCount >= pageSize) ?
+                                                    ((docCount / pageSize) + ((docCount % pageSize) == 0 ? 0 : 1)) : 1;
+
+                    var skipDocumentEnabled = (pageNumber - 1 * pageSize) > docCount ? false : true;
+
+                    if (skipDocumentEnabled)
+                    {
+                        mongoEntities = await collection.Find(FilterDefinition<MongoEntity>.Empty)
+                                                    .Skip(skipDocuments)
+                                                    .Limit(pageSize)
+                                                    .Sort(sortDefinition)
+                                                    .ToListAsync();
+                    }
                 }
 
             }

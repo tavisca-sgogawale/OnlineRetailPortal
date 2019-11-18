@@ -13,8 +13,9 @@ namespace OnlineRetailPortal.Core
             GetProductsStoreEntity page = new GetProductsStoreEntity()
             {
                 PagingInfo = request.PagingInfo,
-                ProductSort = request.ProductSort
-            };            
+                ProductSort = request.ProductSort,
+                Filters = request.Filters
+            };
             return page;
         }
     }

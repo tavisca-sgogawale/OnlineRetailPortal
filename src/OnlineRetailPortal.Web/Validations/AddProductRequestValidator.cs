@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FluentValidation;
-using FluentValidation.Results;
+﻿using FluentValidation;
 using OnlineRetailPortal.Core;
+using System;
 
 
 namespace OnlineRetailPortal.Web
@@ -30,7 +26,7 @@ namespace OnlineRetailPortal.Web
             .NotEmpty()
             .WithErrorCode(ErrorCode.MissingField())
             .WithMessage(Error.MissingField("Name"))
-            .Length(2, 20)
+            .Length(2, 1000)
             .WithErrorCode(ErrorCode.GreaterCharacter())
             .WithMessage(Error.GreaterCharacter("Title", "2"));
 
@@ -71,7 +67,7 @@ namespace OnlineRetailPortal.Web
             .NotEmpty()
             .WithErrorCode(ErrorCode.MissingField())
             .WithMessage(Error.MissingField("Description"))
-            .Length(4, 100)
+            .Length(4, 100000)
             .WithErrorCode(ErrorCode.GreaterCharacter())
             .WithMessage(Error.GreaterCharacter("Description", "4"));
 
@@ -92,7 +88,7 @@ namespace OnlineRetailPortal.Web
                 .NotEmpty()
                 .WithErrorCode(ErrorCode.MissingField())
                 .WithMessage(Error.MissingField("Line1"))
-                .Length(2, 20)
+                .Length(2, 10000)
                 .WithErrorCode(ErrorCode.GreaterCharacter())
                 .WithMessage(Error.GreaterCharacter("Line1", "2"));
 

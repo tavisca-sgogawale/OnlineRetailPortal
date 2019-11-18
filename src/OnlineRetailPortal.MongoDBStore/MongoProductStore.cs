@@ -65,7 +65,7 @@ namespace OnlineRetailPortal.MongoDBStore
             var skipDocuments = (pageNumber - 1) * pageSize;
             var orderBy = request.ProductSort.Order;
 
-            var sortDefinition = (orderBy == "Asc") ?
+            var sortDefinition = (orderBy.ToLowerInvariant() == "asc") ?
                                  (Builders<MongoEntity>.Sort.Ascending(sortType)) :
                                  (Builders<MongoEntity>.Sort.Descending(sortType));
 
@@ -90,13 +90,17 @@ namespace OnlineRetailPortal.MongoDBStore
                         else if (filter.GetType().Name == "IdFilter")
                         {
                             IdFilter id = filter as IdFilter;
-                            filters = builder.Eq("SellerId", id.SellerId);
+                            filters = filters & builder.Eq("SellerId", id.SellerId);
+                        }
+                        else if (filter.GetType().Name == "StatusFilter")
+                        {
+                            StatusFilter status = filter as StatusFilter;
+                            filters = filters & builder.Eq("Status", status.Status);
                         }
                     }
                     var docCount = (int)await collection.Find(filters).CountDocumentsAsync();
                     request.PagingInfo.TotalPages = (docCount >= pageSize) ?
                                                     ((docCount / pageSize) + ((docCount % pageSize) == 0 ? 0 : 1)) : 1;
-
                     mongoEntities = await collection.Find(filters)
                                                     .Skip(skipDocuments)
                                                     .Limit(pageSize)
@@ -116,7 +120,10 @@ namespace OnlineRetailPortal.MongoDBStore
 
                     if (skipDocumentEnabled)
                     {
-                        mongoEntities = await collection.Find(FilterDefinition<MongoEntity>.Empty)
+                        FilterDefinition<MongoEntity> filters = FilterDefinition<MongoEntity>.Empty;
+                        var builder = Builders<MongoEntity>.Filter;
+                        filters = builder.Eq("Status", "Active");
+                        mongoEntities = await collection.Find(filters)
                                                     .Skip(skipDocuments)
                                                     .Limit(pageSize)
                                                     .Sort(sortDefinition)

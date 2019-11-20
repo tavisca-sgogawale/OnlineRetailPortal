@@ -50,7 +50,7 @@ namespace OnlineRetailPortal.Web
             .WithErrorCode(ErrorCode.MissingField())
             .WithMessage(Error.MissingField("Category"));
 
-            RuleFor(x => x.Price.Money.Amount)
+            RuleFor(x => x.Price.Amount)
             .Cascade(CascadeMode.StopOnFirstFailure)
             .NotEmpty()
             .WithErrorCode(ErrorCode.MissingField())

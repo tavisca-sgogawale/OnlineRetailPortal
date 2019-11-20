@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Server.IIS;
 using OnlineRetailPortal.Contracts;
-using OnlineRetailPortal.Contracts;
-using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Web.Models;
 using System;
 using System.IO;

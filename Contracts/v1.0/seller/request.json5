@@ -1,47 +1,27 @@
-//POST /api/v1.0/{applicationname}/product
+//GET /api/v1.0/{applicationname}/products?pagenumber=1&pagesize=50
 
-//Header contains sessionId : FAE04EC0-301F-11D3-BF4B-00C04F79EFBC and userId : 1111
+//Header contains "sessionId": "FAE04EC0-301F-11D3-BF4B-00C04F79EFBC" and "userId": "1111"
 //Request object
 {
-	//[Mandatory] title of the product
-	"title" : "Watch" ,
-	//[Mandatory] description of the product
-	"description" : "something something something",
-	//[Mandatory] images of the product
-	"heroImageUrl" : "www.example.com/imageName",
-	//[Mandatory] 
-	"price" : 
-	{
-		// price of the product (in Rupees)
-		"amount" : "300",
-		// Boolean flag specifying whether price is negotiable or not
-		"isPriceNegotiable" : "true"
-		
-	},
-	//[Mandatory] category of the product
-	"category" : "Accessories",
-
-	//[Optional] images of the product
-	"imageUrls" : [
-		{
-			"url" : "www.example.com/firstImage"
-		},
-		{
-			"url" : "www.example.com/secondImage"
-		}],
-	//[Optional] date when the original product was purchased in yyyy'-'MM'-'dd format
-	"purchaseDate" : "2019-09-01",
-	//[Optional] Address where the product is present
-	"pickupAddress" : {
-			//[Mandatory]
-			"line1" : "Flat,Apartment",
-			//[Optional]
-			"line2" : "Street",
-			//[Mandatory]
-			"city" : "Pune",
-			//[Mandatory]
-			"pincode" : "411001",
-			//[Mandatory]
-			"state" : "Maharashtra",
-		}
+    //[Optional]
+    "sort": {
+            "type":"Date",
+            "order":"Desc"
+    },
+    //[Optional] Differnt types of filter
+    "filters" :[    
+        {
+        "search":
+                {
+                "query":"watch"
+                }
+        },
+        {
+        "price":
+                {
+                "min":123,
+                "max":345
+                }
+        }
+    ]
 }

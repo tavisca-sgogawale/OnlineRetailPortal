@@ -1,0 +1,48 @@
+//Response data
+{
+	//[Mandatory] id of the product
+	"Id":"1c8ac39a-48d0-42fe-b2a1-7eaaa4f2f464",
+	//[Mandatory] Seller id of the product
+	"SellerId":"564215",
+	//[Mandatory] title of the product
+	"title" : "Watch" ,
+	//[Mandatory] description of the product
+	"description" : "something something something",
+	//[Mandatory] images of the product
+	"heroImageUrl" : "www.example.com/imageName",
+	//[Mandatory] 
+	"price" : 
+	{
+		// price of the product (in Rupees)
+		"amount" : "300",
+		// Boolean flag specifying whether price is negotiable or not
+		"isPriceNegotiable" : "true"
+		
+	},
+	//[Mandatory] category of the product
+	"category" : "Accessories",
+
+	//[Optional] images of the product
+	"imageUrls" : [
+		{
+			"url" : "www.example.com/firstImage"
+		},
+		{
+			"url" : "www.example.com/secondImage"
+		}],
+	//[Optional] date when the original product was purchased in yyyy'-'MM'-'dd format
+	"purchaseDate" : "2019-09-01",
+	//[Optional] Address where the product is present
+	"pickupAddress" : {
+			//[Mandatory]
+			"line1" : "Flat,Apartment",
+			//[Optional]
+			"line2" : "Street",
+			//[Mandatory]
+			"city" : "Pune",
+			//[Mandatory]
+			"pincode" : "411001",
+			//[Mandatory]
+			"state" : "Maharashtra",
+		}
+}

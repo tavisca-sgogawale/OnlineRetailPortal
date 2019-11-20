@@ -4,14 +4,17 @@
 //Request object
 {
     //[Optional]
-    "ProductSort": {
-            "Type":"Date",
-            "Order":"Desc"
-    }
+    "sort": {
+            "type":"Date",
+            "order":"Desc"
+    },
     //[Optional] Differnt types of filter
     "filters" :[    
         {
-            "searchQuery":"watch"
+        "search":
+                {
+                "query":"watch"
+                }
         },
         {
         "price":

@@ -1,11 +1,15 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using OnlineRetailPortal.Contracts;
+using OnlineRetailPortal.Core;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.MongoDBStore
 {
-    class MongoCategoryStore
+   public class MongoCategoryStore : ICategoryStore 
     {
         private static MongoClient _dbClient = new MongoClient(new MongoClientSettings
         {
@@ -16,6 +20,22 @@ namespace OnlineRetailPortal.MongoDBStore
         });
 
         private IMongoDatabase _db = _dbClient.GetDatabase(MongoDBConfiguration.Database);
+        private string _collection = MongoDBConfiguration.ProductCollection;
+
+        public async Task<CategoriesStoreResponse> GetCategoriesAsync()
+        {
+            List<StoreCategory> mongoCategoriesEntities;
+            try
+            {
+                var data = _db.GetCollection<StoreCategory>(_collection);
+                mongoCategoriesEntities = await data.Find(new BsonDocument()).ToListAsync();
+            }
+            catch
+            {
+                throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, System.Net.HttpStatusCode.GatewayTimeout);
+            }
+            return mongoCategoriesEntities.ToModel();
+        }
 
 
     }

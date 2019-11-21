@@ -10,7 +10,7 @@ namespace OnlineRetailPortal.Mock
 {
     public class CategoryStoreFactory : ICategoryStoreFactory
     {
-        private const string _storeValue = "Mock";
+        private const string _storeValue = "DB";
         public ICategoryStore GetCategoryStore()
         {
             //current implementation for mock,will add DB implementation later  

@@ -5,9 +5,10 @@ namespace OnlineRetailPortal.MongoDBStore
 {
     public class StoreCategory
     {
+        [MongoDB.Bson.Serialization.Attributes.BsonId]
         public string Name { get; set; }
         public List<string> Tags { get; set; }
-        DateTime CreatedDate { get; set; }
-        DateTime UpdatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
     }
 }

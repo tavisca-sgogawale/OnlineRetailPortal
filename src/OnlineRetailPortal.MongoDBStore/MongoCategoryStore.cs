@@ -20,7 +20,7 @@ namespace OnlineRetailPortal.MongoDBStore
         });
 
         private IMongoDatabase _db = _dbClient.GetDatabase(MongoDBConfiguration.Database);
-        private string _collection = MongoDBConfiguration.ProductCollection;
+        private string _collection = MongoDBConfiguration.CategoryCollection;
 
         public async Task<CategoriesStoreResponse> GetCategoriesAsync()
         {
@@ -30,13 +30,11 @@ namespace OnlineRetailPortal.MongoDBStore
                 var data = _db.GetCollection<StoreCategory>(_collection);
                 mongoCategoriesEntities = await data.Find(new BsonDocument()).ToListAsync();
             }
-            catch
+            catch(Exception ex)
             {
                 throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, System.Net.HttpStatusCode.GatewayTimeout);
             }
             return mongoCategoriesEntities.ToModel();
         }
-
-
     }
 }

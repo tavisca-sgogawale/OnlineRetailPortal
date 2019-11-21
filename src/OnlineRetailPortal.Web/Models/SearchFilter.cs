@@ -2,6 +2,6 @@
 {
     public class SearchFilter : Filter
     {
-        public string SearchQuery { get; set; }
+        public string Query { get; set; }
     }
 }

@@ -6,7 +6,7 @@ namespace OnlineRetailPortal.Web
 {
     public abstract class AbstractJsonConverter<T> : JsonConverter
     {
-        protected abstract T Create(Type objectType, JObject jObject);
+        protected abstract JsonResponse Create(Type objectType, JObject jObject);
 
         public override bool CanConvert(Type objectType)
         {
@@ -21,10 +21,12 @@ namespace OnlineRetailPortal.Web
         {
             var jObject = JObject.Load(reader);
 
-            T target = Create(objectType, jObject);
-            serializer.Populate(jObject.CreateReader(), target);
+            JsonResponse response = Create(objectType, jObject);
+            JToken token;
+            jObject.TryGetValue(response.Key, StringComparison.InvariantCultureIgnoreCase, out token);
+            serializer.Populate(token.CreateReader(), response.Target);
 
-            return target;
+            return response.Target;
         }
 
         public override void WriteJson(

@@ -3,21 +3,21 @@ using System;
 
 namespace OnlineRetailPortal.Web
 {
-    public class FilterConverter : AbstractJsonConverter<Contracts.Filter>
+    public class FilterConverter : AbstractJsonConverter<Filter>
     {
-        protected override Contracts.Filter Create(Type objectType, JObject jObject)
+        protected override JsonResponse Create(Type objectType, JObject jObject)
         {
-            if (FieldExists(jObject, "SearchQuery", JTokenType.String))
-                return new Contracts.SearchFilter();
+            if (FieldExists(jObject, "Search", JTokenType.Object))
+                return new JsonResponse(new SearchFilter(), "Search");
 
-            if (FieldExists(jObject, "SellerId", JTokenType.String))
-                return new Contracts.IdFilter();
+            if (FieldExists(jObject, "Id", JTokenType.Object))
+                return new JsonResponse(new IdFilter(), "Id");
 
-            if (FieldExists(jObject, "Min", JTokenType.Integer))
-                return new Contracts.PriceFilter();
+            if (FieldExists(jObject, "Price", JTokenType.Object))
+                return new JsonResponse(new PriceFilter(), "Price");
 
-            if (FieldExists(jObject, "Status", JTokenType.String))
-                return new Contracts.StatusFilter();
+            if (FieldExists(jObject, "Status", JTokenType.Object))
+                return new JsonResponse(new StatusFilter(), "Status");
             throw new InvalidOperationException();
         }
     }

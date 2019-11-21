@@ -85,17 +85,17 @@ namespace OnlineRetailPortal.MongoDBStore
                         else if (filter.GetType().Name == "SearchFilter")
                         {
                             SearchFilter search = filter as SearchFilter;
-                            filters = filters & builder.Text(search.SearchQuery);
+                            filters = filters & builder.Text(search.Query);
                         }
                         else if (filter.GetType().Name == "IdFilter")
                         {
                             IdFilter id = filter as IdFilter;
-                            filters = filters & builder.Eq("SellerId", id.SellerId);
+                            filters = filters & builder.Eq("SellerId", id.UserId);
                         }
                         else if (filter.GetType().Name == "StatusFilter")
                         {
                             StatusFilter status = filter as StatusFilter;
-                            filters = filters & builder.Eq("Status", status.Status);
+                            filters = filters & builder.Eq("Status", status.Type);
                         }
                     }
                     var docCount = (int)await collection.Find(filters).CountDocumentsAsync();

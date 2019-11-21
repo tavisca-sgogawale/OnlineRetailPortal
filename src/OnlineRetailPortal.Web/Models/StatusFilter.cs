@@ -1,4 +1,4 @@
-﻿namespace OnlineRetailPortal.Contracts
+﻿namespace OnlineRetailPortal.Web
 {
     public class StatusFilter : Filter
     {

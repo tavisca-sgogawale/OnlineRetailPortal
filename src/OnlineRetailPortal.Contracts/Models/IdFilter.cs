@@ -2,6 +2,6 @@
 {
     public class IdFilter : Filter
     {
-        public string SellerId { get; set; }
+        public string UserId { get; set; }
     }
 }

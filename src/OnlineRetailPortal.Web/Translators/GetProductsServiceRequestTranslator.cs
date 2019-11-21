@@ -23,7 +23,7 @@ namespace OnlineRetailPortal.Web
                     Type = String.IsNullOrEmpty(request.ProductSort.Type) ? _sortType : request.ProductSort.Type,
                     Order = String.IsNullOrEmpty(request.ProductSort.Order) ? _sortOrder : request.ProductSort.Order
                 },
-                Filters = request.Filters
+                Filters = request.Filters.ToEntity()
             };
         }
     }

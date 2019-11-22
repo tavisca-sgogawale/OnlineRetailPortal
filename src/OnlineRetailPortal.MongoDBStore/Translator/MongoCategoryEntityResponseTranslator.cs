@@ -16,9 +16,9 @@ namespace OnlineRetailPortal.MongoDBStore
             {
                 Categories = mongoCategoryEntity.Select(x => new Category()
                 {
-                  Name = x.Name
+                    Name = x.Name,
+                    Tags =x.Tags
                 }).ToList(),
-                
             };
             return getCategoryStoreResponse;
         }

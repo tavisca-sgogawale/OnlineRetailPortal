@@ -9,13 +9,27 @@ namespace OnlineRetailPortal.Web
     {
         public static CategoryResponse ToEntity(this Contracts.CategoriesServiceResponse getCategoriesServiceResponse)
         {
-            CategoryResponse response = new CategoryResponse() { Categories = new List<string>() { } };
-            
+            /*
+            CategoryResponse response = new CategoryResponse() { 
+                Categories = getCategoriesServiceResponse.Categories.Select(x => new Category()
+                {
+                    Name = x.Name,
+                    Tags = x.Tags
+                }).ToList(),
+            };
+            */
+            CategoryResponse response = new CategoryResponse();
             if (getCategoriesServiceResponse?.Categories == null)
             {
-                return response;
-            }         
-            response.Categories = getCategoriesServiceResponse.Categories.Select(x => x.Name).ToList();
+                response.Categories = new List<Category>() { };
+            }
+
+            response.Categories = getCategoriesServiceResponse.Categories.Select(x => new Category()
+            {
+                Name = x.Name,
+                Tags = x.Tags
+            }).ToList();
+            
             return response;
         }
     }

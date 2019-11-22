@@ -18,7 +18,8 @@ namespace OnlineRetailPortal.Mock
             {
                 Categories = categories.Select(x => new Contracts.Category()
                 {
-                    Name = x.Name
+                    Name = x.Name,
+                    Tags = x.Tags
                 }).ToList()
             };
            

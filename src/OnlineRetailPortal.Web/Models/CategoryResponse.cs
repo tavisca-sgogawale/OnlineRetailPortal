@@ -9,6 +9,6 @@ namespace OnlineRetailPortal.Web
 {
     public class CategoryResponse 
     {
-        public List<string> Categories { get; set; }
+        public List<Category> Categories { get; set; }
     }
 }

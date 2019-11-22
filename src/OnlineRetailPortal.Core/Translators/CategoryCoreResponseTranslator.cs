@@ -16,7 +16,7 @@ namespace OnlineRetailPortal.Core
             var categories = new List<Category>();
             foreach(var x in getCategoriesStoreResponse.Categories)
             {
-                categories.Add(new Category(x.Name));
+                categories.Add(new Category(x.Name) {Tags = x.Tags });
             }
             return categories;
         }

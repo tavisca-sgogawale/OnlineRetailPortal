@@ -16,7 +16,8 @@ namespace OnlineRetailPortal.Services
             {
                 Categories = categories.Select(x => new Category()
                 {
-                    Name = x.Name
+                    Name = x.Name,
+                    Tags = x.Tags
                 }).ToList()
             };
             return response;

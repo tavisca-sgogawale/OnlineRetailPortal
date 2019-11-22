@@ -9,6 +9,7 @@ namespace OnlineRetailPortal.Core
     public class Category
     {
         public string Name { get; }
+        public List<string> Tags { get; set; }
         
         public Category(string name)
         {

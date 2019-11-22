@@ -23,7 +23,7 @@ namespace OnlineRetailPortal.Web.Controllers
         public async Task<CategoryResponse> Get()        
         {
             var response = await _categoryService.GetCategoriesAsync();
-            return response.ToEntity();
+            return response.ToModel();
         }
 
     }

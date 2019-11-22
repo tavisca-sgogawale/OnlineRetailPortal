@@ -18,7 +18,7 @@ namespace OnlineRetailPortal.Core
         public async static Task<List<Category>> GetCategoriesAsync(ICategoryStore categoryStore)
         {
             var response = await categoryStore.GetCategoriesAsync();
-            var coreCategoriesResponse = response.ToEntity();
+            var coreCategoriesResponse = response.ToModel();
             return coreCategoriesResponse;
         }
     }

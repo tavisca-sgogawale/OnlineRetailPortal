@@ -18,6 +18,8 @@ namespace OnlineRetailPortal.Web
 
             if (FieldExists(jObject, "Status", JTokenType.Object))
                 return new JsonResponse(new StatusFilter(), "Status");
+            if (FieldExists(jObject, "Category", JTokenType.Object))
+                return new JsonResponse(new CategoryFilter(), "Category");
             throw new InvalidOperationException();
         }
     }

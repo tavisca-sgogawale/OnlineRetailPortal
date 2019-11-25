@@ -37,6 +37,11 @@ namespace OnlineRetailPortal.Web
                     if (filterList.Where(i => i.GetType().Name == "IdFilter").Count() == 0)
                         filterList.Add(idFilter.ToEntity());
                 }
+                else if (filter is CategoryFilter categoryFilter)
+                {
+                    if (filterList.Where(i => i.GetType().Name == "CategoryFilter").Count() == 0)
+                        filterList.Add(categoryFilter.ToEntity());
+                }
             }
             return filterList;
         }
@@ -76,6 +81,15 @@ namespace OnlineRetailPortal.Web
                 UserId = filter.UserId
             };
             return idFilter;
+        }
+
+        public static Contracts.CategoryFilter ToEntity(this CategoryFilter filter)
+        {
+            Contracts.CategoryFilter categoryFilter = new Contracts.CategoryFilter()
+            {
+                Categories = filter.Categories
+            };
+            return categoryFilter;
         }
     }
 }

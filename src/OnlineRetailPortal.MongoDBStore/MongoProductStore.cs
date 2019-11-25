@@ -108,6 +108,11 @@ namespace OnlineRetailPortal.MongoDBStore
                             StatusFilter status = filter as StatusFilter;
                             filters = filters & builder.Eq("Status", status.Type);
                         }
+                        else if (filter.GetType().Name == "CategoryFilter")
+                        {
+                            CategoryFilter categoryFilter = filter as CategoryFilter;
+                            filters = filters & builder.In("Category", categoryFilter.Categories);
+                        }
                     }
                     var docCount = (int)await collection.Find(filters).CountDocumentsAsync();
                     request.PagingInfo.TotalPages = (docCount >= pageSize) ?

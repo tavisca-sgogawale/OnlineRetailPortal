@@ -10,19 +10,19 @@ namespace OnlineRetailPortal.Mock
     public class MockProductStore : IProductStore
     {
         static List<Product> productList = new List<Product>() {
-            new Product{SellerId="1",Id="101",Name="Mobile", Price=new Price{Money = new Money(13400.0, "INR"), IsNegotiable=true}, Category=Category.Mobile,
+            new Product{SellerId="1",Id="101",Name="Mobile", Price=new Price{Money = new Money(13400.0, "INR"), IsNegotiable=true}, Category=new Contracts.Category(){Name="Mobile" },
                 HeroImage = "https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery",
                 Description ="11 pro max 64 gb full box", Images= new List<string>(){"https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery","https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery" },
                 PickupAddress =new Address{Line1="abc",Line2="xyz", City="Pune",State="Maharashtra", Pincode=411038 },
                 PostDateTime =  new DateTime(2019,1,1),ExpirationDate = new DateTime(2019,12,1).AddDays(30), PurchasedDate = DateTime.Now, Status = Status.Active },
 
-            new Product{SellerId="2",Id="102",Name="Bottle", Price=new Price{ Money = new Money(14400.0, "INR"), IsNegotiable=true}, Category=Category.Other,
+            new Product{SellerId="2",Id="102",Name="Bottle", Price=new Price{ Money = new Money(14400.0, "INR"), IsNegotiable=true}, Category=new Contracts.Category(){Name="Other" },
                 HeroImage = "https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery",
                 Description ="Tavisca green color bottle", Images=null,
                 PickupAddress =new Address{Line1="abc",Line2="xyz", City="Pune",State="Maharashtra", Pincode=411038 },
                 PostDateTime =  new DateTime(2018,12,1),ExpirationDate = new DateTime(2019,12,1).AddDays(30), PurchasedDate =  new DateTime(2019,12,1), Status = Status.Active },
 
-             new Product{SellerId="3",Id="103",Name="Computer", Price=new Price{Money= new Money(15500.0, "INR"), IsNegotiable=false}, Category=Category.Electronic,
+             new Product{SellerId="3",Id="103",Name="Computer", Price=new Price{Money= new Money(15500.0, "INR"), IsNegotiable=false}, Category=new Contracts.Category(){Name="Electronic" },
                 HeroImage = "https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery",
                 Description ="hp desktop", Images=null,
                 PickupAddress =new Address{Line1="abc",Line2="xyz", City="Pune",State="Maharashtra", Pincode=411038 },

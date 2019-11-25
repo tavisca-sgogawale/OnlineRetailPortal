@@ -1,24 +1,26 @@
-//POST /api/v1.0/{applicationname}/product
+//PUT /api/v1.0/{applicationname}/product/update/{product-id}
 
 //Header contains sessionId : FAE04EC0-301F-11D3-BF4B-00C04F79EFBC and userId : 1111
 //Request object
 {
-	//[Mandatory] title of the product
+	//[optional] title of the product
 	"title" : "Watch" ,
-	//[Mandatory] description of the product
+	//[optional] description of the product
 	"description" : "something something something",
-	//[Mandatory] images of the product
+	//[optional] images of the product
 	"heroImageUrl" : "www.example.com/imageName",
-	//[Mandatory] 
+	//[optional] 
 	"price" : 
 	{
+
+		//[optional] 
 		// price of the product (in Rupees)
 		"amount" : "300",
 		// Boolean flag specifying whether price is negotiable or not
 		"isPriceNegotiable" : "true"
 		
 	},
-	//[Mandatory] category of the product
+	//[optional] category of the product
 	"category" : "Accessories",
 
 	//[Optional] images of the product

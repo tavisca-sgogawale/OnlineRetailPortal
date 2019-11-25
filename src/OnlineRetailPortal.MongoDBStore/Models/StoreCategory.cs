@@ -7,6 +7,7 @@ namespace OnlineRetailPortal.MongoDBStore
     [BsonIgnoreExtraElements]
     public class StoreCategory
     {
+        [MongoDB.Bson.Serialization.Attributes.BsonId]
         public string Name { get; set; }
         public List<string> Tags { get; set; }
         public DateTime CreatedDate { get; set; }

@@ -1,8 +1,9 @@
-//POST /api/v1.0/{applicationname}/product
-
-//Header contains sessionId : FAE04EC0-301F-11D3-BF4B-00C04F79EFBC and userId : 1111
-//Request object
+//Response data
 {
+	//[Mandatory] id of the product
+	"Id":"1c8ac39a-48d0-42fe-b2a1-7eaaa4f2f464",
+	//[Mandatory] Seller id of the product
+	"SellerId":"564215",
 	//[Mandatory] title of the product
 	"title" : "Watch" ,
 	//[Mandatory] description of the product

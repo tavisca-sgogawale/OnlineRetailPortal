@@ -1,0 +1,18 @@
+//Response Data
+{
+    "Categories" : [
+            "Accessory",
+            "Bike",
+            "Book",
+            "Car",
+            "Electronic",
+            "Fashion",
+            "Furniture",
+            "Home & Kitchen",
+            "Mobile",
+            "Property",
+            "Toy",
+            "Other"
+    ]
+}
+

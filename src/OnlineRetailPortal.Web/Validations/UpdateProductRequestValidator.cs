@@ -51,7 +51,6 @@ namespace OnlineRetailPortal.Web
             .WithMessage(Error.MissingField("Category"));
 
             RuleFor(x => x.Price.Amount)
-            .Cascade(CascadeMode.StopOnFirstFailure)
             .GreaterThan(0)
             .WithErrorCode(ErrorCode.GreaterValue())
             .WithMessage(Error.GreaterValue("Price", "0"));

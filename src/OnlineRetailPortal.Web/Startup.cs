@@ -11,7 +11,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using OnlineRetailPortal.Contracts;
-using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Mock;
 using OnlineRetailPortal.Services;
 using OnlineRetailPortal.Services.Services;

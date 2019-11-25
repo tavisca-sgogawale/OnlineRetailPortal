@@ -24,7 +24,7 @@ namespace OnlineRetailPortal.Tests
             GetProductsResponse expectedResponse = GetExpectedResponse();
 
             //Act
-            GetProductsResponse actualResponse = await _productsController.GetProductsAsync(pageNo, pageSize);
+            GetProductsResponse actualResponse = await _productsController.GetProductsAsync(pageNo, pageSize,null);
 
             //Test
             Assert.Equal(expectedResponse.PagingInfo.PageNumber, actualResponse.PagingInfo.PageNumber);
@@ -36,8 +36,7 @@ namespace OnlineRetailPortal.Tests
                 Assert.Equal(expectedResponse.Products[i].PostDateTime.ToString(), actualResponse.Products[i].PostDateTime.ToString());
                 Assert.Equal(expectedResponse.Products[i].Name, actualResponse.Products[i].Name);
                 Assert.Equal(expectedResponse.Products[i].Price.IsNegotiable, actualResponse.Products[i].Price.IsNegotiable);
-                Assert.Equal(expectedResponse.Products[i].Price.Money.Amount, actualResponse.Products[i].Price.Money.Amount);
-                Assert.Equal(expectedResponse.Products[i].Price.Money.Currency, actualResponse.Products[i].Price.Money.Currency);
+                Assert.Equal(expectedResponse.Products[i].Price.Amount, actualResponse.Products[i].Price.Amount);
             }
         }
         [Fact]
@@ -56,8 +55,8 @@ namespace OnlineRetailPortal.Tests
                 Assert.Equal(expectedResponse.Product.PostDateTime.ToString(), actualResponse.Product.PostDateTime.ToString());
                 Assert.Equal(expectedResponse.Product.Name, actualResponse.Product.Name);
                 Assert.Equal(expectedResponse.Product.Price.IsNegotiable, actualResponse.Product.Price.IsNegotiable);
-                Assert.Equal(expectedResponse.Product.Price.Money.Amount, actualResponse.Product.Price.Money.Amount);
-                Assert.Equal(expectedResponse.Product.Price.Money.Currency, actualResponse.Product.Price.Money.Currency);
+                Assert.Equal(expectedResponse.Product.Price.Amount, actualResponse.Product.Price.Amount);
+
             }
         }
         private Web.GetProductResponse GetExpectedProduct()
@@ -71,12 +70,7 @@ namespace OnlineRetailPortal.Tests
                     Name = "Mobile",
                     Price = new Web.Price
                     {
-
-                        Money = new Web.Money()
-                        {
-                            Amount = 200,
-                            Currency = "INR"
-                        },
+                        Amount = 200,
                         IsNegotiable = true
                     },
                     Category = "Mobile",
@@ -105,11 +99,10 @@ namespace OnlineRetailPortal.Tests
             {
                 Products = new List<Web.Product>()
                 {
-                 new  Web.Product{SellerId="1",Id="101",Name="Mobile", Price=new Web.Price{Money = new Web.Money()
-                    {
+                 new  Web.Product{SellerId="1",Id="101",Name="Mobile", Price=new Web.Price{
+
                         Amount = 200,
-                        Currency = "INR"
-                    }, IsNegotiable=true}, Category="Mobile",
+                        IsNegotiable=true}, Category="Mobile",
                 HeroImage = "https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery",
                 Description ="11 pro max 64 gb full box", Images= new List<string>(){"https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery","https://www.olx.in/item/11-pro-max-64-gb-full-box-iid-1540782056/gallery" },
                 PickupAddress =new Web.Address{Line1="abc",Line2="xyz", City="Pune",State="Maharashtra", Pincode=411038 },

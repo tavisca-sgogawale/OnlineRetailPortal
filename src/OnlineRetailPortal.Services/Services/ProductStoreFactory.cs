@@ -13,9 +13,9 @@ namespace OnlineRetailPortal.Services
             this.productStore = productStore;
         }
 
-        public IProductStore GetProductStore(string storeValue)
+        public IProductStore GetProductStore()
         {
-            return this.productStore[storeValue];
+            return (Contracts.Environment.isMockingEnabled) ? this.productStore["Mock"] : this.productStore["Mongo"];
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace OnlineRetailPortal.Web
 {
@@ -11,31 +11,71 @@ namespace OnlineRetailPortal.Web
                 return null;
 
             var filterList = new List<Contracts.Filter>();
+
             foreach (var filter in filters)
             {
-                filterList.Add(filter.ToType());
+
+                if (filter is SearchFilter searchFilter)
+                {
+                    if (filterList.Where(i => i.GetType().Name == "SearchFilter").Count() == 0)
+                        filterList.Add(searchFilter.ToEntity());
+                }
+                else if (filter is PriceFilter priceFilter)
+                {
+                    if (filterList.Where(i => i.GetType().Name == "PriceFilter").Count() == 0)
+                        filterList.Add(priceFilter.ToEntity());
+                }
+
+                else if (filter is StatusFilter statusFilter)
+                {
+                    if (filterList.Where(i => i.GetType().Name == "StatusFilter").Count() == 0)
+                        filterList.Add(statusFilter.ToEntity());
+                }
+
+                else if (filter is IdFilter idFilter)
+                {
+                    if (filterList.Where(i => i.GetType().Name == "IdFilter").Count() == 0)
+                        filterList.Add(idFilter.ToEntity());
+                }
             }
             return filterList;
         }
 
-        public static Contracts.Filter ToType(this Web.Filter filter)
+        public static Contracts.SearchFilter ToEntity(this SearchFilter filter)
         {
-            switch (filter.GetType().Name)
+            Contracts.SearchFilter searchFilter = new Contracts.SearchFilter()
             {
-                case "SearchFilter":
-                    return new Contracts.SearchFilter() { Query = filter.GetType().GetProperty("Query").GetValue(filter, null).ToString() };
-                case "PriceFilter":
-                    return new Contracts.PriceFilter()
-                    {
-                        Max = int.Parse(filter.GetType().GetProperty("Max").GetValue(filter, null).ToString()),
-                        Min = int.Parse(filter.GetType().GetProperty("Min").GetValue(filter, null).ToString())
-                    };
-                case "StatusFilter":
-                    return new Contracts.StatusFilter() { Type = filter.GetType().GetProperty("Type").GetValue(filter, null).ToString() };
-                case "IdFilter":
-                    return new Contracts.IdFilter() { UserId = filter.GetType().GetProperty("UserId").GetValue(filter, null).ToString() };
-            }
-            throw new InvalidOperationException();
+                Query = filter.Query
+            };
+            return searchFilter;
+        }
+
+        public static Contracts.PriceFilter ToEntity(this PriceFilter filter)
+        {
+            Contracts.PriceFilter priceFilter = new Contracts.PriceFilter()
+            {
+                Min = filter.Min,
+                Max = filter.Max
+            };
+            return priceFilter;
+        }
+
+        public static Contracts.StatusFilter ToEntity(this StatusFilter filter)
+        {
+            Contracts.StatusFilter statusFilter = new Contracts.StatusFilter()
+            {
+                Type = filter.Type
+            };
+            return statusFilter;
+        }
+
+        public static Contracts.IdFilter ToEntity(this IdFilter filter)
+        {
+            Contracts.IdFilter idFilter = new Contracts.IdFilter()
+            {
+                UserId = filter.UserId
+            };
+            return idFilter;
         }
     }
 }

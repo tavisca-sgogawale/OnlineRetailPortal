@@ -61,6 +61,8 @@ namespace OnlineRetailPortal.MongoDBStore
             var pageSize = request.PagingInfo.PageSize;
             var pageNumber = request.PagingInfo.PageNumber;
             var collection = _db.GetCollection<MongoEntity>(_collection);
+            var categoryCollection = _db.GetCollection<StoreCategory>("Category");
+            var categoryBuilder = Builders<StoreCategory>.Filter;
             var sortType = request.ProductSort.Type.ToEntity();
             var skipDocuments = (pageNumber - 1) * pageSize;
             var orderBy = request.ProductSort.Order;
@@ -80,12 +82,21 @@ namespace OnlineRetailPortal.MongoDBStore
                         if (filter.GetType().Name == "PriceFilter")
                         {
                             PriceFilter price = filter as PriceFilter;
-                            filters = filters & builder.Gt("Price.Amount", price.Min) & builder.Lte("Price.Amount", price.Max);
+                            filters = filters & (builder.Gt("Price.Amount", price.Min) & builder.Lte("Price.Amount", price.Max));
                         }
                         else if (filter.GetType().Name == "SearchFilter")
                         {
                             SearchFilter search = filter as SearchFilter;
-                            filters = filters & builder.Text(search.Query);
+                            var condition = categoryBuilder.AnyEq(t => t.Tags, search.Query);
+                            var category = await categoryCollection.Find(condition).ToListAsync();
+                            if (category.Count > 0)
+                            {
+                                filters = filters & builder.Eq("Category", category[0].Name);
+                            }
+                            else
+                            {
+                                filters = filters & builder.Text(search.Query);
+                            }
                         }
                         else if (filter.GetType().Name == "IdFilter")
                         {
@@ -132,7 +143,7 @@ namespace OnlineRetailPortal.MongoDBStore
                 }
 
             }
-            catch
+            catch (Exception ex)
             {
                 throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
             }

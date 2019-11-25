@@ -1,9 +1,4 @@
 ﻿using OnlineRetailPortal.Contracts;
-using OnlineRetailPortal.Core;
-using OnlineRetailPortal.Mock;
-using System;
-using System.Collections.Generic;
-using System.Net;
 
 using System.Threading.Tasks;
 

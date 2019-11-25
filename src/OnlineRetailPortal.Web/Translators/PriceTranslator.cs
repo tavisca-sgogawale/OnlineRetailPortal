@@ -10,7 +10,7 @@ namespace OnlineRetailPortal.Web
         {
             if (price == null)
                 return null;
-            if( price.Money == null)
+            if( price.Amount == 0)
             {
                 return new Contracts.Price()
                 {
@@ -21,8 +21,7 @@ namespace OnlineRetailPortal.Web
             return new Contracts.Price()
             {
                 Money = new Contracts.Money(
-                price.Money.Amount,
-                price.Money.Currency),
+                price.Amount, "INR"),
                 IsNegotiable = price.IsNegotiable
             };
         }
@@ -33,12 +32,8 @@ namespace OnlineRetailPortal.Web
                 return null;
             return new Price()
             {
-                Money = new Money()
-                {
-                    Amount = price.Money.Amount,
-                    Currency = price.Money.Currency
-                },
-                IsNegotiable = Convert.ToBoolean(price.IsNegotiable)
+                Amount = price.Money.Amount,
+                IsNegotiable = price.IsNegotiable
             };
         }
     }

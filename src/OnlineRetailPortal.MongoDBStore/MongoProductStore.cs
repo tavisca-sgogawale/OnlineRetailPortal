@@ -116,6 +116,7 @@ namespace OnlineRetailPortal.MongoDBStore
         public async Task<ProductEntity> UpdateProductAsync(UpdateProductEntity updateProductEntity)
         {
             MongoEntity getResult;
+            var hello = updateProductEntity;
             var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
             getResult = await productStoreCollection.Find(x => x.Id == updateProductEntity.Id).FirstOrDefaultAsync();
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineRetailPortal.Contracts
+namespace OnlineRetailPortal.Mock
 {
     public class Category
     {

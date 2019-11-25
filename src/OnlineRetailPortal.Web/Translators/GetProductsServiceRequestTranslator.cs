@@ -23,8 +23,8 @@ namespace OnlineRetailPortal.Web
                 },
                 ProductSort = new Contracts.Sort()
                 {
-                    Type = String.IsNullOrEmpty(request.ProductSort.Type) ? _sortType : request.ProductSort.Type,
-                    Order = String.IsNullOrEmpty(request.ProductSort.Order) ? _sortOrder : request.ProductSort.Order
+                    Type =  String.IsNullOrEmpty(request?.ProductSort?.Type) ? _sortType : request.ProductSort.Type,
+                    Order = String.IsNullOrEmpty(request?.ProductSort?.Order) ? _sortOrder : request.ProductSort.Order
                 }
             };
         }

@@ -1,19 +1,25 @@
-﻿using System;
+﻿using OnlineRetailPortal.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Core
 {
-    public enum Category
+    public class Category
     {
-        Property,
-        Car,
-        Furniture,
-        Mobile,
-        Bike,
-        Book,
-        Fashion,
-        Electronic,
-        Other
+        public string Name { get; }
+        public List<string> Tags { get; set; }
+        
+        public Category(string name)
+        {
+            this.Name = name;
+        }
+        public async static Task<List<Category>> GetCategoriesAsync(ICategoryStore categoryStore)
+        {
+            var response = await categoryStore.GetCategoriesAsync();
+            var coreCategoriesResponse = response.ToModel();
+            return coreCategoriesResponse;
+        }
     }
 }

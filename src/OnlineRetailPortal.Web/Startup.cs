@@ -11,7 +11,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using OnlineRetailPortal.Contracts;
-using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Mock;
 using OnlineRetailPortal.Services;
 using OnlineRetailPortal.Services.Services;
@@ -47,6 +46,9 @@ namespace OnlineRetailPortal.Web
             services.AddTransient<IProductStoreFactory, ProductStoreFactory>();
             services.AddSingleton<IProductService, ProductService>();
             services.AddTransient<IImageService, ImageService>();
+            services.AddTransient<ICategoryStoreFactory, CategoryStoreFactory>();
+            services.AddTransient<ICategoryService, CategoryService>();
+
 
         }
 

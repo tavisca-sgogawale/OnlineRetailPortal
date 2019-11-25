@@ -32,14 +32,14 @@ namespace OnlineRetailPortal.Web
             .WithErrorCode(ErrorCode.GreaterCharacter())
             .When(x => x.Status != null);
 
-            RuleFor(x => x.Price.Money.Amount)
+            RuleFor(x => x.Price.Amount)
             .Cascade(CascadeMode.StopOnFirstFailure)
             .NotEmpty()
             .WithErrorCode(ErrorCode.MissingField())
             .WithMessage(Error.MissingField("Price"))
             .GreaterThan(0)
             .WithErrorCode(ErrorCode.GreaterValue())
-            .When(x => x.Price != null ? x.Price.Money !=null ? x.Price.Money.Amount <= 0:false  : false)
+            .When(x => x.Price != null ? x.Price.Amount != 0 :false)
             .WithMessage(Error.GreaterValue("Price", "0"));
 
             RuleFor(x => x.Description)

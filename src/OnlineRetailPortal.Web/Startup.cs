@@ -50,6 +50,8 @@ namespace OnlineRetailPortal.Web
             builder.RegisterType<ProductService>().As<IProductService>();
             builder.RegisterType<ProductStoreFactory>().As<IProductStoreFactory>();
             builder.RegisterType<ImageService>().As<IImageService>();
+            builder.RegisterType<CategoryStoreFactory>().As<ICategoryStoreFactory>();
+            builder.RegisterType<CategoryService>().As<ICategoryService>();
             builder.RegisterType<MockProductStore>().Keyed<IProductStore>("Mock");
             builder.RegisterType<MongoProductStore>().Keyed<IProductStore>("Mongo");
         }

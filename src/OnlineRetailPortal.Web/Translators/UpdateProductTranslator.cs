@@ -8,24 +8,24 @@ namespace OnlineRetailPortal.Web
 {
     public static class UpdateProductTranslator
     {
-        public static Contracts.UpdateProductEntity ToEntity(this UpdateProductEntity updateProductEntity)
+        public static Contracts.UpdateProductEntity ToEntity(this UpdateProductEntity updateProductEntity,string productId)
         {
-            Contracts.UpdateProductEntity request = new Contracts.UpdateProductEntity()
-            {
-                Id = updateProductEntity.Id,
-                SellerId = updateProductEntity.SellerId,
-                Name = updateProductEntity.Name,
-                Description = updateProductEntity.Description,
-                HeroImage = updateProductEntity.HeroImage,
-                Price = updateProductEntity.Price.ToEntity(),
-                Category = updateProductEntity.Category.ToEntity(),
-                Images = updateProductEntity.Images,
-                PurchasedDate = updateProductEntity.PurchasedDate,
-                PickupAddress = updateProductEntity.PickupAddress.ToEntity(),
-                PostDateTime = updateProductEntity.PostDateTime,
-                ExpirationDate = updateProductEntity.ExpirationDate,
-                Status = updateProductEntity.Status.ToStatusEntity()
-            };
+            Contracts.UpdateProductEntity request = new Contracts.UpdateProductEntity();
+            
+            request.Id = productId;
+            request.Name = updateProductEntity.Name;
+            request.Category = updateProductEntity.Category;
+            request.Description = updateProductEntity.Description;
+            request.HeroImage = updateProductEntity.HeroImage;
+            request.Price = updateProductEntity.Price.ToEntity();
+            request.Images = updateProductEntity.Images;
+            request.PurchasedDate = updateProductEntity.PurchasedDate;
+            request.PickupAddress = updateProductEntity.PickupAddress.ToEntity();
+            request.PostDateTime = updateProductEntity.PostDateTime;
+            request.PostDateTime = updateProductEntity.PostDateTime;
+            request.ExpirationDate = updateProductEntity.ExpirationDate;
+            request.Status = updateProductEntity.Status;
+
             return request;
         }
         public static UpdateProductEntity ToResponseModel(this Contracts.UpdateProductEntity updateProductEntity)
@@ -33,13 +33,12 @@ namespace OnlineRetailPortal.Web
             UpdateProductEntity response = new UpdateProductEntity()
             {
                 Id = updateProductEntity.Id,
-                SellerId = updateProductEntity.SellerId,
                 Name = updateProductEntity.Name,
                 Description = updateProductEntity.Description,
                 HeroImage = updateProductEntity.HeroImage,
                 Price = updateProductEntity.Price.ToModel(),
-                Category = updateProductEntity.Category.ToModel(),
-                Status = updateProductEntity.Status.ToModel(),
+                Category = updateProductEntity.Category,
+                Status = updateProductEntity.Status,
                 PostDateTime = updateProductEntity.PostDateTime,
                 ExpirationDate = updateProductEntity.ExpirationDate,
                 Images = updateProductEntity.Images,

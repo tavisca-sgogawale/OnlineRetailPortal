@@ -1,4 +1,5 @@
 ﻿using OnlineRetailPortal.Contracts;
+using System;
 
 namespace OnlineRetailPortal.MongoDBStore
 {
@@ -6,7 +7,7 @@ namespace OnlineRetailPortal.MongoDBStore
     {
         public static StorePrice ToEntity(this Price price)
         {
-            return new StorePrice() { Amount = price.Money.Amount, Currency = price.Money.Currency, IsNegotiable = price.IsNegotiable };
+            return new StorePrice() { Amount = price.Money.Amount, Currency = price.Money.Currency, IsNegotiable = Convert.ToBoolean(price.IsNegotiable) };
         }
 
         public static Price ToModel(this StorePrice storePrice)

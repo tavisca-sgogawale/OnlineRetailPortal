@@ -7,29 +7,24 @@ namespace OnlineRetailPortal.Core
 {
     public static class UpdateProductTranslator
     {
-        public static ProductEntity ToStoreEntity(this Product product)
+        public static UpdateProductEntity ToStoreEntity(this UpdateProduct updateProduct)
         {
-            var addProductStoreRequest = new ProductEntity()
-            {
-                Id = product.Id,
-                SellerId = product.SellerId,
-                Name = product.Name,
-                Description = product.Description,
-                HeroImage = product.HeroImage,
-                Price = product.Price.ToEntity(),
-                Category = product.Category.ToEntity(),
-                Images = product.Images,
-                PurchasedDate = product.PurchasedDate,
-                PickupAddress = product.PickupAddress.ToEntity(),
-                PostDateTime = product.PostDateTime,
-                ExpirationDate = product.ExpirationDate,
-                Status = product.Status.ToEntity()
+            var updateProductStoreRequest = new UpdateProductEntity();
+            updateProductStoreRequest.Id = updateProduct.Id;
+            updateProductStoreRequest.Name = updateProduct.Name;
+            updateProductStoreRequest.Description = updateProduct.Description;
+            updateProductStoreRequest.HeroImage = updateProduct.HeroImage;
+            updateProductStoreRequest.Price = updateProduct.Price.ToEntity();
+            updateProductStoreRequest.Category = updateProduct.Category;
+            updateProductStoreRequest.Images = updateProduct.Images;
+            updateProductStoreRequest.PurchasedDate = updateProduct.PurchasedDate;
+            updateProductStoreRequest.PickupAddress = updateProduct.PickupAddress.ToEntity();
+            updateProductStoreRequest.PostDateTime = updateProduct.PostDateTime;
+            updateProductStoreRequest.ExpirationDate = updateProduct.ExpirationDate;
+            updateProductStoreRequest.Status = updateProduct.Status;
 
-            };
-
-            return addProductStoreRequest;
+            return updateProductStoreRequest;
         }
-
 
         public static Product ToStoreModel(this ProductEntity addProductStoreResponse)
         {

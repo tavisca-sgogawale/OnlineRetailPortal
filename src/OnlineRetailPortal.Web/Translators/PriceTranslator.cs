@@ -10,6 +10,14 @@ namespace OnlineRetailPortal.Web
         {
             if (price == null)
                 return null;
+            if( price.Money == null)
+            {
+                return new Contracts.Price()
+                {
+                    Money = null,
+                    IsNegotiable = price.IsNegotiable
+                };
+            }
             return new Contracts.Price()
             {
                 Money = new Contracts.Money(
@@ -30,7 +38,7 @@ namespace OnlineRetailPortal.Web
                     Amount = price.Money.Amount,
                     Currency = price.Money.Currency
                 },
-                IsNegotiable = price.IsNegotiable
+                IsNegotiable = Convert.ToBoolean(price.IsNegotiable)
             };
         }
     }

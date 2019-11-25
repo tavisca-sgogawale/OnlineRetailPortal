@@ -100,6 +100,7 @@ namespace OnlineRetailPortal.MongoDBStore
             var mongoEntity = productEntity.ToEntity();
             var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
             var filter = Builders<MongoEntity>.Filter.Eq("Id", productEntity.Id);
+       
             var result = await productStoreCollection.ReplaceOneAsync(
                             filter,
                             mongoEntity,
@@ -110,6 +111,98 @@ namespace OnlineRetailPortal.MongoDBStore
                 return null;
             }
             return mongoEntity.ToModel();
+        }
+
+        public async Task<ProductEntity> UpdateProductAsync(UpdateProductEntity updateProductEntity)
+        {
+            MongoEntity getResult;
+            var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
+            getResult = await productStoreCollection.Find(x => x.Id == updateProductEntity.Id).FirstOrDefaultAsync();
+
+            getResult = UpdateProductEntity(await productStoreCollection.Find(x => x.Id == updateProductEntity.Id).FirstOrDefaultAsync(),updateProductEntity);
+            var filter = Builders<MongoEntity>.Filter.Eq("Id", updateProductEntity.Id);
+            try
+            {
+                var result = await productStoreCollection.ReplaceOneAsync(
+                            filter,
+                            getResult,
+                            new UpdateOptions { IsUpsert = false });
+            }
+            catch
+            {
+                throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
+            }
+            return getResult.ToModel();
+        }
+
+        private MongoEntity UpdateProductEntity(MongoEntity getResult, UpdateProductEntity updateProductEntity)
+        {
+            if (getResult != null)
+            {
+                if (updateProductEntity.Name != null)
+                {
+                    getResult.Name = updateProductEntity.Name;
+                }
+                if (updateProductEntity.Description != null)
+                {
+                    getResult.Description = updateProductEntity.Description;
+                }
+                if (updateProductEntity.Price != null)
+                {
+                    if (updateProductEntity.Price.Money != null)
+                    {
+                        getResult.Price.Amount = updateProductEntity.Price.Money.Amount;
+                    }
+                    if (updateProductEntity.Price.IsNegotiable != null)
+                    {
+                        getResult.Price.IsNegotiable = Convert.ToBoolean(updateProductEntity.Price.IsNegotiable);
+                    }
+                }
+                if (updateProductEntity.Category != null)
+                {
+                    getResult.Category = updateProductEntity.Category;
+                }
+                if (updateProductEntity.Images != null)
+                {
+                    getResult.Gallery.ImageUrls = updateProductEntity.Images;
+                }
+                if (updateProductEntity.HeroImage != null)
+                {
+                    getResult.Gallery.HeroImageUrl = updateProductEntity.HeroImage;
+                }
+                if (updateProductEntity.PurchasedDate != null)
+                {
+                    getResult.PurchasedDate = updateProductEntity.PurchasedDate;
+                }
+                if (updateProductEntity.PickupAddress != null)
+                {
+                    if (updateProductEntity.PickupAddress.Line1 != null)
+                    {
+                        getResult.PickupAddress.Line1 = updateProductEntity.PickupAddress.Line1;
+                    }
+                    if (updateProductEntity.PickupAddress.Line2 != null)
+                    {
+                        getResult.PickupAddress.Line2 = updateProductEntity.PickupAddress.Line2;
+                    }
+                    if (updateProductEntity.PickupAddress.State != null)
+                    {
+                        getResult.PickupAddress.State = updateProductEntity.PickupAddress.State;
+                    }
+                    if (updateProductEntity.PickupAddress.City != null)
+                    {
+                        getResult.PickupAddress.City = updateProductEntity.PickupAddress.City;
+                    }
+                    if (updateProductEntity.PickupAddress.Pincode != 0)
+                    {
+                        getResult.PickupAddress.Pincode = updateProductEntity.PickupAddress.Pincode;
+                    }
+                }
+                if (updateProductEntity.Status != null)
+                {
+                    getResult.Status = updateProductEntity.Status;
+                }
+            }
+            return getResult;
         }
     }
 }

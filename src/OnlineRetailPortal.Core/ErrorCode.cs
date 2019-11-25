@@ -59,5 +59,9 @@ namespace OnlineRetailPortal.Core
         {
             return string.Format(ErrorCodes.GreaterDate);
         }
+        public static string PincodeLength()
+        {
+            return "Pincode length should be 6";
+        }
     }
 }

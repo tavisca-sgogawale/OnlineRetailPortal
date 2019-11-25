@@ -1,4 +1,6 @@
-﻿namespace OnlineRetailPortal.Core
+﻿using System;
+
+namespace OnlineRetailPortal.Core
 {
     public static class PriceTranslator
     {
@@ -6,6 +8,14 @@
         {
             if (price == null)
                 return null;
+            if (price.Money == null)
+            {
+                return new Contracts.Price()
+                {
+                    Money = null,
+                    IsNegotiable = Convert.ToBoolean(price.IsNegotiable)
+                };
+            }
             return new Contracts.Price()
             {
                 Money = new Contracts.Money(
@@ -24,7 +34,7 @@
                 Money = new Money(
                 price.Money.Amount,
                 price.Money.Currency),
-                IsNegotiable = price.IsNegotiable
+                IsNegotiable = Convert.ToBoolean(price.IsNegotiable)
             };
         }
     }

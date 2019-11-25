@@ -44,12 +44,12 @@ namespace OnlineRetailPortal.Services
             return response.ToModel();
         }
 
-        public async Task<UpdateProductEntity> UpdateProductAsync(UpdateProductEntity updateProductEntity)
+        public async Task<GetProductServiceResponse> UpdateProductAsync(UpdateProductEntity updateProductEntity)
         {
-            Core.Product product = updateProductEntity.ToEntity();
-            var response = await product.UpdateAsync(_productStore);
+            Core.UpdateProduct updateProduct = updateProductEntity.ToEntity();
+            var response = await updateProduct.UpdateAsync(_productStore);
             response.EnsureValid(updateProductEntity);
-            return response.ToResponseModel();
+            return GetProductServiceResponseTranslator.ToModel(response);
         }
     }
 }

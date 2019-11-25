@@ -71,7 +71,7 @@ namespace OnlineRetailPortal.Mock
         }
 
 
-        public Task<ProductEntity> UpdateProductAsync(ProductEntity request)
+        public Task<ProductEntity> UpdateProductAsync(UpdateProductEntity request)
         {
             throw new NotImplementedException();
         }

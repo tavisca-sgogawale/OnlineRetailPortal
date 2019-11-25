@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Contracts
 {
-    public class Category
+    public interface ICategoryStore
     {
-        public string Name { get; set; }
-        public List<string> Tags { get; set; }
+        Task<CategoriesStoreResponse> GetCategoriesAsync();
     }
 }

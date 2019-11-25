@@ -61,6 +61,15 @@ namespace OnlineRetailPortal.MongoDBStore {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        internal static string CategoryCollection {
+            get {
+                return ResourceManager.GetString("CategoryCollection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ORP.
         /// </summary>
         internal static string Database {

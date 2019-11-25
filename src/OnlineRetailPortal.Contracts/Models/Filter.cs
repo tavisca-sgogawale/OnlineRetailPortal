@@ -1,6 +1,7 @@
 ﻿namespace OnlineRetailPortal.Contracts
 {
-    public class Filter
+    public abstract class Filter
     {
+        public string Name { get; set; }
     }
 }

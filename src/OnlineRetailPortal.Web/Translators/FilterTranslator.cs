@@ -50,6 +50,7 @@ namespace OnlineRetailPortal.Web
         {
             Contracts.SearchFilter searchFilter = new Contracts.SearchFilter()
             {
+                Name = "SearchFilter",
                 Query = filter.Query
             };
             return searchFilter;
@@ -59,6 +60,7 @@ namespace OnlineRetailPortal.Web
         {
             Contracts.PriceFilter priceFilter = new Contracts.PriceFilter()
             {
+                Name = "PriceFilter",
                 Min = filter.Min,
                 Max = filter.Max
             };
@@ -69,6 +71,7 @@ namespace OnlineRetailPortal.Web
         {
             Contracts.StatusFilter statusFilter = new Contracts.StatusFilter()
             {
+                Name = "StatusFilter",
                 Type = filter.Type
             };
             return statusFilter;
@@ -78,6 +81,7 @@ namespace OnlineRetailPortal.Web
         {
             Contracts.IdFilter idFilter = new Contracts.IdFilter()
             {
+                Name = "IdFilter",
                 UserId = filter.UserId
             };
             return idFilter;
@@ -87,6 +91,7 @@ namespace OnlineRetailPortal.Web
         {
             Contracts.CategoryFilter categoryFilter = new Contracts.CategoryFilter()
             {
+                Name = "CategoryFilter",
                 Categories = filter.Categories
             };
             return categoryFilter;

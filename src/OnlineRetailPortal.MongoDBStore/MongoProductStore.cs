@@ -79,12 +79,12 @@ namespace OnlineRetailPortal.MongoDBStore
                     var builder = Builders<MongoEntity>.Filter;
                     foreach (var filter in request.Filters)
                     {
-                        if (filter.GetType().Name == "PriceFilter")
+                        if (filter.Name == "PriceFilter")
                         {
                             PriceFilter price = filter as PriceFilter;
                             filters = filters & (builder.Gt("Price.Amount", price.Min) & builder.Lte("Price.Amount", price.Max));
                         }
-                        else if (filter.GetType().Name == "SearchFilter")
+                        else if (filter.Name == "SearchFilter")
                         {
                             SearchFilter search = filter as SearchFilter;
                             var condition = categoryBuilder.AnyEq(t => t.Tags, search.Query);
@@ -98,17 +98,17 @@ namespace OnlineRetailPortal.MongoDBStore
                                 filters = filters & builder.Text(search.Query);
                             }
                         }
-                        else if (filter.GetType().Name == "IdFilter")
+                        else if (filter.Name == "IdFilter")
                         {
                             IdFilter id = filter as IdFilter;
                             filters = filters & builder.Eq("SellerId", id.UserId);
                         }
-                        else if (filter.GetType().Name == "StatusFilter")
+                        else if (filter.Name == "StatusFilter")
                         {
                             StatusFilter status = filter as StatusFilter;
                             filters = filters & builder.Eq("Status", status.Type);
                         }
-                        else if (filter.GetType().Name == "CategoryFilter")
+                        else if (filter.Name == "CategoryFilter")
                         {
                             CategoryFilter categoryFilter = filter as CategoryFilter;
                             filters = filters & builder.In("Category", categoryFilter.Categories);
@@ -148,7 +148,7 @@ namespace OnlineRetailPortal.MongoDBStore
                 }
 
             }
-            catch (Exception ex)
+            catch
             {
                 throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
             }

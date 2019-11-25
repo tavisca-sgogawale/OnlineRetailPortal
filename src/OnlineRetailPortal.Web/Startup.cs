@@ -43,13 +43,7 @@ namespace OnlineRetailPortal.Web
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterType<ProductService>().As<IProductService>();
-            builder.RegisterType<ProductStoreFactory>().As<IProductStoreFactory>();
-            builder.RegisterType<ImageService>().As<IImageService>();
-            builder.RegisterType<CategoryStoreFactory>().As<ICategoryStoreFactory>();
-            builder.RegisterType<CategoryService>().As<ICategoryService>();
-            builder.RegisterType<MockProductStore>().Keyed<IProductStore>("Mock");
-            builder.RegisterType<MongoProductStore>().Keyed<IProductStore>("Mongo");
+            builder.RegisterModule(new ServiceRegistry());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

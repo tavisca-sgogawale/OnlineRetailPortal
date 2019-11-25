@@ -16,7 +16,7 @@ namespace OnlineRetailPortal.Services
         public ProductService(IProductStoreFactory productStoreFactory)
         {
             _productStoreFactory = productStoreFactory;
-            _productStore = _productStoreFactory.GetProductStore();
+            _productStore = _productStoreFactory.GetProductStore("Mock");
         }
 
         public async Task<AddProductResponse> AddProductAsync(AddProductRequest addProductRequest)

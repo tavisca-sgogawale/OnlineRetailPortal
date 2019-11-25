@@ -1,12 +1,11 @@
 ﻿using Autofac.Features.Indexed;
+using OnlineRetailPortal.Contracts;
 using System;
 
-namespace OnlineRetailPortal.Contracts
+namespace OnlineRetailPortal.Services
 {
     public class ProductStoreFactory : IProductStoreFactory
     {
-        //temporary variable
-        private const string _storeValue = "Mock";
         IIndex<String, IProductStore> productStore = null;
 
         public ProductStoreFactory(IIndex<String, IProductStore> productStore)
@@ -14,9 +13,9 @@ namespace OnlineRetailPortal.Contracts
             this.productStore = productStore;
         }
 
-        public IProductStore GetProductStore()
+        public IProductStore GetProductStore(string storeValue)
         {
-            return this.productStore[_storeValue];
+            return this.productStore[storeValue];
         }
     }
 }

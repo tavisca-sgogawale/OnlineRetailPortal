@@ -58,39 +58,15 @@ namespace OnlineRetailPortal.Web
             .When(x=>x.PurchasedDate !=null)
             .WithMessage(Error.GreaterDate("PurchasedDate"));
 
-            When(x => x.PickupAddress != null && x.PickupAddress.Line1 != null &&
-            x.PickupAddress.City != null && x.PickupAddress.Pincode >=0 && x.PickupAddress.State != null,
+            When(x => x.PickupAddress != null && (x.PickupAddress.Line1 != null ||
+            x.PickupAddress.City != null || x.PickupAddress.Pincode >=0 || x.PickupAddress.State != null),
             () =>
             {
                 RuleFor(x => x.PickupAddress.Line1)
                 .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotNull()
-                .WithErrorCode(ErrorCode.NullField())
-                .WithMessage(Error.NullField("Line1"))
-                .NotEmpty()
-                .WithErrorCode(ErrorCode.MissingField())
-                .WithMessage(Error.MissingField("Line1"))
                 .Length(2, 20)
                 .WithErrorCode(ErrorCode.GreaterCharacter())
                 .WithMessage(Error.GreaterCharacter("Line1", "2"));
-
-                RuleFor(x => x.PickupAddress.City)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotNull()
-                .WithErrorCode(ErrorCode.NullField())
-                .WithMessage(Error.NullField("City"))
-                .NotEmpty()
-                .WithErrorCode(ErrorCode.MissingField())
-                .WithMessage(Error.MissingField("City"));
-
-                RuleFor(x => x.PickupAddress.State)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotNull()
-                .WithErrorCode(ErrorCode.NullField())
-                .WithMessage(Error.NullField("State"))
-                .NotEmpty()
-                .WithErrorCode(ErrorCode.MissingField())
-                .WithMessage(Error.MissingField("State"));
 
                 RuleFor(x => x.PickupAddress.Pincode.ToString())
                 .Cascade(CascadeMode.StopOnFirstFailure)

@@ -6,16 +6,18 @@ namespace OnlineRetailPortal.MongoDBStore
     {
         public static MongoEntity ToEntity(this UpdateProductEntity updateProductEntity)
         {
-            MongoEntity mongoEntity = new MongoEntity();
-            mongoEntity.Id = updateProductEntity.Id;
-            mongoEntity.Name = updateProductEntity.Name;
-            mongoEntity.Category = updateProductEntity.Category;
-            mongoEntity.Description = updateProductEntity.Description;
-            mongoEntity.Gallery = new Gallery() { HeroImageUrl = updateProductEntity.HeroImage, ImageUrls = updateProductEntity.Images };
-            mongoEntity.Price = updateProductEntity.Price.ToEntity();
-            mongoEntity.Status = updateProductEntity.Status;
-            mongoEntity.PurchasedDate = updateProductEntity.PurchasedDate;
-            mongoEntity.PickupAddress = updateProductEntity.PickupAddress;
+            MongoEntity mongoEntity = new MongoEntity
+            {
+                Id = updateProductEntity.Id,
+                Name = updateProductEntity.Name,
+                Category = updateProductEntity.Category,
+                Description = updateProductEntity.Description,
+                Gallery = new Gallery() { HeroImageUrl = updateProductEntity.HeroImage, ImageUrls = updateProductEntity.Images },
+                Price = updateProductEntity.Price.ToEntity(),
+                Status = updateProductEntity.Status,
+                PurchasedDate = updateProductEntity.PurchasedDate,
+                PickupAddress = updateProductEntity.PickupAddress
+            };
             return mongoEntity;
         }
         public static MongoEntity ToEntity(this ProductEntity productEntity)
@@ -66,22 +68,22 @@ namespace OnlineRetailPortal.MongoDBStore
         {
             if (mongoEntity == null)
                 return null;
-            ProductEntity productEntity = new ProductEntity();
-            
-                productEntity.Id = mongoEntity.Id;
-                productEntity.SellerId = mongoEntity.SellerId;
-                productEntity.Name = mongoEntity.Name;
-                productEntity.Category = mongoEntity.Category.ToModel();
-                productEntity.Description = mongoEntity.Description;
-                productEntity.HeroImage = mongoEntity.Gallery.HeroImageUrl;
-                productEntity.Images = mongoEntity.Gallery.ImageUrls;
-                productEntity.Price = mongoEntity.Price.ToModel();
-                productEntity.Status = mongoEntity.Status.ToStatusModel();
-                productEntity.PostDateTime = mongoEntity.CreatedDate;
-                productEntity.ExpirationDate = mongoEntity.ExpirationDate;
-                productEntity.PurchasedDate = mongoEntity.PurchasedDate;
-                productEntity.PickupAddress = mongoEntity.PickupAddress.ToModel();
-            
+            ProductEntity productEntity = new ProductEntity
+            {
+                Id = mongoEntity.Id,
+                SellerId = mongoEntity.SellerId,
+                Name = mongoEntity.Name,
+                Category = mongoEntity.Category.ToModel(),
+                Description = mongoEntity.Description,
+                HeroImage = mongoEntity.Gallery.HeroImageUrl,
+                Images = mongoEntity.Gallery.ImageUrls,
+                Price = mongoEntity.Price.ToModel(),
+                Status = mongoEntity.Status.ToStatusModel(),
+                PostDateTime = mongoEntity.CreatedDate,
+                ExpirationDate = mongoEntity.ExpirationDate,
+                PurchasedDate = mongoEntity.PurchasedDate,
+                PickupAddress = mongoEntity.PickupAddress.ToModel()
+            }; 
             return productEntity;
         }
     }

@@ -115,6 +115,24 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All fields of address are mandatory.
+        /// </summary>
+        public static string InvalidPickupAddress {
+            get {
+                return ResourceManager.GetString("InvalidPickupAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pincode  length should be 6.
+        /// </summary>
+        public static string InvalidPincode {
+            get {
+                return ResourceManager.GetString("InvalidPincode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Errors occured.
         /// </summary>
         public static string InvalidRequest {
@@ -160,15 +178,6 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File with unsupported format recieved in request..
-        /// </summary>
-        public static string UnsupportedFileFormat {
-            get {
-                return ResourceManager.GetString("UnsupportedFileFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Product does not exist with &quot;{0}&quot; product id..
         /// </summary>
         public static string ProductNotFound {
@@ -183,6 +192,15 @@ namespace OnlineRetailPortal.Contracts {
         public static string ProductsNotFound {
             get {
                 return ResourceManager.GetString("ProductsNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File with unsupported format recieved in request..
+        /// </summary>
+        public static string UnsupportedFileFormat {
+            get {
+                return ResourceManager.GetString("UnsupportedFileFormat", resourceCulture);
             }
         }
     }

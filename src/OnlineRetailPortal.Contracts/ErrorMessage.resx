@@ -135,6 +135,12 @@
   <data name="InvalidCurrency" xml:space="preserve">
     <value>Currency should be in {0}</value>
   </data>
+  <data name="InvalidPickupAddress" xml:space="preserve">
+    <value>All fields of address are mandatory</value>
+  </data>
+  <data name="InvalidPincode" xml:space="preserve">
+    <value>Pincode  length should be 6</value>
+  </data>
   <data name="InvalidRequest" xml:space="preserve">
     <value>Errors occured</value>
   </data>

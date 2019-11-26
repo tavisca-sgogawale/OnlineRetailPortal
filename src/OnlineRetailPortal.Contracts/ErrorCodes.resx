@@ -135,6 +135,12 @@
   <data name="InvalidCurrency" xml:space="preserve">
     <value>707</value>
   </data>
+  <data name="InvalidPickupAddress" xml:space="preserve">
+    <value>713</value>
+  </data>
+  <data name="InvalidPincode" xml:space="preserve">
+    <value>712</value>
+  </data>
   <data name="InvalidRequest" xml:space="preserve">
     <value>701</value>
   </data>

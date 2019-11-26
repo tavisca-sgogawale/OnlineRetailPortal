@@ -61,7 +61,11 @@ namespace OnlineRetailPortal.Core
         }
         public static string PincodeLength()
         {
-            return "Pincode length should be 6";
+            return string.Format(ErrorCodes.InvalidPincode);
+        }
+        public static string InvalidPickupAddress()
+        {
+            return string.Format(ErrorCodes.InvalidPickupAddress);
         }
     }
 }

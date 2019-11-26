@@ -66,5 +66,13 @@ namespace OnlineRetailPortal.Core
         {
             return string.Format(ErrorMessage.GreaterDate, field);
         }
+        public static string InvalidPickupAddress()
+        {
+            return string.Format(ErrorMessage.InvalidPickupAddress);
+        }
+        public static string InvalidPincode()
+        {
+            return string.Format(ErrorMessage.InvalidPincode);
+        }
     }
 }

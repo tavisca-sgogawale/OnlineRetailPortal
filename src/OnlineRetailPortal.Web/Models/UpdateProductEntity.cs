@@ -14,10 +14,10 @@ namespace OnlineRetailPortal.Web
         public Price Price { get; set; }
         public string Category { get; set; }
         public string Status { get; set; }
-        public Nullable<DateTime> PostDateTime { get; set; }
-        public Nullable<DateTime> ExpirationDate { get; set; }
+        public DateTime? PostDateTime { get; set; }
+        public DateTime? ExpirationDate { get; set; }
         public List<string> Images { get; set; }
-        public Nullable<DateTime> PurchasedDate { get; set; }
+        public DateTime? PurchasedDate { get; set; }
         public Address PickupAddress { get; set; }
     }
 }

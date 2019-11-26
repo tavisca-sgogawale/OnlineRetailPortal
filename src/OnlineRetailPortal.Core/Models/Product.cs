@@ -28,7 +28,6 @@ namespace OnlineRetailPortal.Core
             SellerId = sellerId;
             Name = name;
         }
-        public Product(){}
         public static async Task<ProductsWithPageInitiation> GetProductsAsync(GetProductsServiceRequest serviceRequest, IProductStore productStore)
         {
             var getProductsStoreEntity = serviceRequest.ToEntity();

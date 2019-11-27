@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Web
 {
-    public class UpdateProductRequestValidator : AbstractValidator<UpdateProductEntity>
+    public class UpdateProductRequestValidator : AbstractValidator<Product>
     {
         public UpdateProductRequestValidator()
         {
@@ -15,7 +15,7 @@ namespace OnlineRetailPortal.Web
             .Cascade(CascadeMode.StopOnFirstFailure)
             .Length(2, 20)
             .WithErrorCode(ErrorCode.GreaterCharacter())
-            .When(x => x.Name != null)
+            .When(x => x.Name!= null)
             .WithMessage(Error.GreaterCharacter("Title", "2"));
 
             RuleFor(x => x.Category)
@@ -55,7 +55,7 @@ namespace OnlineRetailPortal.Web
             RuleFor(x => x.PurchasedDate)
             .LessThan(DateTime.Today)
             .WithErrorCode(ErrorCode.GreaterDate())
-            .When(x=>x.PurchasedDate !=null)
+            .When(x=>x.PurchasedDate == new DateTime())
             .WithMessage(Error.GreaterDate("PurchasedDate"));
 
             When(x => x.PickupAddress != null && (x.PickupAddress.Line1 != null ||

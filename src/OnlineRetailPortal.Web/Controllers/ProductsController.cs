@@ -47,7 +47,7 @@ namespace OnlineRetailPortal.Web
         }
         
         [HttpPut("products/update/{productId}")]
-        public async Task<GetProductResponse> UpdateProduct([FromBody] UpdateProductEntity request,string productId)
+        public async Task<GetProductResponse> UpdateProduct([FromBody] Product request,string productId)
         {
             UpdateProductRequestValidator validator = new UpdateProductRequestValidator();
             validator.EnsureUpdateRequestValid(request);

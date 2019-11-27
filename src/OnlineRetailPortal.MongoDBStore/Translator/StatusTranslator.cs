@@ -15,6 +15,10 @@ namespace OnlineRetailPortal.MongoDBStore
                     return "Disabled";
                 case Status.Sold:
                     return "Sold";
+                case Status.Deleted:
+                    return "Deleted";
+                default:
+                    return "Active";
             }
             throw new NotSupportedException(status + " is not supported");
         }
@@ -28,6 +32,10 @@ namespace OnlineRetailPortal.MongoDBStore
                     return Status.Disabled;
                 case "Sold":
                     return Status.Sold;
+                case "Deleted":
+                    return Status.Deleted;
+                default:
+                    return Status.Active;
             }
             throw new NotSupportedException(status + " is not supported");
         }

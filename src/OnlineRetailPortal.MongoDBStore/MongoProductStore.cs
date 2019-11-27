@@ -97,29 +97,11 @@ namespace OnlineRetailPortal.MongoDBStore
 
         public async Task<ProductEntity> UpdateProductAsync(ProductEntity productEntity)
         {
-            var mongoEntity = productEntity.ToEntity();
-            var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
-            var filter = Builders<MongoEntity>.Filter.Eq("Id", productEntity.Id);
-       
-            var result = await productStoreCollection.ReplaceOneAsync(
-                            filter,
-                            mongoEntity,
-                            new UpdateOptions { IsUpsert = false });
-
-            if (result.MatchedCount == 0)
-            {
-                return null;
-            }
-            return mongoEntity.ToModel();
-        }
-
-        public async Task<ProductEntity> UpdateProductAsync(UpdateProductEntity updateProductEntity)
-        {
             MongoEntity getResult;
             var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
-            getResult = await productStoreCollection.Find(x => x.Id == updateProductEntity.Id).FirstOrDefaultAsync();
-            getResult = UpdateProductEntity(await productStoreCollection.Find(x => x.Id == updateProductEntity.Id).FirstOrDefaultAsync(),updateProductEntity);
-            var filter = Builders<MongoEntity>.Filter.Eq("Id", updateProductEntity.Id);
+            getResult = await productStoreCollection.Find(x => x.Id == productEntity.Id).FirstOrDefaultAsync();
+            getResult = UpdateProductEntity(await productStoreCollection.Find(x => x.Id == productEntity.Id).FirstOrDefaultAsync(), productEntity);
+            var filter = Builders<MongoEntity>.Filter.Eq("Id", productEntity.Id);
             try
             {
                 var result = await productStoreCollection.ReplaceOneAsync(
@@ -133,66 +115,66 @@ namespace OnlineRetailPortal.MongoDBStore
             }
             return getResult.ToModel();
         }
-        private bool ValidatePickupAddress(MongoEntity updateProductEntity)
+        private bool ValidatePickupAddress(MongoEntity productEntity)
         {
-            if(updateProductEntity.PickupAddress.Line1 != null && updateProductEntity.PickupAddress.City != null && updateProductEntity.PickupAddress.State != null && updateProductEntity.PickupAddress.Pincode > 0)
+            if(productEntity.PickupAddress.Line1 != null && productEntity.PickupAddress.City != null && productEntity.PickupAddress.State != null && productEntity.PickupAddress.Pincode > 0)
             {
                 return true;
             }
             return false;
         }
-        private bool ValidatePickupAddress(UpdateProductEntity updateProductEntity)
+        private bool ValidatePickupAddress(ProductEntity productEntity)
         {
-            if (updateProductEntity.PickupAddress.Line1 != null && updateProductEntity.PickupAddress.City != null && updateProductEntity.PickupAddress.State != null && updateProductEntity.PickupAddress.Pincode > 0)
+            if (productEntity.PickupAddress.Line1 != null && productEntity.PickupAddress.City != null && productEntity.PickupAddress.State != null && productEntity.PickupAddress.Pincode > 0)
             {
                 return true;
             }
             return false;
         }
-        private MongoEntity UpdateProductEntity(MongoEntity getResult, UpdateProductEntity updateProductEntity)
+        private MongoEntity UpdateProductEntity(MongoEntity getResult, ProductEntity productEntity)
         {
             if (getResult != null)
             {
-                getResult.Name = updateProductEntity.Name ?? getResult.Name;
-                getResult.Description = updateProductEntity.Description ?? getResult.Description;
-                getResult.Category = updateProductEntity.Category ?? getResult.Category;
+                getResult.Name = productEntity.Name ?? getResult.Name;
+                getResult.Description = productEntity.Description ?? getResult.Description;
+                getResult.Category = productEntity.Category.Name ?? getResult.Category;
 
 
 
-                getResult.Gallery.ImageUrls = (updateProductEntity.Images != null) ?
-                                                    updateProductEntity.Images : getResult.Gallery.ImageUrls;
-                getResult.Price.Amount = (updateProductEntity.Price != null) ?
-                                                 (updateProductEntity.Price.Money != null) ?
-                                                        updateProductEntity.Price.Money.Amount : getResult.Price.Amount
+                getResult.Gallery.ImageUrls = (productEntity.Images != null) ?
+                                                    productEntity.Images : getResult.Gallery.ImageUrls;
+                getResult.Price.Amount = (productEntity.Price != null) ?
+                                                 (productEntity.Price.Money != null) ?
+                                                        productEntity.Price.Money.Amount : getResult.Price.Amount
                                           : getResult.Price.Amount;
-                getResult.Price.IsNegotiable = (updateProductEntity.Price != null) ?
-                                                    (updateProductEntity.Price.IsNegotiable != null) ?
-                                                            Convert.ToBoolean(updateProductEntity.Price.IsNegotiable) : getResult.Price.IsNegotiable
+                getResult.Price.IsNegotiable = (productEntity.Price != null) ?
+                                                    (productEntity.Price.IsNegotiable != null) ?
+                                                            Convert.ToBoolean(productEntity.Price.IsNegotiable) : getResult.Price.IsNegotiable
                                                 : getResult.Price.IsNegotiable;
-                getResult.Gallery.HeroImageUrl = (updateProductEntity.HeroImage != null) ?
-                                                        updateProductEntity.HeroImage : getResult.Gallery.HeroImageUrl;
-                getResult.PurchasedDate = updateProductEntity.PurchasedDate ?? getResult.PurchasedDate;
+                getResult.Gallery.HeroImageUrl = (productEntity.HeroImage != null) ?
+                                                        productEntity.HeroImage : getResult.Gallery.HeroImageUrl;
+                getResult.PurchasedDate = productEntity.PurchasedDate ?? getResult.PurchasedDate;
 
-                if (updateProductEntity.PickupAddress != null)
+                if (productEntity.PickupAddress != null)
                 {
                     if(ValidatePickupAddress(getResult))
                     {
-                        getResult.PickupAddress.Line1 = updateProductEntity.PickupAddress.Line1 ?? getResult.PickupAddress.Line1;
-                        getResult.PickupAddress.Line2 = updateProductEntity.PickupAddress.Line2 ?? getResult.PickupAddress.Line2;
-                        getResult.PickupAddress.State = updateProductEntity.PickupAddress.State ?? getResult.PickupAddress.State;
-                        getResult.PickupAddress.City = updateProductEntity.PickupAddress.City ?? getResult.PickupAddress.City;
-                        getResult.PickupAddress.Pincode = (updateProductEntity.PickupAddress.Pincode != 0) ?
-                                                                updateProductEntity.PickupAddress.Pincode : getResult.PickupAddress.Pincode;
+                        getResult.PickupAddress.Line1 = productEntity.PickupAddress.Line1 ?? getResult.PickupAddress.Line1;
+                        getResult.PickupAddress.Line2 = productEntity.PickupAddress.Line2 ?? getResult.PickupAddress.Line2;
+                        getResult.PickupAddress.State = productEntity.PickupAddress.State ?? getResult.PickupAddress.State;
+                        getResult.PickupAddress.City = productEntity.PickupAddress.City ?? getResult.PickupAddress.City;
+                        getResult.PickupAddress.Pincode = (productEntity.PickupAddress.Pincode != 0) ?
+                                                                productEntity.PickupAddress.Pincode : getResult.PickupAddress.Pincode;
                     }
                     else
                     {
-                        if (ValidatePickupAddress(updateProductEntity))
+                        if (ValidatePickupAddress(productEntity))
                         {
-                            getResult.PickupAddress.Line1 = updateProductEntity.PickupAddress.Line1;
-                            getResult.PickupAddress.Line2 = updateProductEntity.PickupAddress.Line2;
-                            getResult.PickupAddress.State = updateProductEntity.PickupAddress.State;
-                            getResult.PickupAddress.City = updateProductEntity.PickupAddress.City;
-                            getResult.PickupAddress.Pincode = updateProductEntity.PickupAddress.Pincode;
+                            getResult.PickupAddress.Line1 = productEntity.PickupAddress.Line1;
+                            getResult.PickupAddress.Line2 = productEntity.PickupAddress.Line2;
+                            getResult.PickupAddress.State = productEntity.PickupAddress.State;
+                            getResult.PickupAddress.City = productEntity.PickupAddress.City;
+                            getResult.PickupAddress.Pincode = productEntity.PickupAddress.Pincode;
                         }
                         else
                         {
@@ -200,7 +182,7 @@ namespace OnlineRetailPortal.MongoDBStore
                         }
                     }
                 }
-                getResult.Status = updateProductEntity.Status ?? getResult.Status;
+                getResult.Status = productEntity.Status.ToString() ?? getResult.Status;
             }
             return getResult;
         }

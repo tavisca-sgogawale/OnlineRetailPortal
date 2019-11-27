@@ -21,11 +21,11 @@ namespace OnlineRetailPortal.Core
         public Nullable<DateTime> ExpirationDate { get; set; }
         public string Status { get; set; }
 
-        public async Task<Product> UpdateAsync(IProductStore productStore)
-        {
-            var updateProductEntity = this.ToStoreEntity();
-            var updateProductResponse = await productStore.UpdateProductAsync(updateProductEntity);
-            return updateProductResponse.ToStoreModel();
-        }
+        //public async Task<Product> UpdateAsync(IProductStore productStore)
+        //{
+        //    var updateProductEntity = this.ToStoreEntity();
+        //    var updateProductResponse = await productStore.UpdateProductAsync(updateProductEntity);
+        //    return updateProductResponse.ToStoreModel();
+        //}
     }
 }

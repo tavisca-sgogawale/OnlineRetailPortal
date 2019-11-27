@@ -44,9 +44,9 @@ namespace OnlineRetailPortal.Services
             return response.ToModel();
         }
 
-        public async Task<GetProductServiceResponse> UpdateProductAsync(UpdateProductEntity updateProductEntity)
+        public async Task<GetProductServiceResponse> UpdateProductAsync(ProductEntity updateProductEntity)
         {
-            Core.UpdateProduct updateProduct = updateProductEntity.ToEntity();
+            Core.Product updateProduct = updateProductEntity.ToEntity();
             var response = await updateProduct.UpdateAsync(_productStore);
             response.EnsureValid(updateProductEntity);
             return GetProductServiceResponseTranslator.ToModel(response);

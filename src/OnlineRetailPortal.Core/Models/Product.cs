@@ -28,6 +28,8 @@ namespace OnlineRetailPortal.Core
             SellerId = sellerId;
             Name = name;
         }
+        public Product ()
+        { }
         public static async Task<ProductsWithPageInitiation> GetProductsAsync(GetProductsServiceRequest serviceRequest, IProductStore productStore)
         {
             var getProductsStoreEntity = serviceRequest.ToEntity();
@@ -41,7 +43,6 @@ namespace OnlineRetailPortal.Core
             var getProductResponse = await productStore.GetProductAsync(productId);
             return getProductResponse.ToModel();
         }
-
         public async Task<Product> SaveAsync(IProductStore productStore, ProductConfiguration config)
         {
             var productEntity = this.ToEntity();
@@ -52,6 +53,12 @@ namespace OnlineRetailPortal.Core
             var addProductResponse = await productStore.AddProductAsync(productEntity);
             return addProductResponse.ToModel();
 
+        }
+        public async Task<Product> UpdateAsync(IProductStore productStore)
+        {
+            var updateProductEntity = this.ToStoreEntity();
+            var updateProductResponse = await productStore.UpdateProductAsync(updateProductEntity);
+            return updateProductResponse.ToStoreModel();
         }
 
     }

@@ -4,6 +4,7 @@
     {
         Active,
         Disabled,
-        Sold
+        Sold,
+        Deleted
     }
 }

@@ -7,21 +7,21 @@ namespace OnlineRetailPortal.Core
 {
     public static class UpdateProductTranslator
     {
-        public static UpdateProductEntity ToStoreEntity(this UpdateProduct updateProduct)
+        public static ProductEntity ToStoreEntity(this Product updateProduct)
         {
-            var updateProductStoreRequest = new UpdateProductEntity();
+            var updateProductStoreRequest = new ProductEntity();
             updateProductStoreRequest.Id = updateProduct.Id;
             updateProductStoreRequest.Name = updateProduct.Name;
             updateProductStoreRequest.Description = updateProduct.Description;
             updateProductStoreRequest.HeroImage = updateProduct.HeroImage;
             updateProductStoreRequest.Price = updateProduct.Price.ToEntity();
-            updateProductStoreRequest.Category = updateProduct.Category;
+            updateProductStoreRequest.Category = updateProduct.Category.ToEntity();
             updateProductStoreRequest.Images = updateProduct.Images;
-            updateProductStoreRequest.PurchasedDate = updateProduct.PurchasedDate;
+            updateProductStoreRequest.PurchasedDate =updateProduct.PurchasedDate;
             updateProductStoreRequest.PickupAddress = updateProduct.PickupAddress.ToEntity();
             updateProductStoreRequest.PostDateTime = updateProduct.PostDateTime;
             updateProductStoreRequest.ExpirationDate = updateProduct.ExpirationDate;
-            updateProductStoreRequest.Status = updateProduct.Status;
+            updateProductStoreRequest.Status = updateProduct.Status.ToEntity();
 
             return updateProductStoreRequest;
         }

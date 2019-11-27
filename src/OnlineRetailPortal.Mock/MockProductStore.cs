@@ -70,8 +70,7 @@ namespace OnlineRetailPortal.Mock
             return response;
         }
 
-
-        public Task<ProductEntity> UpdateProductAsync(UpdateProductEntity request)
+        public Task<ProductEntity> UpdateProductAsync(ProductEntity request)
         {
             throw new NotImplementedException();
         }

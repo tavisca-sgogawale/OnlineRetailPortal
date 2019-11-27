@@ -7,21 +7,21 @@ namespace OnlineRetailPortal.Services
 {
     public static class UpdateProductTranslator
     {
-        public static Core.UpdateProduct ToEntity(this UpdateProductEntity updateProductEntity)
+        public static Core.Product ToEntity(this ProductEntity updateProductEntity)
         {
-            var updateProduct = new Core.UpdateProduct();
+            var updateProduct = new Core.Product();
             updateProduct.Id = updateProductEntity.Id;
             updateProduct.Name = updateProductEntity.Name;
             updateProduct.Price = updateProductEntity.Price.ToEntity();
             updateProduct.Description = updateProductEntity.Description;
             updateProduct.HeroImage = updateProductEntity.HeroImage;
-            updateProduct.Category = updateProductEntity.Category;
+            updateProduct.Category = updateProductEntity.Category.ToEntity();
             updateProduct.Images = updateProductEntity.Images;
             updateProduct.PurchasedDate = updateProductEntity.PurchasedDate;
             updateProduct.PickupAddress = updateProductEntity.PickupAddress.ToEntity();
             updateProduct.PostDateTime = updateProductEntity.PostDateTime;
             updateProduct.ExpirationDate = updateProductEntity.ExpirationDate;
-            updateProduct.Status = updateProductEntity.Status;
+            updateProduct.Status = updateProductEntity.Status.ToEntity();
             
             return updateProduct;
         }
@@ -41,7 +41,7 @@ namespace OnlineRetailPortal.Services
                 PostDateTime = product.PostDateTime,
                 ExpirationDate = product.ExpirationDate,
                 Images = product.Images,
-                PurchasedDate = product.PurchasedDate,
+                PurchasedDate = (DateTime) product.PurchasedDate,
                 PickupAddress = product.PickupAddress.ToModel()
             };
 

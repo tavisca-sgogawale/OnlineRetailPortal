@@ -29,72 +29,40 @@ namespace OnlineRetailPortal.Core
         }
         public static ProductEntity GetUpdatedProduct(this ProductEntity productEntity,ProductEntity getResult)
         {
+            getResult.Name = productEntity.Name ?? getResult.Name;
+            getResult.Description = productEntity.Description ?? getResult.Description;
+            getResult.Category.Name = productEntity.Category.Name ?? getResult.Category.Name;
+            getResult.Images = productEntity.Images ?? getResult.Images;
+            getResult.Price.Money.Amount = (productEntity.Price != null) ?
+                                                (productEntity.Price.Money != null) ?
+                                                    productEntity.Price.Money.Amount : getResult.Price.Money.Amount
+                                        : getResult.Price.Money.Amount;
+            getResult.Price.IsNegotiable = (productEntity.Price != null) ?
+                                                (productEntity.Price.IsNegotiable != null) ?
+                                                        Convert.ToBoolean(productEntity.Price.IsNegotiable) : getResult.Price.IsNegotiable
+                                            : getResult.Price.IsNegotiable;
+            getResult.HeroImage = productEntity.HeroImage ?? getResult.HeroImage;
+            getResult.PurchasedDate = productEntity.PurchasedDate ?? getResult.PurchasedDate;
 
-            if (getResult != null)
+            if (productEntity.PickupAddress != null)
             {
-                getResult.Name = productEntity.Name ?? getResult.Name;
-                getResult.Description = productEntity.Description ?? getResult.Description;
-                getResult.Category.Name = productEntity.Category.Name ?? getResult.Category.Name;
-
-
-
-                getResult.Images = (productEntity.Images != null) ?
-                                                    productEntity.Images : getResult.Images;
-                getResult.Price.Money.Amount = (productEntity.Price != null) ?
-                                                    (productEntity.Price.Money != null) ?
-                                                        productEntity.Price.Money.Amount : getResult.Price.Money.Amount
-                                            : getResult.Price.Money.Amount;
-                getResult.Price.IsNegotiable = (productEntity.Price != null) ?
-                                                    (productEntity.Price.IsNegotiable != null) ?
-                                                            Convert.ToBoolean(productEntity.Price.IsNegotiable) : getResult.Price.IsNegotiable
-                                                : getResult.Price.IsNegotiable;
-                getResult.HeroImage = (productEntity.HeroImage != null) ?
-                                                        productEntity.HeroImage : getResult.HeroImage;
-                getResult.PurchasedDate = productEntity.PurchasedDate ?? getResult.PurchasedDate;
-
-                if (productEntity.PickupAddress != null)
-                {
-                    if (ValidatePickupAddress(getResult))
-                    {
-                        getResult.PickupAddress.Line1 = productEntity.PickupAddress.Line1 ?? getResult.PickupAddress.Line1;
-                        getResult.PickupAddress.Line2 = productEntity.PickupAddress.Line2 ?? getResult.PickupAddress.Line2;
-                        getResult.PickupAddress.State = productEntity.PickupAddress.State ?? getResult.PickupAddress.State;
-                        getResult.PickupAddress.City = productEntity.PickupAddress.City ?? getResult.PickupAddress.City;
-                        getResult.PickupAddress.Pincode = (productEntity.PickupAddress.Pincode != 0) ?
-                                                                productEntity.PickupAddress.Pincode : getResult.PickupAddress.Pincode;
-                    }
-                    else
-                    {
-                        if (ValidatePickupAddress(productEntity))
-                        {
-                            getResult.PickupAddress.Line1 = productEntity.PickupAddress.Line1;
-                            getResult.PickupAddress.Line2 = productEntity.PickupAddress.Line2;
-                            getResult.PickupAddress.State = productEntity.PickupAddress.State;
-                            getResult.PickupAddress.City = productEntity.PickupAddress.City;
-                            getResult.PickupAddress.Pincode = productEntity.PickupAddress.Pincode;
-                        }
-                        else
-                        {
-                            return null;
-                        }
-                    }
-                }
-                if ((getResult.Status.ToString() == "Sold" || getResult.Status.ToString() == "Deleted") && productEntity.Status.ToString() == "Active") { }
-                else
-                {
-                    getResult.Status = productEntity.Status;
-                }
+                if (getResult.PickupAddress == null) 
+                    getResult.PickupAddress = new Contracts.Address();
+                getResult.PickupAddress.Line1 = productEntity.PickupAddress.Line1 ?? getResult.PickupAddress.Line1;
+                getResult.PickupAddress.Line2 = productEntity.PickupAddress.Line2 ?? getResult.PickupAddress.Line2;
+                getResult.PickupAddress.State = productEntity.PickupAddress.State ?? getResult.PickupAddress.State;
+                getResult.PickupAddress.City = productEntity.PickupAddress.City ?? getResult.PickupAddress.City;
+                getResult.PickupAddress.Pincode = (productEntity.PickupAddress.Pincode != 0) ?
+                                                        productEntity.PickupAddress.Pincode : getResult.PickupAddress.Pincode;
             }
+
+            if ((getResult.Status.ToString() == "Sold" || getResult.Status.ToString() == "Deleted") && productEntity.Status.ToString() == "Active") { }
+            else
+            {
+                getResult.Status = productEntity.Status;
+            }
+          
             return getResult;
-
-        }
-        public static bool ValidatePickupAddress(ProductEntity productEntity)
-        {
-            if (productEntity.PickupAddress.Line1 != null && productEntity.PickupAddress.City != null && productEntity.PickupAddress.State != null && productEntity.PickupAddress.Pincode > 0)
-            {
-                return true;
-            }
-            return false;
         }
         public static Product ToStoreModel(this ProductEntity addProductStoreResponse)
         {

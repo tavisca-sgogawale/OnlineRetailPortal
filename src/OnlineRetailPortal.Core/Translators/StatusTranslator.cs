@@ -19,7 +19,7 @@ namespace OnlineRetailPortal.Core
                 default:
                     return Status.Active;
             }
-            throw new NotSupportedException(status + " is not supported");
+         
         }
 
         public static Contracts.Status ToEntity(this Status status)
@@ -37,7 +37,7 @@ namespace OnlineRetailPortal.Core
                 default:
                     return Contracts.Status.Active;
             }
-            throw new NotSupportedException(status + " is not supported");
+            
         }
     }
 }

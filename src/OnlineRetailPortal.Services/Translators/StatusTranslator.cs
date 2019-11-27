@@ -19,6 +19,8 @@ namespace OnlineRetailPortal.Services
                     return Contracts.Status.Sold;
                 case Status.Deleted:
                     return Contracts.Status.Deleted;
+                default:
+                    return Contracts.Status.Active;
             }
             throw new NotSupportedException(status + " is not supported");
         }
@@ -35,6 +37,8 @@ namespace OnlineRetailPortal.Services
                     return Status.Sold;
                 case Contracts.Status.Deleted:
                     return Status.Deleted;
+                default:
+                    return Status.Active;
             }
             throw new NotSupportedException(status + " is not supported");
         }

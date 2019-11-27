@@ -56,7 +56,9 @@ namespace OnlineRetailPortal.Core
         }
         public async Task<Product> UpdateAsync(IProductStore productStore)
         {
+            var getProductResponse = await productStore.GetProductAsync(this.Id);
             var updateProductEntity = this.ToStoreEntity();
+            updateProductEntity = updateProductEntity.GetUpdatedProduct(getProductResponse.Product);
             var updateProductResponse = await productStore.UpdateProductAsync(updateProductEntity);
             return updateProductResponse.ToStoreModel();
         }

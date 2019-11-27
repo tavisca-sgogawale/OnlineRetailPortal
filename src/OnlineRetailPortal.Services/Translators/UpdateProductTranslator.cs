@@ -9,20 +9,21 @@ namespace OnlineRetailPortal.Services
     {
         public static Core.Product ToEntity(this ProductEntity updateProductEntity)
         {
-            var updateProduct = new Core.Product();
-            updateProduct.Id = updateProductEntity.Id;
-            updateProduct.Name = updateProductEntity.Name;
-            updateProduct.Price = updateProductEntity.Price.ToEntity();
-            updateProduct.Description = updateProductEntity.Description;
-            updateProduct.HeroImage = updateProductEntity.HeroImage;
-            updateProduct.Category = updateProductEntity.Category.ToEntity();
-            updateProduct.Images = updateProductEntity.Images;
-            updateProduct.PurchasedDate = updateProductEntity.PurchasedDate;
-            updateProduct.PickupAddress = updateProductEntity.PickupAddress.ToEntity();
-            updateProduct.PostDateTime = updateProductEntity.PostDateTime;
-            updateProduct.ExpirationDate = updateProductEntity.ExpirationDate;
-            updateProduct.Status = updateProductEntity.Status.ToEntity();
-            
+            var updateProduct = new Core.Product()
+            {
+                Id = updateProductEntity.Id,
+                Name = updateProductEntity.Name,
+                Price = updateProductEntity.Price.ToEntity(),
+                Description = updateProductEntity.Description,
+                HeroImage = updateProductEntity.HeroImage,
+                Category = updateProductEntity.Category.ToEntity(),
+                Images = updateProductEntity.Images,
+                PurchasedDate = updateProductEntity.PurchasedDate,
+                PickupAddress = updateProductEntity.PickupAddress.ToEntity(),
+                PostDateTime = updateProductEntity.PostDateTime,
+                ExpirationDate = updateProductEntity.ExpirationDate,
+                Status = updateProductEntity.Status.ToEntity()
+            };
             return updateProduct;
         }
 

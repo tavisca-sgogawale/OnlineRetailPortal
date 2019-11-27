@@ -22,33 +22,21 @@ namespace OnlineRetailPortal.MongoDBStore
         }
         public static MongoEntity ToEntity(this ProductEntity productEntity)
         {
-            //MongoEntity mongoEntity = new MongoEntity
-            //{
-            //    Id = productEntity.Id,
-            //    SellerId = productEntity.SellerId,
-            //    Name = productEntity.Name,
-            //    Category = productEntity.Category.ToEntity(),
-            //    Description = productEntity.Description,
-            //    Gallery = new Gallery() { HeroImageUrl = productEntity.HeroImage, ImageUrls = productEntity.Images },
-            //    Price = productEntity.Price.ToEntity(),
-            //    Status = productEntity.Status.ToStatusEntity(),
-            //    CreatedDate = productEntity.PostDateTime,
-            //    ExpirationDate = productEntity.ExpirationDate,
-            //    PurchasedDate = productEntity.PurchasedDate,
-            //    PickupAddress = productEntity.PickupAddress.ToEntity()
-            //};
-            //return mongoEntity;
-
-            MongoEntity mongoEntity = new MongoEntity();
-            mongoEntity.Id = productEntity.Id;
-            mongoEntity.Name = productEntity.Name;
-            mongoEntity.Category = productEntity.Category.ToEntity();
-            mongoEntity.Description = productEntity.Description;
-            mongoEntity.Gallery = new Gallery() { HeroImageUrl = productEntity.HeroImage, ImageUrls = productEntity.Images };
-            mongoEntity.Price = productEntity.Price.ToEntity();
-            mongoEntity.Status = productEntity.Status.ToStatusEntity();
-            mongoEntity.PurchasedDate = productEntity.PurchasedDate;
-            mongoEntity.PickupAddress = productEntity.PickupAddress.ToEntity();
+            MongoEntity mongoEntity = new MongoEntity
+            {
+                Id = productEntity.Id,
+                SellerId = productEntity.SellerId,
+                Name = productEntity.Name,
+                Category = productEntity.Category.ToEntity(),
+                Description = productEntity.Description,
+                Gallery = new Gallery() { HeroImageUrl = productEntity.HeroImage, ImageUrls = productEntity.Images },
+                Price = productEntity.Price.ToEntity(),
+                Status = productEntity.Status.ToStatusEntity(),
+                CreatedDate = productEntity.PostDateTime,
+                ExpirationDate = productEntity.ExpirationDate,
+                PurchasedDate = productEntity.PurchasedDate,
+                PickupAddress = productEntity.PickupAddress.ToEntity()
+            };
             return mongoEntity;
         }
         public static GetProductStoreResponse ToGetResponseModel(this MongoEntity mongoEntity)

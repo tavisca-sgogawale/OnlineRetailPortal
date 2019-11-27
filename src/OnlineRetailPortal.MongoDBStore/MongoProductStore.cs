@@ -97,10 +97,8 @@ namespace OnlineRetailPortal.MongoDBStore
 
         public async Task<ProductEntity> UpdateProductAsync(ProductEntity productEntity)
         {
-            MongoEntity getResult;
+            MongoEntity getResult = productEntity.ToEntity();
             var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
-            getResult = await productStoreCollection.Find(x => x.Id == productEntity.Id).FirstOrDefaultAsync();
-            getResult = UpdateProductEntity(await productStoreCollection.Find(x => x.Id == productEntity.Id).FirstOrDefaultAsync(), productEntity);
             var filter = Builders<MongoEntity>.Filter.Eq("Id", productEntity.Id);
             try
             {
@@ -114,77 +112,6 @@ namespace OnlineRetailPortal.MongoDBStore
                 throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
             }
             return getResult.ToModel();
-        }
-        private bool ValidatePickupAddress(MongoEntity productEntity)
-        {
-            if(productEntity.PickupAddress.Line1 != null && productEntity.PickupAddress.City != null && productEntity.PickupAddress.State != null && productEntity.PickupAddress.Pincode > 0)
-            {
-                return true;
-            }
-            return false;
-        }
-        private bool ValidatePickupAddress(ProductEntity productEntity)
-        {
-            if (productEntity.PickupAddress.Line1 != null && productEntity.PickupAddress.City != null && productEntity.PickupAddress.State != null && productEntity.PickupAddress.Pincode > 0)
-            {
-                return true;
-            }
-            return false;
-        }
-        private MongoEntity UpdateProductEntity(MongoEntity getResult, ProductEntity productEntity)
-        {
-            if (getResult != null)
-            {
-                getResult.Name = productEntity.Name ?? getResult.Name;
-                getResult.Description = productEntity.Description ?? getResult.Description;
-                getResult.Category = productEntity.Category.Name ?? getResult.Category;
-
-
-
-                getResult.Gallery.ImageUrls = (productEntity.Images != null) ?
-                                                    productEntity.Images : getResult.Gallery.ImageUrls;
-                getResult.Price.Amount = (productEntity.Price != null) ?
-                                                 (productEntity.Price.Money != null) ?
-                                                        productEntity.Price.Money.Amount : getResult.Price.Amount
-                                          : getResult.Price.Amount;
-                getResult.Price.IsNegotiable = (productEntity.Price != null) ?
-                                                    (productEntity.Price.IsNegotiable != null) ?
-                                                            Convert.ToBoolean(productEntity.Price.IsNegotiable) : getResult.Price.IsNegotiable
-                                                : getResult.Price.IsNegotiable;
-                getResult.Gallery.HeroImageUrl = (productEntity.HeroImage != null) ?
-                                                        productEntity.HeroImage : getResult.Gallery.HeroImageUrl;
-                getResult.PurchasedDate = productEntity.PurchasedDate ?? getResult.PurchasedDate;
-
-                if (productEntity.PickupAddress != null)
-                {
-                    if(ValidatePickupAddress(getResult))
-                    {
-                        getResult.PickupAddress.Line1 = productEntity.PickupAddress.Line1 ?? getResult.PickupAddress.Line1;
-                        getResult.PickupAddress.Line2 = productEntity.PickupAddress.Line2 ?? getResult.PickupAddress.Line2;
-                        getResult.PickupAddress.State = productEntity.PickupAddress.State ?? getResult.PickupAddress.State;
-                        getResult.PickupAddress.City = productEntity.PickupAddress.City ?? getResult.PickupAddress.City;
-                        getResult.PickupAddress.Pincode = (productEntity.PickupAddress.Pincode != 0) ?
-                                                                productEntity.PickupAddress.Pincode : getResult.PickupAddress.Pincode;
-                    }
-                    else
-                    {
-                        if (ValidatePickupAddress(productEntity))
-                        {
-                            getResult.PickupAddress.Line1 = productEntity.PickupAddress.Line1;
-                            getResult.PickupAddress.Line2 = productEntity.PickupAddress.Line2;
-                            getResult.PickupAddress.State = productEntity.PickupAddress.State;
-                            getResult.PickupAddress.City = productEntity.PickupAddress.City;
-                            getResult.PickupAddress.Pincode = productEntity.PickupAddress.Pincode;
-                        }
-                        else
-                        {
-                            throw new BaseException(int.Parse(ErrorCode.InvalidPickupAddress()), Error.InvalidPickupAddress(), null, HttpStatusCode.BadRequest);
-                        }
-                    }
-                }
-                getResult.Status = productEntity.Status.ToString() ?? getResult.Status;
-            }
-            return getResult;
         }
     }
 }

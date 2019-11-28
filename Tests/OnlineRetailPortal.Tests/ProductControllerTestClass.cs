@@ -10,8 +10,13 @@ namespace OnlineRetailPortal.Tests
 {
     public class ProductControllerTestClass
     {
-        static IProductStoreFactory storeFactory = new ProductStoreFactory();
-        private IProductService _productService = new Services.ProductService(storeFactory);
+        private static IProductStoreFactory _storeFactory;
+        private IProductService _productService = new Services.ProductService(_storeFactory);
+        public ProductControllerTestClass(IProductStoreFactory storeFactory)
+        {
+            _storeFactory = storeFactory;
+        }
+
         [Fact]
         public async void AddProduct_Request_With_Valid_Request_Format()
         {

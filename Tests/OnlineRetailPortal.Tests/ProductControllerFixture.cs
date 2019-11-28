@@ -11,9 +11,14 @@ namespace OnlineRetailPortal.Tests
 {
     public class ProductControllerFixture
     {
-        private static IProductStoreFactory _storeFactory = new ProductStoreFactory();
+        private static IProductStoreFactory _storeFactory;
         private static IProductService _productService = new Services.ProductService(_storeFactory);
         ProductsController _productsController = new ProductsController(_productService);
+
+        public ProductControllerFixture(IProductStoreFactory storeFactory)
+        {
+            _storeFactory = storeFactory;
+        }
         [Fact]
         public async void GetProducts_PageNoAndPageSizeGiven_ShouldReturnListOfProductsWithPageInfo()
         {

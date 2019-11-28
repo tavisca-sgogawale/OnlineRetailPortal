@@ -4,22 +4,6 @@ namespace OnlineRetailPortal.MongoDBStore
 {
     public static class ProductStoreTranslator
     {
-        public static MongoEntity ToEntity(this UpdateProductEntity updateProductEntity)
-        {
-            MongoEntity mongoEntity = new MongoEntity
-            {
-                Id = updateProductEntity.Id,
-                Name = updateProductEntity.Name,
-                Category = updateProductEntity.Category,
-                Description = updateProductEntity.Description,
-                Gallery = new Gallery() { HeroImageUrl = updateProductEntity.HeroImage, ImageUrls = updateProductEntity.Images },
-                Price = updateProductEntity.Price.ToEntity(),
-                Status = updateProductEntity.Status,
-                PurchasedDate = updateProductEntity.PurchasedDate,
-                PickupAddress = updateProductEntity.PickupAddress
-            };
-            return mongoEntity;
-        }
         public static MongoEntity ToEntity(this ProductEntity productEntity)
         {
             MongoEntity mongoEntity = new MongoEntity

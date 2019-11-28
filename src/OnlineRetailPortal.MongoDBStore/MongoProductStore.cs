@@ -47,10 +47,14 @@ namespace OnlineRetailPortal.MongoDBStore
             try
             {
                 mongoEntity = await productStoreCollection.Find(x => x.Id == productId).FirstOrDefaultAsync();
+                if (mongoEntity == null)
+                {
+                    throw new BaseException(int.Parse(ErrorCode.ProductNotFound()), Error.ProductNotFound(productId), null, HttpStatusCode.NotFound);
+                }
             }
-            catch
+            catch(BaseException baseException)
             {
-                throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
+                throw baseException;
             }
             return mongoEntity.ToGetResponseModel();
         }
@@ -97,21 +101,21 @@ namespace OnlineRetailPortal.MongoDBStore
 
         public async Task<ProductEntity> UpdateProductAsync(ProductEntity productEntity)
         {
-            MongoEntity getResult = productEntity.ToEntity();
+            MongoEntity mongoProductEntity = productEntity.ToEntity();
             var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
             var filter = Builders<MongoEntity>.Filter.Eq("Id", productEntity.Id);
             try
             {
                 var result = await productStoreCollection.ReplaceOneAsync(
                             filter,
-                            getResult,
+                            mongoProductEntity,
                             new UpdateOptions { IsUpsert = false });
             }
             catch
             {
                 throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
             }
-            return getResult.ToModel();
+            return mongoProductEntity.ToModel();
         }
     }
 }

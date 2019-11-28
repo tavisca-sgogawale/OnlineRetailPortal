@@ -88,6 +88,8 @@ namespace OnlineRetailPortal.Web
                     return true;
                 case "Sold":
                     return true;
+                case "Deleted":
+                    return true;
                 default:
                     return false;
             }

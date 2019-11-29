@@ -1,17 +1,13 @@
-using FluentValidation;
-using FluentValidation.AspNetCore;
+using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
 using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Mock;
+using OnlineRetailPortal.MongoDBStore;
 using OnlineRetailPortal.Services;
 using OnlineRetailPortal.Services.Services;
 using System.IO;
@@ -43,13 +39,11 @@ namespace OnlineRetailPortal.Web
                 options.JsonSerializerOptions.IgnoreNullValues = true;
             });
             services.AddControllers();
-            services.AddTransient<IProductStoreFactory, ProductStoreFactory>();
-            services.AddSingleton<IProductService, ProductService>();
-            services.AddTransient<IImageService, ImageService>();
-            services.AddTransient<ICategoryStoreFactory, CategoryStoreFactory>();
-            services.AddTransient<ICategoryService, CategoryService>();
+        }
 
-
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new ServiceRegistry());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

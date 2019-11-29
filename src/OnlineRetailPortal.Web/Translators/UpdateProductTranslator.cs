@@ -8,37 +8,35 @@ namespace OnlineRetailPortal.Web
 {
     public static class UpdateProductTranslator
     {
-        public static Contracts.UpdateProductEntity ToEntity(this UpdateProductEntity updateProductEntity)
+        public static ProductEntity ToEntity(this Product updateProductEntity,string productId)
         {
-            Contracts.UpdateProductEntity request = new Contracts.UpdateProductEntity()
+            Contracts.ProductEntity request = new Contracts.ProductEntity()
             {
-                Id = updateProductEntity.Id,
-                SellerId = updateProductEntity.SellerId,
+                Id = productId,
                 Name = updateProductEntity.Name,
+                Category = updateProductEntity.Category.ToEntity(),
                 Description = updateProductEntity.Description,
                 HeroImage = updateProductEntity.HeroImage,
                 Price = updateProductEntity.Price.ToEntity(),
-                Category = updateProductEntity.Category.ToEntity(),
                 Images = updateProductEntity.Images,
                 PurchasedDate = updateProductEntity.PurchasedDate,
                 PickupAddress = updateProductEntity.PickupAddress.ToEntity(),
                 PostDateTime = updateProductEntity.PostDateTime,
-                ExpirationDate = updateProductEntity.ExpirationDate,
+                ExpirationDate = updateProductEntity.ExpirationDate ?? new DateTime(),
                 Status = updateProductEntity.Status.ToStatusEntity()
-            };
+            };         
             return request;
         }
-        public static UpdateProductEntity ToResponseModel(this Contracts.UpdateProductEntity updateProductEntity)
+        public static Product ToResponseModel(this Contracts.Product updateProductEntity)
         {
-            UpdateProductEntity response = new UpdateProductEntity()
+            Product response = new Product()
             {
                 Id = updateProductEntity.Id,
-                SellerId = updateProductEntity.SellerId,
                 Name = updateProductEntity.Name,
                 Description = updateProductEntity.Description,
                 HeroImage = updateProductEntity.HeroImage,
                 Price = updateProductEntity.Price.ToModel(),
-                Category = updateProductEntity.Category.ToModel(),
+                Category = updateProductEntity.Category.Name,
                 Status = updateProductEntity.Status.ToModel(),
                 PostDateTime = updateProductEntity.PostDateTime,
                 ExpirationDate = updateProductEntity.ExpirationDate,

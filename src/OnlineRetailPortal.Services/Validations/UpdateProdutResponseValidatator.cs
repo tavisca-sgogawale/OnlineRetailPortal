@@ -9,7 +9,7 @@ namespace OnlineRetailPortal.Services
 {
     public static class UpdateProdutResponseValidatator
     {
-        public static void EnsureValid(this Core.Product product , UpdateProductEntity updateProductEntity)
+        public static void EnsureValid(this Core.Product product , ProductEntity updateProductEntity)
         {
             if (product == null)
             {

@@ -59,5 +59,13 @@ namespace OnlineRetailPortal.Core
         {
             return string.Format(ErrorCodes.GreaterDate);
         }
+        public static string PincodeLength()
+        {
+            return string.Format(ErrorCodes.InvalidPincode);
+        }
+        public static string InvalidPickupAddress()
+        {
+            return string.Format(ErrorCodes.InvalidPickupAddress);
+        }
     }
 }

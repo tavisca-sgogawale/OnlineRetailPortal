@@ -52,7 +52,7 @@ namespace OnlineRetailPortal.MongoDBStore
         {
             if (mongoEntity == null)
                 return null;
-            ProductEntity productEntity = new ProductEntity()
+            ProductEntity productEntity = new ProductEntity
             {
                 Id = mongoEntity.Id,
                 SellerId = mongoEntity.SellerId,
@@ -67,7 +67,7 @@ namespace OnlineRetailPortal.MongoDBStore
                 ExpirationDate = mongoEntity.ExpirationDate,
                 PurchasedDate = mongoEntity.PurchasedDate,
                 PickupAddress = mongoEntity.PickupAddress.ToModel()
-            };
+            }; 
             return productEntity;
         }
     }

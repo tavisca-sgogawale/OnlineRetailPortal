@@ -115,6 +115,24 @@ namespace OnlineRetailPortal.Contracts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 713.
+        /// </summary>
+        public static string InvalidPickupAddress {
+            get {
+                return ResourceManager.GetString("InvalidPickupAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 712.
+        /// </summary>
+        public static string InvalidPincode {
+            get {
+                return ResourceManager.GetString("InvalidPincode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 701.
         /// </summary>
         public static string InvalidRequest {

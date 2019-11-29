@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using OnlineRetailPortal.Contracts;
 
 namespace OnlineRetailPortal.Web
@@ -44,14 +45,14 @@ namespace OnlineRetailPortal.Web
             var response = await _productService.AddProductAsync(request.ToEntity());
             return response.ToModel();
         }
-
-        [HttpPut("products/update")]
-        public async Task<UpdateProductEntity> UpdateProductAsync([FromBody] UpdateProductEntity request)
+        
+        [HttpPut("products/update/{productId}")]
+        public async Task<GetProductResponse> UpdateProduct([FromBody] Product request,string productId)
         {
             UpdateProductRequestValidator validator = new UpdateProductRequestValidator();
             validator.EnsureUpdateRequestValid(request);
-            var response = await _productService.UpdateProductAsync(request.ToEntity());
-            return response.ToResponseModel();
+            var response = await _productService.UpdateProductAsync(request.ToEntity(productId));
+            return response.ToEntity();
         }
 
     }

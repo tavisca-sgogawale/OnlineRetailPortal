@@ -30,7 +30,7 @@ namespace OnlineRetailPortal.Web
             }
         }
 
-        public static void EnsureUpdateRequestValid<UpdateProductEntity>(this AbstractValidator<UpdateProductEntity> validator, UpdateProductEntity request)
+        public static void EnsureUpdateRequestValid<Product>(this AbstractValidator<Product> validator, Product request)
         {
             List<ErrorInfo> info = new List<ErrorInfo>();
             var validationResult = validator.Validate(request);

@@ -44,13 +44,10 @@ namespace OnlineRetailPortal.MongoDBStore
         {
             MongoEntity mongoEntity;
             var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
-            try
+            mongoEntity = await productStoreCollection.Find(x => x.Id == productId).FirstOrDefaultAsync();
+            if (mongoEntity == null)
             {
-                mongoEntity = await productStoreCollection.Find(x => x.Id == productId).FirstOrDefaultAsync();
-            }
-            catch
-            {
-                throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
+                throw new BaseException(int.Parse(ErrorCode.ProductNotFound()), Error.ProductNotFound(productId), null, HttpStatusCode.NotFound);
             }
             return mongoEntity.ToGetResponseModel();
         }
@@ -97,19 +94,21 @@ namespace OnlineRetailPortal.MongoDBStore
 
         public async Task<ProductEntity> UpdateProductAsync(ProductEntity productEntity)
         {
-            var mongoEntity = productEntity.ToEntity();
+            MongoEntity mongoProductEntity = productEntity.ToEntity();
             var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
             var filter = Builders<MongoEntity>.Filter.Eq("Id", productEntity.Id);
-            var result = await productStoreCollection.ReplaceOneAsync(
-                            filter,
-                            mongoEntity,
-                            new UpdateOptions { IsUpsert = false });
-
-            if (result.MatchedCount == 0)
+            try
             {
-                return null;
+                var result = await productStoreCollection.ReplaceOneAsync(
+                            filter,
+                            mongoProductEntity,
+                            new UpdateOptions { IsUpsert = false });
             }
-            return mongoEntity.ToModel();
+            catch
+            {
+                throw new BaseException(int.Parse(ErrorCode.DataBaseDown()), Error.DataBaseDown(), null, HttpStatusCode.GatewayTimeout);
+            }
+            return mongoProductEntity.ToModel();
         }
     }
 }

@@ -24,6 +24,14 @@ namespace OnlineRetailPortal.Services
         {
             if (price == null)
                 return null;
+            if (price.Money == null)
+            {
+                return new Price()
+                {
+                    Money = null,
+                    IsNegotiable = price.IsNegotiable
+                };
+            }
             return new Price()
             {
                 Money = new Money(

@@ -9,10 +9,9 @@ namespace OnlineRetailPortal.Core
     {
         public static ProductEntity ToStoreEntity(this Product product)
         {
-            var addProductStoreRequest = new ProductEntity()
+            var updateProductStoreRequest = new ProductEntity()
             {
                 Id = product.Id,
-                SellerId = product.SellerId,
                 Name = product.Name,
                 Description = product.Description,
                 HeroImage = product.HeroImage,
@@ -24,13 +23,46 @@ namespace OnlineRetailPortal.Core
                 PostDateTime = product.PostDateTime,
                 ExpirationDate = product.ExpirationDate,
                 Status = product.Status.ToEntity()
-
             };
 
-            return addProductStoreRequest;
+            return updateProductStoreRequest;
         }
+        public static ProductEntity GetUpdatedProduct(this ProductEntity requestProductEntity,ProductEntity dbProductEntity)
+        {
+            dbProductEntity.Name = requestProductEntity.Name ?? dbProductEntity.Name;
+            dbProductEntity.Description = requestProductEntity.Description ?? dbProductEntity.Description;
+            dbProductEntity.Category.Name = requestProductEntity.Category.Name ?? dbProductEntity.Category.Name;
+            dbProductEntity.Images = requestProductEntity.Images ?? dbProductEntity.Images;
+            dbProductEntity.Price.Money.Amount = (requestProductEntity.Price != null) ?
+                                                (requestProductEntity.Price.Money != null) ?
+                                                    requestProductEntity.Price.Money.Amount : dbProductEntity.Price.Money.Amount
+                                        : dbProductEntity.Price.Money.Amount;
+            dbProductEntity.Price.IsNegotiable = (requestProductEntity.Price != null) ?
+                                                (requestProductEntity.Price.IsNegotiable != null) ?
+                                                        Convert.ToBoolean(requestProductEntity.Price.IsNegotiable) : dbProductEntity.Price.IsNegotiable
+                                            : dbProductEntity.Price.IsNegotiable;
+            dbProductEntity.HeroImage = requestProductEntity.HeroImage ?? dbProductEntity.HeroImage;
+            dbProductEntity.PurchasedDate = requestProductEntity.PurchasedDate ?? dbProductEntity.PurchasedDate;
 
+            if (requestProductEntity.PickupAddress != null)
+            {
+                if (dbProductEntity.PickupAddress == null) 
+                    dbProductEntity.PickupAddress = new Contracts.Address();
+                dbProductEntity.PickupAddress.Line1 = requestProductEntity.PickupAddress.Line1 ?? dbProductEntity.PickupAddress.Line1;
+                dbProductEntity.PickupAddress.Line2 = requestProductEntity.PickupAddress.Line2 ?? dbProductEntity.PickupAddress.Line2;
+                dbProductEntity.PickupAddress.State = requestProductEntity.PickupAddress.State ?? dbProductEntity.PickupAddress.State;
+                dbProductEntity.PickupAddress.City = requestProductEntity.PickupAddress.City ?? dbProductEntity.PickupAddress.City;
+                dbProductEntity.PickupAddress.Pincode = (requestProductEntity.PickupAddress.Pincode != 0) ?
+                                                        requestProductEntity.PickupAddress.Pincode : dbProductEntity.PickupAddress.Pincode;
+            }
 
+            if (!(dbProductEntity.Status.ToString().Equals("Deleted") || dbProductEntity.Status.ToString().Equals("Sold")) ) 
+            { 
+                dbProductEntity.Status = requestProductEntity.Status; 
+            }
+
+            return dbProductEntity;
+        }
         public static Product ToStoreModel(this ProductEntity addProductStoreResponse)
         {
             if (addProductStoreResponse == null)

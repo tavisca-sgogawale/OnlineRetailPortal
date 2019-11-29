@@ -13,7 +13,7 @@ namespace OnlineRetailPortal.Contracts
         public Category Category { get; set; }
         public string HeroImage { get; set; }
         public List<string> Images { get; set; }
-        public Nullable<DateTime> PurchasedDate { get; set; }
+        public DateTime? PurchasedDate { get; set; }
         public Address PickupAddress { get; set; }
         public Status Status { get; set; }
         public DateTime PostDateTime { get; set; }

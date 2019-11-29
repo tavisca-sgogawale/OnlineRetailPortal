@@ -10,6 +10,14 @@ namespace OnlineRetailPortal.Web
         {
             if (price == null)
                 return null;
+            if( price.Amount == 0)
+            {
+                return new Contracts.Price()
+                {
+                    Money = null,
+                    IsNegotiable = price.IsNegotiable
+                };
+            }
             return new Contracts.Price()
             {
                 Money = new Contracts.Money(

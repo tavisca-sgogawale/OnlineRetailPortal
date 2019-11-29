@@ -44,17 +44,10 @@ namespace OnlineRetailPortal.MongoDBStore
         {
             MongoEntity mongoEntity;
             var productStoreCollection = _db.GetCollection<MongoEntity>(_collection);
-            try
+            mongoEntity = await productStoreCollection.Find(x => x.Id == productId).FirstOrDefaultAsync();
+            if (mongoEntity == null)
             {
-                mongoEntity = await productStoreCollection.Find(x => x.Id == productId).FirstOrDefaultAsync();
-                if (mongoEntity == null)
-                {
-                    throw new BaseException(int.Parse(ErrorCode.ProductNotFound()), Error.ProductNotFound(productId), null, HttpStatusCode.NotFound);
-                }
-            }
-            catch(BaseException baseException)
-            {
-                throw baseException;
+                throw new BaseException(int.Parse(ErrorCode.ProductNotFound()), Error.ProductNotFound(productId), null, HttpStatusCode.NotFound);
             }
             return mongoEntity.ToGetResponseModel();
         }

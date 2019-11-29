@@ -56,7 +56,7 @@ namespace OnlineRetailPortal.Core
                                                         requestProductEntity.PickupAddress.Pincode : dbProductEntity.PickupAddress.Pincode;
             }
 
-            if (!(dbProductEntity.Status.ToString() == "Deleted" || dbProductEntity.Status.ToString() == "Sold") ) 
+            if (!(dbProductEntity.Status.ToString().Equals("Deleted") || dbProductEntity.Status.ToString().Equals("Sold")) ) 
             { 
                 dbProductEntity.Status = requestProductEntity.Status; 
             }

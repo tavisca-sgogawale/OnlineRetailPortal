@@ -43,7 +43,7 @@ namespace OnlineRetailPortal.Tests
             Description = "Iphone 1 year old",
             HeroImage = "www.image1.com",
             Price = new Price() { Money = new Money(123, "asdas"), IsNegotiable = true },
-            Category = Category.Book,
+            Category = new Category() { Name = "Book", Tags = new List<string>() { "book", "copy" } },
             Images = new List<string>() { "www.image1.com",
                 "www.image1.com",
                 "www.image1.com" },

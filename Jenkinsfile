@@ -11,8 +11,8 @@ pipeline {
 		string(defaultValue: "tavex_api_tag", description: 'tag name', name: 'tag_name')
 		string(defaultValue: "40001", description: 'port number', name: 'port_no')
 		
-		string(defaultValue: "TestAPI2/Publish", description: 'publish path', name: 'publishPath')
-		string(defaultValue: "TestAPI2.dll", description: 'dll name', name: 'dllName')
+		string(defaultValue: "OnlineRetailPortal/Publish", description: 'publish path', name: 'publishPath')
+		string(defaultValue: "OnlineRetailPortal.dll", description: 'dll name', name: 'dllName')
 
 		
 		
@@ -29,13 +29,7 @@ pipeline {
         		bat 'dotnet build %solutionName% -p:Configuration=release -v:q'
         	}
         }
-        stage('Test') {
-        	
-        	steps{
-        		echo 'Test step'
-        		bat 'dotnet test %testName%'
-        	}
-        }
+
         stage('Publish') {
         	
         	steps{

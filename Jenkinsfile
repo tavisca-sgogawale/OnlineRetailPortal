@@ -81,7 +81,7 @@ pipeline {
         	
         	steps{
         		echo 'Docker run the image pulled from dockerhub'
-				bat 'docker run -p %port_no%:%port_no% --name %containerName% %registry_name%/%repository_name%'        		
+				bat 'docker run -p %port_no%:%port_no% --name %containerName% %registry_name%/%repository_name%:%tag_name%'        		
         	}
         }
 		

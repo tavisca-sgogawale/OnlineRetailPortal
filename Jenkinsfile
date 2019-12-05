@@ -42,7 +42,7 @@ pipeline {
         	
         	steps{
         		echo 'Docker image'
-        		bat 'docker build --build-arg publish_path=%publishPath% -t %docker_image_name% -f Dockerfile .'				
+        		bat 'docker build -t %docker_image_name% -f Dockerfile .'				
         	}
         }
 		

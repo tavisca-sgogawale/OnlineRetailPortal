@@ -12,7 +12,7 @@ pipeline {
 		string(defaultValue: "40001", description: 'port number', name: 'port_no')
 		
 		string(defaultValue: "OnlineRetailPortal/Publish", description: 'publish path', name: 'publishPath')
-		string(defaultValue: "OnlineRetailPortal.dll", description: 'dll name', name: 'dllName')
+		string(defaultValue: "Publish/OnlineRetailPortal.dll", description: 'dll name', name: 'dllName')
 
 		
 		

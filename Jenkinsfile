@@ -81,7 +81,7 @@ pipeline {
         	
         	steps{
         		echo 'Docker run the image pulled from dockerhub'
-				bat 'docker run --rm -p %port_no%:%port_no% -e SOLUTION_DLL=%dllName% %registry_name%/%repository_name%:%tag_name%'        		
+				bat 'docker run --rm -p %port_no%:%port_no% %registry_name%/%repository_name%:%tag_name%'        		
         	}
         }
 		

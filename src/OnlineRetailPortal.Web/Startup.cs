@@ -62,12 +62,13 @@ namespace OnlineRetailPortal.Web
 
             app.UseCors("CorsPolicy");
             app.UseMiddleware<CustomExceptionMiddleware>();
-
+			Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/storage"));
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
                     Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/storage"))
             });
+			Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images"));
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(

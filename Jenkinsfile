@@ -6,8 +6,8 @@ pipeline {
         string(defaultValue: "OnlineRetailPortal.sln", description: 'name of solution file', name: 'solutionName')
         string(defaultValue: "Tests/OnlineRetailPortal.Tests/OnlineRetailPortal.Tests.csproj", description: 'name of test file', name: 'testName')
         string(defaultValue: "tavex_api_image:latest", description: 'name of docker image', name: 'docker_image_name')
-        string(defaultValue: "chinmaypadole", description: 'registry_name', name: 'registry_name')
-        string(defaultValue: "chinmay_repo", description: 'repository_name', name: 'repository_name')
+        string(defaultValue: "raunakrs", description: 'registry_name', name: 'registry_name')
+        string(defaultValue: "raunak_repo", description: 'repository_name', name: 'repository_name')
         string(defaultValue: "latest", description: 'tag name', name: 'tag_name')
         string(defaultValue: "40001", description: 'port number', name: 'port_no')
         
@@ -56,7 +56,7 @@ pipeline {
         stage('Docker hub Login') {
             
             steps{
-                withCredentials([usernamePassword(credentialsId: '695944ad-b76b-4e42-8dab-3bf6996c816e', passwordVariable: 'pass', usernameVariable: 'user')]) {                    
+                withCredentials([usernamePassword(credentialsId: '04d21e2f-837c-4fe9-933c-2d99efea391b', passwordVariable: 'pass', usernameVariable: 'user')]) {                    
                     echo 'Docker login to dockerhub'
                     bat 'docker login -p %pass% -u %user%'       
                 }    

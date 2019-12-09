@@ -1,15 +1,9 @@
-using FluentValidation;
-using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
 using OnlineRetailPortal.Contracts;
 using OnlineRetailPortal.Mock;
 using OnlineRetailPortal.Services;
@@ -39,15 +33,19 @@ namespace OnlineRetailPortal.Web
                     .AllowAnyHeader());
             });
             services.AddMvc()
-            .AddJsonOptions(options=> {
+            .AddJsonOptions(options =>
+            {
                 options.JsonSerializerOptions.IgnoreNullValues = true;
             });
-            services.AddControllers();
+
+            services.AddControllers()
+            .AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.Converters.Add(new FilterConverter());
+            });
             services.AddTransient<IProductStoreFactory, ProductStoreFactory>();
             services.AddSingleton<IProductService, ProductService>();
             services.AddTransient<IImageService, ImageService>();
-            services.AddTransient<ICategoryStoreFactory, CategoryStoreFactory>();
-            services.AddTransient<ICategoryService, CategoryService>();
 
 
         }
@@ -63,16 +61,22 @@ namespace OnlineRetailPortal.Web
             app.UseCors("CorsPolicy");
             app.UseMiddleware<CustomExceptionMiddleware>();
 
+
+
+            Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/storage"));
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/storage"))
+                   Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/storage"))
             });
+
+            Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images"));
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                 Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images"))
+                Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images"))
             });
+
 
 
             app.UseHttpsRedirection();
@@ -80,7 +84,7 @@ namespace OnlineRetailPortal.Web
             app.UseRouting();
 
             app.UseAuthorization();
-           
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

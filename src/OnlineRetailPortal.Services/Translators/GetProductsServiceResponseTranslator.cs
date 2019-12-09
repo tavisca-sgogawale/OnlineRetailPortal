@@ -1,14 +1,9 @@
 ﻿using OnlineRetailPortal.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
 
 namespace OnlineRetailPortal.Services
 {
     static class GetProductsServiceResponseTranslator
     {
-
         public static GetProductsServiceResponse ToModel(this Core.ProductsWithPageInitiation getProductsResponse)
         {
             if (getProductsResponse == null)

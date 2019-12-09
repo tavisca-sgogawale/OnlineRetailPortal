@@ -1,8 +1,5 @@
 ﻿using OnlineRetailPortal.Contracts;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace OnlineRetailPortal.Web
 {
@@ -11,7 +8,7 @@ namespace OnlineRetailPortal.Web
         private const int _pageNo = 1;
         private const int _pageSize = 12;
         private const string _sortType = "Date";
-        private const string _sortOrder = "Desc"; 
+        private const string _sortOrder = "Desc";
         public static GetProductsServiceRequest ToServiceRequest(this GetProductsRequest request, int pageNo, int pageSize)
         {
             return new GetProductsServiceRequest()
@@ -23,9 +20,10 @@ namespace OnlineRetailPortal.Web
                 },
                 ProductSort = new Contracts.Sort()
                 {
-                    Type =  String.IsNullOrEmpty(request?.ProductSort?.Type) ? _sortType : request.ProductSort.Type,
+                    Type = String.IsNullOrEmpty(request?.ProductSort?.Type) ? _sortType : request.ProductSort.Type,
                     Order = String.IsNullOrEmpty(request?.ProductSort?.Order) ? _sortOrder : request.ProductSort.Order
-                }
+                },
+                Filters = request.Filters.ToEntity()
             };
         }
     }

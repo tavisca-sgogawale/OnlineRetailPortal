@@ -17,7 +17,7 @@ namespace OnlineRetailPortal.Tests
             Description = "Iphone 1 year old",
             HeroImage = "www.image1.com",
             Price = new Price() { Money = new Money(123, "asdas"), IsNegotiable = true },
-            Category = Category.Book,
+            Category = new Category() { Name = "Book", Tags = new List<string>() { "book", "copy" } },
             Images = new List<string>() { "www.image1.com",
                 "www.image1.com",
                 "www.image1.com" },
@@ -32,7 +32,7 @@ namespace OnlineRetailPortal.Tests
                 Pincode = 123213
             },
             ExpirationDate = DateTime.Now.AddDays(30),
-            PostDateTime = DateTime.Now          
+            PostDateTime = DateTime.Now
         };
 
         ProductEntity demoProductEntity2 = new ProductEntity()
@@ -43,7 +43,7 @@ namespace OnlineRetailPortal.Tests
             Description = "Iphone 1 year old",
             HeroImage = "www.image1.com",
             Price = new Price() { Money = new Money(123, "asdas"), IsNegotiable = true },
-            Category = Category.Book,
+            Category = new Category() { Name = "Book", Tags = new List<string>() { "book", "copy" } },
             Images = new List<string>() { "www.image1.com",
                 "www.image1.com",
                 "www.image1.com" },
@@ -132,7 +132,7 @@ namespace OnlineRetailPortal.Tests
         public async Task Update_Product_By_ID_Should_Update_The_Correct_Product()
         {
             MongoProductStore productStore = new MongoProductStore();
-            var result = await productStore.UpdateProductAsync(demoProductEntity);           
+            var result = await productStore.UpdateProductAsync(demoProductEntity);
             Assert.Equal(result.Name, demoProductEntity.Name);
         }
 

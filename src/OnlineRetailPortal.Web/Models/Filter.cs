@@ -1,6 +1,7 @@
 ﻿namespace OnlineRetailPortal.Web
 {
-    public class Filter
+
+    public abstract class Filter
     {
     }
 }

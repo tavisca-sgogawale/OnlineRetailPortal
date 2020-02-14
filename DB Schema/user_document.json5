@@ -1,0 +1,8 @@
+user document
+{
+	userId: String,
+	firstName: String,
+	lastName: String,
+	contactNumber: String,
+	emailId: String
+}
